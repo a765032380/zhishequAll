@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    android:layout_marginBottom="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="10dp"
+                android:background="@drawable/a_icon_financial" />
+
+            <TextView
+                android:id="@+id/tv_ershoufananjie_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:text="二手房公积金贷款" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/a_icon_financial" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="额度："
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_daikuanedu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50-5000万"
+                android:textColor="#323232"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+
+        <LinearLayout
+
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="首期："
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_ershoufanganjie_shouqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.2"
+                android:textColor="#323232"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="利率："
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_ershoufang_shouqililv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.325"
+                android:textColor="#323232"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="年限："
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_ershoufang_shouqinianxian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textColor="#323232"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_shousuofangkai1"
+            android:layout_width="30dp"
+            android:layout_height="15dp"
+            android:gravity="right|center_vertical"
+
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="5dp"
+                android:background="@drawable/a_icon_on"
+                android:layout_marginRight="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/invisible"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:visibility="visible"
+        android:layout_marginRight="15dp">
+
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="二套："
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_ershoufanganjie_ertao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.2"
+                android:textColor="#323232"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="利率："
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_ershoufang_ertaolilv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.358"
+                android:textColor="#323232"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="年限："
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_ershoufang_ertaonianxian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textColor="#323232"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_height="15dp"
+            android:gravity="right|center_vertical"
+
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="#f1f1f1">
+
+    </View>
+
+</LinearLayout>
+
+
