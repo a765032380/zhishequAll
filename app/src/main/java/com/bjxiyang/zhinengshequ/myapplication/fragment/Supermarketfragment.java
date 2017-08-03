@@ -1,10 +1,12 @@
 package com.bjxiyang.zhinengshequ.myapplication.fragment;
 
-import com.bjxiyang.zhinengshequ.myapplication.base.BaseFragment;
+
+import android.support.v4.app.Fragment;
 
 /**
- * Created by gll on 2017/8/2.
+ * Created by gll on 17-5-20.
  */
 
-public class Supermarketfragment extends BaseFragment {
+public class Supermarketfragment extends Fragment{
+
 }

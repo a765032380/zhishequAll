@@ -129,6 +129,10 @@ dependencies {
     compile 'org.robolectric:shadows-multidex:3.3.1'
     //沉浸式状态栏
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //首页滑动特效的依赖
+    compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
+    //TextView上下轮播
+    compile 'com.github.paradoxie:AutoVerticalTextview:0.1'
 
     compile project(path: ':imoocsdk')
     compile project(path: ':myapplication')

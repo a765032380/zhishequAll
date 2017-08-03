@@ -59,8 +59,9 @@ public class GuardApplication extends Application {
     public void onCreate() {
         super.onCreate();
         YZTEsdk.getXulie(this);
-        YZTEsdk.initServer(this);
         YZTEsdk.initYZT(this);
+        YZTEsdk.initServer(this);
+
 
         DaoUtils.init(this);
 

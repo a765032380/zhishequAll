@@ -412,7 +412,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             }
             Log.i("PHONE",phoneInfoString);
             if (!phoneInfoString.equals("")||phoneInfoString!=null){
-                shangChuan();
+//                shangChuan();
             }
         }
 

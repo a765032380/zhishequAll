@@ -55,7 +55,7 @@ public class ItemAdapter extends BaseAdapter {
             viewHoder= (ViewHolder) view.getTag();
         }
 //        viewHoder.fragment_image
-        viewHoder.home_product_sign.setText(mList.get(i).name);
+        viewHoder.home_product_sign.setText(mList.get(i).getName());
 
         return view;
     }

@@ -1,72 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:id="@+id/myScrollView"
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
+
+    <!--<LinearLayout-->
+        <!--android:alpha="0"-->
+        <!--android:id="@+id/linearlayout_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp">-->
+        <!---->
+    <!--</LinearLayout>-->
+
+<ScrollView
+
+    android:id="@+id/myScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical">
-
-        <com.jude.rollviewpager.RollPagerView
-            android:id="@+id/roll_view_pager"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:layout_gravity="center"
-            android:background="@drawable/a_img_banner"
-            app:rollviewpager_play_delay="3000" />
+            android:layout_height="wrap_content">
+            <com.jude.rollviewpager.RollPagerView
+                android:id="@+id/roll_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_gravity="center"
+                android:background="@drawable/a_img_banner"
+                app:rollviewpager_play_delay="3000" />
 
-        <LinearLayout
-            android:id="@+id/ll_xuanzedizhi"
-            android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="-160dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/homebg"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="12dp"
-                android:layout_height="15dp"
-                android:background="@drawable/a_icon_address"
-                android:layout_marginLeft="10dp"/>
-            <TextView
-                android:id="@+id/mTextSwitcher"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_xuanzedizhi"
+                android:layout_width="150dp"
                 android:layout_height="25dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_vertical"                
-                android:gravity="center"
-                android:text="请选择地址"
-                android:singleLine="true"
-                android:textColor="#ffffff"
-                android:textSize="14sp"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/homebg"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/login_confirm"
-                android:layout_width="6dp"
-                android:layout_height="12dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/a_icon_pulldown_go" />
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/a_icon_address"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:id="@+id/mTextSwitcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="请选择地址"
+                    android:singleLine="true"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"/>
 
+                <ImageView
+                    android:id="@+id/login_confirm"
+                    android:layout_width="6dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/a_icon_pulldown_go" />
+            </LinearLayout>
+        </RelativeLayout>
         <LinearLayout
             android:id="@+id/ll_xiaoqugonggaoxiangqing"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="140dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -79,7 +94,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <com.paradoxie.autoscrolltextview.VerticalTextview
                 android:id="@+id/tv_xiaoqugonggao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,160 +118,6 @@
 
         </com.jude.rollviewpager.RollPagerView>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--android:layout_marginRight="15dp"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/bt_yaoshishouquan"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="35dp"-->
-                    <!--android:layout_height="35dp"-->
-                    <!--android:src="@drawable/a_btn_authorization" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/home_product_sign"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:text="钥匙授权"-->
-                    <!--android:textColor="#666666"-->
-                    <!--android:textSize="12sp" />-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/bt_menjinjilu"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="35dp"-->
-                    <!--android:layout_height="35dp"-->
-                    <!--android:src="@drawable/a_btn_record" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/home_product_earn"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:gravity="center"-->
-                    <!--android:text="门禁记录"-->
-                    <!--android:textColor="#666666"-->
-                    <!--android:textSize="12sp" />-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/bt_bianlidian"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="35dp"-->
-                    <!--android:layout_height="35dp"-->
-                    <!--android:src="@drawable/a_btn_thesupermarket" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/home_bianlidian"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:gravity="center"-->
-                    <!--android:text="便利店"-->
-                    <!--android:textColor="#666666"-->
-                    <!--android:textSize="12sp" />-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/ll_jinrongfuwu"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="35dp"-->
-                    <!--android:layout_height="35dp"-->
-                    <!--android:src="@drawable/a_btn_financial" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/home_product_data"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:gravity="center"-->
-                    <!--android:text="金融服务"-->
-                    <!--android:textColor="#666666"-->
-                    <!--android:textSize="12sp" />-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/shenghuojiaofei_home"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="35dp"-->
-                    <!--android:layout_height="35dp"-->
-                    <!--android:src="@drawable/a_btn_paycost" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/home_product_fukuan"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:gravity="center"-->
-                    <!--android:text="生活缴费"-->
-                    <!--android:textColor="#666666"-->
-                    <!--android:textSize="12sp" />-->
-            <!--</LinearLayout>-->
-
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="5dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/iv_blue_1"-->
-                <!--android:layout_width="5dp"-->
-                <!--android:layout_height="5dp"-->
-                <!--android:background="@drawable/a_sign_dian" />-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/iv_blue_2"-->
-                <!--android:layout_width="5dp"-->
-                <!--android:layout_height="5dp"-->
-                <!--android:layout_marginLeft="5dp"-->
-                <!--android:background="@drawable/a_sign_dian_two" />-->
-        <!--</LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/ll_jinrongtuijian"
@@ -281,15 +142,20 @@
                 android:textColor="#303030"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/tv_jinrongtuijian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
                 android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="金融推荐内容"
-                android:textColor="#909090" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.paradoxie.autoscrolltextview.VerticalTextview
+                    android:id="@+id/tv_jinrongtuijian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="金融推荐内容"
+                    android:textColor="#909090" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/tv_more"
@@ -306,11 +172,12 @@
                 android:background="@drawable/a_icon_pulldown" />
         </LinearLayout>
 
-        <include layout="@layout/item_home_finance"></include>
 
-        <include layout="@layout/item_home_xinyong"></include>
+
 
       
+
+
 
         <LinearLayout
             android:id="@+id/ll_chaoshitejia"
@@ -352,7 +219,7 @@
         </LinearLayout>
 
 
-        <ListView
+        <com.bjxiyang.zhinengshequ.myapplication.view.MyListView
             android:id="@+id/lv_shangping"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -363,7 +230,20 @@
             android:dividerHeight="1dp"
             android:scrollbars="none">
 
-        </ListView>
+        </com.bjxiyang.zhinengshequ.myapplication.view.MyListView>
 
     </LinearLayout>
 </ScrollView>
+    <TextView
+        android:alpha="0"
+        android:id="@+id/title_gone"
+        android:text="测试"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="#4183FF"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/myScrollView"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

@@ -91,7 +91,7 @@ public class ViewAdapter extends LoopPagerAdapter{
             List<HomeItem> list=new ArrayList<>();
             HomeItem homeItem=new HomeItem();
             for (int i=0;i<5;i++){
-                homeItem.name="测试数据"+i;
+                homeItem.setName("测试数据"+i);
                 list.add(homeItem);
             }
 
