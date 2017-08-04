@@ -7,6 +7,15 @@ package com.bjxiyang.zhinengshequ.myapplication.test;
 public class HomeItem {
     private String image;
     private String name;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getImage() {
         return image;

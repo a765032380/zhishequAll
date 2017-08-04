@@ -4,40 +4,32 @@ import android.annotation.TargetApi;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.TranslateAnimation;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.HomeAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.adapter.HomeJinRongAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.RollViewAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.ViewAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.base.BaseFragment;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Banner;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.test.HomeItem;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyListView;
-import com.bjxiyang.zhinengshequ.myapplication.view.MyScrollView;
-import com.bjxiyang.zhinengshequ.myapplication.view.ObservableScrollView;
-import com.github.ksoichiro.android.observablescrollview.ObservableListView;
+import com.google.gson.Gson;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.paradoxie.autoscrolltextview.VerticalTextview;
@@ -53,6 +45,12 @@ import butterknife.ButterKnife;
  */
 
 public class HomeFragment extends BaseFragment{
+    private static final int ERSHOUFANG=1;
+    private static final int DIANZI=2;
+    private static final int XINYONG=3;
+    private static final int DIYA=4;
+
+
     /**
      * UI
      */
@@ -80,14 +78,23 @@ public class HomeFragment extends BaseFragment{
     public ScrollView myScrollView;
     @BindView(R.id.title_gone)
     public TextView title_gone;
-//    @BindView(R.id.linearlayout_title)
-//    public LinearLayout linearlayout_title;
+
+    @BindView(R.id.list_view_home_jinrong)
+    public ListView list_view_home_jinrong;
+
     /**
      * DATE
      */
     private List<Banner.Obj> list = new ArrayList<>();
     private Banner banner;
     private int myScrollViewHeight=0;
+
+    public List<HomeBean.ObjBean.BannerObjBean> bannerBean;
+    public List<HomeBean.ObjBean.FinanceObjBean> financeBean;
+    public List<HomeBean.ObjBean.NewestObjBean> newestBean;
+    public List<HomeBean.ObjBean.NoticeObjBean> noticeBean;
+    public List<HomeBean.ObjBean.SpecialObjBean> specialBean;
+
 
     /**
      * Other
@@ -97,6 +104,7 @@ public class HomeFragment extends BaseFragment{
     private RollViewAdapter adapter;
     private View view;
     private static OngetData ongetData;
+    private boolean isone=true;
 
     @Nullable
     @Override
@@ -104,17 +112,24 @@ public class HomeFragment extends BaseFragment{
         view=inflater.inflate(R.layout.fragment_home2,container,false);
         ButterKnife.bind(this,view) ;
         initUI();
-        initDate();
+        getDate();
+        title_gone.setText("请选择地址");
+
         return view;
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         if (hidden){
-            myScrollViewHeight=myScrollView.getScrollY();
-            //TextView停止滚动
-            tv_jinrongtuijian.stopAutoScroll();
-            tv_xiaoqugonggao.stopAutoScroll();
+            if (isone){
+                myScrollViewHeight=0;
+                isone=false;
+            }else {
+                myScrollViewHeight = myScrollView.getScrollY();
+                //TextView停止滚动
+                tv_jinrongtuijian.stopAutoScroll();
+                tv_xiaoqugonggao.stopAutoScroll();
+            }
         }else {
             myScrollView.post(new Runnable() {
                 //让scrollview跳转到顶部，必须放在runnable()方法中
@@ -133,41 +148,7 @@ public class HomeFragment extends BaseFragment{
     @TargetApi(Build.VERSION_CODES.M)
     private void initUI() {
 
-        ArrayList<String> titleList=new ArrayList<>();
-        for (int i=0;i<3;i++) {
-            titleList.add("测试数据"+i);
-        }
-        tv_xiaoqugonggao.setTextList(titleList);//加入显示内容,集合类型
-        tv_xiaoqugonggao.setText(16,5, Color.GRAY);//设置属性,具体跟踪源码
-        tv_xiaoqugonggao.setTextStillTime(3000);//设置停留时长间隔
-        tv_xiaoqugonggao.setAnimTime(300);//设置进入和退出的时间间隔
-        //对单条文字的点击监听
-        tv_xiaoqugonggao.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // TO DO
-            }
-        });
-        tv_xiaoqugonggao.startAutoScroll();
 
-
-
-        ArrayList<String> jinrongList=new ArrayList<>();
-        for (int i=0;i<3;i++) {
-            jinrongList.add("测试数据"+i);
-        }
-        tv_jinrongtuijian.setTextList(jinrongList);//加入显示内容,集合类型
-        tv_jinrongtuijian.setText(16,5, Color.GRAY);//设置属性,具体跟踪源码
-        tv_jinrongtuijian.setTextStillTime(3000);//设置停留时长间隔
-        tv_jinrongtuijian.setAnimTime(300);//设置进入和退出的时间间隔
-        //对单条文字的点击监听
-        tv_jinrongtuijian.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // TO DO
-            }
-        });
-        tv_jinrongtuijian.startAutoScroll();
 
 
         //设置播放时间间隔
@@ -178,17 +159,9 @@ public class HomeFragment extends BaseFragment{
         home_viewpage_btn.setHintView(new ColorPointHintView(getContext(),0xff4183ff,0xffc6daff));
         ViewAdapter viewAdapter=new ViewAdapter(home_viewpage_btn,getActivity());
         home_viewpage_btn.setAdapter(viewAdapter);
-        List<HomeItem> list=new ArrayList<>();
 
-        for (int i=0;i<10;i++){
-            HomeItem homeItem=new HomeItem();
-            homeItem.setName("测试"+i);
-            list.add(homeItem);
-        }
-        HomeAdapter homeAdapter=new HomeAdapter(getActivity(),list);
 
-        lv_shangping.setAdapter(homeAdapter);
-        MyUntil.setListViewHeightBasedOnChildren(lv_shangping,homeAdapter);
+
 
         myScrollView.post(new Runnable() {
             //让scrollview跳转到顶部，必须放在runnable()方法中
@@ -204,47 +177,13 @@ public class HomeFragment extends BaseFragment{
 
                 int lHeight = 400;
                 int progress = (int)(new Float(scrollY)/new Float(lHeight)*255);
-
-//                if (scrollY<40){
-//                    Message message=new Message();
-//                    message.what=1000;
-//                    message.arg1=scrollY;
-//                    handler.sendMessage(message);
-////                    title_gone.setVisibility(View.GONE);
-//                }else
                     if(scrollY<=lHeight){
-                        float progress1=new Float(progress)/100;
-                        Log.i("YYYY","progress="+progress1);
-//                    title_gone.setVisibility(View.VISIBLE);
+                        float progress1=new Float(progress)/200;
+
                         title_gone.setAlpha(progress1);
                 }
-//                else{
-////                    title_gone.setVisibility(View.GONE);
-//                        title_gone.setAlpha(AlphaAnimation.ABSOLUTE);
-//                }
             }
         });
-//        myScrollView.setOnScrollListener(new MyScrollView.OnScrollListener() {
-//            @Override
-//            public void onScroll(int scrollY) {
-//                myScrollViewHeight=scrollY;
-//                int lHeight = 400;
-//                int progress = (int)(new Float(scrollY)/new Float(lHeight)*255);
-//
-//                if (scrollY<50){
-//                    title_gone.getBackground().setBounds(0,progress,0,0);
-////                    title_gone.setVisibility(View.GONE);
-//                }else if(scrollY<=lHeight){
-//                    LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,scrollY);
-//                    title_gone.setLayoutParams(params);
-////                    title_gone.setVisibility(View.VISIBLE);
-//                    title_gone.getBackground().setAlpha(progress);
-//                }else{
-////                    title_gone.setVisibility(View.GONE);
-//                    title_gone.getBackground().setAlpha(255);
-//                }
-//            }
-//        });
 
     }
 
@@ -276,14 +215,104 @@ public class HomeFragment extends BaseFragment{
         //设置适配器
         adapter = new RollViewAdapter(mRollViewPager);
         mRollViewPager.setAdapter(adapter);
-        ongetData.OngetData(list);
+        ongetData.OngetData(bannerBean);
     }
     public static void setOngetData(OngetData ongetDat){
         ongetData=ongetDat;
     }
 
-    public interface OngetData{
-        public void OngetData(List<Banner.Obj> mList);
+    public void getDate() {
+        String url= XY_Response2.URL_HOME+"cmemberId=81";
+        RequestCenter.home_2(url, new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                HomeBean homebean= (HomeBean) responseObj;
+                if (homebean.getCode()==1000){
+                    bannerBean=homebean.getObj().getBannerObj();
+                    financeBean=homebean.getObj().getFinanceObj();
+                    newestBean=homebean.getObj().getNewestObj();
+                    noticeBean=homebean.getObj().getNoticeObj();
+                    specialBean=homebean.getObj().getSpecialObj();
+
+//                    list= bannerBean.getObj();
+                    if (bannerBean.size()>0){
+                        local();
+                    }
+                    if (noticeBean.size()>0){
+                        setGongGao(noticeBean);
+                    }
+                    if (financeBean.size()>0){
+                        setJinRong(financeBean);
+                    }
+                    if (newestBean.size()>0){
+                        setJinRongGongGao(newestBean);
+                    }
+                    if (specialBean.size()>0){
+                        setChaoShiList(specialBean);
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                Log.i("yyyy","请求失败");
+            }
+        });
     }
 
+    public interface OngetData{
+        public void OngetData(List<HomeBean.ObjBean.BannerObjBean> mList);
+    }
+    private void setGongGao(List<HomeBean.ObjBean.NoticeObjBean> list){
+        ArrayList<String> titleList=new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            titleList.add(list.get(i).getTitle());
+        }
+        tv_xiaoqugonggao.setTextList(titleList);//加入显示内容,集合类型
+        tv_xiaoqugonggao.setText(16,5, Color.GRAY);//设置属性,具体跟踪源码
+        tv_xiaoqugonggao.setTextStillTime(3000);//设置停留时长间隔
+        tv_xiaoqugonggao.setAnimTime(300);//设置进入和退出的时间间隔
+        //对单条文字的点击监听
+        tv_xiaoqugonggao.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                // TO DO
+            }
+        });
+        tv_xiaoqugonggao.startAutoScroll();
+    }
+    private void setJinRong(List<HomeBean.ObjBean.FinanceObjBean> jinrongList){
+        HomeJinRongAdapter adapter=new HomeJinRongAdapter(getContext(),jinrongList);
+        list_view_home_jinrong.setAdapter(adapter);
+        MyUntil.setListViewHeightBasedOnChildren(list_view_home_jinrong,adapter);
+    }
+
+    private void setJinRongGongGao(List<HomeBean.ObjBean.NewestObjBean> jinronggongGaoList){
+
+        ArrayList<String> jinrongList=new ArrayList<>();
+        for (int i=0;i<jinronggongGaoList.size();i++) {
+            jinrongList.add(jinronggongGaoList.get(i).getLoanName());
+        }
+        tv_jinrongtuijian.setTextList(jinrongList);//加入显示内容,集合类型
+        tv_jinrongtuijian.setText(16,5, Color.GRAY);//设置属性,具体跟踪源码
+        tv_jinrongtuijian.setTextStillTime(3000);//设置停留时长间隔
+        tv_jinrongtuijian.setAnimTime(300);//设置进入和退出的时间间隔
+        //对单条文字的点击监听
+        tv_jinrongtuijian.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                // TO DO
+            }
+        });
+        tv_jinrongtuijian.startAutoScroll();
+
+    }
+    private void setChaoShiList(List<HomeBean.ObjBean.SpecialObjBean> chaoshiList){
+
+        HomeAdapter homeAdapter=new HomeAdapter(getContext(),chaoshiList);
+        lv_shangping.setAdapter(homeAdapter);
+        MyUntil.setListViewHeightBasedOnChildren(lv_shangping,homeAdapter);
+    }
 }

@@ -95,9 +95,6 @@ public class ViewAdapter extends LoopPagerAdapter{
                 list.add(homeItem);
             }
 
-
-
-
             ItemAdapter itemAdapter=new ItemAdapter(mContext,list);
             listView.setAdapter(itemAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -108,7 +105,6 @@ public class ViewAdapter extends LoopPagerAdapter{
             });
 
         }
-//        view= LayoutInflater.from(mContext).inflate(R.layout.fragment_home_viewpage1,null);
         Log.i("YYYY","测试首页分类轮播");
         return view;
     }

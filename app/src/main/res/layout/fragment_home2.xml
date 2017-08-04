@@ -171,12 +171,18 @@
                 android:layout_height="8dp"
                 android:background="@drawable/a_icon_pulldown" />
         </LinearLayout>
+        <ListView
+            android:id="@+id/list_view_home_jinrong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
 
-
-
-
-      
-
+        <!--<include-->
+            <!--android:id="@+id/view1"-->
+            <!--layout="@layout/item_home_ershoufang"/>-->
+        <!--<include-->
+            <!--android:id="@+id/view2"-->
+            <!--layout="@layout/item_home_ershoufang"/>-->
 
 
         <LinearLayout
@@ -243,7 +249,8 @@
         android:background="#4183FF"
         android:textSize="18sp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
+        android:paddingTop="15dp"
         android:layout_alignTop="@+id/myScrollView"
         android:layout_alignParentStart="true" />
 </RelativeLayout>

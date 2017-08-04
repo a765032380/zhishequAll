@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Banner;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.HomeFragment;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
@@ -20,13 +21,13 @@ import java.util.List;
 
 public class RollViewAdapter extends LoopPagerAdapter{
 
-    private List<Banner.Obj> mList;
+    private List<HomeBean.ObjBean.BannerObjBean> mList;
     private ImageLoaderManager manager;
     public RollViewAdapter(RollPagerView viewPager) {
         super(viewPager);
         HomeFragment.setOngetData(new HomeFragment.OngetData() {
             @Override
-            public void OngetData(List<Banner.Obj> list) {
+            public void OngetData(List<HomeBean.ObjBean.BannerObjBean> list) {
                 mList=list;
                 notifyDataSetChanged();
             }

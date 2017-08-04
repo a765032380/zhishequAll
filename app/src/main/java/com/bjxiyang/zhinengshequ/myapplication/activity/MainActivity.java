@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -47,6 +48,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.JiGuang;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Phoneinfo;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
+import com.bjxiyang.zhinengshequ.myapplication.bean.Users;
 import com.bjxiyang.zhinengshequ.myapplication.bean.WuYeJiaoFei;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.MyQuanXianDialog;
@@ -96,6 +98,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public TextView mMessageView;
     @BindView(R.id.mine_image_view)
     public TextView mMyView;
+
+    @BindView(R.id.home_tv_view)
+    public TextView home_tv_view;
+    @BindView(R.id.fish_tv_view)
+    public TextView fish_tv_view;
+    @BindView(R.id.message_tv_view)
+    public TextView message_tv_view;
+    @BindView(R.id.mine_tv_view)
+    public TextView mine_tv_view;
+
+
+
     /**
      * DATE
      */
@@ -125,7 +139,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
+        Users users=new Users();
+        Users.Obj obj=new Users.Obj();
+        obj.setC_memberId(0);
+        obj.setMobilePhone("18813045215");
+        users.setObj(obj);
+        UserManager.getInstance().setUser(users);
 
 
 
@@ -249,6 +268,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         switch (view.getId()) {
             //主页
             case R.id.home_layout_view:
+                home_tv_view.setTextColor(Color.parseColor("#4275ff"));
+                fish_tv_view.setTextColor(Color.parseColor("#909090"));
+                message_tv_view.setTextColor(Color.parseColor("#909090"));
+                mine_tv_view.setTextColor(Color.parseColor("#909090"));
+
                 mHomeView.setBackgroundResource(R.drawable.a_btn_shouye_pre);
                 mPondView.setBackgroundResource(R.drawable.a_btn_jinrong);
                 mMessageView.setBackgroundResource(R.drawable.a_btn_bianlidian);
@@ -266,6 +290,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
             //金融
             case R.id.pond_layout_view:
+                home_tv_view.setTextColor(Color.parseColor("#909090"));
+                fish_tv_view.setTextColor(Color.parseColor("#4275ff"));
+                message_tv_view.setTextColor(Color.parseColor("#909090"));
+                mine_tv_view.setTextColor(Color.parseColor("#909090"));
                 mHomeView.setBackgroundResource(R.drawable.a_icon_shouye);
                 mPondView.setBackgroundResource(R.drawable.a_icon_jinrong_e);
                 mMessageView.setBackgroundResource(R.drawable.a_btn_bianlidian);
@@ -281,8 +309,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                     fragmentTransaction.show(mBankingFragment).commit();
                 }
                 break;
-            //商超
+            //街坊儿
             case R.id.message_layout_view:
+                home_tv_view.setTextColor(Color.parseColor("#909090"));
+                fish_tv_view.setTextColor(Color.parseColor("#909090"));
+                message_tv_view.setTextColor(Color.parseColor("#4275ff"));
+                mine_tv_view.setTextColor(Color.parseColor("#909090"));
                 mHomeView.setBackgroundResource(R.drawable.a_icon_shouye);
                 mPondView.setBackgroundResource(R.drawable.a_btn_jinrong);
                 mMessageView.setBackgroundResource(R.drawable.a_icon_bianli_c);
@@ -301,6 +333,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
             //我的
             case R.id.mine_layout_view:
+                home_tv_view.setTextColor(Color.parseColor("#909090"));
+                fish_tv_view.setTextColor(Color.parseColor("#909090"));
+                message_tv_view.setTextColor(Color.parseColor("#909090"));
+                mine_tv_view.setTextColor(Color.parseColor("#4275ff"));
+
                 mHomeView.setBackgroundResource(R.drawable.a_icon_shouye);
                 mPondView.setBackgroundResource(R.drawable.a_btn_jinrong);
                 mMessageView.setBackgroundResource(R.drawable.a_btn_bianlidian);
@@ -437,10 +474,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         return imei;
     }
 
-
-    private void getUserHttp(){
-
-    }
     //动态权限
     private void quanxian(){
         if (Build.VERSION.SDK_INT >= 23) {

@@ -1,6 +1,7 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.R;
-import com.bjxiyang.zhinengshequ.myapplication.test.HomeItem;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 
 import java.util.List;
 
@@ -18,14 +20,15 @@ import java.util.List;
  */
 
 public class HomeAdapter extends BaseAdapter {
+    private List<HomeBean.ObjBean.SpecialObjBean> mList;
+    private Context mContext;
 
-    public HomeAdapter(Context mContext,List<HomeItem> mList) {
+    public HomeAdapter(Context mContext,List<HomeBean.ObjBean.SpecialObjBean> mList) {
         this.mList = mList;
         this.mContext = mContext;
     }
 
-    private List<HomeItem> mList;
-    private Context mContext;
+
 
     @Override
     public int getCount() {
@@ -67,7 +70,15 @@ public class HomeAdapter extends BaseAdapter {
             viewHolder= (ViewHolder) view.getTag();
         }
         viewHolder.tv_item_tijiaodingdan_shangpinname.setText(mList.get(position).getName());
-
+        ImageLoaderManager.getInstance(mContext)
+                .displayImage(viewHolder.iv_item_tijiaodingdan_shangpinimage,mList.get(position).getLogo());
+        if (mList.get(position).getIf_discount()==0){
+            viewHolder.tv_item_tijiaodingdan_shangpinguige.setText(mList.get(position).getPrice()+"");
+        }else {
+            viewHolder.tv_item_tijiaodingdan_shangpinguige.setText(mList.get(position).getDiscount_price()+"");
+            viewHolder.tv_item_tijiaodingdan_money.setText(mList.get(position).getPrice()+"");
+            viewHolder.tv_item_tijiaodingdan_money.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
+        }
         return view;
     }
     class ViewHolder{

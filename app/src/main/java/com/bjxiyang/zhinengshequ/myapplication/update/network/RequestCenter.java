@@ -12,6 +12,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.Door;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Floor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Loan;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoorList;
@@ -264,6 +265,10 @@ public class RequestCenter {
 
     public static void centerinfo_ebppBillGet(String url,DisposeDataListener listener){
         RequestCenter.postRequest1(url,null,null,listener, FanHui.class);
+    }
+
+    public static void home_2(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HomeBean.class);
     }
 
 
