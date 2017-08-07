@@ -14,6 +14,7 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XYKeyaccreditAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
+import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.PermissionList;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
@@ -110,8 +111,8 @@ public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.ib_tianjia:
-//                Intent intent=new Intent(this,XY_AddKeyaccreditActivity.class);
-//                startActivity(intent);
+                Intent intent=new Intent(this,XY_AddKeyaccreditActivity.class);
+                startActivity(intent);
                 break;
         }
     }

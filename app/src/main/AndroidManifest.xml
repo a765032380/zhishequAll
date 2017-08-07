@@ -64,6 +64,32 @@
         android:name=".myapplication.app.GuardApplication"
         android:theme="@style/AppTheme">
         <activity android:name="com.bjxiyang.zhinengshequ.myapplication.activity.MainActivity">
+
+        </activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XY_AddKeyaccreditActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.MyWebViewActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.FuWuTiaoKuanActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.RegisteredActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.welcome.Welcome"
+            android:theme="@style/otherPageStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,9 +97,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit"
+            android:name="com.bjxiyang.zhinengshequ.myapplication.welcome.Guide"
             android:theme="@style/otherPageStyle"></activity>
-
         <receiver android:name=".myapplication.recriver.VideoBroadcastReceiver">
             <intent-filter>
                 <action android:name="org.ebiao.kaoqin.YTXHelper.UsernameSN"></action>

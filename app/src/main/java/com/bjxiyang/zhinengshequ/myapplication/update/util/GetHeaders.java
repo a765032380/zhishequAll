@@ -14,9 +14,9 @@ import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 public class GetHeaders {
     public static RequestParams getHeaders(){
         RequestParams headers=new RequestParams();
-        headers.put("private-token","18813045215");
-//        headers.put("private-token",UserManager.getInstance().getUser().getObj().getMobilePhone()
-//                +"_"+SPManager.getInstance().getString("loginKey",""));
+//        headers.put("private-token","18813045215");
+        headers.put("private-token",UserManager.getInstance().getUser().getObj().getMobilePhone()
+                +"_"+SPManager.getInstance().getString("loginKey",""));
 
 //        UserManager.getInstance().getUser().getObj().getMobilePhone()+
 //                "_"+

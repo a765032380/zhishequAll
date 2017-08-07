@@ -437,4 +437,8 @@
     <color name="gray1">#f8f8f8</color>
     <color name="color_909090">#909090</color>
     <color name="color_4275ff">#4275ff</color>
+    <color name="shenqizhong">#2e77ff</color>
+    <color name="yiqiyong">#323232</color>
+    <color name="yijujue">#ff925d</color>
+    <color name="yijinyong">#323232</color>
 </resources>

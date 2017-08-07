@@ -139,15 +139,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Users users=new Users();
-        Users.Obj obj=new Users.Obj();
-        obj.setC_memberId(0);
-        obj.setMobilePhone("18813045215");
-        users.setObj(obj);
-        UserManager.getInstance().setUser(users);
+//        Users users=new Users();
+//        Users.Obj obj=new Users.Obj();
+//        obj.setC_memberId(0);
+//        obj.setMobilePhone("18813045215");
+//        users.setObj(obj);
+//        UserManager.getInstance().setUser(users);
 
 
-
+        Log.i("YYYY",UserManager.getInstance().getUser().getObj().getMobilePhone());
         ButterKnife.bind(this) ;
         mainActivity=this;
 //        checkVersion();
@@ -257,7 +257,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         mPondLayout.setOnClickListener(this);
         mMessageLayout.setOnClickListener(this);
         mMyLayou.setOnClickListener(this);
-        mHomeView.setBackgroundResource(R.drawable.a_btn_shouye_pre);
+        mHomeView.setBackgroundResource(R.drawable.a_btn_home_pre);
     }
     private void initDate() {
 
@@ -273,10 +273,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 message_tv_view.setTextColor(Color.parseColor("#909090"));
                 mine_tv_view.setTextColor(Color.parseColor("#909090"));
 
-                mHomeView.setBackgroundResource(R.drawable.a_btn_shouye_pre);
-                mPondView.setBackgroundResource(R.drawable.a_btn_jinrong);
-                mMessageView.setBackgroundResource(R.drawable.a_btn_bianlidian);
-                mMyView.setBackgroundResource(R.drawable.a_btn_wode);
+                mHomeView.setBackgroundResource(R.drawable.a_btn_home_pre);
+                mPondView.setBackgroundResource(R.drawable.a_btn_service);
+                mMessageView.setBackgroundResource(R.drawable.a_btn_social);
+                mMyView.setBackgroundResource(R.drawable.a_btn_my);
                 hideFragment(mSupermarketFragment,fragmentTransaction);
                 hideFragment(mMyFragment,fragmentTransaction);
                 hideFragment(mBankingFragment,fragmentTransaction);
@@ -294,10 +294,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 fish_tv_view.setTextColor(Color.parseColor("#4275ff"));
                 message_tv_view.setTextColor(Color.parseColor("#909090"));
                 mine_tv_view.setTextColor(Color.parseColor("#909090"));
-                mHomeView.setBackgroundResource(R.drawable.a_icon_shouye);
-                mPondView.setBackgroundResource(R.drawable.a_icon_jinrong_e);
-                mMessageView.setBackgroundResource(R.drawable.a_btn_bianlidian);
-                mMyView.setBackgroundResource(R.drawable.a_btn_wode);
+                mHomeView.setBackgroundResource(R.drawable.a_btn_home);
+                mPondView.setBackgroundResource(R.drawable.a_btn_service_pre);
+                mMessageView.setBackgroundResource(R.drawable.a_btn_social);
+                mMyView.setBackgroundResource(R.drawable.a_btn_my);
                 hideFragment(mSupermarketFragment, fragmentTransaction);
                 hideFragment(mMyFragment, fragmentTransaction);
                 hideFragment(mHomeFragment, fragmentTransaction);
@@ -315,10 +315,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 fish_tv_view.setTextColor(Color.parseColor("#909090"));
                 message_tv_view.setTextColor(Color.parseColor("#4275ff"));
                 mine_tv_view.setTextColor(Color.parseColor("#909090"));
-                mHomeView.setBackgroundResource(R.drawable.a_icon_shouye);
-                mPondView.setBackgroundResource(R.drawable.a_btn_jinrong);
-                mMessageView.setBackgroundResource(R.drawable.a_icon_bianli_c);
-                mMyView.setBackgroundResource(R.drawable.a_btn_wode);
+                mHomeView.setBackgroundResource(R.drawable.a_btn_home);
+                mPondView.setBackgroundResource(R.drawable.a_btn_service);
+                mMessageView.setBackgroundResource(R.drawable.a_btn_social_pre);
+                mMyView.setBackgroundResource(R.drawable.a_btn_my);
                 hideFragment(mHomeFragment, fragmentTransaction);
                 hideFragment(mMyFragment, fragmentTransaction);
                 hideFragment(mBankingFragment, fragmentTransaction);
@@ -338,10 +338,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 message_tv_view.setTextColor(Color.parseColor("#909090"));
                 mine_tv_view.setTextColor(Color.parseColor("#4275ff"));
 
-                mHomeView.setBackgroundResource(R.drawable.a_icon_shouye);
-                mPondView.setBackgroundResource(R.drawable.a_btn_jinrong);
-                mMessageView.setBackgroundResource(R.drawable.a_btn_bianlidian);
-                mMyView.setBackgroundResource(R.drawable.a_icon_wode_c);
+                mHomeView.setBackgroundResource(R.drawable.a_btn_home);
+                mPondView.setBackgroundResource(R.drawable.a_btn_service);
+                mMessageView.setBackgroundResource(R.drawable.a_btn_social);
+                mMyView.setBackgroundResource(R.drawable.a_btn_my_pre);
                 hideFragment(mHomeFragment, fragmentTransaction);
                 hideFragment(mSupermarketFragment, fragmentTransaction);
                 hideFragment(mBankingFragment, fragmentTransaction);

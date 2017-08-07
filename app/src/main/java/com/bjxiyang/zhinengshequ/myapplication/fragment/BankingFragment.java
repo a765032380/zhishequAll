@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit;
 import com.bjxiyang.zhinengshequ.myapplication.base.BaseFragment;
 
@@ -74,7 +75,7 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
                 startActivity(XYKeyAccredit.class);
                 break;
             case R.id.ll_bianlidian:
-
+                startActivity(SupermarketActivity.class);
                 break;
             case R.id.ll_sehnghuojiaofei:
                 break;

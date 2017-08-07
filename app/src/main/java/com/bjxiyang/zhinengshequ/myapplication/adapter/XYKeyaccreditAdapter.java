@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,7 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
         return position;
     }
 
+    @SuppressWarnings("ResourceAsColor")
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
@@ -76,11 +78,12 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
             view= LayoutInflater.from(mContext).inflate(R.layout.xy_item_keyaccredit,null);
             viewholder.iv_touxiang= (CircleImageView) view.findViewById(R.id.iv_touxiang);
             viewholder.name= (TextView) view.findViewById(R.id.name);
-//            viewholder.iv_zukejiaren= (TextView) view.findViewById(R.id.iv_zukejiaren);
+            viewholder.iv_zukejiaren= (ImageView) view.findViewById(R.id.iv_zukejiaren);
             viewholder.item_address= (TextView) view.findViewById(R.id.item_address);
+            viewholder.iv_startusing= (ImageView) view.findViewById(R.id.iv_startusing);
 //            viewholder.item_date= (TextView) view.findViewById(R.id.item_date);
             viewholder.ib_jinyong_qiyong= (TextView) view.findViewById(R.id.ib_jinyong_qiyong);
-//            viewholder.tv_jintog_qiyong= (TextView) view.findViewById(R.id.tv_jintog_qiyong);
+            viewholder.tv_zhuangtai= (TextView) view.findViewById(R.id.tv_zhuangtai);
 //            viewholder.item_xiugai= (TextView) view.findViewById(R.id.item_xiugai);
             view.setTag(viewholder);
         }else {
@@ -102,51 +105,46 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
                     activeUser=mList.get(position).getRoleType();
             }
             //&&c_memberId==mList.get(position).getC_memberId()
-//            if (activeUser==UserType.USER_OWNER&&activeUser==UserType.USER_LESSEE){
-//                viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
+            if (activeUser==UserType.USER_OWNER||activeUser==UserType.USER_LESSEE){
+                viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
 //                viewholder.item_xiugai.setVisibility(View.GONE);
-//            }else {
-//                viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
+            }else {
+                viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
 //                viewholder.item_xiugai.setVisibility(View.VISIBLE);
-//            }
+            }
             if (mList.get(position).getRoleType()==(UserType.USER_FOLK)){
                 viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
 //                viewholder.item_xiugai.setVisibility(View.VISIBLE);
                 //如果是家人类型，就显示家人类型的图片
-                viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_btn_usertype);
-                viewholder.iv_zukejiaren.setText("业主家人");
+                viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_icon_people);
             }else if (mList.get(position).getRoleType()==(UserType.USER_OWNER)) {
                 if (mList.get(position).getStatus()== UserState.START_USING){
                     viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
-//                    viewholder.item_xiugai.setVisibility(View.GONE);
                 }else {
                     viewholder.ib_jinyong_qiyong.setVisibility(View.INVISIBLE);
-//                    viewholder.item_xiugai.setVisibility(View.VISIBLE);
                 }
 
                 //如果是业主类型，就显示业主类型的图片
-                viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_btn_usertype);
-                viewholder.iv_zukejiaren.setText("业主");
+                viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_icon_owner);
             }else if (mList.get(position).getRoleType()==(UserType.USER_LESSEE)){
                 //否则就是租客类型的
-                viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_btn_usertype);
-                viewholder.iv_zukejiaren.setText("租户");
+                viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_icon_tenant);
                 if (mList.get(position).getC_memberId()!= UserManager.getInstance().getUser().getObj().getC_memberId()){
 
-                    viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
+//                    viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
 //                    viewholder.item_xiugai.setVisibility(View.VISIBLE);
                 }else {
-                    viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
+//                    viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
 //                    viewholder.item_xiugai.setVisibility(View.GONE);
                 }
 
 
             }else if(mList.get(position).getRoleType()==(UserType.USER_LESSEE_HOME)){
-                viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
+//                viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
 //                viewholder.item_xiugai.setVisibility(View.VISIBLE);
                 //否则就是租客家人
-                viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_btn_usertype);
-                viewholder.iv_zukejiaren.setText("租户家人");
+                viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_icon_people);
+//                viewholder.iv_zukejiaren.setText("租户家人");
             }
             obj=mList.get(position);
             viewholder.item_address.setText(obj.getCommunityName()+(obj.getNperName())+"-"+obj.getFloorName()
@@ -154,18 +152,31 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
 //            viewholder.item_date.setText(obj.getAdd_time());
 
         if (obj.getStatus()== UserState.FORBIDDEN){
-            viewholder.ib_jinyong_qiyong.setBackgroundResource(R.drawable.c_btn_jiyong);
-//            viewholder.tv_jintog_qiyong.setText("已禁用");
+            viewholder.ib_jinyong_qiyong.setBackgroundResource(R.drawable.a_btn_startusing);
+            viewholder.ib_jinyong_qiyong.setText("确认启用");
+            viewholder.tv_zhuangtai.setText("已禁用");
+            viewholder.tv_zhuangtai.setTextColor(R.color.yijinyong);
+            viewholder.iv_startusing.setVisibility(View.VISIBLE);
+            viewholder.iv_startusing.setImageResource(R.drawable.a_icon_forbidden);
         }else if (obj.getStatus()== UserState.START_USING){
-            viewholder.ib_jinyong_qiyong.setBackgroundResource(R.drawable.c_btn_jinyong);
-//            viewholder.tv_jintog_qiyong.setText("已启用");
+            viewholder.ib_jinyong_qiyong.setText("禁用");
+            viewholder.ib_jinyong_qiyong.setTextColor(R.color.yijinyong);
+            viewholder.ib_jinyong_qiyong.setBackgroundResource(R.drawable.a_btn_forbidden);
+            viewholder.tv_zhuangtai.setText("已启用");
+            viewholder.tv_zhuangtai.setTextColor(R.color.yiqiyong);
+            viewholder.iv_startusing.setVisibility(View.VISIBLE);
+            viewholder.iv_startusing.setImageResource(R.drawable.a_icon_startusing);
         }
         else if (obj.getStatus()== UserState.SHENQINGZHONG){
-//            viewholder.tv_jintog_qiyong.setText("申请中");
-            viewholder.ib_jinyong_qiyong.setBackgroundResource(R.drawable.c_btn_jiyong);
+            viewholder.tv_zhuangtai.setText("审核中");
+            viewholder.tv_zhuangtai.setTextColor(R.color.shenqizhong);
+            viewholder.iv_startusing.setVisibility(View.GONE);
+            viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
         }else if (obj.getStatus()== UserState.JUJUE){
-//            viewholder.tv_jintog_qiyong.setText("已拒绝");
-            viewholder.ib_jinyong_qiyong.setBackgroundResource(R.drawable.c_btn_jiyong);
+            viewholder.iv_startusing.setVisibility(View.GONE);
+            viewholder.tv_zhuangtai.setText("已拒绝");
+            viewholder.tv_zhuangtai.setTextColor(R.color.yijujue);
+            viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
         }
         final int position1=position;
         viewholder.ib_jinyong_qiyong.setOnClickListener(new View.OnClickListener() {
@@ -267,12 +278,14 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
     }
 
     private class Viewholder{
+        //状态前图片
+        ImageView iv_startusing;
         //头像
         CircleImageView iv_touxiang;
         //姓名
         TextView name;
         //租客还是家人
-        TextView iv_zukejiaren;
+        ImageView iv_zukejiaren;
         //地址
         TextView item_address;
         //时间
@@ -280,7 +293,7 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
         //禁用还是启用
         TextView ib_jinyong_qiyong;
         //显示禁用还是启用
-        TextView tv_jintog_qiyong;
+        TextView tv_zhuangtai;
         //修改按钮
         TextView item_xiugai;
 

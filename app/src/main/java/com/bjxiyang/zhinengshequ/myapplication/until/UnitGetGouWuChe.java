@@ -11,8 +11,8 @@ import java.util.List;
  */
 
 public class UnitGetGouWuChe {
-    private static double zongji;
-    private static int count;
+    private static double zongji=0;
+    private static int count=0;
     private static List<GouWuChe> mList;
 
     public static double getZongJia() {

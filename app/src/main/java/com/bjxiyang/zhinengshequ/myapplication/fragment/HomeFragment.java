@@ -138,9 +138,11 @@ public class HomeFragment extends BaseFragment{
                     myScrollView.scrollTo(0,myScrollViewHeight);
                 }
             });
-            //TextView开始滚动
-            tv_jinrongtuijian.startAutoScroll();
-            tv_xiaoqugonggao.startAutoScroll();
+            if (!isone) {
+                //TextView开始滚动
+                tv_jinrongtuijian.startAutoScroll();
+                tv_xiaoqugonggao.startAutoScroll();
+            }
         }
         super.onHiddenChanged(hidden);
     }
