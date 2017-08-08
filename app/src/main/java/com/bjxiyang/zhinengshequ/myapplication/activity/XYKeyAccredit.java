@@ -31,6 +31,9 @@ import java.util.List;
 
 public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
 
+    /**
+     *
+     */
     private List<PermissionList.Obj> mList;
     private SwipeListView mListView;
     private RelativeLayout ib_fanghui;
