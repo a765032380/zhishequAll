@@ -1,6 +1,7 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -14,6 +15,10 @@ import android.widget.Toast;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit;
+import com.bjxiyang.zhinengshequ.myapplication.activity.XYMenJinJiLuActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Banner;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.HomeFragment;
 import com.bjxiyang.zhinengshequ.myapplication.test.HomeItem;
@@ -50,28 +55,32 @@ public class ViewAdapter extends LoopPagerAdapter{
             view1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(mContext,"点击了按键1",Toast.LENGTH_LONG).show();
+                    startActivity(XYKeyAccredit.class);
+//                    Toast.makeText(mContext,"点击了按键1",Toast.LENGTH_LONG).show();
                 }
             });
             View view2 = viewGroup.getChildAt(1);
             view2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(mContext,"点击了按键2",Toast.LENGTH_LONG).show();
+                    startActivity(XYMenJinJiLuActivity.class);
+//                    Toast.makeText(mContext,"点击了按键2",Toast.LENGTH_LONG).show();
                 }
             });
             View view3 = viewGroup.getChildAt(2);
             view3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(mContext,"点击了按键3",Toast.LENGTH_LONG).show();
+                    startActivity(SupermarketActivity.class);
+//                    Toast.makeText(mContext,"点击了按键3",Toast.LENGTH_LONG).show();
                 }
             });
             View view4 = viewGroup.getChildAt(3);
             view4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(mContext,"点击了按键4",Toast.LENGTH_LONG).show();
+                    startActivity(JinRongActivity.class);
+//                    Toast.makeText(mContext,"点击了按键4",Toast.LENGTH_LONG).show();
                 }
             });
             View view5 = viewGroup.getChildAt(4);
@@ -111,5 +120,10 @@ public class ViewAdapter extends LoopPagerAdapter{
     @Override
     public int getRealCount() {
         return 2;
+    }
+
+    private void startActivity(Class mClass){
+        Intent intent=new Intent(mContext,mClass);
+        mContext.startActivity(intent);
     }
 }

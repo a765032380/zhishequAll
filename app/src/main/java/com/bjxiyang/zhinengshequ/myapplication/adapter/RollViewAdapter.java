@@ -1,11 +1,14 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
+import com.bjxiyang.zhinengshequ.myapplication.activity.MyWebViewActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Banner;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.HomeFragment;
@@ -34,7 +37,7 @@ public class RollViewAdapter extends LoopPagerAdapter{
         });
     }
     @Override
-    public View getView(final ViewGroup container, int position) {
+    public View getView(final ViewGroup container, final int position) {
 
         manager=ImageLoaderManager.getInstance(container.getContext());
         ImageView view = new ImageView(container.getContext());
@@ -44,9 +47,15 @@ public class RollViewAdapter extends LoopPagerAdapter{
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mList.get(position1).getAdType()==0){
+                    if (mList.get(position1).getAdType()==1||mList.get(position1).getAdType()==3){
+                        Intent intent=new Intent(container.getContext(), MyWebViewActivity.class);
+                        intent.putExtra("url",mList.get(position1).getAdInf());
+                        container.getContext().startActivity(intent);
                         Toast.makeText(container.getContext(),"调用H5", Toast.LENGTH_LONG).show();
                     }else if (mList.get(position1).getAdType()==2){
+                        Intent intent=new Intent(container.getContext(), SupermarketActivity.class);
+                        container.getContext().startActivity(intent);
+
                         Toast.makeText(container.getContext(),"跳转到商超页面", Toast.LENGTH_LONG).show();
                     }
 

@@ -1,6 +1,7 @@
 package com.bjxiyang.zhinengshequ.myapplication.fragment;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,6 +18,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.MyWebViewActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.XiaoQuGongGaoActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.XuanZeXiaoQuActivity;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.HomeAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.HomeJinRongAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.RollViewAdapter;
@@ -25,6 +31,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.Banner;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.test.HomeItem;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -44,7 +51,7 @@ import butterknife.ButterKnife;
  * Created by gll on 2017/8/2.
  */
 
-public class HomeFragment extends BaseFragment{
+public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private static final int ERSHOUFANG=1;
     private static final int DIANZI=2;
     private static final int XINYONG=3;
@@ -78,7 +85,8 @@ public class HomeFragment extends BaseFragment{
     public ScrollView myScrollView;
     @BindView(R.id.title_gone)
     public TextView title_gone;
-
+    @BindView(R.id.tv_more)
+    public TextView tv_more;
     @BindView(R.id.list_view_home_jinrong)
     public ListView list_view_home_jinrong;
 
@@ -120,6 +128,7 @@ public class HomeFragment extends BaseFragment{
 
     @Override
     public void onHiddenChanged(boolean hidden) {
+
         if (hidden){
             if (isone){
                 myScrollViewHeight=0;
@@ -131,6 +140,7 @@ public class HomeFragment extends BaseFragment{
                 tv_xiaoqugonggao.stopAutoScroll();
             }
         }else {
+
             myScrollView.post(new Runnable() {
                 //让scrollview跳转到顶部，必须放在runnable()方法中
                 @Override
@@ -147,11 +157,24 @@ public class HomeFragment extends BaseFragment{
         super.onHiddenChanged(hidden);
     }
 
+    @Override
+    public void onResume() {
+        if (SPManager.getInstance().getString("communityName",null)!=null) {
+            title_gone.setText(SPManager.getInstance().getString("communityName",null));
+            mTextSwitcher.setText(SPManager.getInstance().getString("communityName",null));
+        }else {
+            title_gone.setText("请选择地址");
+            mTextSwitcher.setText("请选择地址");
+        }
+        super.onResume();
+    }
+
     @TargetApi(Build.VERSION_CODES.M)
     private void initUI() {
 
 
-
+        ll_xuanzedizhi.setOnClickListener(this);
+        tv_more.setOnClickListener(this);
 
         //设置播放时间间隔
         mRollViewPager.setPlayDelay(2000);
@@ -264,6 +287,19 @@ public class HomeFragment extends BaseFragment{
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ll_xuanzedizhi:
+                MyUntil.mStartActivity(getContext(), XuanZeXiaoQuActivity.class);
+                break;
+            case R.id.tv_more:
+                Intent intent=new Intent(getContext(), JinRongActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
     public interface OngetData{
         public void OngetData(List<HomeBean.ObjBean.BannerObjBean> mList);
     }
@@ -280,18 +316,31 @@ public class HomeFragment extends BaseFragment{
         tv_xiaoqugonggao.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                Intent intent=new Intent(getContext(), XiaoQuGongGaoActivity.class);
+                startActivity(intent);
                 // TO DO
             }
         });
         tv_xiaoqugonggao.startAutoScroll();
     }
-    private void setJinRong(List<HomeBean.ObjBean.FinanceObjBean> jinrongList){
+    private void setJinRong(final List<HomeBean.ObjBean.FinanceObjBean> jinrongList){
         HomeJinRongAdapter adapter=new HomeJinRongAdapter(getContext(),jinrongList);
+        list_view_home_jinrong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent=new Intent(getContext(), MyWebViewActivity.class);
+                intent.putExtra("url",jinrongList.get(position).getFinanceUrl());
+                startActivity(intent);
+
+            }
+        });
         list_view_home_jinrong.setAdapter(adapter);
+
         MyUntil.setListViewHeightBasedOnChildren(list_view_home_jinrong,adapter);
     }
 
-    private void setJinRongGongGao(List<HomeBean.ObjBean.NewestObjBean> jinronggongGaoList){
+    private void setJinRongGongGao(final List<HomeBean.ObjBean.NewestObjBean> jinronggongGaoList){
 
         ArrayList<String> jinrongList=new ArrayList<>();
         for (int i=0;i<jinronggongGaoList.size();i++) {
@@ -301,10 +350,16 @@ public class HomeFragment extends BaseFragment{
         tv_jinrongtuijian.setText(16,5, Color.GRAY);//设置属性,具体跟踪源码
         tv_jinrongtuijian.setTextStillTime(3000);//设置停留时长间隔
         tv_jinrongtuijian.setAnimTime(300);//设置进入和退出的时间间隔
+
         //对单条文字的点击监听
         tv_jinrongtuijian.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
+//                Intent intent=new Intent(getContext(), MyWebViewActivity.class);
+//                intent.putExtra("url",jinronggongGaoList.get(position).getLoanName());
+//                startActivity(intent);
+
                 // TO DO
             }
         });

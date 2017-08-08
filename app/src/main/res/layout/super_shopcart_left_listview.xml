@@ -15,7 +15,7 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:textSize="14sp"
-        android:textColor="@color/gray"
+        android:textColor="#909090"
         android:text="矿泉水"/>
     <TextView
         android:focusable="false"

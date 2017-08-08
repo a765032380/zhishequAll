@@ -20,6 +20,8 @@ import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
+import com.bjxiyang.zhinengshequ.myapplication.view.SwipeListView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ import java.util.List;
 public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
 
     private List<PermissionList.Obj> mList;
-    private ListView mListView;
+    private SwipeListView mListView;
     private RelativeLayout ib_fanghui;
     private RelativeLayout ib_tianjia;
     private LinearLayout ll_activity_wushouquan;
@@ -54,7 +56,7 @@ public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickLi
     private void initUI() {
         ll_activity_wushouquan= (LinearLayout) findViewById(R.id.ll_activity_wushouquan);
         ll_activity_wuwangluo= (LinearLayout) findViewById(R.id.ll_activity_wuwangluo);
-        mListView= (ListView) findViewById(R.id.lv_keyaccredit);
+        mListView= (SwipeListView) findViewById(R.id.lv_keyaccredit);
         ib_fanghui= (RelativeLayout) findViewById(R.id.ib_fanghui);
         ib_fanghui.setOnClickListener(this);
         ib_tianjia= (RelativeLayout) findViewById(R.id.ib_tianjia);

@@ -1,6 +1,7 @@
 package com.bjxiyang.zhinengshequ.myapplication.until;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -36,4 +37,12 @@ public class MyUntil {
         listView.setLayoutParams(params);
 
     }
+
+    public static void mStartActivity(Context mContext,Class mClass){
+        Intent intent=new Intent(mContext,mClass);
+        mContext.startActivity(intent);
+
+    }
+
+
 }

@@ -1,8 +1,11 @@
 package com.bjxiyang.zhinengshequ.myapplication.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
@@ -27,6 +30,7 @@ import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.ProductAdapte
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
+import com.bjxiyang.zhinengshequ.myapplication.bean.Unit;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DianMing;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.ShangPinList;
@@ -43,6 +47,8 @@ import com.bjxiyang.zhinengshequ.myapplication.until.LogOutUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.UnitGetGouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
+import com.bjxiyang.zhinengshequ.myapplication.view.MyListView;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -92,11 +98,17 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     RelativeLayout ib_fanghui;
     @BindView(R.id.ll_first)
     LinearLayout ll_first;
+    @BindView(R.id.bottomSheetLayout)
+    BottomSheetLayout bottomSheetLayout;
+
 
     private TextView tv_count,tv_totle_money2;
     /**
      * DATE
      */
+    private boolean isShow=false;
+    private Double totleMoney = 0.00;
+    private List<GouWuChe> mList;
     private int position1=0;
     private CommonActionSheetDialog commonActionSheetDialog;
     private boolean jiageIsOne=true;
@@ -114,17 +126,24 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     private ViewGroup anim_mask_layout;//动画层
     private  GouWuCheDialog dialog;
     private GuardApplication myApp;
+    private View bottomSheet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket);
         ButterKnife.bind(this);
+        if (UnitGetGouWuChe.getConuntAll()==0){
+            tv_totle_money.setText("当前购物车是空的");
+            xuanhaole.setVisibility(View.GONE);
+        }
         Log.i("YYYY",UserManager.getInstance().getUser().getObj().getMobilePhone());
         initUi();
     }
 
     private void initUi() {
-
+        swipeRefreshLayout1.setOnRefreshListener(this);
+        swipeRefreshLayout2.setOnRefreshListener(this);
+        swipeRefreshLayout3.setOnRefreshListener(this);
         ib_fanghui.setOnClickListener(this);
         ll_jiage.setOnClickListener(this);
         ll_shopname.setOnClickListener(this);
@@ -298,43 +317,45 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     private void update(boolean refreshGoodList){
 
         int count = UnitGetGouWuChe.getConuntAll();
+        if (count==0){
+            tv_totle_money.setText("当前购物车是空的");
+            xuanhaole.setVisibility(View.GONE);
+        }else {
+            xuanhaole.setVisibility(View.VISIBLE);
 
-
-
-//        for(int i=0;i<size;i++){
-//            GoodsBean item = selectedList.valueAt(i);
-//            count += item.getNum();
-//            totleMoney += item.getNum()* Double.parseDouble(item.getPrice());
-//
-        tv_totle_money.setText("￥"+ String.valueOf(df.format(UnitGetGouWuChe.getZongJia())));
-        if (tv_totle_money2!=null){
-            tv_totle_money2.setText("￥"+ String.valueOf(df.format(UnitGetGouWuChe.getZongJia())));
+            tv_totle_money.setText("￥" + String.valueOf(df.format(UnitGetGouWuChe.getZongJia())));
+            if (tv_totle_money2 != null) {
+                tv_totle_money2.setText("￥" + String.valueOf(df.format(UnitGetGouWuChe.getZongJia())));
+            }
         }
 //        totleMoney = 0.00;
-        if(count<1){
-            bv_unm.setVisibility(View.GONE);
-        }else{
-            bv_unm.setVisibility(View.VISIBLE);
-        }
+            if (count < 1) {
+                bv_unm.setVisibility(View.GONE);
+            } else {
+                bv_unm.setVisibility(View.VISIBLE);
+            }
+            if (tv_count != null) {
+                tv_count.setText(String.valueOf(UnitGetGouWuChe.getConuntAll()));
+            }
+            bv_unm.setText(String.valueOf(UnitGetGouWuChe.getConuntAll()));
 
-        bv_unm.setText(String.valueOf(UnitGetGouWuChe.getConuntAll()));
 
+            if (productAdapter != null) {
+                productAdapter.notifyDataSetChanged();
+            }
 
-        if(productAdapter!=null){
-            productAdapter.notifyDataSetChanged();
-        }
+            if (goodsAdapter != null) {
+                goodsAdapter.notifyDataSetChanged();
+            }
 
-        if(goodsAdapter!=null){
-            goodsAdapter.notifyDataSetChanged();
-        }
+            if (catograyAdapter != null) {
+                catograyAdapter.notifyDataSetChanged();
+            }
 
-        if(catograyAdapter!=null){
-            catograyAdapter.notifyDataSetChanged();
-        }
+            if (bottomSheetLayout.isSheetShowing() && count < 1) {
+                bottomSheetLayout.dismissSheet();
+            }
 
-//        if(bottomSheetLayout.isSheetShowing() && count<1){
-//            bottomSheetLayout.dismissSheet();
-//        }
     }
     private void showList(){
         ll_first.setVisibility(View.VISIBLE);
@@ -393,8 +414,13 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                 break;
             //弹出购物车
             case R.id.tv_car:
-                dialog=new GouWuCheDialog(SupermarketActivity.this,SupermarketActivity.this,goodsAdapter);
-                dialog.show();
+                if (UnitGetGouWuChe.getConuntAll()==0){
+                    MyUntil.show(SupermarketActivity.this,"当前购物车为空");
+                }else {
+                    showBottomSheet();
+                }
+//                dialog=new GouWuCheDialog(SupermarketActivity.this,SupermarketActivity.this,goodsAdapter);
+//                dialog.show();
                 break;
             //选择排序的方式
             case R.id.ll_jiage:
@@ -412,6 +438,9 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                 break;
             //提交订单的按键
             case R.id.xuanhaole:
+                Intent intent = new Intent(SupermarketActivity.this, PlaceOrderActivity.class);
+                intent.putExtra("type", 10);
+                startActivity(intent);
                 break;
         }
 
@@ -552,4 +581,117 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         }
         return list_shangpin;
     }
+    //查看购物车布局
+    private View createBottomSheetView(){
+//        (ViewGroup) getActivity().getWindow().getDecorView(),false
+        View view = LayoutInflater.from(this).inflate(R.layout.super_layout_bottom_sheet,null);
+//        view.setBackgroundResource(android.R.color.transparent);
+        ListView lv_product = (ListView) view.findViewById(R.id.lv_product);
+        LinearLayout ll_shopcar= (LinearLayout) view.findViewById(R.id.ll_shopcar);
+        tv_totle_money2= (TextView) view.findViewById(R.id.tv_totle_money2);
+        TextView xuanhaole= (TextView) view.findViewById(R.id.xuanhaole);
+        mList=DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
+        for (int i=0;i<mList.size();i++){
+            if (mList.get(i).getCount()==0){
+                DaoUtils.getStudentInstance().deleteObject(mList.get(i));
+            }
+        }
+        ll_shopcar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetLayout.dismissSheet();
+            }
+        });
+
+        tv_count= (TextView) view.findViewById(R.id.bv_unm);
+        tv_count.setText(UnitGetGouWuChe.getConuntAll()+"");
+        xuanhaole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (UnitGetGouWuChe.getConuntAll()==0){
+                    MyUntil.show(SupermarketActivity.this,"请添加商品");
+                }else {
+
+                    Intent intent = new Intent(SupermarketActivity.this, PlaceOrderActivity.class);
+                    intent.putExtra("type", 10);
+                    startActivity(intent);
+                }
+            }
+        });
+        TextView clear = (TextView) view.findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearCart();
+            }
+        });
+
+        mList=DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
+        for (int i=mList.size()-1;i>=0;i--){
+            if (mList.get(i).getSellerId()!=SPManager.getInstance().getInt("sellerId",0)){
+                mList.remove(i);
+            }
+        }
+        productAdapter = new ProductAdapter(SupermarketActivity.this,
+                SupermarketActivity.this,goodsAdapter, mList);
+
+        int size = mList.size();
+        for(int i=0;i<size;i++){
+            int price=mList.get(i).getCount()*mList.get(i).getPrice();
+            totleMoney += price;
+        }
+        tv_totle_money2.setText("￥"+ String.valueOf(df.format(UnitGetGouWuChe.getZongJia())));
+        tv_totle_money.setText("￥"+ String.valueOf(df.format(UnitGetGouWuChe.getZongJia())));
+        totleMoney = 0.00;
+        lv_product.setAdapter(productAdapter);
+
+        return view;
+    }
+    //清空购物车
+    public void clearCart(){
+        DaoUtils.getStudentInstance().deleteAll(GouWuChe.class);
+//        list_shangpin.clear();
+//        list2.clear();
+//        if (list.size() > 0) {
+//            for (int j=0;j<list.size();j++){
+//                list.get(j).setCount(0);
+//                for(int i=0;i<list.get(j).getList().size();i++){
+//                    list.get(j).getList().get(i).setNum(0);
+//                }
+//            }
+//            list2.addAll(list.get(0).getList());
+        if (catograyAdapter!=null) {
+            catograyAdapter.setSelection(0);
+            //刷新不能删
+            catograyAdapter.notifyDataSetChanged();
+        }
+        if (goodsAdapter!=null){
+            goodsAdapter.notifyDataSetChanged();
+        }
+//        }
+        tv_totle_money.setText("￥"+ String.valueOf(0.00));
+        totleMoney = 0.00;
+        update(true);
+    }
+    //创建购物车view
+    private void showBottomSheet(){
+        isShow=true;
+//        onAttach(getActivity());
+        bottomSheet = createBottomSheetView();
+        if(bottomSheetLayout.isSheetShowing()){
+            bottomSheetLayout.dismissSheet();
+        }else {
+            if (SPManager.getInstance().getString("shopName",null)!=null) {
+//                if (list_shangpin.size() != 0) {
+                bottomSheetLayout.showWithSheetView(bottomSheet);
+
+//                }
+            }else {
+                MyUntil.show(SupermarketActivity.this,"请先选择商家");
+            }
+        }
+    }
+
+
 }

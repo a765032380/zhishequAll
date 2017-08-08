@@ -77,6 +77,7 @@
                     android:background="@drawable/a_icon_pulldown_go" />
             </LinearLayout>
         </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/ll_xiaoqugonggaoxiangqing"
             android:layout_width="match_parent"
@@ -97,14 +98,15 @@
 
             <com.paradoxie.autoscrolltextview.VerticalTextview
                 android:id="@+id/tv_xiaoqugonggao"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+
                 android:layout_weight="1"
                 android:text="小区公告内容"
                 android:textColor="#323232" />
 
             <ImageView
+                android:layout_marginLeft="-20dp"
                 android:layout_width="5dp"
                 android:layout_height="8dp"
                 android:background="@drawable/a_icon_pulldown" />

@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit;
+import com.bjxiyang.zhinengshequ.myapplication.activity.XYMenJinJiLuActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.BaseFragment;
 
 import butterknife.BindView;
@@ -71,28 +73,41 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            //添加房屋
             case R.id.ll_tianjiafangwu:
                 startActivity(XYKeyAccredit.class);
                 break;
+            //便利店
             case R.id.ll_bianlidian:
                 startActivity(SupermarketActivity.class);
                 break;
+            //生活缴费
             case R.id.ll_sehnghuojiaofei:
                 break;
+            //门禁记录
             case R.id.ll_menjinjilu:
+                startActivity(XYMenJinJiLuActivity.class);
                 break;
+            //充值卡
             case R.id.ll_chongzhika:
                 break;
             case R.id.ll_bianlidian2:
+                startActivity(SupermarketActivity.class);
                 break;
+            //特价商品
             case R.id.ll_tejiashangpin:
                 break;
+            //商品推荐
             case R.id.ll_shangpintuijia:
                 break;
+            //金融服务
             case R.id.ll_jinrongfuwu1:
+                startActivity(JinRongActivity.class);
                 break;
+            //希洋旅游
             case R.id.ll_xiyanglvyou:
                 break;
+            //周边游
             case R.id.ll_zhoubianyou:
                 break;
         }

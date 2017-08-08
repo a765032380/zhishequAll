@@ -85,8 +85,36 @@
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.FuWuTiaoKuanActivity"
             android:theme="@style/otherPageStyle"></activity>
         <activity
-            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.RegisteredActivity"
+        android:name="com.bjxiyang.zhinengshequ.myapplication.activity.RegisteredActivity"
+        android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.PlaceOrderActivity"
             android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.ZhiFuXiangQing"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XiaoQuGongGaoActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XiaoQuGongGaoXiangQingActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XYMenJinJiLuActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XY_JinRongWebActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XuanZeXiaoQuActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XYXuanZeXiaoQuActivity"
+            android:theme="@style/otherPageStyle"></activity>
+
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.welcome.Welcome"
             android:theme="@style/otherPageStyle">
