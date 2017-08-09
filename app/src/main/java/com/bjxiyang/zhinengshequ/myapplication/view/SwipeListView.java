@@ -2,6 +2,7 @@ package com.bjxiyang.zhinengshequ.myapplication.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.LayoutInflater;
@@ -137,6 +138,7 @@ public class SwipeListView extends ListView implements OnTouchListener,OnGesture
         if (!isDeleteShow && Math.abs(velocityX) > Math.abs(velocityY)) {
             //在当前布局上，动态添加我们的删除按钮，设置按钮的各种参数、事件，按钮的点击事件响应我们的删除项监听器
             btnDelete = LayoutInflater.from(getContext()).inflate(R.layout.layout_button, null);
+
             btnDelete.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -148,14 +150,18 @@ public class SwipeListView extends ListView implements OnTouchListener,OnGesture
                     onItemDeleteListener.onItemDelete(selectedItem);
                 }
             });
-            viewGroup = (ViewGroup)getChildAt(selectedItem - getFirstVisiblePosition());
+
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
             btnDelete.setLayoutParams(layoutParams);
-            viewGroup.addView(btnDelete);
-            btnShow(btnDelete);
-            isDeleteShow = true;
+            Log.i("YYYY",selectedItem+"");
+            if (selectedItem!=-1) {
+                viewGroup = (ViewGroup) getChildAt(selectedItem - getFirstVisiblePosition());
+                viewGroup.addView(btnDelete);
+                btnShow(btnDelete);
+                isDeleteShow = true;
+            }
         }else{
             setOnTouchListener(this);
         }

@@ -45,6 +45,7 @@ import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.yunzt.top.yztsdk.YZTEsdk;
 import mehdi.sakout.dynamicbox.DynamicBox;
 
 public class SDLoginActivity extends BaseActivity {
@@ -294,10 +295,12 @@ public class SDLoginActivity extends BaseActivity {
                 //弹出正在登陆的等待动画
                 DialogUntil.showLoadingDialog(SDLoginActivity.this,"正在登陆",true);
                 //拼接访问的URL
-                String url=XY_Response.URL_LOGIN+"mobilePhone="+uPhone+"&password="+getMD5(uPassword);
+                String url=XY_Response.URL_LOGIN+"mobilePhone="+uPhone+"&password="+getMD5(uPassword)
+                        +"&deviceId="+ YZTEsdk.getXulie(SDLoginActivity.this);
 
                 RequestParams headers=new RequestParams();
                 headers.put("user-agent", ""+"appId="+ APP_ID.APP_ID+"");
+
                 RequestCenter.login(url,headers, new DisposeDataListener() {
                     @Override
                     public void onSuccess(Object responseObj) {

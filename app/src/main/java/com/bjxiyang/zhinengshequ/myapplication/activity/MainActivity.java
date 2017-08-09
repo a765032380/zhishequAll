@@ -63,6 +63,7 @@ import com.bjxiyang.zhinengshequ.myapplication.update.CommonDialog;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.update.service.UpdateService;
 import com.bjxiyang.zhinengshequ.myapplication.update.util.Util;
+import com.bjxiyang.zhinengshequ.myapplication.view.RadialButtonLayout;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -107,12 +108,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public TextView message_tv_view;
     @BindView(R.id.mine_tv_view)
     public TextView mine_tv_view;
-
+    @BindView(R.id.radialbutton)
+    RadialButtonLayout radialbutton;
+    @BindView(R.id.content_layout)
+    RelativeLayout content_layout;
 
 
     /**
      * DATE
      */
+    private boolean isOpen;
     /***
      * Other
      */
@@ -145,9 +150,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //        obj.setMobilePhone("18813045215");
 //        users.setObj(obj);
 //        UserManager.getInstance().setUser(users);
-
-
-        Log.i("YYYY",UserManager.getInstance().getUser().getObj().getMobilePhone());
         ButterKnife.bind(this) ;
         mainActivity=this;
 //        checkVersion();
@@ -246,6 +248,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         super.onDestroy();
     }
     private void initUi() {
+
+
+
+        radialbutton.setOnisOpen(new RadialButtonLayout.OnIsOpenListener() {
+            @Override
+            public void isopen(boolean isopen) {
+                isOpen=isopen;
+            }
+        });
         fm=getSupportFragmentManager();
         //获取事务
         FragmentTransaction fragmentTransaction=fm.beginTransaction();
@@ -258,6 +269,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         mMessageLayout.setOnClickListener(this);
         mMyLayou.setOnClickListener(this);
         mHomeView.setBackgroundResource(R.drawable.a_btn_home_pre);
+
     }
     private void initDate() {
 
@@ -353,6 +365,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                     fragmentTransaction.show(mMyFragment).commit();
                 }
                 break;
+
         }
     }
     /**
@@ -363,6 +376,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private void hideFragment(Fragment fragment, FragmentTransaction ft) {
         if (fragment != null) {
             ft.hide(fragment);
+        }
+        if (radialbutton!=null){
+            radialbutton.hide();
         }
     }
 
@@ -393,27 +409,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            moveTaskToBack(true);
-//            return true;
-//        }
-//        return super.onKeyDown(keyCode, event);
-
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (isInterception()) {
-                if (backListener != null) {
-                    backListener.onbackForward();
-                    return false;
-                }else {
-                    return true;
-                }
-            }else {
-                moveTaskToBack(true);
-//                MyUntil.show(MainActivity.this,"再次点击返回桌面");
-                return true;
-            }
+            moveTaskToBack(true);
+            return true;
         }
         return super.onKeyDown(keyCode, event);
+
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+////            if (isInterception()) {
+//                if (isOpen){
+//                    radialbutton.hide();
+//                    return false;
+//                }else {
+//                    return true;
+//                }
+//
+//                if (backListener != null) {
+//                    backListener.onbackForward();
+//                    return false;
+//                }else {
+//                    return true;
+//                }
+//            }else {
+//                moveTaskToBack(true);
+////                MyUntil.show(MainActivity.this,"再次点击返回桌面");
+//                return true;
+//            }
+//        }
+//        return super.onKeyDown(keyCode, event);
     }
     //自定义返回键的监听事件接口
     public interface FragmentBackListener{

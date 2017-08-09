@@ -10,7 +10,7 @@ public class XY_Response {
     public static final String URL_WEIXIAPI="https://api.mch.weixin.qq.com/pay/unifiedorder";
 
 //    public static final String URL="http://192.168.1.139:8080/zsq/";
-//    public static final String URL="http://192.168.1.254:8080/zsq/";
+//    public static final String URL="http://192.168.1.229:8080/zsq/";
     public static final String URL="http://47.92.106.249:8088/zsq/";
 //    public static final String URL="http://192.168.1.103:8080//zsq/";
 

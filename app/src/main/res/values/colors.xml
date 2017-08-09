@@ -4,9 +4,9 @@
     <color name="colorRed">#FF0000</color>
     <color name="colorThemeButton">#eb002f</color>
     <color name="colorThemeButtonText">#FFFFFF</color>
-
+    <color name="orange">#ffdc8d3e</color>
     <color name="black_overlay">#66000000</color>
-
+    <color name="darker_orange">#ff945e2a</color>
     <color name="gray_color">#e8e8e8</color>
     <color name="menu_item_normal">#C9FFFFFF</color>
     <color name="menu_item_pressed">#D5DADADA</color>
@@ -225,7 +225,6 @@
     <color name="olivedrab">#ff6b8e23</color>
     <color name="online_end_color">#ff1c57ff</color>
     <color name="online_start_color">#ff22c064</color>
-    <color name="orange">#ffffa500</color>
     <color name="orangered">#ffff4500</color>
     <color name="orchid">#ffda70d6</color>
     <color name="palegoldenrod">#ffeee8aa</color>

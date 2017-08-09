@@ -136,4 +136,6 @@ dependencies {
 
     compile project(path: ':imoocsdk')
     compile project(path: ':myapplication')
+    //recyclerview
+    compile 'com.android.support:recyclerview-v7:25.2.0'
 }

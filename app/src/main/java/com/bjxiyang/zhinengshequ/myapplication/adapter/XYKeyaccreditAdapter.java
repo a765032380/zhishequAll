@@ -24,8 +24,11 @@ import com.bjxiyang.zhinengshequ.myapplication.until.UserType;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyDialog;
+import com.bjxiyang.zhinengshequ.myapplication.view.SwipeListLayout;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by gll on 17-5-23.
@@ -48,6 +51,9 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
     private PermissionList.Obj obj;
     private PermissionList.Obj obj1;
     private PermissionList.Obj obj2;
+    private Set<SwipeListLayout> sets = new HashSet();
+    private TextView tv_delete;
+    private SwipeListLayout sll_main;
     private int c_memberId = UserManager.getInstance().getUser().getObj().getC_memberId();
     public XYKeyaccreditAdapter(Context mContext, List mList) {
         this.mContext = mContext;
@@ -70,7 +76,7 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
 
     @SuppressWarnings("ResourceAsColor")
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
 
         viewholder=null;
         if (view==null){
@@ -84,6 +90,9 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
 //            viewholder.item_date= (TextView) view.findViewById(R.id.item_date);
             viewholder.ib_jinyong_qiyong= (TextView) view.findViewById(R.id.ib_jinyong_qiyong);
             viewholder.tv_zhuangtai= (TextView) view.findViewById(R.id.tv_zhuangtai);
+            sll_main= (SwipeListLayout) view.findViewById(R.id.sll_main);
+            tv_delete = (TextView) view.findViewById(R.id.tv_delete);
+            sll_main.setOnSwipeStatusListener(new MyOnSlipStatusListener(sll_main));
 //            viewholder.item_xiugai= (TextView) view.findViewById(R.id.item_xiugai);
             view.setTag(viewholder);
         }else {
@@ -99,6 +108,13 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
             manager.displayImage(viewholder.iv_touxiang,mList.get(position).getHeadPhotoUrl());
 
         }
+
+
+
+
+
+
+
         viewholder.name.setText(mList.get(position).getNickName());
 
             if (mList.get(position).getC_memberId()==c_memberId){
@@ -236,6 +252,7 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
 
             }
         });
+        delete(position1);
 //        viewholder.item_xiugai.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -297,5 +314,84 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
         //修改按钮
         TextView item_xiugai;
 
+    }
+    class MyOnSlipStatusListener implements SwipeListLayout.OnSwipeStatusListener {
+
+        private SwipeListLayout slipListLayout;
+
+        public MyOnSlipStatusListener(SwipeListLayout slipListLayout) {
+            this.slipListLayout = slipListLayout;
+        }
+
+        @Override
+        public void onStatusChanged(SwipeListLayout.Status status) {
+            if (status == SwipeListLayout.Status.Open) {
+                //若有其他的item的状态为Open，则Close，然后移除
+                if (sets.size() > 0) {
+                    for (SwipeListLayout s : sets) {
+                        s.setStatus(SwipeListLayout.Status.Close, true);
+                        sets.remove(s);
+                    }
+                }
+                sets.add(slipListLayout);
+            } else {
+                if (sets.contains(slipListLayout))
+                    sets.remove(slipListLayout);
+            }
+        }
+
+        @Override
+        public void onStartCloseAnimation() {
+
+        }
+
+        @Override
+        public void onStartOpenAnimation() {
+
+        }
+
+    }
+    private void delete(final int position1){
+        tv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sll_main.setStatus(SwipeListLayout.Status.Close, true);
+
+
+        obj2=mList.get(position1);
+                communityId=obj2.getCommunityId();
+                nperId=obj2.getNperId();
+                floorId=obj2.getFloorId();
+                unitId=obj2.getUnitId();
+                doorId=obj2.getDoorId();
+                status=obj2.getStatus();
+                permissionId=obj2.getPermissionId();
+                DialogUntil.showLoadingDialog(mContext,"正在提交",true);
+                String url1= XY_Response.URL_DELETEPERMISSIONS+"mobilePhone="+
+                        UserManager.getInstance().getUser().getObj().getMobilePhone()+
+                        "&communityId="+communityId+"&nperId="+nperId+"&floorId="+floorId+
+                        "&unitId="+unitId+"&doorId="+doorId+
+                        "&permissionId="+permissionId;
+
+                RequestCenter.deletePermission(url1, new DisposeDataListener() {
+                    @Override
+                    public void onSuccess(Object responseObj) {
+                        DialogUntil.closeLoadingDialog();
+                        FanHui fanHui= (FanHui) responseObj;
+                        if (fanHui.getCode().equals("1000")){
+//                            Toast.makeText(mContext,"连接成功",Toast.LENGTH_LONG).show();
+                            mList.remove(position1);
+                            notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Object reasonObj) {
+                        DialogUntil.closeLoadingDialog();
+                        MyDialog.showDialog((Activity) mContext,"请检查网络连接");
+                    }
+                });
+            }
+        });
     }
 }

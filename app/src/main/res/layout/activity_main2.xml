@@ -7,13 +7,22 @@
     android:clipToPadding="true"
 
     android:orientation="vertical">
-
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/content_layout2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:focusable="true"-->
+        <!--android:clickable="true"-->
+        <!--android:layout_marginBottom="40dp"/>-->
     <RelativeLayout
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayout"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="40dp">
+
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -143,32 +152,37 @@
         </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
-<LinearLayout
-    android:id="@+id/ll_menjin"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginTop="-72dp"
-    android:layout_gravity="center"
-    android:gravity="center">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/a_btn_entranceguard"
-     
-        />
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_menjin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="门禁"
-        android:textColor="#909090"
-        android:textSize="12sp"
-        />
-    
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="-600dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--<ImageView-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="@drawable/a_btn_entranceguard"-->
+        <!---->
+        <!--/>-->
+        <com.bjxiyang.zhinengshequ.myapplication.view.RadialButtonLayout
+            android:id="@+id/radialbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-17dp"
+            android:text="门禁"
+            android:textColor="#909090"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 
    

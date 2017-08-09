@@ -7,13 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XYMenJinJiLuActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.XuanZeXiaoQuActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.BaseFragment;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
+import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +54,10 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
     public LinearLayout ll_xiyanglvyou;
     @BindView(R.id.ll_zhoubianyou)
     public LinearLayout ll_zhoubianyou;
+    @BindView(R.id.ll_service_selectaddress)
+    public LinearLayout ll_service_selectaddress;
+    @BindView(R.id.mTextSwitcher)
+    public TextView mTextSwitcher;
 
     @Nullable
     @Override
@@ -67,9 +75,19 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
         ll_jinrongfuwu1.setOnClickListener(this);
         ll_xiyanglvyou.setOnClickListener(this);
         ll_zhoubianyou.setOnClickListener(this);
+        ll_service_selectaddress.setOnClickListener(this);
         return view;
     }
 
+    @Override
+    public void onResume() {
+        if (SPManager.getInstance().getString("communityName",null)!=null) {
+            mTextSwitcher.setText(SPManager.getInstance().getString("communityName",null));
+        }else {
+            mTextSwitcher.setText("请选择地址");
+        }
+        super.onResume();
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -109,6 +127,10 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
                 break;
             //周边游
             case R.id.ll_zhoubianyou:
+                break;
+            //选择地址
+            case R.id.ll_service_selectaddress:
+                MyUntil.mStartActivity(getContext(), XuanZeXiaoQuActivity.class);
                 break;
         }
     }

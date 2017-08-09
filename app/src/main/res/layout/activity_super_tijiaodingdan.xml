@@ -49,6 +49,17 @@
             >
         </RelativeLayout>
     </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+      </LinearLayout>
+        </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -299,6 +310,7 @@
                 android:layout_weight="0.2"
                 android:background="@drawable/f_btn_jinru" />
         </LinearLayout>
+
     </LinearLayout>
 
 
@@ -330,15 +342,16 @@
                 android:textColor="#ff0000"/>
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/tv_tijiaodingdan_qujiesuan"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#ff7700"
             android:gravity="center"
             android:text="去结算"
-            android:textSize="18sp"
-            android:background="#ff7700"/>
+            android:textSize="18sp" />
 
 
     </LinearLayout>

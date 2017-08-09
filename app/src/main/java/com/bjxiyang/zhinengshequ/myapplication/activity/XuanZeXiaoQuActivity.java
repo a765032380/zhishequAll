@@ -51,7 +51,10 @@ public class XuanZeXiaoQuActivity extends MySwipeBackActivity
     private List<SelectPlot.Obj> mList;
     private XYXuanZeXiaoQuAdapter adapter;
     public static XuanZeXiaoQuActivity xuanzexiaoquactivity;
-
+    private int communityId=-1;
+    private int nperId;
+    private int floorId;
+    private int unitId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +136,19 @@ public class XuanZeXiaoQuActivity extends MySwipeBackActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         SPManager.getInstance().putString("communityName",list.get(position));
+        nperId=mList.get(position).getNperId();
+        communityId=mList.get(position).getCommunityId();
+        floorId=mList.get(position).getFloorId();
+        unitId=mList.get(position).getUnitId();
+        SPManager.getInstance().putBoolean("isOne",true);
+        SPManager.getInstance().putInt("communityId_one",communityId);
+        SPManager.getInstance().putInt("communityId",communityId);
+        SPManager.getInstance().putInt("nperId_one",nperId);
+        SPManager.getInstance().putInt("floorId_one",floorId);
+        SPManager.getInstance().putInt("unitId_one",unitId);
+        SPManager.getInstance().putString("test_men",mList.get(position).getCommunityName()
+                +mList.get(position).getNperName());
+
         finish();
     }
 }

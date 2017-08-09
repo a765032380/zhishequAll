@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -20,10 +21,13 @@ import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
+import com.bjxiyang.zhinengshequ.myapplication.view.SwipeListLayout;
 import com.bjxiyang.zhinengshequ.myapplication.view.SwipeListView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by gll on 17-5-23.
@@ -44,6 +48,7 @@ public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickLi
     private SwipeRefreshLayout swipeRefreshLayout;
     private SwipeRefreshLayout swipeRefreshLayout1;
     private SwipeRefreshLayout swipeRefreshLayout2;
+    private Set<SwipeListLayout> sets = new HashSet();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +59,30 @@ public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickLi
     }
 
     private void initData() {
-//        getData();
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    //当listview开始滑动时，若有item的状态为Open，则Close，然后移除
+                    case SCROLL_STATE_TOUCH_SCROLL:
+                        if (sets.size() > 0) {
+                            for (SwipeListLayout s : sets) {
+                                s.setStatus(SwipeListLayout.Status.Close, true);
+                                sets.remove(s);
+                            }
+                        }
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+
+            }
+        });
     }
     private void initUI() {
         ll_activity_wushouquan= (LinearLayout) findViewById(R.id.ll_activity_wushouquan);
@@ -89,6 +117,8 @@ public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickLi
                     if (mList.size()>0){
                         XYKeyaccreditAdapter adapter=new XYKeyaccreditAdapter(XYKeyAccredit.this,mList);
                         mListView.setAdapter(adapter);
+
+
                         showShuJu();
                     }else {
                         showWuShuJu();
