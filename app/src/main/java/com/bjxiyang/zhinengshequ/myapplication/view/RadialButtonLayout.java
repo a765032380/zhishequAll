@@ -135,7 +135,7 @@ public class RadialButtonLayout extends FrameLayout{
 //            hide(btnBlue);
 //            hide(btnIndigo);
 
-            resId = R.string.close;
+//            resId = R.string.close;
         } else {
             getData();
 //            show(btnOrange, 1, 200);
@@ -144,7 +144,7 @@ public class RadialButtonLayout extends FrameLayout{
 //            show(btnBlue, 4, 200);
 //            show(btnIndigo, 5, 200);
 
-            resId = R.string.open;
+//            resId = R.string.open;
         }
         showToast( resId);
         btn.playSoundEffect( SoundEffectConstants.CLICK);

@@ -117,7 +117,7 @@
     <string name="no_new_version_msg">您当前已经是最新版本，无需更新。</string>
     <string name="cancel">取消</string>
 
-<!--首页四个按键-->
+    <!--首页四个按键-->
     <string name="home_image_view_text">首页</string>
     <string name="pond_image_view_text">金融</string>
     <string name="message_image_view_text">商超</string>

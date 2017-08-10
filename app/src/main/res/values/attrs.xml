@@ -7,6 +7,8 @@
     <declare-styleable name="ButtonBarContainerTheme">
         <attr name="metaButtonBarStyle" format="reference" />
         <attr name="metaButtonBarButtonStyle" format="reference" />
+        <attr name="contactItemImage" format="reference" />
+        <attr name="contactItemName" format="string" />
     </declare-styleable>
 
     <declare-styleable name="SheetParams">
