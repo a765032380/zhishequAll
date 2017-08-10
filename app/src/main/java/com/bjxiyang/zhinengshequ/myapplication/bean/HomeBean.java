@@ -11,7 +11,7 @@ public class HomeBean {
     /**
      * code : 1000
      * msg : 获取首页信息成功
-     * obj : {"bannerObj":[{"adType":1,"adUrl":"http://47.92.106.249:8087/upload/456.png","adInf":"http://www.bjxiyang.com","status":1},{"adType":1,"adUrl":"http://47.92.106.249:8087/upload/1111111111.jpg","adInf":"http://www.bjxiyang.com","status":1}],"noticeObj":[{"noticer":"物业","addTime":"2017-08-04 15:11:35","title":"迎接上级检查，打扫卫生","type":1,"noticeId":5,"content":"迎接上级检查，打扫卫生"},{"noticer":"你好","addTime":"2017-07-01 18:09:33","title":"小猫丢了","type":0,"noticeId":4,"content":"我家小可爱丢了"},{"noticer":"李尚生","addTime":"2017-07-01 17:36:38","title":"狗丢了","type":1,"noticeId":3,"content":"李尚升丢了，看见的请呼叫狗子\r\n"}],"financeObj":[{"number":0,"valueObj":[{"titleName":"首付比例","sequenceId":1,"titaleValue":"20.0%"},{"titleName":"首付利率","sequenceId":2,"titaleValue":"0.325"},{"titleName":"首付年限","sequenceId":3,"titaleValue":"30"},{"titleName":"二期比例","sequenceId":4,"titaleValue":"20.0%"},{"titleName":"二期利率","sequenceId":5,"titaleValue":"0.358"},{"titleName":"二期年限","sequenceId":6,"titaleValue":"30"}],"name":"二手房公积金贷款","financeUrl":"http://47.92.106.249:8087/www/ershoufang.html","type":1}],"newestObj":[{"loanName":"李先生 13925263692 贷款 200万"},{"loanName":"孙先生 13925263696 贷款 100万"}],"specialObj":[{"price":19800,"discount_price":234,"name":"白开水","logo":"1501739926237.jpg","if_discount":1},{"price":150,"discount_price":120,"name":"西红柿","logo":"1501640627233.jpg","if_discount":1},{"price":11600,"discount_price":1234,"name":"李-奥妙深层洁净洗衣液3KG+3KG 源自天然酵素","logo":"1501061556395.jpg","if_discount":1},{"price":13500,"discount_price":7900,"name":"舒适达（Sensodyne）多效护理牙膏组合套装120gx3+劲速护理20gx3（新老赠品随机发货）","logo":"1501061765071.jpg","if_discount":1},{"price":4500,"discount_price":10,"name":"李-新奇士美国夏橙12个160g以上/个 橙子 新鲜水果 橙子 新 新鲜水果","logo":"1501061780619.jpg","if_discount":1},{"price":20900,"discount_price":12900,"name":"李-一叶子樱花玫瑰补水礼盒","logo":"1501062002092.jpg","if_discount":1}]}
+     * obj : {"bannerObj":[{"adType":1,"adUrl":"http://47.92.106.249:8087/upload/456.png","adInf":"http://www.bjxiyang.com","status":1},{"adType":1,"adUrl":"http://47.92.106.249:8087/upload/1111111111.jpg","adInf":"http://www.bjxiyang.com","status":1}],"noticeObj":[{"noticer":"物业","addTime":"2017-08-04 15:11:35","title":"迎接上级检查，打扫卫生","type":1,"noticeId":5,"content":"迎接上级检查，打扫卫生"}],"financeObj":[{"number":0,"gId":-1,"valueObj":[{"titleName":"首付比例","sequenceId":1,"titaleValue":"20.0%"},{"titleName":"首付利率","sequenceId":2,"titaleValue":"0.325"},{"titleName":"首付年限","sequenceId":3,"titaleValue":"30"},{"titleName":"二期比例","sequenceId":4,"titaleValue":"20.0%"},{"titleName":"二期利率","sequenceId":5,"titaleValue":"0.358"},{"titleName":"二期年限","sequenceId":6,"titaleValue":"30"}],"name":"二手房公积金贷款","financeUrl":"http://47.92.106.249:8087/www/ershoufang.html","type":1,"sId":"12"},{"number":1,"gId":-1,"valueObj":[{"titleName":"首付比例","sequenceId":1,"titaleValue":"30.0%"},{"titleName":"首付利率","sequenceId":2,"titaleValue":"0.369"},{"titleName":"首付年限","sequenceId":3,"titaleValue":"32"},{"titleName":"二期比例","sequenceId":4,"titaleValue":"20.0%"},{"titleName":"二期利率","sequenceId":5,"titaleValue":"0.369"},{"titleName":"二期年限","sequenceId":6,"titaleValue":"35"}],"name":"二手房公积金贷款","financeUrl":"http://47.92.106.249:8087/www/ershoufang.html","type":1,"sId":"13"}],"shopObj":[{"sellerId":32,"monthSell":1,"distance":450,"productObj":[{"des":"","price":39999900,"name":"Hhhh","ifDiscount":2,"discountPrice":888800,"logo":"http://47.92.106.249:8088/img/1501659499533.jpg"},{"des":"新鲜的西红柿","price":150,"name":"西红柿","ifDiscount":1,"discountPrice":120,"logo":"http://47.92.106.249:8088/img/1501640627233.jpg"}],"sellerName":"旗舰店","totalProduct":2,"transitTime":30,"ifPromotion":0,"discount":0,"sellerLogo":"http://47.92.106.249:8088/img/"}],"newestObj":[{"loanName":"李先生139****3692贷款200万"},{"loanName":"孙先生139****3696贷款100万"}]}
      */
 
     private int code;
@@ -46,8 +46,8 @@ public class HomeBean {
         private List<BannerObjBean> bannerObj;
         private List<NoticeObjBean> noticeObj;
         private List<FinanceObjBean> financeObj;
+        private List<ShopObjBean> shopObj;
         private List<NewestObjBean> newestObj;
-        private List<SpecialObjBean> specialObj;
 
         public List<BannerObjBean> getBannerObj() {
             return bannerObj;
@@ -73,20 +73,20 @@ public class HomeBean {
             this.financeObj = financeObj;
         }
 
+        public List<ShopObjBean> getShopObj() {
+            return shopObj;
+        }
+
+        public void setShopObj(List<ShopObjBean> shopObj) {
+            this.shopObj = shopObj;
+        }
+
         public List<NewestObjBean> getNewestObj() {
             return newestObj;
         }
 
         public void setNewestObj(List<NewestObjBean> newestObj) {
             this.newestObj = newestObj;
-        }
-
-        public List<SpecialObjBean> getSpecialObj() {
-            return specialObj;
-        }
-
-        public void setSpecialObj(List<SpecialObjBean> specialObj) {
-            this.specialObj = specialObj;
         }
 
         public static class BannerObjBean {
@@ -204,16 +204,20 @@ public class HomeBean {
         public static class FinanceObjBean {
             /**
              * number : 0
+             * gId : -1
              * valueObj : [{"titleName":"首付比例","sequenceId":1,"titaleValue":"20.0%"},{"titleName":"首付利率","sequenceId":2,"titaleValue":"0.325"},{"titleName":"首付年限","sequenceId":3,"titaleValue":"30"},{"titleName":"二期比例","sequenceId":4,"titaleValue":"20.0%"},{"titleName":"二期利率","sequenceId":5,"titaleValue":"0.358"},{"titleName":"二期年限","sequenceId":6,"titaleValue":"30"}]
              * name : 二手房公积金贷款
              * financeUrl : http://47.92.106.249:8087/www/ershoufang.html
              * type : 1
+             * sId : 12
              */
 
             private int number;
+            private int gId;
             private String name;
             private String financeUrl;
             private int type;
+            private String sId;
             private List<ValueObjBean> valueObj;
 
             public int getNumber() {
@@ -222,6 +226,14 @@ public class HomeBean {
 
             public void setNumber(int number) {
                 this.number = number;
+            }
+
+            public int getGId() {
+                return gId;
+            }
+
+            public void setGId(int gId) {
+                this.gId = gId;
             }
 
             public String getName() {
@@ -246,6 +258,14 @@ public class HomeBean {
 
             public void setType(int type) {
                 this.type = type;
+            }
+
+            public String getSId() {
+                return sId;
+            }
+
+            public void setSId(String sId) {
+                this.sId = sId;
             }
 
             public List<ValueObjBean> getValueObj() {
@@ -293,9 +313,181 @@ public class HomeBean {
             }
         }
 
+        public static class ShopObjBean {
+            /**
+             * sellerId : 32
+             * monthSell : 1
+             * distance : 450
+             * productObj : [{"des":"","price":39999900,"name":"Hhhh","ifDiscount":2,"discountPrice":888800,"logo":"http://47.92.106.249:8088/img/1501659499533.jpg"},{"des":"新鲜的西红柿","price":150,"name":"西红柿","ifDiscount":1,"discountPrice":120,"logo":"http://47.92.106.249:8088/img/1501640627233.jpg"}]
+             * sellerName : 旗舰店
+             * totalProduct : 2
+             * transitTime : 30
+             * ifPromotion : 0
+             * discount : 0
+             * sellerLogo : http://47.92.106.249:8088/img/
+             */
+
+            private int sellerId;
+            private int monthSell;
+            private int distance;
+            private String sellerName;
+            private int totalProduct;
+            private int transitTime;
+            private int ifPromotion;
+            private int discount;
+            private String sellerLogo;
+            private List<ProductObjBean> productObj;
+
+            public int getSellerId() {
+                return sellerId;
+            }
+
+            public void setSellerId(int sellerId) {
+                this.sellerId = sellerId;
+            }
+
+            public int getMonthSell() {
+                return monthSell;
+            }
+
+            public void setMonthSell(int monthSell) {
+                this.monthSell = monthSell;
+            }
+
+            public int getDistance() {
+                return distance;
+            }
+
+            public void setDistance(int distance) {
+                this.distance = distance;
+            }
+
+            public String getSellerName() {
+                return sellerName;
+            }
+
+            public void setSellerName(String sellerName) {
+                this.sellerName = sellerName;
+            }
+
+            public int getTotalProduct() {
+                return totalProduct;
+            }
+
+            public void setTotalProduct(int totalProduct) {
+                this.totalProduct = totalProduct;
+            }
+
+            public int getTransitTime() {
+                return transitTime;
+            }
+
+            public void setTransitTime(int transitTime) {
+                this.transitTime = transitTime;
+            }
+
+            public int getIfPromotion() {
+                return ifPromotion;
+            }
+
+            public void setIfPromotion(int ifPromotion) {
+                this.ifPromotion = ifPromotion;
+            }
+
+            public int getDiscount() {
+                return discount;
+            }
+
+            public void setDiscount(int discount) {
+                this.discount = discount;
+            }
+
+            public String getSellerLogo() {
+                return sellerLogo;
+            }
+
+            public void setSellerLogo(String sellerLogo) {
+                this.sellerLogo = sellerLogo;
+            }
+
+            public List<ProductObjBean> getProductObj() {
+                return productObj;
+            }
+
+            public void setProductObj(List<ProductObjBean> productObj) {
+                this.productObj = productObj;
+            }
+
+            public static class ProductObjBean {
+                /**
+                 * des :
+                 * price : 39999900
+                 * name : Hhhh
+                 * ifDiscount : 2
+                 * discountPrice : 888800
+                 * logo : http://47.92.106.249:8088/img/1501659499533.jpg
+                 */
+
+                private String des;
+                private int price;
+                private String name;
+                private int ifDiscount;
+                private int discountPrice;
+                private String logo;
+
+                public String getDes() {
+                    return des;
+                }
+
+                public void setDes(String des) {
+                    this.des = des;
+                }
+
+                public int getPrice() {
+                    return price;
+                }
+
+                public void setPrice(int price) {
+                    this.price = price;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public int getIfDiscount() {
+                    return ifDiscount;
+                }
+
+                public void setIfDiscount(int ifDiscount) {
+                    this.ifDiscount = ifDiscount;
+                }
+
+                public int getDiscountPrice() {
+                    return discountPrice;
+                }
+
+                public void setDiscountPrice(int discountPrice) {
+                    this.discountPrice = discountPrice;
+                }
+
+                public String getLogo() {
+                    return logo;
+                }
+
+                public void setLogo(String logo) {
+                    this.logo = logo;
+                }
+            }
+        }
+
         public static class NewestObjBean {
             /**
-             * loanName : 李先生 13925263692 贷款 200万
+             * loanName : 李先生139****3692贷款200万
              */
 
             private String loanName;
@@ -306,62 +498,6 @@ public class HomeBean {
 
             public void setLoanName(String loanName) {
                 this.loanName = loanName;
-            }
-        }
-
-        public static class SpecialObjBean {
-            /**
-             * price : 19800
-             * discount_price : 234
-             * name : 白开水
-             * logo : 1501739926237.jpg
-             * if_discount : 1
-             */
-
-            private int price;
-            private int discount_price;
-            private String name;
-            private String logo;
-            private int if_discount;
-
-            public int getPrice() {
-                return price;
-            }
-
-            public void setPrice(int price) {
-                this.price = price;
-            }
-
-            public int getDiscount_price() {
-                return discount_price;
-            }
-
-            public void setDiscount_price(int discount_price) {
-                this.discount_price = discount_price;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getLogo() {
-                return logo;
-            }
-
-            public void setLogo(String logo) {
-                this.logo = logo;
-            }
-
-            public int getIf_discount() {
-                return if_discount;
-            }
-
-            public void setIf_discount(int if_discount) {
-                this.if_discount = if_discount;
             }
         }
     }

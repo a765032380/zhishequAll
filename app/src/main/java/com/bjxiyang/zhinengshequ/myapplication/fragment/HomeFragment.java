@@ -101,7 +101,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     public List<HomeBean.ObjBean.FinanceObjBean> financeBean;
     public List<HomeBean.ObjBean.NewestObjBean> newestBean;
     public List<HomeBean.ObjBean.NoticeObjBean> noticeBean;
-    public List<HomeBean.ObjBean.SpecialObjBean> specialBean;
+    public List<HomeBean.ObjBean.ShopObjBean> specialBean;
 
 
     /**
@@ -247,7 +247,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     }
 
     public void getDate() {
-        String url= XY_Response2.URL_HOME+"cmemberId=81";
+        String url= XY_Response2.URL_HOME+"cmemberId=99";
         RequestCenter.home_2(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
@@ -257,7 +257,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     financeBean=homebean.getObj().getFinanceObj();
                     newestBean=homebean.getObj().getNewestObj();
                     noticeBean=homebean.getObj().getNoticeObj();
-                    specialBean=homebean.getObj().getSpecialObj();
+                    specialBean=homebean.getObj().getShopObj();
 
 //                    list= bannerBean.getObj();
                     if (bannerBean.size()>0){
@@ -366,7 +366,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         tv_jinrongtuijian.startAutoScroll();
 
     }
-    private void setChaoShiList(List<HomeBean.ObjBean.SpecialObjBean> chaoshiList){
+    private void setChaoShiList(List<HomeBean.ObjBean.ShopObjBean> chaoshiList){
 
         HomeAdapter homeAdapter=new HomeAdapter(getContext(),chaoshiList);
         lv_shangping.setAdapter(homeAdapter);

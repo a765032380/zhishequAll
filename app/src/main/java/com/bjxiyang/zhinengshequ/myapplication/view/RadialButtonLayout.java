@@ -225,17 +225,7 @@ public class RadialButtonLayout extends FrameLayout{
                 .start();
     }
     private void getData(){
-        rl_hide.setBackgroundColor(0xC89A969E);
-        isOpen = true;
-        rl_hide.setClickable(false);
-        rl_hide.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hide();
-            }
-        });
-//        onIsOpenListener.isopen(isOpen);
-        mRecyclerView.setVisibility(VISIBLE);
+
 //        mList=new ArrayList<>();
         mListByCom = new ArrayList<>();
 
@@ -262,6 +252,17 @@ public class RadialButtonLayout extends FrameLayout{
                 if (byCom.getCode().equals("1000")){
                     mListByCom=byCom.getObj();
                     if (mListByCom.size()>0){
+                        rl_hide.setBackgroundColor(0xC89A969E);
+                        isOpen = true;
+                        rl_hide.setClickable(false);
+                        rl_hide.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                hide();
+                            }
+                        });
+//        onIsOpenListener.isopen(isOpen);
+                        mRecyclerView.setVisibility(VISIBLE);
                         mAdapter = new MyMenJinAdapter(mListByCom);
                         mRecyclerView.setAdapter(mAdapter);
 //                        showText();

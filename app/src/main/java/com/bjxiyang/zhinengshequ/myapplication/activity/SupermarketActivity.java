@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.CatograyAdapter;
@@ -29,11 +30,13 @@ import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.GoodsAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.ProductAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
+import com.bjxiyang.zhinengshequ.myapplication.bean.ItemBean;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Unit;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DianMing;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.ShangPinList;
+import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.ShangPingDetail;
 import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.BianLiDianResponse;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
@@ -45,6 +48,7 @@ import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.LogOutUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
+import com.bjxiyang.zhinengshequ.myapplication.until.SPToGouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.until.UnitGetGouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyListView;
@@ -100,12 +104,28 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     LinearLayout ll_first;
     @BindView(R.id.bottomSheetLayout)
     BottomSheetLayout bottomSheetLayout;
-
+    ImageView iv_shangminxiangqing_img;
+    ImageView fanhui;
+    TextView tv_spName;
+    TextView  tv_biaoqian1;
+    TextView tv_biaoqian2;
+    TextView tv_danjia;
+    ImageView iv_jian;
+    ImageView iv_jia;
+    TextView tv_shuliang;
+    TextView tv_dianming;
+    TextView tv_spjieshao;
+    TextView  tv_shuliang1;
+    TextView tv_xuanhaole;
+    TextView tv_zongjia;
 
     private TextView tv_count,tv_totle_money2;
     /**
      * DATE
      */
+    private View bottomDetailSheet;
+    private ShangPingDetail.ResultBean resultBean1;
+    private GouWuChe gouWuChe;
     private boolean isShow=false;
     private Double totleMoney = 0.00;
     private List<GouWuChe> mList;
@@ -139,7 +159,16 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         Log.i("YYYY",UserManager.getInstance().getUser().getObj().getMobilePhone());
         initUi();
     }
-
+    public List<ItemBean> getListAll(){
+        List<ItemBean> list_all=new ArrayList<ItemBean>();
+        ItemBean itemBean=new ItemBean();
+        itemBean.setKey("1");
+        itemBean.setNote1("2");
+        itemBean.setNote2("3");
+        itemBean.setValue("4");
+        list_all.add(itemBean);
+        return list_all;
+    }
     private void initUi() {
         swipeRefreshLayout1.setOnRefreshListener(this);
         swipeRefreshLayout2.setOnRefreshListener(this);
@@ -485,7 +514,8 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         mList_plot=new ArrayList<>();
         DialogUntil.showLoadingDialog(SupermarketActivity.this,"正在加载",true);
         String url= XY_Response.URL_FINDCOMMUNITYBYPER+"mobilePhone="+
-                UserManager.getInstance().getUser().getObj().getMobilePhone();
+                SPManager.getInstance().getString("mobilePhone",null);
+//                UserManager.getInstance().getUser().getObj().getMobilePhone();
 
         RequestCenter.findCommunityByPer(url, new DisposeDataListener() {
             @Override
@@ -692,6 +722,190 @@ public class SupermarketActivity extends MySwipeBackActivity implements
             }
         }
     }
+    //创建套餐详情view
+    public void showDetailSheet(List<ItemBean> listItem, int position, ShangPinList.Result.Products products){
+        bottomDetailSheet = createMealDetailView(listItem,position, products);
 
+        bottomSheetLayout.addOnSheetStateChangeListener(
+                new BottomSheetLayout.OnSheetStateChangeListener() {
+                    @Override
+                    public void onSheetStateChanged(BottomSheetLayout.State state) {
+                        if (state==BottomSheetLayout.State.HIDDEN){
+                            catograyAdapter.notifyDataSetChanged();
+                            goodsAdapter.notifyDataSetChanged();
+                            update(false);
+                            bottomSheetLayout.dismissSheet();
+                        }
+                    }
+                });
+
+        if(bottomSheetLayout.isSheetShowing()){
+            bottomSheetLayout.dismissSheet();
+        }else {
+            if(listItem.size()!=0){
+                bottomSheetLayout.showWithSheetView(bottomDetailSheet);
+            }
+        }
+        bottomSheetLayout.setPeekSheetTranslation(1700);
+        bottomSheetLayout.setMinimumHeight(1500);
+    }
+    private View createMealDetailView(List<ItemBean> listItem, final int position, final ShangPinList.Result.Products products)
+    {
+        isShow=true;
+//        onAttach(getActivity());
+        gouWuChe=null;
+        View view = LayoutInflater.from(SupermarketActivity.this).inflate(R.layout.activity_super_goods_detail,(ViewGroup) getWindow().getDecorView(),false);
+        iv_shangminxiangqing_img= (ImageView) view.findViewById(R.id.iv_shangminxiangqing_img);
+        fanhui= (ImageView) view.findViewById(R.id.iv_shangminxiangqing_fanhui);
+        tv_spName= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_shangpinming);
+        tv_biaoqian1= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_xinpin);
+        tv_biaoqian2= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_xinpinguige);
+        tv_danjia= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_jiage);
+        iv_jian= (ImageView) view.findViewById(R.id.iv_shangpinxiangqing_jian);
+        iv_jia= (ImageView) view.findViewById(R.id.iv_shangpinxiangqing_jia);
+        tv_shuliang= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_count);
+        tv_dianming= (TextView) view.findViewById(R.id.tv_dianming);
+        tv_spjieshao= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_shangpinjieshao);
+        tv_shuliang1= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_yuanjiaocount);
+        tv_xuanhaole= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_xuanhaole);
+        tv_zongjia= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_money);
+
+
+        final int position1=position;
+        tv_xuanhaole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count_cha=0;
+                List<GouWuChe> list=DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
+                for (int i=0;i<list.size();i++){
+                    if (list.get(i).getSpid()==products.getId()){
+                        count_cha=list.get(i).getCount();
+                    }
+                }
+                if (count_cha==0){
+                    MyUntil.show(SupermarketActivity.this,"请添加商品");
+                }else {
+                    Intent intent = new Intent(SupermarketActivity.this, PlaceOrderActivity.class);
+                    intent.putExtra("spId", products.getId());
+                    intent.putExtra("sellerId", products.getSellerId());
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("product", products);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            }
+        });
+        String url_xiangqing = BianLiDianResponse.URL_PRODUCT_DETAIL
+                +"productId="+products.getId();
+        gouWuChe=null;
+        mList = DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
+        if (mList.size() > 0) {
+            for (int i = 0; i < mList.size(); i++) {
+                if (mList.get(i).getSpid() == products.getId()) {
+                    gouWuChe = mList.get(i);
+                }
+            }
+        }
+        if (gouWuChe!=null){
+            if (gouWuChe.getIfDiscount()==0){
+                tv_zongjia.setText(String.valueOf(df.format((double)gouWuChe.getPrice()*gouWuChe.getCount()/100)));
+            }else {
+                tv_zongjia.setText(String.valueOf(df.format((double)gouWuChe.getDiscountPrice()*gouWuChe.getCount()/100)));
+            }
+//            tv_zongjia.setText(String.valueOf(gouWuChe.getPrice()*gouWuChe.getCount()));
+            tv_shuliang.setText(String.valueOf(gouWuChe.getCount()));
+            tv_shuliang1.setText(String.valueOf(gouWuChe.getCount()));
+        }else {
+            tv_zongjia.setText(0+"");
+            tv_shuliang.setText(0+"");
+            tv_shuliang1.setText(0+"");
+            gouWuChe= SPToGouWuChe.splistToGouWuChe(products);
+            DaoUtils.getStudentInstance().insertObject(gouWuChe);
+        }
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                bottomSheetLayout.dismissSheet();
+            }
+        });
+
+        iv_jia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (gouWuChe!=null) {
+                    gouWuChe.setCount(gouWuChe.getCount()+1);
+                    DaoUtils.getStudentInstance().updateObject(gouWuChe);
+                    tv_shuliang.setText(String.valueOf(gouWuChe.getCount()));
+                    tv_shuliang1.setText(String.valueOf(gouWuChe.getCount()));
+                    if (gouWuChe.getIfDiscount()==0){
+                        tv_zongjia.setText(String.valueOf(df.format((double)gouWuChe.getPrice()*gouWuChe.getCount()/100)));
+                    }else {
+                        tv_zongjia.setText(String.valueOf(df.format((double)gouWuChe.getDiscountPrice()*gouWuChe.getCount()/100)));
+                    }
+                }
+//                            handlerCarNum(1,gouWuChe,true);
+            }
+        });
+        iv_jian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (gouWuChe.getCount()>=1){
+                    gouWuChe.setCount(gouWuChe.getCount()-1);
+                    DaoUtils.getStudentInstance().updateObject(gouWuChe);
+                    tv_shuliang.setText(String.valueOf(gouWuChe.getCount()));
+                    tv_shuliang1.setText(String.valueOf(gouWuChe.getCount()));
+                    if (gouWuChe.getIfDiscount()==0){
+                        tv_zongjia.setText(String.valueOf(df.format((double)gouWuChe.getPrice()*gouWuChe.getCount()/100)));
+                    }else {
+                        tv_zongjia.setText(String.valueOf(df.format((double)gouWuChe.getDiscountPrice()*gouWuChe.getCount()/100)));
+                    }
+
+                }else {
+                    tv_shuliang.setText(String.valueOf(0));
+                    tv_shuliang1.setText(String.valueOf(0));
+                    tv_zongjia.setText(String.valueOf(0));
+                }
+//                            handlerCarNum(0,gouWuChe,true);
+            }
+        });
+
+
+        RequestCenter.order_product_detail(url_xiangqing, new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                ShangPingDetail shangPingDetail= (ShangPingDetail) responseObj;
+                if (shangPingDetail.getCode()==BianLiDianStatus.STATUS_CODE_SUCCESS){
+                    ShangPingDetail.ResultBean resultBean = shangPingDetail.getResult();
+
+                    tv_spjieshao.setText(resultBean.getDes());
+                    tv_spName.setText(resultBean.getName());
+                    ImageLoaderManager.getInstance(SupermarketActivity.this)
+                            .displayImage(iv_shangminxiangqing_img,resultBean.getLogo());
+                    if (gouWuChe.getIfDiscount()==0){
+                        tv_danjia.setText(String.valueOf(df.format((double)gouWuChe.getPrice()/100)));
+                    }else {
+                        tv_danjia.setText(String.valueOf(df.format((double)gouWuChe.getDiscountPrice()/100)));
+
+                    }
+
+                    tv_dianming.setText( SPManager.getInstance().getString("shopName",""));
+
+                    resultBean1=resultBean;
+
+
+                }else {
+                    MyUntil.show(SupermarketActivity.this,shangPingDetail.getMsg());
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+
+            }
+        });
+
+        return view;
+    }
 
 }

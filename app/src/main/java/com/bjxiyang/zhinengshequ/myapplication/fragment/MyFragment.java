@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
+import com.bjxiyang.zhinengshequ.myapplication.activity.ShouHuoDiZhiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
@@ -279,7 +280,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
                 break;
             //我的地址
             case R.id.wodedizhi:
-//                startIntent(ShouHuoDiZhiActivity.class);
+                startIntent(ShouHuoDiZhiActivity.class);
                 break;
 
             //全部订单页面

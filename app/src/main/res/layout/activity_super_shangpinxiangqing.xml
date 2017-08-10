@@ -22,12 +22,21 @@
 
         <ImageView
             android:id="@+id/iv_shangminxiangqing_fanhui"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/c_btn_fanhui"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="-250dp"/>
+            android:layout_marginTop="-250dp"
+            android:background="@drawable/c_btn_fanhui" />
+
+        <ImageView
+            android:id="@+id/iv_shangminxiangqing_fenxiang"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-39dp"
+            android:layout_gravity="right"
+            android:background="@drawable/b_btn_share" />
 
     </LinearLayout>
 
@@ -80,15 +89,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="15dp">
         <TextView
             android:id="@+id/tv_shangpinxiangqing_jiage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="￥88.88"
-
-            android:textColor="#da4692"
+            
+            android:textColor="#323232"
             android:layout_weight="1"
             android:textSize="22sp"/>
 
@@ -96,7 +105,7 @@
             android:id="@+id/iv_shangpinxiangqing_jian"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:background="@drawable/a_btn_jian"
+            android:background="@drawable/a_btn_reductionof"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"/>
         <TextView
@@ -111,7 +120,7 @@
             android:id="@+id/iv_shangpinxiangqing_jia"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:background="@drawable/a_btn_jia"
+            android:background="@drawable/a_brn_add"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"/>
 
@@ -128,17 +137,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="希洋便利店（某小区店）"
+        android:text="商品描述"
+        android:textSize="17sp"
+        android:textColor="#323232"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
         />
-    <TextView
+    <!--<TextView-->
 
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#dddddd"
-        android:layout_marginTop="5dp"/>
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="#dddddd"-->
+        <!--android:layout_marginTop="5dp"/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -176,60 +187,103 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-       android:layout_marginTop="-50dp">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:background="#000000"
-           >
-            <ImageView
-                android:id="@+id/m_list_car"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/a_btn_guowuche"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                />
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="-70dp"
+        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_shangpinxiangqing_yuanjiaocount"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:background="@drawable/a_img_tishi"
-                android:layout_marginTop="-15dp"
-                android:layout_marginLeft="-10dp"
-               />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/a_img_beignorantof">
+
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="￥"
-                android:textColor="#ffffff"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
                 android:gravity="center"
-                android:textSize="18sp"
-                android:layout_marginLeft="15dp"/>
+                android:text="共￥"
+                android:textColor="#2b5e8e"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
             <TextView
                 android:id="@+id/tv_shangpinxiangqing_money"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="99.99"
-                android:textSize="18sp"
-                android:textColor="#ffffff"/>
+                android:text="0.00"
+                android:textColor="#2b5e8e"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_weight="1" />
 
+            <TextView
+                android:id="@+id/tv_shangpinxiangqing_xuanhaole"
+                android:layout_width="110dp"
+                android:layout_height="44dp"
+                android:text="选好了"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:background="@drawable/a_btn_acknowledgement" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/tv_shangpinxiangqing_xuanhaole"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="选好了"
-            android:textSize="18sp"
-            android:background="#ff7700"/>
 
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="-60dp">
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+
+        <LinearLayout
+            android:id="@+id/m_list_car"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/view2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_car"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/a_icon_shoppingtrolley_pre" />
+
+            <TextView
+                android:id="@+id/tv_shangpinxiangqing_yuanjiaocount"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="-15dp"
+                android:background="@drawable/a_img_tishi"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
 
 </LinearLayout>

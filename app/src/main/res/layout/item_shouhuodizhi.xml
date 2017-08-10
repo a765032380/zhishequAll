@@ -18,7 +18,7 @@
             android:id="@+id/iv_item_shouhuodizhi_button"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/b_btn_xuanze_pre"
+            android:background="@drawable/e_icon_choice"
             android:layout_marginRight="10dp"/>
 
         <LinearLayout

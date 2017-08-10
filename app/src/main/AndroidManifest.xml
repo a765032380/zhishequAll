@@ -114,6 +114,12 @@
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XYXuanZeXiaoQuActivity"
             android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.AddShouHuoDiZhiActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.ShouHuoDiZhiActivity"
+            android:theme="@style/otherPageStyle"></activity>
 
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.welcome.Welcome"

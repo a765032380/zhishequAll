@@ -208,7 +208,7 @@ public class GoodsAdapter extends BaseAdapter{
 //                if(list.get(position).getPackage_product_info()!=null&&list.get(position).getTitle()!=null){
                 catograyAdapter.notifyDataSetChanged();
 
-//                supermarketfragment.showDetailSheet(supermarketfragment.getListAll(),position2,list.get(position2));
+                supermarketfragment.showDetailSheet(supermarketfragment.getListAll(),position2,list.get(position2));
 //                }else{
 //                    Toast.makeText(context, "没有详情!", Toast.LENGTH_SHORT).show();
 //                }
