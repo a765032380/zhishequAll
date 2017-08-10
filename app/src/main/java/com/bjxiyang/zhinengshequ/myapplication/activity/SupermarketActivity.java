@@ -754,7 +754,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         isShow=true;
 //        onAttach(getActivity());
         gouWuChe=null;
-        View view = LayoutInflater.from(SupermarketActivity.this).inflate(R.layout.activity_super_goods_detail,(ViewGroup) getWindow().getDecorView(),false);
+        View view = LayoutInflater.from(SupermarketActivity.this).inflate(R.layout.activity_super_shangpinxiangqing,(ViewGroup) getWindow().getDecorView(),false);
         iv_shangminxiangqing_img= (ImageView) view.findViewById(R.id.iv_shangminxiangqing_img);
         fanhui= (ImageView) view.findViewById(R.id.iv_shangminxiangqing_fanhui);
         tv_spName= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_shangpinming);
