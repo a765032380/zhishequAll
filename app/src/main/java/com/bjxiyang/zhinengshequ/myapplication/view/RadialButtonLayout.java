@@ -146,7 +146,7 @@ public class RadialButtonLayout extends FrameLayout{
 
 //            resId = R.string.open;
         }
-        showToast( resId);
+//        showToast( resId);
         btn.playSoundEffect( SoundEffectConstants.CLICK);
     }
 
@@ -252,7 +252,7 @@ public class RadialButtonLayout extends FrameLayout{
                 if (byCom.getCode().equals("1000")){
                     mListByCom=byCom.getObj();
                     if (mListByCom.size()>0){
-                        rl_hide.setBackgroundColor(0xC89A969E);
+                        rl_hide.setBackgroundColor(0xcce3e3e3 );
                         isOpen = true;
                         rl_hide.setClickable(false);
                         rl_hide.setOnClickListener(new OnClickListener() {
@@ -270,6 +270,7 @@ public class RadialButtonLayout extends FrameLayout{
                         MyUntil.show(getContext(),"当前数据为空");
                     }
                 }else {
+                    MyUntil.show(getContext(),byCom.getMsg());
 //                    showText_TiShi();
                 }
             }

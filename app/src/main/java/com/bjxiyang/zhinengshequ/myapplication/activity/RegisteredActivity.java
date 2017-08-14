@@ -261,7 +261,7 @@ public class RegisteredActivity extends MySwipeBackActivity implements View.OnCl
                             Message message=new Message();
                             message.what=4000;
                             handler.sendMessage(message);
-                            DialogUntil.closeLoadingDialog();
+
                         }else if (fanHui.getCode().equals("500")){
 
                             //注册失败

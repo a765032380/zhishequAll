@@ -53,8 +53,10 @@ public class PlaceOrderActivity extends MySwipeBackActivity
     private TextView tv_dianming;
     private TextView tv_tijiaodingdan_money;
     private TextView youhuijian_tishi;
+    private TextView tv_tijiaodingdan_youhui;
     private double fee=0;
 
+    private double youhuijiage;
     private int userAddressId;
     private int sellerId;
     private String product;
@@ -84,6 +86,7 @@ public class PlaceOrderActivity extends MySwipeBackActivity
     }
 
     private void initUI() {
+        tv_tijiaodingdan_youhui= (TextView) findViewById(R.id.tv_tijiaodingdan_youhui);
         youhuijian_tishi= (TextView) findViewById(R.id.youhuijian_tishi);
         tv_tijiaodingdan_money= (TextView) findViewById(R.id.tv_tijiaodingdan_money);
         tv_dianming= (TextView) findViewById(R.id.tv_dianming);
@@ -101,6 +104,7 @@ public class PlaceOrderActivity extends MySwipeBackActivity
         ly_tijiaodingdan_xuanzeshouhuodizhi.setOnClickListener(this);
         rl_tijiaodingdan_fanghui.setOnClickListener(this);
         ly_tijiaodingdan_youhuiquan.setOnClickListener(this);
+        tv_tijiaodingdan_youhui.setText("0.00");
         if (SPManager.getInstance().getBoolean("isDizhi",false)){
             userAddressId= SPManager.getInstance().getInt("userAddressId",0);
             tv_dizhi_name.setText(SPManager.getInstance().getString("dizhiName",null));
@@ -164,9 +168,10 @@ public class PlaceOrderActivity extends MySwipeBackActivity
             }
             adapter=new PlaceOrderAdapter(this,mList);
             lv_tijiaodingdan.setAdapter(adapter);
+            MyUntil.setListViewHeightBasedOnChildren(lv_tijiaodingdan,adapter);
 
         }
-        tv_tijiaodingdan_money.setText("￥"+df.format(jiage/100));
+        tv_tijiaodingdan_money.setText(df.format(jiage/100)+"");
         tv_tijiaodingdan_count.setText(count+"");
 
     }
@@ -343,13 +348,37 @@ public class PlaceOrderActivity extends MySwipeBackActivity
                         if (resultBean2!=null) {
                             resultBean1 = resultBean2;
                             couponId = resultBean1.getId();
-                            youhuijian_tishi.setText("享店铺" + (double)resultBean1.getDiscount()/10 + "折");
-                            fee = jiage * resultBean1.getDiscount() / 100;
-                            tv_tijiaodingdan_money.setText(String.valueOf(df.format(fee / 100)));
+                            if (resultBean1.getDiscountType()==1) {
+                                youhuijian_tishi.setText("享店铺" + (double) resultBean1.getDiscount() / 10 + "折");
+                                fee = jiage * resultBean1.getDiscount() / 100;
+                                tv_tijiaodingdan_money.setText(String.valueOf(df.format(fee / 100)));
+                                youhuijiage=jiage-fee;
+                            }else if (resultBean1.getDiscountType()==0) {
+                                youhuijiage=jiage-fee;
+                                youhuijian_tishi.setText("优惠" + (double) resultBean1.getDiscount()/100  + "元");
+                                fee = jiage - resultBean1.getDiscount()*100;
+                                tv_tijiaodingdan_money.setText(String.valueOf(df.format(fee / 100)));
+                                youhuijiage=jiage-fee;
+                            }
+                            tv_tijiaodingdan_youhui.setText(df.format(youhuijiage));
                         }else {
                             youhuijian_tishi.setText("当前无可用优惠券");
                             tv_tijiaodingdan_money.setText(String.valueOf(df.format(jiage / 100)));
                         }
+
+
+//
+//                        if (resultBean2!=null) {
+//                            resultBean1 = resultBean2;
+//                            couponId = resultBean1.getId();
+//                            youhuijian_tishi.setText("享店铺" + (double)resultBean1.getDiscount()/10 + "折");
+//                            fee = jiage * resultBean1.getDiscount() / 100;
+//                            tv_tijiaodingdan_money.setText(String.valueOf(df.format(fee / 100)));
+//
+//                        }else {
+//                            youhuijian_tishi.setText("当前无可用优惠券");
+//                            tv_tijiaodingdan_money.setText(String.valueOf(df.format(jiage / 100)));
+//                        }
                     }
 //                    @Override
 //                    public void getDizhiId(DiZhiList.ResultBean data) {

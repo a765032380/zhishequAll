@@ -73,8 +73,8 @@ int headerViewsCount;
                 YouHuiQuan youhuiquan= (YouHuiQuan) responseObj;
                 if (youhuiquan.getCode() == BianLiDianStatus.STATUS_CODE_SUCCESS){
                     mList=youhuiquan.getResult();
-
                     for (int i=mList.size()-1;i>=0;i--){
+
                         Date startdate=null;
                         Date enddate=null;
                         //优惠券开始时间
@@ -85,13 +85,13 @@ int headerViewsCount;
                             enddate = DateUtils.getDate(mList.get(i).getEndDate());
                         }
                         Date date = DateUtils.getDate(DateUtils.getCurrentTime_Today());
-                       
-                       
+
+
                         //优惠券截止时间
-                       
+
                         //当前时间
-                       
-                        
+
+
 //                        if (date.before(startdate)||date.after(enddate)){
 //                            mList.remove(i);
 //                            continue;

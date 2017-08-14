@@ -34,7 +34,7 @@ public class BaseActivity extends AppCompatActivity {
         // enable navigation bar tint 激活导航栏
         tintManager.setNavigationBarTintEnabled(false);
 
-        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS

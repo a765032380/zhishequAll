@@ -13,6 +13,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Floor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Loan;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoorList;
@@ -269,6 +270,9 @@ public class RequestCenter {
 
     public static void home_2(String url,DisposeDataListener listener){
         RequestCenter.postRequest1(url,null,null,listener, HomeBean.class);
+    }
+    public static void home_Seller(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
     }
 
 

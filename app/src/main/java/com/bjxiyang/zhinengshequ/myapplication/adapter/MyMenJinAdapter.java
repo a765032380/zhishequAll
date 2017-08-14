@@ -47,6 +47,16 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.btn_orange.setText(mList.get(position).getLockName());
+        int selectColor=position%3;
+
+        if (selectColor==0){
+            viewHolder.image_tu.setBackgroundResource(R.drawable.a_icon_purple);
+        }else if (selectColor==1){
+            viewHolder.image_tu.setBackgroundResource(R.drawable.a_icon_red);
+        }else {
+            viewHolder.image_tu.setBackgroundResource(R.drawable.a_icon_yellow);
+        }
+
         viewHolder.btn_orange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -89,9 +99,11 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView btn_orange;
+        public TextView image_tu;
         public ViewHolder(View view){
             super(view);
             btn_orange = (TextView) view.findViewById(R.id.btn_orange);
+            image_tu= (TextView) view.findViewById(R.id.image_tu);
         }
     }
 

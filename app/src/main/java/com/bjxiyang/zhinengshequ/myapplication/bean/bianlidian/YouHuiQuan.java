@@ -1,5 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian;
 
+
 import java.util.List;
 
 /**
@@ -8,11 +9,12 @@ import java.util.List;
 
 public class YouHuiQuan {
 
+
     /**
      * code : 0
-     * time : 1500450729899
+     * time : 1502452157839
      * msg :
-     * result : [{"id":77,"startDate":"2017-07-19 11:12:43","couponNo":"200201707198","status":1,"sellerId":0,"name":"中秋","receiveTime":"2017-07-19 15:48:17","endDate":"2017-07-22 11:12:45","minConsume":5000,"expireType":1,"discount":1},{"id":76,"startDate":"2017-07-19 11:12:43","couponNo":"200201707198","status":1,"sellerId":0,"name":"中秋","receiveTime":"2017-07-19 15:47:48","endDate":"2017-07-22 11:12:45","minConsume":5000,"expireType":1,"discount":1},{"id":74,"startDate":"2017-07-19 11:12:43","couponNo":"200201707198","status":1,"sellerId":0,"name":"中秋","receiveTime":"2017-07-19 15:43:07","endDate":"2017-07-22 11:12:45","minConsume":5000,"expireType":1,"discount":1},{"id":73,"startDate":"2017-07-19 11:12:43","couponNo":"200201707198","status":1,"sellerId":0,"name":"中秋","receiveTime":"2017-07-19 15:33:15","endDate":"2017-07-22 11:12:45","minConsume":5000,"expireType":1,"discount":1},{"id":71,"startDate":"2017-07-20 00:00:00","couponNo":"200201707186","status":1,"sellerId":0,"name":"测试优惠","receiveTime":"2017-07-19 15:06:46","endDate":"2017-07-25 00:00:00","minConsume":10000,"expireType":2,"discount":1},{"id":70,"startDate":"","couponNo":"200201707094","status":1,"sellerId":0,"name":"十一活动","receiveTime":"2017-07-19 15:06:44","endDate":"","minConsume":1000,"expireType":0,"discount":85}]
+     * result : [{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-08-10 10:41:19","sellerId":0,"name":"十一活动","discountType":0,"id":183,"startDate":"","status":1},{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-08-08 11:44:10","sellerId":0,"name":"十一活动","discountType":0,"id":165,"startDate":"","status":1},{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-08-07 17:09:08","sellerId":0,"name":"十一活动","discountType":0,"id":162,"startDate":"","status":1},{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-08-03 15:06:49","sellerId":0,"name":"十一活动","discountType":0,"id":149,"startDate":"","status":1},{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-08-02 10:25:50","sellerId":0,"name":"十一活动","discountType":0,"id":138,"startDate":"","status":1},{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-07-29 21:26:45","sellerId":0,"name":"十一活动","discountType":0,"id":133,"startDate":"","status":0},{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-07-28 10:16:54","sellerId":0,"name":"十一活动","discountType":0,"id":124,"startDate":"","status":1},{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-07-27 13:35:14","sellerId":0,"name":"十一活动","discountType":0,"id":118,"startDate":"","status":1},{"endDate":"","bondUrl":"http://www.bjxiyang.com","expireType":0,"discount":85,"couponNo":"200201707094","minConsume":1000,"receiveTime":"2017-07-20 16:05:48","sellerId":0,"name":"十一活动","discountType":0,"id":88,"startDate":"","status":1},{"endDate":"2017-07-25 00:00:00","bondUrl":"http://www.bjxiyang.com","expireType":2,"discount":1,"couponNo":"200201707186","minConsume":10000,"receiveTime":"2017-07-20 16:05:33","sellerId":0,"name":"测试优惠","discountType":0,"id":87,"startDate":"2017-07-20 00:00:00","status":0},{"endDate":"2017-07-22 00:00:00","bondUrl":"http://www.bjxiyang.com","expireType":1,"discount":1,"couponNo":"200201707198","minConsume":5000,"receiveTime":"2017-07-19 15:48:17","sellerId":0,"name":"中秋","discountType":0,"id":77,"startDate":"2017-07-19 00:00:00","status":0},{"endDate":"2017-07-22 00:00:00","bondUrl":"http://www.bjxiyang.com","expireType":1,"discount":1,"couponNo":"200201707198","minConsume":5000,"receiveTime":"2017-07-19 15:47:48","sellerId":0,"name":"中秋","discountType":0,"id":76,"startDate":"2017-07-19 00:00:00","status":0},{"endDate":"2017-07-22 00:00:00","bondUrl":"http://www.bjxiyang.com","expireType":1,"discount":1,"couponNo":"200201707198","minConsume":5000,"receiveTime":"2017-07-19 15:43:07","sellerId":0,"name":"中秋","discountType":0,"id":74,"startDate":"2017-07-19 00:00:00","status":0},{"endDate":"2017-07-22 00:00:00","bondUrl":"http://www.bjxiyang.com","expireType":1,"discount":1,"couponNo":"200201707198","minConsume":5000,"receiveTime":"2017-07-19 15:33:15","sellerId":0,"name":"中秋","discountType":0,"id":73,"startDate":"2017-07-19 00:00:00","status":0}]
      */
 
     private int code;
@@ -54,45 +56,65 @@ public class YouHuiQuan {
 
     public static class ResultBean {
         /**
-         * id : 77
-         * startDate : 2017-07-19 11:12:43
-         * couponNo : 200201707198
-         * status : 1
+         * endDate :
+         * bondUrl : http://www.bjxiyang.com
+         * expireType : 0
+         * discount : 85
+         * couponNo : 200201707094
+         * minConsume : 1000
+         * receiveTime : 2017-08-10 10:41:19
          * sellerId : 0
-         * name : 中秋
-         * receiveTime : 2017-07-19 15:48:17
-         * endDate : 2017-07-22 11:12:45
-         * minConsume : 5000
-         * expireType : 1
-         * discount : 1
+         * name : 十一活动
+         * discountType : 0
+         * id : 183
+         * startDate :
+         * status : 1
          */
 
-        private int id;
-        private String startDate;
-        private String couponNo;
-        private int status;
-        private int sellerId;
-        private String name;
-        private String receiveTime;
         private String endDate;
-        private int minConsume;
+        private String bondUrl;
         private int expireType;
         private int discount;
+        private String couponNo;
+        private int minConsume;
+        private String receiveTime;
+        private int sellerId;
+        private String name;
+        private int discountType;
+        private int id;
+        private String startDate;
+        private int status;
 
-        public int getId() {
-            return id;
+        public String getEndDate() {
+            return endDate;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setEndDate(String endDate) {
+            this.endDate = endDate;
         }
 
-        public String getStartDate() {
-            return startDate;
+        public String getBondUrl() {
+            return bondUrl;
         }
 
-        public void setStartDate(String startDate) {
-            this.startDate = startDate;
+        public void setBondUrl(String bondUrl) {
+            this.bondUrl = bondUrl;
+        }
+
+        public int getExpireType() {
+            return expireType;
+        }
+
+        public void setExpireType(int expireType) {
+            this.expireType = expireType;
+        }
+
+        public int getDiscount() {
+            return discount;
+        }
+
+        public void setDiscount(int discount) {
+            this.discount = discount;
         }
 
         public String getCouponNo() {
@@ -103,12 +125,20 @@ public class YouHuiQuan {
             this.couponNo = couponNo;
         }
 
-        public int getStatus() {
-            return status;
+        public int getMinConsume() {
+            return minConsume;
         }
 
-        public void setStatus(int status) {
-            this.status = status;
+        public void setMinConsume(int minConsume) {
+            this.minConsume = minConsume;
+        }
+
+        public String getReceiveTime() {
+            return receiveTime;
+        }
+
+        public void setReceiveTime(String receiveTime) {
+            this.receiveTime = receiveTime;
         }
 
         public int getSellerId() {
@@ -127,44 +157,36 @@ public class YouHuiQuan {
             this.name = name;
         }
 
-        public String getReceiveTime() {
-            return receiveTime;
+        public int getDiscountType() {
+            return discountType;
         }
 
-        public void setReceiveTime(String receiveTime) {
-            this.receiveTime = receiveTime;
+        public void setDiscountType(int discountType) {
+            this.discountType = discountType;
         }
 
-        public String getEndDate() {
-            return endDate;
+        public int getId() {
+            return id;
         }
 
-        public void setEndDate(String endDate) {
-            this.endDate = endDate;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public int getMinConsume() {
-            return minConsume;
+        public String getStartDate() {
+            return startDate;
         }
 
-        public void setMinConsume(int minConsume) {
-            this.minConsume = minConsume;
+        public void setStartDate(String startDate) {
+            this.startDate = startDate;
         }
 
-        public int getExpireType() {
-            return expireType;
+        public int getStatus() {
+            return status;
         }
 
-        public void setExpireType(int expireType) {
-            this.expireType = expireType;
-        }
-
-        public int getDiscount() {
-            return discount;
-        }
-
-        public void setDiscount(int discount) {
-            this.discount = discount;
+        public void setStatus(int status) {
+            this.status = status;
         }
     }
 }

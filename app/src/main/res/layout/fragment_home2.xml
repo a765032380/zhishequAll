@@ -16,8 +16,7 @@
         <!---->
     <!--</LinearLayout>-->
 
-<ScrollView
-
+<com.bjxiyang.zhinengshequ.myapplication.view.MyScrollView
     android:id="@+id/myScrollView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -31,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.jude.rollviewpager.RollPagerView
+
                 android:id="@+id/roll_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
@@ -207,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:text="超市特价"
+                android:text="便利店"
                 android:textColor="#303030"
                 android:textSize="16sp" />
 
@@ -237,12 +237,13 @@
             android:layout_marginTop="5dp"
             android:divider="#323232"
             android:dividerHeight="1dp"
+            android:layout_marginBottom="30dp"
             android:scrollbars="none">
 
         </com.bjxiyang.zhinengshequ.myapplication.view.MyListView>
 
     </LinearLayout>
-</ScrollView>
+</com.bjxiyang.zhinengshequ.myapplication.view.MyScrollView>
     <TextView
         android:alpha="0"
         android:id="@+id/title_gone"
@@ -255,5 +256,5 @@
         android:layout_height="60dp"
         android:paddingTop="15dp"
         android:layout_alignTop="@+id/myScrollView"
-        android:layout_alignParentStart="true" />
+         />
 </RelativeLayout>

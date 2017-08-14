@@ -23,6 +23,7 @@ import com.bjxiyang.zhinengshequ.myapplication.activity.ShouHuoDiZhiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
+import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.LoginActivity;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
@@ -31,6 +32,8 @@ import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.update.service.UpdateService;
 import com.bjxiyang.zhinengshequ.myapplication.update.util.Util;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 
 /**
  * Created by gll on 17-5-20.
@@ -308,6 +311,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
                 break;
             //退出登录
             case R.id.siginoutbutton:
+                logOutHuanXin();
                 SPManager.getInstance().remove("mobilePhone");
                 SPManager.getInstance().remove("communityId_one");
                 UserManager.getInstance().removeUser();
@@ -322,6 +326,26 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     private void startIntent(Class c){
         Intent intent = new Intent(mContext, c);
         startActivity(intent);
+    }
+    private void logOutHuanXin(){
+        EMClient.getInstance().logout(false, new EMCallBack() {
+
+            @Override
+            public void onSuccess() {
+//                getActivity().finish();
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+
+            @Override
+            public void onError(int code, String error) {
+
+            }
+        });
     }
 
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.ShengHuoJiaoFeiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XYMenJinJiLuActivity;
@@ -101,6 +102,7 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
                 break;
             //生活缴费
             case R.id.ll_sehnghuojiaofei:
+                startActivity(ShengHuoJiaoFeiActivity.class);
                 break;
             //门禁记录
             case R.id.ll_menjinjilu:

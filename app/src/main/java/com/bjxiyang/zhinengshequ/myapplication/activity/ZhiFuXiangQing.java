@@ -51,9 +51,9 @@ import java.util.Map;
 
 //【程序猿的三重境界】第一重:无尽bug常作客,困闷调试伴不眠。第二重:千行代码过,bug不沾身。第三重:编码间,bug灰飞烟灭。
 public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickListener{
-    private RelativeLayout rl_chaoshifukuan_xiangqing_fanhui;
-    private TextView tv_item_chaoshifukuan_xiangqing_dianming;
-    private EditText et_item_chaoshifukuan_xiangqing_money;
+    private RelativeLayout rl_zhifudingdan_fanghui;
+    private TextView tv_zhifudingdan_dianming;
+    private TextView tv_zhifudingdan_quedingzhifu;
     private LinearLayout zhifu_yinhangka;
     private LinearLayout zhifu_weixin;
     private LinearLayout zhifu_zhifubao;
@@ -113,7 +113,7 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fukuan_xiangqing);
+        setContentView(R.layout.activity_zhifudingdan);
         zhiFuXiangQing=this;
         Intent intent=getIntent();
         fee=intent.getDoubleExtra("fee",0);
@@ -133,9 +133,9 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
         iv_item_chaoshifukuan_xiangqing_yinhanka= (ImageView) findViewById(R.id.iv_item_chaoshifukuan_xiangqing_yinhanka);
         iv_item_chaoshifukuan_xiangqing_weixin= (ImageView) findViewById(R.id.iv_item_chaoshifukuan_xiangqing_weixin);
         iv_item_chaoshifukuan_xiangqing_zhifubao= (ImageView) findViewById(R.id.iv_item_chaoshifukuan_xiangqing_zhifubao);
-        rl_chaoshifukuan_xiangqing_fanhui= (RelativeLayout) findViewById(R.id.rl_chaoshifukuan_xiangqing_fanhui);
-        rl_chaoshifukuan_xiangqing_fanhui.setOnClickListener(this);
-        tv_item_chaoshifukuan_xiangqing_dianming= (TextView) findViewById(R.id.tv_item_chaoshifukuan_xiangqing_dianming);
+        rl_zhifudingdan_fanghui= (RelativeLayout) findViewById(R.id.rl_chaoshifukuan_xiangqing_fanhui);
+        rl_zhifudingdan_fanghui.setOnClickListener(this);
+        tv_zhifudingdan_dianming= (TextView) findViewById(R.id.tv_item_chaoshifukuan_xiangqing_dianming);
         zhifu_yinhangka= (LinearLayout) findViewById(R.id.zhifu_yinhangka);
         zhifu_yinhangka.setOnClickListener(this);
         zhifu_weixin= (LinearLayout) findViewById(R.id.zhifu_weixin);
@@ -146,31 +146,31 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
         zhifu.setOnClickListener(this);
         Log.i("YYYY",df.format(fee/100));
         tv_gudingjine.setText(String.valueOf(df.format(fee/100)));
-        tv_item_chaoshifukuan_xiangqing_dianming.setText(propertyName);
-        et_item_chaoshifukuan_xiangqing_money= (EditText) findViewById(R.id.et_item_chaoshifukuan_xiangqing_money);
+        tv_zhifudingdan_dianming.setText(propertyName);
+        tv_zhifudingdan_quedingzhifu= (TextView) findViewById(R.id.et_item_chaoshifukuan_xiangqing_money);
         panduan(String.valueOf(tv_gudingjine.getText()));
 
-        et_item_chaoshifukuan_xiangqing_money.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//        et_item_chaoshifukuan_xiangqing_money.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+////                panduan(String.valueOf(s));
+//
+//            }
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+////                panduan(String.valueOf(s));
+//            }
+//            @Override
+//            public void afterTextChanged(Editable s) {
 //                panduan(String.valueOf(s));
-
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                panduan(String.valueOf(s));
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                panduan(String.valueOf(s));
-            }
-        });
+//            }
+//        });
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             //返回的按键
-            case R.id.rl_chaoshifukuan_xiangqing_fanhui:
+            case R.id.rl_zhifudingdan_fanghui:
                     finish();
                 break;
             //选择银行卡支付方式
@@ -195,7 +195,7 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
                 iv_item_chaoshifukuan_xiangqing_yinhanka.setBackgroundResource(R.drawable.e_btn_xuanze);
                 break;
             //提交按钮
-            case R.id.tv_item_chaoshifukuan_xiangqing_quedingzhifu:
+            case R.id.tv_zhifudingdan_quedingzhifu:
                 switch (select){
                     case 0:
                         break;

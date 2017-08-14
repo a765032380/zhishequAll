@@ -106,7 +106,7 @@ public class HomeAdapter extends BaseAdapter {
             viewHolder.tv_goodscount.setText(shopObjBean.getTotalProduct()+"件商品");
             viewHolder.tv_month_sale.setText("月售"+shopObjBean.getMonthSell()+"份");
             double jili=shopObjBean.getDistance();
-            DecimalFormat df=new DecimalFormat("#.00");
+            DecimalFormat df=new DecimalFormat("0.00");
 
             viewHolder.tv_distance.setText(df.format(jili/1000)+"km");
             viewHolder.tv_time.setText(shopObjBean.getTransitTime()+"分钟");

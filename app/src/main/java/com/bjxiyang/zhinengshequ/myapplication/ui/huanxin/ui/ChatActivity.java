@@ -52,14 +52,14 @@ public class ChatActivity extends BaseActivity{
 
     }
     
-    @Override
-    public void onBackPressed() {
-        chatFragment.onBackPressed();
-        if (EasyUtils.isSingleActivity(this)) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        chatFragment.onBackPressed();
+//        if (EasyUtils.isSingleActivity(this)) {
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        }
+//    }
     
     public String getToChatUsername(){
         return toChatUsername;

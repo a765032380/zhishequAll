@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#dddddd"
+   >
+
+    <View
+        android:background="#4183FF"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#4183ff"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:id="@+id/rl_zhifudingdan_fanghui">
+
+            <ImageView
+                android:id="@+id/iv_zhifudingdan_fanghui"
+                android:layout_marginLeft="15dp"
+                android:layout_width="15dp"
+                android:layout_height="21dp"
+                android:background="@drawable/c_icon_fanhui" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="支付订单"
+            android:layout_marginRight="40dp"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/i_bg_bg"
+        android:gravity="center_vertical"
+       >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/tv_zhifudingdan_dianming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="希洋便利店(望京店)"
+                android:layout_marginTop="15dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_zhifudingdan_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="05:00"
+                android:layout_marginTop="25dp"
+                android:textSize="34sp"
+                android:textColor="#4183ff"/>
+
+            <TextView
+                android:id="@+id/tv_zhifudingdan_dingdanhao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付剩余时间"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="145dp"
+    android:orientation="vertical"
+    android:background="@drawable/g_bg_bg"
+    android:layout_marginTop="15dp">
+    <LinearLayout
+        android:id="@+id/ll_weixinzhifu"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="15dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/j_icon_weixin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="8"
+            android:text="微信支付" />
+
+        <ImageView
+            android:id="@+id/iv_zhifudingdan_weixinxuanze"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/e_icon_choice" />
+
+
+    </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:background="#dddddd"></View>
+    <LinearLayout
+        android:id="@+id/ll_zhifubaozhifu"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/j_icon_zhifubao" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="8"
+            android:text="支付宝支付" />
+
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/iv_zhifudingdan_zhifubaoxuanze"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/h_btn_xuanze" />
+
+
+    </LinearLayout>
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_zhifudingdan_quedingzhifu"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/d_btn_baocun"
+       android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        android:text="确定支付  ￥88.88"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="16sp"/>
+
+    </LinearLayout>
+</LinearLayout>
+

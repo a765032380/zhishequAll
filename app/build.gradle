@@ -8,7 +8,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.bjxiyang.zhinengshequ"
-        minSdkVersion 19
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 3
         versionName "1.2"
@@ -33,6 +33,9 @@ android {
                 JPUSH_APPKEY : "41e326c83b06e7b95264c12d", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL : "bjxiyang", //用户渠道统计的渠道名称
         ]
+    }
+    lintOptions {
+        disable "ResourceType"
     }
 
 //    sourceSets {

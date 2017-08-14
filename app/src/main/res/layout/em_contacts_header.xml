@@ -4,10 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <View
-        android:background="#4183FF"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"/>
     <com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.widget.ContactItemView
         android:id="@+id/application_item"
         android:layout_width="match_parent"
@@ -16,6 +12,7 @@
         app:contactItemName="@string/Application_and_notify" />
 
     <com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.widget.ContactItemView
+        android:visibility="gone"
         android:id="@+id/group_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,6 +20,7 @@
         app:contactItemName="@string/group_chat" />
 
     <com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.widget.ContactItemView
+        android:visibility="gone"
         android:id="@+id/chat_room_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,6 +28,7 @@
         app:contactItemName="@string/chat_room" />
 
     <com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.widget.ContactItemView
+        android:visibility="gone"
         android:id="@+id/robot_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

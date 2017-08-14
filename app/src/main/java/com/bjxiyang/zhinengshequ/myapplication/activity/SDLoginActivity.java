@@ -32,10 +32,13 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.Users;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
+import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyDialog;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -300,6 +303,28 @@ public class SDLoginActivity extends BaseActivity {
 
                 RequestParams headers=new RequestParams();
                 headers.put("user-agent", ""+"appId="+ APP_ID.APP_ID+"");
+                EMClient.getInstance().login(uPhone, getMD5(uPassword), new EMCallBack() {
+                    @Override
+                    public void onSuccess() {
+                        Log.i("YYYY","登陆成功");
+//                        finish();
+                    }
+                    @Override
+                    public void onProgress(int progress, String status) {
+                        Log.i("YYYY",status);
+                    }
+                    @Override
+                    public void onError(int code, String error) {
+
+                        Log.i("YYYY",error);
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                            }
+                        });
+                    }
+                });
+
+
 
                 RequestCenter.login(url,headers, new DisposeDataListener() {
                     @Override
@@ -418,6 +443,25 @@ public class SDLoginActivity extends BaseActivity {
                 RequestCenter.register(url, new DisposeDataListener() {
                     @Override
                     public void onSuccess(Object responseObj) {
+
+//                        new Thread(new Runnable() {
+//                            public void run() {
+//                                try {
+//                                    // call method in SDK
+//                                    EMClient.getInstance().createAccount(phone, getMD5(password));
+//                                    runOnUiThread(new Runnable() {
+//                                        public void run() {
+//                                            // save current user
+//                                            DemoHelper.getInstance().setCurrentUserName(phone);
+//                                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.Registered_successfully), Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    });
+//                                } catch (final Exception e) {
+//
+//                                }
+//                            }
+//                        }).start();
+
                         //访问成功清除Dialog
                         DialogUntil.closeLoadingDialog();
                         //得到后台返回的数据并保存到实体类中
@@ -679,5 +723,9 @@ public class SDLoginActivity extends BaseActivity {
 
         }
     }
+
+
+
+
 
 }

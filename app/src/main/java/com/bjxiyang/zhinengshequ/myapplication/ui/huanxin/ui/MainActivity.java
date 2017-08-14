@@ -359,7 +359,10 @@ public class MainActivity extends BaseActivity {
 	}
 	
 	private void unregisterBroadcastReceiver(){
-	    broadcastManager.unregisterReceiver(broadcastReceiver);
+		if (broadcastManager!=null){
+			broadcastManager.unregisterReceiver(broadcastReceiver);
+		}
+
 	}
 
 	@Override
