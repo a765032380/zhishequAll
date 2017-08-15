@@ -35,6 +35,7 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
     private List<ByCom.Obj> mList;
     private int lockId;
     private int customberId;
+    private AnimationDrawable anim;
     public MyMenJinAdapter(List<ByCom.Obj> mList) {
         this.mList = mList;
     }
@@ -70,8 +71,7 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
                 }else {
                     viewHolder.image_tu.setBackgroundResource(R.drawable.anim_yellow);
                 }
-                AnimationDrawable anim = (AnimationDrawable) viewHolder.image_tu.getBackground();
-
+                anim = (AnimationDrawable) viewHolder.image_tu.getBackground();
 
                 anim.start();
 
@@ -85,6 +85,7 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
                     @Override
                     public void onSuccess(Object responseObj) {
                         DialogUntil.closeLoadingDialog();
+                        anim.stop();
                         OpenDoor openDoor= (OpenDoor) responseObj;
                         if (openDoor.getCode().equals("1000")){
                             Toast.makeText(v.getContext(),"开门成功",Toast.LENGTH_LONG).show();
@@ -102,6 +103,7 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
                     @Override
                     public void onFailure(Object reasonObj) {
                         DialogUntil.closeLoadingDialog();
+                        anim.stop();
                         MyDialog.showDialog(v.getContext());
                     }
                 });
