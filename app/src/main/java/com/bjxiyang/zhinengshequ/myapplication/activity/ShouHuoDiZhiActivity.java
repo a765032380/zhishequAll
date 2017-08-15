@@ -119,6 +119,13 @@ public class ShouHuoDiZhiActivity extends MySwipeBackActivity
         if (ongetdata!=null){
             ongetdata.getData(mList.get(position));
             finish();
+        }else {
+            Intent intent=new Intent();
+            Bundle bundle=new Bundle();
+            bundle.putSerializable("address",mList.get(position));
+            intent.putExtras(bundle);
+            setResult(0,intent);
+            finish();
         }
 
 //        Intent intent=new Intent(ShouHuoDiZhiActivity.this,PlaceOrderActivity.class);

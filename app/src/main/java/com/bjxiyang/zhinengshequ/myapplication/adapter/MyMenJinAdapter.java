@@ -1,6 +1,8 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,9 +47,9 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
     }
     //将数据与界面进行绑定的操作
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         viewHolder.btn_orange.setText(mList.get(position).getLockName());
-        int selectColor=position%3;
+        final int selectColor=position%3;
 
         if (selectColor==0){
             viewHolder.image_tu.setBackgroundResource(R.drawable.a_icon_purple);
@@ -57,9 +59,24 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
             viewHolder.image_tu.setBackgroundResource(R.drawable.a_icon_yellow);
         }
 
-        viewHolder.btn_orange.setOnClickListener(new View.OnClickListener() {
+        viewHolder.image_tu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                int selectColor=position%3;
+                if (selectColor==0){
+                    viewHolder.image_tu.setBackgroundResource(R.drawable.anim_purple);
+                }else if (selectColor==1){
+                    viewHolder.image_tu.setBackgroundResource(R.drawable.anim_red);
+                }else {
+                    viewHolder.image_tu.setBackgroundResource(R.drawable.anim_yellow);
+                }
+                AnimationDrawable anim = (AnimationDrawable) viewHolder.image_tu.getBackground();
+
+
+                anim.start();
+
+
+
                 DialogUntil.showLoadingDialog(v.getContext(),"正在开门",true);
                 customberId= UserManager.getInstance().getUser().getObj().getC_memberId();
                 lockId=mList.get(position).getLockId();

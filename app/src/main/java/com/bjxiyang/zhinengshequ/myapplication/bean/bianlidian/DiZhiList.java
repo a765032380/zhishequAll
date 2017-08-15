@@ -1,5 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -51,7 +52,7 @@ public class DiZhiList {
         this.result = result;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable {
         /**
          * doorId : 35
          * floorName : 三栋

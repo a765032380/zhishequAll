@@ -163,6 +163,10 @@
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.WuYeJiaoFeiActivity"
             android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.DaiFuKuanActivity"
+            android:theme="@style/otherPageStyle"></activity>
+
 
 
         <activity

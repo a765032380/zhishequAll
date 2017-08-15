@@ -1,4 +1,4 @@
-package com.bjxiyang.zhinengshequ.myapplication.fragment;
+package com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang;
 
 
 import android.annotation.TargetApi;
@@ -16,7 +16,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,6 @@ import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.ContactListFragment
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.ConversationListFragment;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.GroupsActivity;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.LoginActivity;
-import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.MainActivity;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.SettingsFragment;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMClientListener;
@@ -55,7 +53,7 @@ import java.util.List;
  * Created by gll on 17-5-20.
  */
 
-public class Supermarketfragment extends Fragment{
+public class JieFang_HaoYou extends Fragment{
 
     private View view;
     protected static final String TAG = "MainActivity";

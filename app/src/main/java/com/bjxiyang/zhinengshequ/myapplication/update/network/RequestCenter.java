@@ -274,6 +274,27 @@ public class RequestCenter {
     public static void home_Seller(String url,DisposeDataListener listener){
         RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
     }
+    public static void neighbor_addparty(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+    }
+    public static void neighbor_addpartyimg(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+    }
+    public static void neighbor_findparty(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+    }
+    public static void neighbor_findpartydetails(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+    }
+    public static void neighbor_addpartyreply(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+    }
+    public static void neighbor_joinparty(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+    }
+
+
+
 
 
 }

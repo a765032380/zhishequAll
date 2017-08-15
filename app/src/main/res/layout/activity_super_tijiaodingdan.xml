@@ -215,6 +215,7 @@
         android:layout_marginTop="10dp"/>
 
     <ScrollView
+        android:layout_marginBottom="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -295,7 +296,7 @@
                     android:layout_marginLeft="35dp"
                     android:scrollbars="none"
                     android:layout_marginRight="35dp"
-                    android:layout_marginBottom="80dp"></ListView>
+                    ></ListView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -303,7 +304,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginLeft="15dp"
                     android:background="#dddddd"
-                    android:layout_marginTop="-80dp"/>
+                    />
 
                 <LinearLayout
                     android:id="@+id/ly_tijiaodingdan_youhuiquan"

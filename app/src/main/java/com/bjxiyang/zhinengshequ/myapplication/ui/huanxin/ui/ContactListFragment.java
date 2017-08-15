@@ -130,7 +130,7 @@ public class ContactListFragment extends EaseContactListFragment {
 
         
         // 进入添加好友页
-        titleBar.getRightLayout().setOnClickListener(new OnClickListener() {
+        addFriend.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {

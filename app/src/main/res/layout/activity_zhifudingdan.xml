@@ -86,8 +86,8 @@
                 android:id="@+id/tv_zhifudingdan_dingdanhao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="支付剩余时间"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:text="支付剩余时间" />
 
         </LinearLayout>
 
@@ -161,7 +161,6 @@
             android:text="支付宝支付" />
 
         <ImageView
-            android:visibility="invisible"
             android:id="@+id/iv_zhifudingdan_zhifubaoxuanze"
             android:layout_width="20dp"
             android:layout_height="20dp"

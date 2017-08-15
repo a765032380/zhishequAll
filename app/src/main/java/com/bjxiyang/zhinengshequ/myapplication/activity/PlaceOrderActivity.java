@@ -39,6 +39,7 @@ import java.util.List;
 
 public class PlaceOrderActivity extends MySwipeBackActivity
         implements View.OnClickListener{
+    private static final int SHOUHUODIZHI=0;
 
     private RelativeLayout rl_tijiaodingdan_fanghui;
     private ListView lv_tijiaodingdan;
@@ -71,7 +72,7 @@ public class PlaceOrderActivity extends MySwipeBackActivity
     private int couponId=0;
     private YouHuiQuan.ResultBean resultBean1;
     private TiJiaoDingDan.ResultBean resultBean;
-    DecimalFormat df=new DecimalFormat("#.00");
+    DecimalFormat df=new DecimalFormat("0.00");
     private ShangPinList.Result.Products products;
 
     public static PlaceOrderActivity placeorder;
@@ -266,6 +267,7 @@ public class PlaceOrderActivity extends MySwipeBackActivity
                             resultBean=tiJiaoDingDan.getResult();
 
                             Intent intent=new Intent(PlaceOrderActivity.this,ZhiFuXiangQing.class);
+                            intent.putExtra("time",tiJiaoDingDan.getResult().getPayLimitTime());
                             intent.putExtra("type",1);
                             intent.putExtra("spId",spId);
                             Log.i("YYYY",resultBean.getAfterDiscountAmount()+"---"+
@@ -293,8 +295,9 @@ public class PlaceOrderActivity extends MySwipeBackActivity
             //选择收货地址
             case R.id.ly_tijiaodingdan_xuanzeshouhuodizhi:
 
-//                Intent intent2=new Intent(PlaceOrderActivity.this,ShouHuoDiZhiActivity.class);
-//                startActivity(intent2);
+                Intent intent2=new Intent(PlaceOrderActivity.this,ShouHuoDiZhiActivity.class);
+
+                startActivityForResult(intent2,SHOUHUODIZHI);
 //                ShouHuoDiZhiActivity.shouHuoDiZhiActivity.setOngetdata(new ShouHuoDiZhiActivity.Ongetdata() {
 //
 //                    @Override
@@ -309,27 +312,27 @@ public class PlaceOrderActivity extends MySwipeBackActivity
 //                });
 
 
-                shouHuoDiZhiDialog=new ShouHuoDiZhiDialog(this);
-                shouHuoDiZhiDialog.setOngetdata(new ShouHuoDiZhiDialog.OngetData() {
-                    @Override
-                    public void getDizhiId(DiZhiList.ResultBean data) {
-                        if (data!=null) {
-                            userAddressId = data.getId();
-                            dizhiName = data.getCommunityName() +
-                                    data.getFloorName() +
-                                    data.getUnitName() +
-                                    data.getDoorName();
-                            tv_dizhi_name.setText(dizhiName);
-                            SPManager.getInstance().putBoolean("isDizhi",true);
-                            SPManager.getInstance().putInt("userAddressId",userAddressId);
-                            SPManager.getInstance().putString("dizhiName",dizhiName);
-
-                        }else {
-                            MyUntil.show(PlaceOrderActivity.this,"请添加收货地址");
-                        }
-                    }
-                });
-                shouHuoDiZhiDialog.show();
+//                shouHuoDiZhiDialog=new ShouHuoDiZhiDialog(this);
+//                shouHuoDiZhiDialog.setOngetdata(new ShouHuoDiZhiDialog.OngetData() {
+//                    @Override
+//                    public void getDizhiId(DiZhiList.ResultBean data) {
+//                        if (data!=null) {
+//                            userAddressId = data.getId();
+//                            dizhiName = data.getCommunityName() +
+//                                    data.getFloorName() +
+//                                    data.getUnitName() +
+//                                    data.getDoorName();
+//                            tv_dizhi_name.setText(dizhiName);
+//                            SPManager.getInstance().putBoolean("isDizhi",true);
+//                            SPManager.getInstance().putInt("userAddressId",userAddressId);
+//                            SPManager.getInstance().putString("dizhiName",dizhiName);
+//
+//                        }else {
+//                            MyUntil.show(PlaceOrderActivity.this,"请添加收货地址");
+//                        }
+//                    }
+//                });
+//                shouHuoDiZhiDialog.show();
 //
 //                Intent intent=new Intent(PlaceOrderActivity.this,ShouHuoDiZhiActivity.class);
 //                startActivity(intent);
@@ -355,13 +358,14 @@ public class PlaceOrderActivity extends MySwipeBackActivity
                                 youhuijiage=jiage-fee;
                             }else if (resultBean1.getDiscountType()==0) {
                                 youhuijiage=jiage-fee;
-                                youhuijian_tishi.setText("优惠" + (double) resultBean1.getDiscount()/100  + "元");
+                                youhuijian_tishi.setText("优惠" + (double) resultBean1.getDiscount()  + "元");
                                 fee = jiage - resultBean1.getDiscount()*100;
                                 tv_tijiaodingdan_money.setText(String.valueOf(df.format(fee / 100)));
                                 youhuijiage=jiage-fee;
                             }
-                            tv_tijiaodingdan_youhui.setText(df.format(youhuijiage));
+                            tv_tijiaodingdan_youhui.setText(df.format(youhuijiage/100));
                         }else {
+                            tv_tijiaodingdan_youhui.setText(df.format(0.00));
                             youhuijian_tishi.setText("当前无可用优惠券");
                             tv_tijiaodingdan_money.setText(String.valueOf(df.format(jiage / 100)));
                         }
@@ -395,7 +399,31 @@ public class PlaceOrderActivity extends MySwipeBackActivity
                 break;
         }
     }
+//DiZhiList.ResultBean
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+            if (requestCode == SHOUHUODIZHI) {
+                if (data!=null) {
+                    Bundle bundle = data.getExtras();
+                    DiZhiList.ResultBean resultBean = (DiZhiList.ResultBean) bundle.get("address");
+                    Log.i("YYYYY", "名字" + resultBean.getName() + "测试:" + resultBean.getPhone());
+                    if (resultBean != null) {
+                        userAddressId = resultBean.getId();
+                        dizhiName = resultBean.getCommunityName() +
+                                resultBean.getFloorName() +
+                                resultBean.getUnitName() +
+                                resultBean.getDoorName();
+                        tv_dizhi_name.setText(dizhiName);
+                        SPManager.getInstance().putBoolean("isDizhi", true);
+                        SPManager.getInstance().putInt("userAddressId", userAddressId);
+                        SPManager.getInstance().putString("dizhiName", dizhiName);
+                    } else {
+                        MyUntil.show(PlaceOrderActivity.this, "请添加收货地址");
+                    }
+                }
+            }
 
-
+    }
 }

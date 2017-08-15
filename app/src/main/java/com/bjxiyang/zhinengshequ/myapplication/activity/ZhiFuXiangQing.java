@@ -7,6 +7,7 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -43,6 +44,8 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Administrator on 2017/6/15 0015.
@@ -55,14 +58,16 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
     private TextView tv_zhifudingdan_dianming;
     private TextView tv_zhifudingdan_quedingzhifu;
     private LinearLayout zhifu_yinhangka;
-    private LinearLayout zhifu_weixin;
-    private LinearLayout zhifu_zhifubao;
+    private LinearLayout ll_weixinzhifu;
+    private LinearLayout ll_zhifubaozhifu;
     private TextView zhifu;
     private String jiage;
     private ImageView iv_item_chaoshifukuan_xiangqing_yinhanka;
-    private ImageView iv_item_chaoshifukuan_xiangqing_weixin;
-    private ImageView iv_item_chaoshifukuan_xiangqing_zhifubao;
+    private ImageView iv_zhifudingdan_weixinxuanze;
+    private ImageView iv_zhifudingdan_zhifubaoxuanze;
+    private TextView tv_zhifudingdan_dingdanhao;
     private TextView tv_gudingjine;
+    private TextView tv_zhifudingdan_time;
     DecimalFormat df=new DecimalFormat("0.##");
     private String propertyName;
     //支付
@@ -74,6 +79,10 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
     private int orderId;
     private int type;
     private int spId;
+    private String time;
+    Integer minute = null,second = null;
+    TimerTask timerTask;
+    private Timer mtimer;
     private List<GouWuChe> mList= DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
     private static final int SDK_PAY_FLAG=1000;
     public static ZhiFuXiangQing zhiFuXiangQing;
@@ -119,7 +128,7 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
         fee=intent.getDoubleExtra("fee",0);
 //        fee= Double.parseDouble(intent.getStringExtra("fee"));
 //        fee=fee*100;
-
+        time=intent.getStringExtra("time");
         orderId=intent.getIntExtra("orderId",0);
         propertyName=intent.getStringExtra("propertyName");
         propertyId=intent.getIntExtra("propertyId",0);
@@ -129,26 +138,30 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
     }
 
     private void initUI() {
-        tv_gudingjine= (TextView) findViewById(R.id.tv_gudingjine);
-        iv_item_chaoshifukuan_xiangqing_yinhanka= (ImageView) findViewById(R.id.iv_item_chaoshifukuan_xiangqing_yinhanka);
-        iv_item_chaoshifukuan_xiangqing_weixin= (ImageView) findViewById(R.id.iv_item_chaoshifukuan_xiangqing_weixin);
-        iv_item_chaoshifukuan_xiangqing_zhifubao= (ImageView) findViewById(R.id.iv_item_chaoshifukuan_xiangqing_zhifubao);
-        rl_zhifudingdan_fanghui= (RelativeLayout) findViewById(R.id.rl_chaoshifukuan_xiangqing_fanhui);
+        tv_zhifudingdan_dingdanhao= (TextView) findViewById(R.id.tv_zhifudingdan_dingdanhao);
+        tv_zhifudingdan_time= (TextView) findViewById(R.id.tv_zhifudingdan_time);
+//        tv_gudingjine= (TextView) findViewById(R.id.tv_gudingjine);
+//        iv_item_chaoshifukuan_xiangqing_yinhanka= (ImageView) findViewById(R.id.iv_item_chaoshifukuan_xiangqing_yinhanka);
+        iv_zhifudingdan_weixinxuanze= (ImageView) findViewById(R.id.iv_zhifudingdan_weixinxuanze);
+        iv_zhifudingdan_zhifubaoxuanze= (ImageView) findViewById(R.id.iv_zhifudingdan_zhifubaoxuanze);
+        rl_zhifudingdan_fanghui= (RelativeLayout) findViewById(R.id.rl_zhifudingdan_fanghui);
         rl_zhifudingdan_fanghui.setOnClickListener(this);
-        tv_zhifudingdan_dianming= (TextView) findViewById(R.id.tv_item_chaoshifukuan_xiangqing_dianming);
-        zhifu_yinhangka= (LinearLayout) findViewById(R.id.zhifu_yinhangka);
-        zhifu_yinhangka.setOnClickListener(this);
-        zhifu_weixin= (LinearLayout) findViewById(R.id.zhifu_weixin);
-        zhifu_weixin.setOnClickListener(this);
-        zhifu_zhifubao= (LinearLayout) findViewById(R.id.zhifu_zhifubao);
-        zhifu_zhifubao.setOnClickListener(this);
-        zhifu= (TextView) findViewById(R.id.tv_item_chaoshifukuan_xiangqing_quedingzhifu);
-        zhifu.setOnClickListener(this);
+        tv_zhifudingdan_dianming= (TextView) findViewById(R.id.tv_zhifudingdan_dianming);
+//        zhifu_yinhangka= (LinearLayout) findViewById(R.id.zhifu_yinhangka);
+//        zhifu_yinhangka.setOnClickListener(this);
+        ll_weixinzhifu= (LinearLayout) findViewById(R.id.ll_weixinzhifu);
+        ll_weixinzhifu.setOnClickListener(this);
+        ll_zhifubaozhifu= (LinearLayout) findViewById(R.id.ll_zhifubaozhifu);
+        ll_zhifubaozhifu.setOnClickListener(this);
+        tv_zhifudingdan_quedingzhifu= (TextView) findViewById(R.id.tv_zhifudingdan_quedingzhifu);
+        tv_zhifudingdan_quedingzhifu.setOnClickListener(this);
+//        zhifu= (TextView) findViewById(R.id.tv_item_chaoshifukuan_xiangqing_quedingzhifu);
+//        zhifu.setOnClickListener(this);
         Log.i("YYYY",df.format(fee/100));
-        tv_gudingjine.setText(String.valueOf(df.format(fee/100)));
+        tv_zhifudingdan_quedingzhifu.setText("确定支付  ￥"+String.valueOf(df.format(fee/100)));
         tv_zhifudingdan_dianming.setText(propertyName);
-        tv_zhifudingdan_quedingzhifu= (TextView) findViewById(R.id.et_item_chaoshifukuan_xiangqing_money);
-        panduan(String.valueOf(tv_gudingjine.getText()));
+        startOutTime();
+//        panduan(String.valueOf(tv_gudingjine.getText()));
 
 //        et_item_chaoshifukuan_xiangqing_money.addTextChangedListener(new TextWatcher() {
 //            @Override
@@ -174,25 +187,25 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
                     finish();
                 break;
             //选择银行卡支付方式
-            case R.id.zhifu_yinhangka:
-                select=0;
-                iv_item_chaoshifukuan_xiangqing_yinhanka.setBackgroundResource(R.drawable.k_btn_zhong_pre);
-                iv_item_chaoshifukuan_xiangqing_weixin.setBackgroundResource(R.drawable.e_btn_xuanze);
-                iv_item_chaoshifukuan_xiangqing_zhifubao.setBackgroundResource(R.drawable.e_btn_xuanze);
-                break;
+//            case R.id.zhifu_yinhangka:
+//                select=0;
+////                iv_item_chaoshifukuan_xiangqing_yinhanka.setBackgroundResource(R.drawable.e_icon_choice);
+//                iv_zhifudingdan_weixinxuanze.setBackgroundResource(R.drawable.h_btn_xuanze);
+//                iv_zhifudingdan_zhifubaoxuanze.setBackgroundResource(R.drawable.h_btn_xuanze);
+//                break;
             //选择微信支付方式
-            case R.id.zhifu_weixin:
+            case R.id.ll_weixinzhifu:
                 select=1;
-                iv_item_chaoshifukuan_xiangqing_yinhanka.setBackgroundResource(R.drawable.e_btn_xuanze);
-                iv_item_chaoshifukuan_xiangqing_weixin.setBackgroundResource(R.drawable.k_btn_zhong_pre);
-                iv_item_chaoshifukuan_xiangqing_zhifubao.setBackgroundResource(R.drawable.e_btn_xuanze);
+//                iv_item_chaoshifukuan_xiangqing_yinhanka.setBackgroundResource(R.drawable.e_btn_xuanze);
+                iv_zhifudingdan_weixinxuanze.setBackgroundResource(R.drawable.e_icon_choice);
+                iv_zhifudingdan_zhifubaoxuanze.setBackgroundResource(R.drawable.h_btn_xuanze);
                 break;
             //选择支付宝支付方式
-            case R.id.zhifu_zhifubao:
+            case R.id.ll_zhifubaozhifu:
                 select=2;
-                iv_item_chaoshifukuan_xiangqing_zhifubao.setBackgroundResource(R.drawable.k_btn_zhong_pre);
-                iv_item_chaoshifukuan_xiangqing_weixin.setBackgroundResource(R.drawable.e_btn_xuanze);
-                iv_item_chaoshifukuan_xiangqing_yinhanka.setBackgroundResource(R.drawable.e_btn_xuanze);
+                iv_zhifudingdan_zhifubaoxuanze.setBackgroundResource(R.drawable.e_icon_choice);
+                iv_zhifudingdan_weixinxuanze.setBackgroundResource(R.drawable.h_btn_xuanze);
+//                iv_item_chaoshifukuan_xiangqing_yinhanka.setBackgroundResource(R.drawable.e_btn_xuanze);
                 break;
             //提交按钮
             case R.id.tv_zhifudingdan_quedingzhifu:
@@ -406,5 +419,111 @@ public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickL
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
+
+    private void startOutTime(){
+        Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。
+        t.setToNow(); // 取得系统时间。
+        int minute1 = t.minute;
+        int second1 = t.second;
+
+
+        String[] s1 = time.split(" ");//以","为分隔符，截取上面的字符串。结果为三段
+//                    for (int i = 0; i < s1.length; i++) {
+//                        if (s1.length - 1 == i) {
+        time = s1[1];
+//                        }
+//                    }
+        String[] s2 = time.split(":");//以","为分隔符，截取上面的字符串。结果为三段
+//                    for (int i = 0; i < s2.length-1; i++) {
+        int hour=Integer.parseInt(s2[0]);
+        int minute2= Integer.parseInt(s2[1]);
+        int second2= Integer.parseInt(s2[2]);
+        Log.i("YYYY",minute2+"+1111+"+minute1);
+        if (minute2<minute1){
+            minute=Math.abs(minute2+(60-minute1));
+        }else {
+            minute=minute2-minute1;
+        }
+//                    }
+        Log.i("YYYY",minute2+"PPPP");
+
+        Log.i("YYYY",minute2+"+++++"+minute1);
+//                    second=second-second1;
+        if (second2<second1){
+            second=Math.abs(second2+(60-second1));
+//                        if (minute>0){
+//                            minute--;
+//                        }
+        }else {
+            second=second2-second1;
+        }
+        startCountdown();
+    }
+    //开始倒计时
+    public void startCountdown(){
+
+        changeSmsButton();
+        setTimerTask();
+    }
+    //倒计时的方法
+    public void setTimerTask(){
+        mtimer = new Timer();
+        mtimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                message.what = 1;
+                timerHandler.sendMessage(message);
+
+            }
+        },1000,1000);
+    }
+    //在倒计时的时候,对按钮上的字进行赋值
+    public void changeSmsButton(){
+//        Log.i("YYYY",second+"PPPPPPPPPPP");
+//        second--;
+//        viewHolder.tv_quzhifu.setText("去支付 还剩"+minute+":"+second);
+
+
+        if (minute>0){
+            if (second>=1){
+                second--;
+                if (second<10){
+                    tv_zhifudingdan_time.setText(minute+":0"+second);
+                }else {
+                    tv_zhifudingdan_time.setText(minute + ":" + second);
+                }
+            }
+            if (second==0){
+                if (minute>0){
+                    minute--;
+                    second=59;
+                    tv_zhifudingdan_time.setText(minute+":"+second);
+                }
+            }
+        }else {
+            if (second>0){
+                second--;
+                tv_zhifudingdan_time.setText(0+":"+second);
+            }
+            if (second==0){
+                tv_zhifudingdan_dingdanhao.setVisibility(View.GONE);
+                tv_zhifudingdan_time.setText("订单超时");
+            }
+        }
+
+    }
+    private Handler timerHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 1){
+                changeSmsButton();
+            }
+        }
+    };
+
+
+
 
 }

@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v13.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -27,7 +26,6 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
 import android.telephony.TelephonyManager;
@@ -43,19 +41,17 @@ import com.baisi.myapplication.okhttp.request.RequestParams;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
 import com.bjxiyang.zhinengshequ.myapplication.base.BaseActivity;
-import com.bjxiyang.zhinengshequ.myapplication.base.BaseFragment;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.JiGuang;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Phoneinfo;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
-import com.bjxiyang.zhinengshequ.myapplication.bean.Users;
 import com.bjxiyang.zhinengshequ.myapplication.bean.WuYeJiaoFei;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.MyQuanXianDialog;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.BankingFragment;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.HomeFragment;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.MyFragment;
-import com.bjxiyang.zhinengshequ.myapplication.fragment.Supermarketfragment;
+import com.bjxiyang.zhinengshequ.myapplication.fragment.JieFangfragment;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
@@ -336,7 +332,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 hideFragment(mBankingFragment, fragmentTransaction);
                 //将我们的HomeFragment显示出来
                 if (mSupermarketFragment == null) {
-                    mSupermarketFragment = new Supermarketfragment();
+                    mSupermarketFragment = new JieFangfragment();
                     fragmentTransaction.add(R.id.content_layout, mSupermarketFragment).show(mSupermarketFragment).commit();
                 } else {
                     fragmentTransaction.show(mSupermarketFragment).commit();

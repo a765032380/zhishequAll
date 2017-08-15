@@ -1,5 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,12 +20,14 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XYXuanZeXiaoQuAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
+import com.bjxiyang.zhinengshequ.myapplication.bean.AddFangWu;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Door;
-import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Floor;
+import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Plots;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Unit;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.dialog.KaiMenYouXiDialog;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.SelectType;
@@ -387,16 +390,32 @@ public class XYXuanZeXiaoQuActivity extends MySwipeBackActivity implements Adapt
                     @Override
                     public void onSuccess(Object responseObj) {
                         DialogUntil.closeLoadingDialog();
-                        FanHui fanHui= (FanHui) responseObj;
-                        if (fanHui.getCode().equals("1000")){
-                            finish();
-                            if (XuanZeXiaoQuActivity.xuanzexiaoquactivity!=null){
-                                XuanZeXiaoQuActivity.xuanzexiaoquactivity.finish();
+                        AddFangWu fanHui = (AddFangWu) responseObj;
+                        if (fanHui.getCode().equals("1000")) {
+
+                            if (fanHui.getObj().getType() == 1) {
+                                KaiMenYouXiDialog kaiMenYouXiDialog =
+                                        new KaiMenYouXiDialog(XYXuanZeXiaoQuActivity.this, getOpenDoor_obj(fanHui.getObj()));
+                                kaiMenYouXiDialog.show();
+                                kaiMenYouXiDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+                                        finish();
+                                        Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
+                                        startActivity(intent);
+                                    }
+                                });
+
+
+                            } else if (fanHui.getObj().getType() == 0) {
+                                finish();
+                                Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
+                                startActivity(intent);
+                            } else {
+                                finish();
+                                Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
+                                startActivity(intent);
                             }
-                            Intent intent=new Intent(XYXuanZeXiaoQuActivity.this,XYKeyAccredit.class);
-                            startActivity(intent);
-                        }else {
-                            Toast.makeText(XYXuanZeXiaoQuActivity.this,fanHui.getMsg(),Toast.LENGTH_LONG).show();
                         }
                     }
                     @Override
@@ -461,5 +480,14 @@ public class XYXuanZeXiaoQuActivity extends MySwipeBackActivity implements Adapt
         Pattern p = Pattern.compile("^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\\d{8}$");
         Matcher m = p.matcher(phone);
         return m.matches();
+    }
+    private OpenDoor.ObjBean getOpenDoor_obj(AddFangWu.ObjBean fanhui_obj){
+        OpenDoor.ObjBean objBean=new OpenDoor.ObjBean();
+        objBean.setBondLimit(fanhui_obj.getBondLimit());
+        objBean.setBondName(fanhui_obj.getBondLimit());
+        objBean.setBondUrl(fanhui_obj.getBondUrl());
+        objBean.setType(fanhui_obj.getType());
+        objBean.setValidityDate(objBean.getValidityDate());
+        return objBean;
     }
 }

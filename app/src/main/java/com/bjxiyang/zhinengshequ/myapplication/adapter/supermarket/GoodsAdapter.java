@@ -20,7 +20,6 @@ import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.ShangPinList;
-import com.bjxiyang.zhinengshequ.myapplication.fragment.Supermarketfragment;
 import com.bjxiyang.zhinengshequ.myapplication.greendao.DaoUtils;
 import com.bjxiyang.zhinengshequ.myapplication.until.SPToGouWuChe;
 import com.nostra13.universalimageloader.core.ImageLoader;

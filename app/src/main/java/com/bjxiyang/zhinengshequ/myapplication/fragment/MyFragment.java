@@ -1,5 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.fragment;
 
+import com.bjxiyang.zhinengshequ.myapplication.activity.DaiFuKuanActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.MainActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.RegisteredActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity;
@@ -288,9 +289,9 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 
             //全部订单页面
             case R.id.quanbudingdan:
-//                intent=new Intent(getContext(), DaiFuKuanActivity.class);
-//                intent.putExtra("type",0);
-//                startActivity(intent);
+                intent=new Intent(getContext(), DaiFuKuanActivity.class);
+                intent.putExtra("type",0);
+                startActivity(intent);
                 break;
             //优惠券页面
             case R.id.youhuiquan:
