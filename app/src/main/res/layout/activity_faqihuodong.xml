@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1f1f1"
+    android:orientation="vertical">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#4183FF"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#4183FF">
+
+            <RelativeLayout
+                android:id="@+id/iv_startActivities_fanhui"
+                android:layout_width="40dp"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="7dp"
+                    android:src="@drawable/c_icon_fanhui" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="发起活动"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#ffffff"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="18dp"
+                        android:background="@drawable/c_icon_origin" />
+
+                    <EditText
+                        android:id="@+id/et_startActivities_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:hint="请输入出发地"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#f1f1f1"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="18dp"
+                        android:background="@drawable/c_icon_destination" />
+
+                    <EditText
+                        android:id="@+id/et_startActivities_arrive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:hint="请输入目的地"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#f1f1f1"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:background="@drawable/c_icon_time1" />
+
+                    <EditText
+                        android:id="@+id/et_startActivities_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:hint="请输入起止时间"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#ffffff"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="费用说明"
+                    android:textColor="#323232" />
+
+                <EditText
+                    android:id="@+id/et_startActivities_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:hint="请输入费用情况"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#ffffff"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="约伴人数"
+                    android:textColor="#323232" />
+
+                <EditText
+                    android:id="@+id/et_startActivities_datecount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:hint="请输入活动人数"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#ffffff"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="对同伴的要求"
+                        android:textColor="#323232" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#f1f1f1"></View>
+
+
+                <EditText
+                    android:id="@+id/et_startActivities_yaoqiu"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:hint="请输入对参与者的要求"
+                    android:textSize="14sp" 
+                    android:gravity="left"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/a_btn_startusing"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

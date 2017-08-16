@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="#f1f1f1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_huifu_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:textSize="12sp"
+            android:text="翠花"/>
+
+        <TextView
+            android:id="@+id/tv_huifu_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="2017-8-5"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_huifu_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="11:00" 
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_huifu_floor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="发表在1楼"
+            android:layout_marginLeft="10dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_huifupinglun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="沙发"
+        android:textColor="#323232"
+        android:textSize="14sp" />
+</LinearLayout>

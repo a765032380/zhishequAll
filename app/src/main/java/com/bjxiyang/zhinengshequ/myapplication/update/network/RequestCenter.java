@@ -10,10 +10,14 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.Banner;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ByCom;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Door;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FindHuoDongList;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Floor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean2;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HuoDongDetails;
+import com.bjxiyang.zhinengshequ.myapplication.bean.ImageUrl;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Loan;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoorList;
@@ -45,6 +49,7 @@ import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.update.util.GetHeaders;
 
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -69,7 +74,7 @@ public class RequestCenter {
 
 
     public static void uploadPictures(String url, Map<String, Object> map,DisposeDataListener listener){
-       CommonOkHttpClient.uploadImgAndParameter(map,url,new DisposeDataHandle(listener,FanHui.class));
+       CommonOkHttpClient.uploadImgAndParameter(map,url,new DisposeDataHandle(listener,ImageUrl.class));
     }
 
     public static void uploadPictures2(String url,RequestParams params,DisposeDataListener listener){
@@ -277,20 +282,20 @@ public class RequestCenter {
     public static void neighbor_addparty(String url,DisposeDataListener listener){
         RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
     }
-    public static void neighbor_addpartyimg(String url,DisposeDataListener listener){
-        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+    public static void neighbor_addpartyimg(String url, Map<String,Object> map, DisposeDataListener listener){
+        RequestCenter.uploadPictures(url,map,listener);
     }
     public static void neighbor_findparty(String url,DisposeDataListener listener){
-        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+        RequestCenter.postRequest1(url,null,null,listener, FindHuoDongList.class);
     }
     public static void neighbor_findpartydetails(String url,DisposeDataListener listener){
-        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+        RequestCenter.postRequest1(url,null,null,listener, HuoDongDetails.class);
     }
     public static void neighbor_addpartyreply(String url,DisposeDataListener listener){
-        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+        RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
     }
     public static void neighbor_joinparty(String url,DisposeDataListener listener){
-        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+        RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
     }
 
 

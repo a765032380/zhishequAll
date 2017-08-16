@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <View
+        android:background="#4183FF"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -83,7 +86,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <android.support.v4.widget.CircleImageView
+                <com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView
                     android:id="@+id/iv_photo"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -120,7 +123,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="10:30" />
+                            android:text="10:30"
+                            android:visibility="gone" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -186,7 +190,8 @@
                     android:layout_marginLeft="10dp"
                     android:text="10:30"
                     android:textColor="#2e77ff"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -449,6 +454,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/tv_pinglun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -485,6 +491,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/tv_yijiaru"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -531,8 +538,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:scrollbars="none"
-                    ></ListView>
+                    android:scrollbars="none"></ListView>
 
                 <View
                     android:layout_width="match_parent"
@@ -541,6 +547,7 @@
                     android:background="#f1f1f1"></View>
 
                 <TextView
+                    android:id="@+id/tv_pinglun_none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -549,20 +556,20 @@
                     android:text="没有更多评论了" />
             </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_join"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/id_recyclerview_horizontal"
+            <LinearLayout
+                android:id="@+id/ll_join"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/id_recyclerview_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
         </LinearLayout>
 
 

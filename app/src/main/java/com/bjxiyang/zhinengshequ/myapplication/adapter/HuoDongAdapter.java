@@ -1,6 +1,8 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +11,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
+import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FindHuoDongList;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
+import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
 
 import java.util.List;
@@ -26,7 +34,7 @@ import butterknife.ButterKnife;
 
 public class HuoDongAdapter extends BaseAdapter {
     private Context mContext;
-    private List mList;
+    private List<FindHuoDongList.ObjBean> mList;
 
     public HuoDongAdapter(Context mContext, List mList) {
         this.mContext = mContext;
@@ -49,8 +57,8 @@ public class HuoDongAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        ViewHolder viewHolder;
+    public View getView(final int position, View view, ViewGroup parent) {
+        final ViewHolder viewHolder;
         if (view==null){
             view= LayoutInflater.from(mContext).inflate(R.layout.item_activityplanning,null);
             viewHolder=new ViewHolder(view);
@@ -58,26 +66,73 @@ public class HuoDongAdapter extends BaseAdapter {
         }else {
             viewHolder= (ViewHolder) view.getTag();
         }
-        viewHolder.tv_nickname.setText("ddddd");
-        viewHolder.tv_publish_date.setText("ddddd");
-        viewHolder.tv_publish_time.setText("ddddd");
+        FindHuoDongList.ObjBean obj=mList.get(position);
+
+        ImageLoaderManager.getInstance(mContext)
+                .displayImage(viewHolder.iv_photo,obj.getUserUrl());
+        for (int i=0;i<obj.getImgList().size();i++){
+            if (i==0){
+                ImageLoaderManager.getInstance(mContext)
+                        .displayImage(viewHolder.iv_photo1,obj.getImgList().get(i).getImgUrl());
+            }
+            if (i==1){
+                ImageLoaderManager.getInstance(mContext)
+                        .displayImage(viewHolder.iv_photo2,obj.getImgList().get(i).getImgUrl());
+            }
+            if (i==2){
+                ImageLoaderManager.getInstance(mContext)
+                        .displayImage(viewHolder.iv_photo3,obj.getImgList().get(i).getImgUrl());
+            }
+        }
+
+
+        viewHolder.tv_nickname.setText(obj.getUserName());
+        viewHolder.tv_publish_date.setText(obj.getAddTime());
+//        viewHolder.tv_publish_time.setText("ddddd");
         viewHolder.tv_activity_status.setText("ddddd");
         viewHolder.tv_activity_distance.setText("ddddd");
-        viewHolder.tv_end_date.setText("ddddd");
-        viewHolder.tv_end_time.setText("ddddd");
-        viewHolder.tv_intro.setText("ddddd");
-        viewHolder.tv_go_address.setText("ddddd");
-        viewHolder.tv_go_money.setText("ddddd");
-        viewHolder.tv_go_require.setText("ddddd");
-        viewHolder.tv_message_count.setText("ddddd");
-        viewHolder.tv_join_count.setText("ddddd");
+        viewHolder.tv_end_date.setText(obj.getEndTime());
+//        viewHolder.tv_end_time.setText("ddddd");
+        viewHolder.tv_intro.setText(obj.getPartyDescribe());
+        viewHolder.tv_go_address.setText(obj.getDestination());
+        if (obj.getCostType()==0){
+            viewHolder.tv_go_money.setText("我买单");
+        }
+        if (obj.getCostType()==1){
+            viewHolder.tv_go_money.setText("免费");
+        }
+        if (obj.getCostType()==2){
+            viewHolder.tv_go_money.setText("线下AA");
+        }
+
+        viewHolder.tv_go_require.setText(obj.getPartyRequirement());
+        viewHolder.tv_message_count.setText(obj.getReplyCount()+"");
+        viewHolder.tv_join_count.setText(obj.getJoinCount()+"");
         //加入活动
         viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url= XY_Response2.URL_NEIGHBOR_JOINPARTY+"cmemberId="+
                         SPManager.getInstance().getString("c_memberId",null)+
-                        "partyId=";
+                        "&partyId="+mList.get(position).getPartyId();
+                RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
+                    @Override
+                    public void onSuccess(Object responseObj) {
+                        FanHui2 fanHui= (FanHui2) responseObj;
+
+                        if (fanHui.getCode()==1000){
+                            Log.i("LLLL","加入活动请求成功");
+                            viewHolder.tv_btn_join.setText("已加入");
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Object reasonObj) {
+                        Log.i("LLLL","加入活动请求失败");
+                    }
+                });
             }
         });
 
