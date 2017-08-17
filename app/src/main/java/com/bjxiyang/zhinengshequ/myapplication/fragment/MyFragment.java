@@ -2,6 +2,7 @@ package com.bjxiyang.zhinengshequ.myapplication.fragment;
 
 import com.bjxiyang.zhinengshequ.myapplication.activity.DaiFuKuanActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.MainActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.MyXinXiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.RegisteredActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity;
 import android.content.Context;
@@ -239,7 +240,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
                 break;
             //跳转到个人信息页面
             case R.id.gerenxinxi:
-//                startIntent(MyXinXiActivity.class);
+                startIntent(MyXinXiActivity.class);
                 break;
             //跳转到修改密码页面
             case R.id.changepassworldlativelayout:
@@ -247,7 +248,6 @@ public class MyFragment extends Fragment implements View.OnClickListener{
                 intent2.putExtra("isXiuGai",true);
                 mContext.startActivity(intent2);
 
-//                startIntent(RegisteredActivity.class);
                 break;
             //检查更新
             case R.id.jianchagengxin:

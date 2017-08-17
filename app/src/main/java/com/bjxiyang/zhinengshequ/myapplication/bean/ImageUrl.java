@@ -14,15 +14,15 @@ public class ImageUrl {
      * result : ["1499307206479.jpg"]
      */
 
-    private String code;
+    private int code;
     private String msg;
     private List<String> result;
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

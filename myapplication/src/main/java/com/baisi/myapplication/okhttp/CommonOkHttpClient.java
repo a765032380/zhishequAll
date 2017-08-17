@@ -11,6 +11,7 @@ import com.baisi.myapplication.okhttp.response.CommonJsonCallback;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -61,7 +62,77 @@ public class CommonOkHttpClient {
         mOkHttpClient=okHttpBuilder.build();
     }
 
+    public final static void uploadImgAndParameterList(Map<String, Object> map,
+                                                   String url,DisposeDataHandle handle) {
 
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request request = chain.request().newBuilder()
+                                .build();
+                        return chain.proceed(request);
+                    }
+                }).readTimeout(TIME_OUT, TimeUnit.SECONDS)// 设置读取超时时间
+                .writeTimeout(TIME_OUT, TimeUnit.SECONDS)// 设置写的超时时间
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS)// 设置连接超时时间
+                .build();
+
+        MultipartBody.Builder builder = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM);
+        {
+            if (null != map) {
+                List<File> list = (List<File>) map.get("imgList");
+
+                for (int i = 0; i < list.size(); i++) {
+                    File f = (File) list.get(i);
+                    builder.addFormDataPart("imgList", f.getName(),
+                            RequestBody.create(MEDIA_TYPE_PNG, f));
+                    Log.i("FILE", f.getAbsolutePath());
+                }
+            }
+        }
+
+//            for (Map.Entry<String, Object> entry : map.entrySet()) {
+//                if (entry.getValue() != null) {
+//                    if (entry.getValue() instanceof File) {
+//                        File f = (File) entry.getValue();
+//                        builder.addFormDataPart(entry.getKey(), f.getName(),
+//                                RequestBody.create(MEDIA_TYPE_PNG, f));
+//                        Log.i("FILE",f.getAbsolutePath());
+//                    } else {
+//                        builder.addFormDataPart(entry.getKey(), entry
+//                                .getValue().toString());
+//                        Log.i("FILE",entry.getValue().toString());
+//                    }
+//                }
+//            }
+//        }else {
+//            builder.addPart();
+
+//        }
+        // 创建RequestBody
+        okhttp3.Request request = null;
+//        if (map.get("iconFile")!=null){
+        RequestBody body = builder.build();
+        request = new okhttp3.Request.Builder().url(url)// 地址
+                .post(body)// 添加请求体
+                .build();
+//        }
+//        else {
+//            MultipartBody.Builder builder1 = new MultipartBody.Builder()
+//                    .setType(MultipartBody.FORM);
+//
+//            builder.addPart(RequestBody.create(MEDIA_TYPE_PNG, (File) null));
+//
+//            RequestBody mFormBody = builder1.build();
+//            request= new okhttp3.Request.Builder().url(url)// 地址
+//                    .post(mFormBody)// 添加请求体
+//                    .build();
+//        }
+        client.newCall(request).enqueue(new CommonJsonCallback(handle));
+
+    }
 
     public final static void uploadImgAndParameter(Map<String, Object> map,
                                                     String url,DisposeDataHandle handle) {
@@ -81,7 +152,19 @@ public class CommonOkHttpClient {
 
         MultipartBody.Builder builder = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM);
-        if (null != map) {
+//        {
+            if (null != map) {
+//                List<File> list = (List<File>) map.get("imgList");
+//
+//                for (int i = 0; i < list.size(); i++) {
+//                    File f = (File) list.get(i);
+//                    builder.addFormDataPart("imgList", f.getName(),
+//                            RequestBody.create(MEDIA_TYPE_PNG, f));
+//                    Log.i("FILE", f.getAbsolutePath());
+//                }
+//            }
+//        }
+
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 if (entry.getValue() != null) {
                     if (entry.getValue() instanceof File) {
@@ -95,7 +178,6 @@ public class CommonOkHttpClient {
                         Log.i("FILE",entry.getValue().toString());
                     }
                 }
-
             }
         }else {
 //            builder.addPart();

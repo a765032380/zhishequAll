@@ -175,6 +175,15 @@
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.AddHuoDongNextActivity"
             android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.MyXinXi_XiuGaiActivity"
+            android:theme="@style/otherPageStyle"></activity>
+        <activity
+        android:name="com.bjxiyang.zhinengshequ.myapplication.activity.MyXinXiActivity"
+        android:theme="@style/otherPageStyle"></activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.YiJianFanKuiActivity"
+            android:theme="@style/otherPageStyle"></activity>
 
 
         <activity

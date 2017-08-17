@@ -76,6 +76,9 @@ public class RequestCenter {
     public static void uploadPictures(String url, Map<String, Object> map,DisposeDataListener listener){
        CommonOkHttpClient.uploadImgAndParameter(map,url,new DisposeDataHandle(listener,ImageUrl.class));
     }
+    public static void uploadPicturesList(String url, Map<String, Object> map,DisposeDataListener listener){
+        CommonOkHttpClient.uploadImgAndParameterList(map,url,new DisposeDataHandle(listener,ImageUrl.class));
+    }
 
     public static void uploadPictures2(String url,RequestParams params,DisposeDataListener listener){
         CommonOkHttpClient.uploadPictures2(
@@ -280,10 +283,10 @@ public class RequestCenter {
         RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
     }
     public static void neighbor_addparty(String url,DisposeDataListener listener){
-        RequestCenter.postRequest1(url,null,null,listener, HomeBean2.class);
+        RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
     }
     public static void neighbor_addpartyimg(String url, Map<String,Object> map, DisposeDataListener listener){
-        RequestCenter.uploadPictures(url,map,listener);
+        RequestCenter.uploadPicturesList(url,map,listener);
     }
     public static void neighbor_findparty(String url,DisposeDataListener listener){
         RequestCenter.postRequest1(url,null,null,listener, FindHuoDongList.class);

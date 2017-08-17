@@ -4,7 +4,10 @@
     android:layout_height="match_parent"
     android:background="#f1f1f1"
     android:orientation="vertical">
-    
+    <View
+        android:background="#4183FF"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -56,7 +59,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="15dp"
@@ -75,7 +78,15 @@
                         android:layout_height="18dp"
                         android:background="@drawable/c_icon_origin" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:hint="出发地"
+                        android:textSize="14sp" />
                     <EditText
+                        android:cursorVisible="true"
+                        android:textCursorDrawable="@null"
                         android:id="@+id/et_startActivities_go"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -104,7 +115,15 @@
                         android:layout_height="18dp"
                         android:background="@drawable/c_icon_destination" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:hint="目的地"
+                        android:textSize="14sp" />
                     <EditText
+                        android:cursorVisible="true"
+                        android:textCursorDrawable="@null"
                         android:id="@+id/et_startActivities_arrive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -123,7 +142,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -133,14 +152,193 @@
                         android:layout_height="13dp"
                         android:background="@drawable/c_icon_time1" />
 
-                    <EditText
-                        android:id="@+id/et_startActivities_time"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:background="@null"
-                        android:hint="请输入起止时间"
+                        android:hint="出发时间"
                         android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/et_startActivities_startdate"
+                        android:gravity="center_vertical"
+                        android:layout_width="220dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:text="请选择"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/et_startActivities_starttime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@null"
+                        android:text="11:00"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:id="@+id/ll_gotime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="请选择"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="12dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/c_btn_enterthe" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#f1f1f1"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:background="@drawable/c_icon_return" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:hint="返回时间"
+                        android:textSize="14sp" />                 
+
+                    <TextView
+                        android:id="@+id/et_startActivities_enddate"
+                        android:gravity="center_vertical"
+                        android:layout_width="220dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:text="请选择"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/et_startActivities_endtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@null"
+                        android:text="11:00"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_backtime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="请选择"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="12dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/c_btn_enterthe" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#f1f1f1"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/c_icon_termination" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:hint="报名截止时间"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/et_baoming_enddate"
+                        android:gravity="center_vertical"
+                        android:layout_width="190dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="@null"
+                        android:text="请选择"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/et_baoming_endtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@null"
+                        android:text="11:00"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_baomingtime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="请选择"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="12dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/c_btn_enterthe" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
@@ -161,16 +359,32 @@
                     android:text="费用说明"
                     android:textColor="#323232" />
 
-                <EditText
-                    android:id="@+id/et_startActivities_money"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:background="@null"
-                    android:hint="请输入费用情况"
-                    android:textSize="14sp" />
+                <LinearLayout
+
+                    android:id="@+id/ll_startActivities_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:layout_margin="15dp">
+
+                    <TextView
+                        android:id="@+id/et_startActivities_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="请选择"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="12dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/c_btn_enterthe" />
+                </LinearLayout>
+
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -189,6 +403,8 @@
                     android:textColor="#323232" />
 
                 <EditText
+                    android:cursorVisible="true"
+                    android:textCursorDrawable="@null"
                     android:id="@+id/et_startActivities_datecount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -232,16 +448,18 @@
 
 
                 <EditText
+                    android:cursorVisible="true"
+                    android:textCursorDrawable="@null"
                     android:id="@+id/et_startActivities_yaoqiu"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@null"
-                    android:layout_marginTop="15dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@null"
+                    android:gravity="left"
                     android:hint="请输入对参与者的要求"
-                    android:textSize="14sp" 
-                    android:gravity="left"/>
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -253,7 +471,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/a_btn_startusing"
+                android:background="@drawable/a_btn_join"
                 android:gravity="center"
                 android:text="下一步"
                 android:textColor="#ffffff" />

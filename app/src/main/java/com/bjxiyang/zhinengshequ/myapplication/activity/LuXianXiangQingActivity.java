@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
@@ -105,7 +106,12 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
     LinearLayout ll_pinglun;
     @BindView(R.id.ll_join)
     LinearLayout ll_join;
-
+    @BindView(R.id.iv_pinglun_heidian)
+    ImageView iv_pinglun_heidian;
+    @BindView(R.id.iv_yijiaru_heidian)
+    ImageView iv_yijiaru_heidian;
+    @BindView(R.id.myScrollView)
+    ScrollView myScrollView;
 
 
     /***
@@ -132,6 +138,7 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
         tv_yijiaru.setOnClickListener(this);
         tv_fabiaoyanlun.setOnClickListener(this);
         tv_join.setOnClickListener(this);
+
     }
 
     private void getData(){
@@ -143,6 +150,13 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
                 HuoDongDetails huoDongDetails= (HuoDongDetails) responseObj;
                 if (huoDongDetails.getCode()==1000){
                     setData(huoDongDetails.getObj());
+                    myScrollView.post(new Runnable() {
+                        //让scrollview跳转到顶部，必须放在runnable()方法中
+                        @Override
+                        public void run() {
+                            myScrollView.scrollTo(0,0);
+                        }
+                    });
                 }
             }
 
@@ -178,7 +192,7 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
     private void join(){
 
     }
-    private void setData(HuoDongDetails.ObjBean obj){
+    private void setData(final HuoDongDetails.ObjBean obj){
 
         ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
                 .displayImage(iv_photo,obj.getUserUrl());
@@ -201,10 +215,10 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
         setLuXianJoin(obj.getJoinList());
         setLuXianPingLun(obj.getReplyList());
 
-
-
         tv_nickname.setText(obj.getUserName());
         tv_publish_date.setText(obj.getAddTime());
+        tv_go_time.setText(obj.getPartyBeginTime());
+
 //        viewHolder.tv_publish_time.setText("ddddd");
 //        tv_activity_status.setText("ddddd");
 //        tv_activity_distance.setText("ddddd");
@@ -229,33 +243,75 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
         tv_message_count.setText(obj.getReplyCount()+"");
         tv_join_count.setText(obj.getJoinCount()+"");
         partyId=obj.getPartyId();
-        //加入活动
-        tv_join.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url= XY_Response2.URL_NEIGHBOR_JOINPARTY+"cmemberId="+
-                        SPManager.getInstance().getString("c_memberId",null)+
-                        "&partyId="+partyId;
-                RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
-                    @Override
-                    public void onSuccess(Object responseObj) {
-                        FanHui2 fanHui= (FanHui2) responseObj;
+        if (obj.getHaveJoin()==0){
+            tv_join.setText("加入");
+            //加入活动
+            tv_join.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url= XY_Response2.URL_NEIGHBOR_JOINPARTY+"cmemberId="+
+                            SPManager.getInstance().getString("c_memberId",null)+
+                            "&partyId="+partyId;
+                    RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
+                        @Override
+                        public void onSuccess(Object responseObj) {
+                            FanHui2 fanHui= (FanHui2) responseObj;
 
-                        if (fanHui.getCode()==1000){
-                            Log.i("LLLL","加入活动请求成功");
-                            tv_join.setText("已加入");
+                            if (fanHui.getCode()==1000){
+                                Log.i("LLLL","加入活动请求成功");
+                                obj.setHaveJoin(1);
+                                obj.setJoinCount(obj.getJoinCount()+1);
+                                tv_join_count.setText(obj.getJoinCount());
+                                tv_join.setText("已加入");
+                            }
                         }
 
+                        @Override
+                        public void onFailure(Object reasonObj) {
+                            Log.i("LLLL","加入活动请求失败");
+                        }
+                    });
+                }
+            });
+        }else if (obj.getHaveJoin()==1){
+            tv_join.setText("已加入");
+            tv_join.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyUntil.show(LuXianXiangQingActivity.this,"你已加入该活动");
+                }
+            });
+        }
 
-                    }
 
-                    @Override
-                    public void onFailure(Object reasonObj) {
-                        Log.i("LLLL","加入活动请求失败");
-                    }
-                });
-            }
-        });
+
+        //加入活动
+//        tv_join.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String url= XY_Response2.URL_NEIGHBOR_JOINPARTY+"cmemberId="+
+//                        SPManager.getInstance().getString("c_memberId",null)+
+//                        "&partyId="+partyId;
+//                RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
+//                    @Override
+//                    public void onSuccess(Object responseObj) {
+//                        FanHui2 fanHui= (FanHui2) responseObj;
+//
+//                        if (fanHui.getCode()==1000){
+//                            Log.i("LLLL","加入活动请求成功");
+//                            tv_join.setText("已加入");
+//                        }
+//
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Object reasonObj) {
+//                        Log.i("LLLL","加入活动请求失败");
+//                    }
+//                });
+//            }
+//        });
 
 
     }
@@ -271,10 +327,16 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
     }
 
     private void showPingLun(){
+        iv_pinglun_heidian.setVisibility(View.VISIBLE);
+        iv_yijiaru_heidian.setVisibility(View.INVISIBLE);
+
         ll_pinglun.setVisibility(View.VISIBLE);
         ll_join.setVisibility(View.GONE);
     }
     private void showJoinList(){
+        iv_pinglun_heidian.setVisibility(View.INVISIBLE);
+        iv_yijiaru_heidian.setVisibility(View.VISIBLE);
+
         ll_pinglun.setVisibility(View.GONE);
         ll_join.setVisibility(View.VISIBLE);
     }

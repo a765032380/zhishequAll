@@ -4,7 +4,10 @@
     android:layout_height="match_parent"
     android:background="#f1f1f1"
     android:orientation="vertical">
-
+    <View
+        android:background="#4183FF"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -51,10 +54,10 @@
                 android:layout_height="25dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="10dp"
                 android:text="完成"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
     </LinearLayout>
 

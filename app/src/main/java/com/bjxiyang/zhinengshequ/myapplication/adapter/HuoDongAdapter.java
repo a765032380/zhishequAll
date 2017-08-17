@@ -20,6 +20,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.FindHuoDongList;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
+import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
 
@@ -66,7 +67,7 @@ public class HuoDongAdapter extends BaseAdapter {
         }else {
             viewHolder= (ViewHolder) view.getTag();
         }
-        FindHuoDongList.ObjBean obj=mList.get(position);
+        final FindHuoDongList.ObjBean obj=mList.get(position);
 
         ImageLoaderManager.getInstance(mContext)
                 .displayImage(viewHolder.iv_photo,obj.getUserUrl());
@@ -108,33 +109,50 @@ public class HuoDongAdapter extends BaseAdapter {
         viewHolder.tv_go_require.setText(obj.getPartyRequirement());
         viewHolder.tv_message_count.setText(obj.getReplyCount()+"");
         viewHolder.tv_join_count.setText(obj.getJoinCount()+"");
-        //加入活动
-        viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url= XY_Response2.URL_NEIGHBOR_JOINPARTY+"cmemberId="+
-                        SPManager.getInstance().getString("c_memberId",null)+
-                        "&partyId="+mList.get(position).getPartyId();
-                RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
-                    @Override
-                    public void onSuccess(Object responseObj) {
-                        FanHui2 fanHui= (FanHui2) responseObj;
 
-                        if (fanHui.getCode()==1000){
-                            Log.i("LLLL","加入活动请求成功");
-                            viewHolder.tv_btn_join.setText("已加入");
+        if (obj.getHaveJoin()==0){
+            viewHolder.tv_btn_join.setText("加入");
+            //加入活动
+            viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url= XY_Response2.URL_NEIGHBOR_JOINPARTY+"cmemberId="+
+                            SPManager.getInstance().getString("c_memberId",null)+
+                            "&partyId="+mList.get(position).getPartyId();
+                    RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
+                        @Override
+                        public void onSuccess(Object responseObj) {
+                            FanHui2 fanHui= (FanHui2) responseObj;
+
+                            if (fanHui.getCode()==1000){
+                                Log.i("LLLL","加入活动请求成功");
+                                obj.setHaveJoin(1);
+                                obj.setJoinCount(obj.getJoinCount()+1);
+                                viewHolder.tv_btn_join.setText("已加入");
+                                notifyDataSetChanged();
+                            }
+
+
                         }
 
+                        @Override
+                        public void onFailure(Object reasonObj) {
+                            Log.i("LLLL","加入活动请求失败");
+                        }
+                    });
+                }
+            });
+        }else if (obj.getHaveJoin()==1){
+            viewHolder.tv_btn_join.setText("已加入");
+            viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyUntil.show(mContext,"你已加入该活动");
+                }
+            });
+        }
 
-                    }
 
-                    @Override
-                    public void onFailure(Object reasonObj) {
-                        Log.i("LLLL","加入活动请求失败");
-                    }
-                });
-            }
-        });
 
 
         return view;

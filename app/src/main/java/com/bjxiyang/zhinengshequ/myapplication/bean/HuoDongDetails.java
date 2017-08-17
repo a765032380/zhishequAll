@@ -75,6 +75,7 @@ public class HuoDongDetails {
         private List<ReplyListBean> replyList;
         private String partyEndTime;
         private List<FindHuoDongList.ObjBean.ImgListBean> imgList;
+
         private int haveJoin;//0是还未加入,1是已加入
 
         public int getHaveJoin() {

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,13 +16,19 @@ import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ImageUrl;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
+import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
+import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -37,6 +44,7 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
     private static final int RESULT_LOAD_IMAGE_THREE=3;
     private static final int RESULT_LOAD_IMAGE_FOUR=4;
     private Map map=new HashMap<>();
+    private List<File> imageList=new ArrayList<>();
     private File mFile;
     private String picturePath;
 
@@ -66,10 +74,21 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
      */
     private String startAddress;
     private String toAddress;
-    private String time;
-    private String money;
+    private String startTime;
+    private String endTime;
+    private String bmendTime;
+    private String money="0";
     private String datecount;
     private String yaoqiu;
+    private String jieshao;
+    private String responseImgList;
+
+    private String imageUrl1;
+    private String imageUrl2;
+    private String imageUrl3;
+    private String resultimageUrl1;
+    private String resultimageUrl2;
+    private String resultimageUrl3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +100,14 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
     }
 
     private void initData() {
+
         Intent intent=getIntent();
         startAddress=intent.getStringExtra("startAddress");
         toAddress =intent.getStringExtra("toAddress");
-        time= intent.getStringExtra("time");
-        money=intent.getStringExtra("money");
+        startTime= intent.getStringExtra("startTime");
+        endTime= intent.getStringExtra("endTime");
+        bmendTime= intent.getStringExtra("bmendTime");
+//        money=intent.getStringExtra("money");
         datecount=intent.getStringExtra("datecount");
         yaoqiu=intent.getStringExtra("yaoqiu");
 
@@ -127,31 +149,85 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
                 delete3();
                 break;
             case R.id.tv_wancheng:
+                jieshao= String.valueOf(et_startActivities_jieshao.getText());
                 shangchuanImage();
                 break;
         }
     }
 
     private void shangchuanImage() {
-        if(mFile==null){
-            map.put("image_one",new File(""));
+        DialogUntil.showLoadingDialog(AddHuoDongNextActivity.this,"正在提交",false);
+        if(imageUrl1==null){
+            MyUntil.show(AddHuoDongNextActivity.this,"请添加图片");
+        }else {
+            map=new HashMap();
+            map.put("imgList",imageList);
+            String imageUrl = XY_Response2.URL_NEIGHBOR_ADDPARTYIMG + "cmemberId=" +
+                    SPManager.getInstance().getString("c_memberId", null);
+            RequestCenter.neighbor_addpartyimg(imageUrl, map, new DisposeDataListener() {
+                @Override
+                public void onSuccess(Object responseObj) {
+
+                    ImageUrl image = (ImageUrl) responseObj;
+                    if (image.getCode()==1000){
+                       List imgListResult= image.getResult();
+
+                        for (int i=0;i<imgListResult.size();i++){
+                            if (i==0){
+                                resultimageUrl1=imgListResult.get(0).toString();
+                                responseImgList=resultimageUrl1;
+                            }else if (i==1){
+                                resultimageUrl2=imgListResult.get(1).toString();
+                                responseImgList=responseImgList+";"+resultimageUrl2;
+                            }else if (i==2){
+                                resultimageUrl3=imgListResult.get(2).toString();
+                                responseImgList=responseImgList+";"+resultimageUrl3;
+                            }
+                        }
+
+                        Log.i("LLLL","图片:"+responseImgList);
+
+                        String addHuoDongUrl=XY_Response2.URL_NEIGHBOR_ADDPARTY
+                                +"cmemberId="+SPManager.getInstance().getString("c_memberId",null)
+                                +"&endTime="+bmendTime                  // 报名截止时间
+                                +"&partyBeginTime="+startTime           // 活动开始时间
+                                +"&partyEndTime="+endTime               // 活动结束时间
+                                +"&partyDescribe="+jieshao              // 活动描述
+                                +"&collectionPlace="+startAddress       // 集合地点
+                                +"&destination=" +toAddress             //目的地
+                                +"&costType="+money                     //费用类型 0：我买单 1：免费 2：线下AA
+                                +"&partyRequirement="+yaoqiu            // 约伴要求
+                                +"&imgList="+responseImgList            // 图片列表字符串，用”;”隔开
+                                +"&peopleCount="+ datecount;            //约伴人数
+                        RequestCenter.neighbor_addparty(addHuoDongUrl, new DisposeDataListener() {
+                            @Override
+                            public void onSuccess(Object responseObj) {
+                                DialogUntil.closeLoadingDialog();
+                                FanHui2 fanhui= (FanHui2) responseObj;
+                                if (fanhui.getCode()==1000){
+                                    AddHuoDongActivity.addHuoDongActivity.finish();
+                                    finish();
+                                }else {
+                                    MyUntil.show(AddHuoDongNextActivity.this,fanhui.getMsg());
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Object reasonObj) {
+                                DialogUntil.closeLoadingDialog();
+                            }
+                        });
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Object reasonObj) {
+                    DialogUntil.closeLoadingDialog();
+                }
+            });
         }
-
-        String imageUrl= XY_Response2.URL_NEIGHBOR_ADDPARTYIMG+"cmemberId="+
-                SPManager.getInstance().getString("c_memberId",null);
-        RequestCenter.neighbor_addpartyimg(imageUrl, map, new DisposeDataListener() {
-            @Override
-            public void onSuccess(Object responseObj) {
-                ImageUrl image= (ImageUrl) responseObj;
-
-
-            }
-
-            @Override
-            public void onFailure(Object reasonObj) {
-
-            }
-        });
 
     }
 
@@ -172,19 +248,25 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
             cursor.close();
             switch (requestCode){
                 case RESULT_LOAD_IMAGE_ONE:
-                    map.put("image_one",mFile);
+                    imageUrl1=String.valueOf(selectedImage);
+                    iv_delete1.setVisibility(View.VISIBLE);
+                    imageList.add(mFile);
                     ImageLoaderManager.getInstance(AddHuoDongNextActivity.this)
                             .displayImage(iv_addimg1, String.valueOf(selectedImage));
                     iv_addimg2.setVisibility(View.VISIBLE);
                     break;
                 case RESULT_LOAD_IMAGE_TWO:
-                    map.put("image_twe",mFile);
+                    imageUrl2=String.valueOf(selectedImage);
+                    iv_delete2.setVisibility(View.VISIBLE);
+                    imageList.add(mFile);
                     ImageLoaderManager.getInstance(AddHuoDongNextActivity.this)
                             .displayImage(iv_addimg2,String.valueOf(selectedImage));
                     iv_addimg3.setVisibility(View.VISIBLE);
                     break;
                 case RESULT_LOAD_IMAGE_THREE:
-                    map.put("image_three",mFile);
+                    imageUrl3=String.valueOf(selectedImage);
+                    iv_delete3.setVisibility(View.VISIBLE);
+                    imageList.add(mFile);
                     ImageLoaderManager.getInstance(AddHuoDongNextActivity.this)
                             .displayImage(iv_addimg3,String.valueOf(selectedImage));
                     break;
@@ -202,45 +284,57 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
         startActivityForResult(i, code);
     }
     private void delete1(){
-        if (map.get("image_three")!=null){
-            iv_delete3.setVisibility(View.GONE);
-            map.put("image_one",map.get("image_two"));
-            ImageLoaderManager.getInstance(this)
-                    .displayImage(iv_addimg1,((File)map.get("image_one")).getAbsolutePath());
-            map.put("image_two",map.get("image_three"));
-            ImageLoaderManager.getInstance(this)
-                    .displayImage(iv_addimg2,((File)map.get("image_two")).getAbsolutePath());
-            map.remove("image_three");
+        imageList.remove(0);
+        if (imageUrl3!=null){
 
-        }else if (map.get("image_two")!=null){
-            iv_delete2.setVisibility(View.GONE);
-            map.put("image_one",map.get("image_two"));
+            imageUrl1=imageUrl2;
+            imageUrl2=imageUrl3;
+            imageUrl3=null;
+            iv_delete3.setVisibility(View.GONE);
             ImageLoaderManager.getInstance(this)
-                    .displayImage(iv_addimg1,((File)map.get("image_one")).getAbsolutePath());
-            map.remove("image_two");
+                    .displayImage(iv_addimg1,imageUrl1);
+            ImageLoaderManager.getInstance(this)
+                    .displayImage(iv_addimg2,imageUrl2);
+
+            iv_addimg3.setImageResource(R.drawable.c_a_a_btn_add);
+
+        }else if (imageUrl2!=null){
+            iv_delete2.setVisibility(View.GONE);
+            imageUrl1=imageUrl2;
+            imageUrl2=null;
+            ImageLoaderManager.getInstance(this)
+                    .displayImage(iv_addimg1,imageUrl1);
+
+            iv_addimg2.setImageResource(R.drawable.c_a_a_btn_add);
         }else {
+            imageUrl1=null;
             iv_delete1.setVisibility(View.GONE);
-            map.remove("image_one");
+            iv_addimg1.setImageResource(R.drawable.c_a_a_btn_add);
         }
     }
     private void delete2(){
-        if (map.get("image_three")!=null){
+        imageList.remove(1);
+        if (imageUrl3!=null){
+            imageUrl2=imageUrl3;
+            imageUrl3=null;
             iv_delete3.setVisibility(View.GONE);
-            map.put("image_two",map.get("image_three"));
-            ImageLoaderManager.getInstance(this)
-                    .displayImage(iv_addimg2,((File)map.get("image_two")).getAbsolutePath());
-            map.remove("image_three");
 
+            ImageLoaderManager.getInstance(this)
+                    .displayImage(iv_addimg2,imageUrl2);
+
+            iv_addimg3.setImageResource(R.drawable.c_a_a_btn_add);
         }else {
+            imageUrl2=null;
             iv_delete2.setVisibility(View.GONE);
-            map.remove("image_two");
+            iv_addimg2.setImageResource(R.drawable.c_a_a_btn_add);
         }
 
     }
     private void delete3(){
+        imageList.remove(2);
+        imageUrl3=null;
         iv_delete3.setVisibility(View.GONE);
-        map.remove("image_three");
-
+        iv_addimg3.setImageResource(R.drawable.c_a_a_btn_add);
 
     }
 

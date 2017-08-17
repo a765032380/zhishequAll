@@ -1,5 +1,8 @@
 <resources>
-
+    <style name="AnimationPreview">
+        <item name="android:windowEnterAnimation">@anim/pop_push_up_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_push_down_out</item>
+    </style>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
