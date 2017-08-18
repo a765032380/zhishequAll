@@ -69,11 +69,10 @@ repositories  {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     compile 'com.panxw.imageindicator:library:1.0.2'
     compile 'com.facebook.fresco:webpsupport:0.12.0'
     compile 'com.facebook.fresco:fresco:1.2.0'
@@ -88,15 +87,12 @@ dependencies {
     compile 'com.amap.api:location:latest.integration'
     compile 'pub.devrel:easypermissions:0.4.0'
     testCompile 'junit:junit:4.12'
-
-
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //注解框架
     compile 'com.jakewharton:butterknife:8.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
     //首页轮播图
     compile 'com.jude:rollviewpager:1.2.9'
-
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'com.afollestad.material-dialogs:core:0.9.4.4'
     compile 'com.nineoldandroids:library:2.4.0'
@@ -125,8 +121,7 @@ dependencies {
     //鲁班的依赖，用于图片压缩
     compile 'top.zibin:Luban:1.1.2'
     compile project(':qAMasterSDK')
-
-    compile(name:'yunzt_Full_1.0', ext:'aar')
+    compile(name: 'yunzt_Full_1.0', ext: 'aar')
     //分包的依赖
     compile 'com.android.support:multidex:1.0.1'
     compile 'org.robolectric:shadows-multidex:3.3.1'
@@ -136,7 +131,6 @@ dependencies {
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
     //TextView上下轮播
     compile 'com.github.paradoxie:AutoVerticalTextview:0.1'
-
     compile project(path: ':imoocsdk')
     compile project(path: ':myapplication')
     compile project(path: ':easeui')
@@ -144,4 +138,14 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.2.0'
     //环信需要的
     compile 'com.parse:parse-android:1.13.1'
+    compile files('libs/MobCommons-2017.0801.1522.jar')
+    compile files('libs/MobTools-2017.0801.1522.jar')
+    compile files('libs/ShareSDK-Core-3.0.1.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-3.0.1.jar')
+    compile files('libs/ShareSDK-Wechat-Favorite-3.0.1.jar')
+    compile files('libs/ShareSDK-Wechat-Core-3.0.1.jar')
+    compile files('libs/ShareSDK-Wechat-3.0.1.jar')
+    compile files('libs/ShareSDK-SinaWeibo-3.0.1.jar')
+    compile files('libs/ShareSDK-QZone-3.0.1.jar')
+    compile files('libs/ShareSDK-QQ-3.0.1.jar')
 }

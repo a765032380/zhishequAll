@@ -5,6 +5,19 @@
     <permission
         android:name="com.bjxiyang.zhinengshequ.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
+    <!-- 分享添加必要的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+
 
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -105,85 +118,114 @@
         </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XY_AddKeyaccreditActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.MyWebViewActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.FuWuTiaoKuanActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
         android:name="com.bjxiyang.zhinengshequ.myapplication.activity.RegisteredActivity"
-        android:theme="@style/otherPageStyle"></activity>
+        android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.PlaceOrderActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.ZhiFuXiangQing"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XiaoQuGongGaoActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XiaoQuGongGaoXiangQingActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XYMenJinJiLuActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XY_JinRongWebActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XuanZeXiaoQuActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XYXuanZeXiaoQuActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.AddShouHuoDiZhiActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.ShouHuoDiZhiActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.ShengHuoJiaoFeiActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.WuYeJiaoFeiActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.DaiFuKuanActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.LuXianXiangQingActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.AddHuoDongActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.AddHuoDongNextActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.MyXinXi_XiuGaiActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
-        android:name="com.bjxiyang.zhinengshequ.myapplication.activity.MyXinXiActivity"
-        android:theme="@style/otherPageStyle"></activity>
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.MyXinXiActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.YiJianFanKuiActivity"
-            android:theme="@style/otherPageStyle"></activity>
+            android:theme="@style/otherPageStyle">
+
+        </activity>
 
 
         <activity
@@ -635,9 +677,44 @@
             android:name="io.fabric.ApiKey"
             android:value="6b54bd4edc63eba3ef59d69f8e0a5070bea384e2" />
         <!-- fabric end -->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
 
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
 
+            <!-- 调用新浪原生SDK，需要注册的回调activity -->
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
 
+            <!--集成line客户端登录授权，需要添如下格式的过滤器-->
+            <intent-filter>
+                <data android:scheme="line.1477692153" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <!-- 填写您从Mob开发者后台中得到的Appkey和AppSecret -->
+        <meta-data android:name="Mob-AppKey" android:value="1d48496dcae28"/>
+        <meta-data android:name="Mob-AppSecret" android:value="fec56ed156250e6a8f3d9209fa751862"/>
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

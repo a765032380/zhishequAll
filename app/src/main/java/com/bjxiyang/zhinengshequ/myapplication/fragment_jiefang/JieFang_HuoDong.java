@@ -70,6 +70,12 @@ public class JieFang_HuoDong extends Fragment implements
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData();
+    }
+
     private void getData() {
         mList=new ArrayList();
         mListAll=new ArrayList();

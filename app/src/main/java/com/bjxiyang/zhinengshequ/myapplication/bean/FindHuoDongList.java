@@ -73,6 +73,15 @@ public class FindHuoDongList {
         private String userUrl;
         private List<ImgListBean> imgList;
         private int haveJoin;//0是还未加入,1是已加入
+        private int isEnd;//0未结束,1已结束
+
+        public int getIsEnd() {
+            return isEnd;
+        }
+
+        public void setIsEnd(int isEnd) {
+            this.isEnd = isEnd;
+        }
 
         public int getHaveJoin() {
             return haveJoin;

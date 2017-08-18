@@ -57,6 +57,12 @@
         <item name="android:windowBackground">@color/transparent</item>
     </style>
 
+    <style name="DialogNOTransparent" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
 
     <style name="shareDialog_style" parent="@android:style/Theme.Holo.DialogWhenLarge">
 

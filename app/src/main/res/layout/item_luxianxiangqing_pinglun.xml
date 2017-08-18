@@ -40,7 +40,13 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="10dp"/>
 
+    <include
+
+        android:visibility="gone"
+        layout="@layout/item_pinglun_item"/>
+
     <ListView
+        android:visibility="gone"
         android:id="@+id/lv_item_pinglun"
         android:layout_width="match_parent"
         android:layout_height="10dp"
@@ -64,7 +70,6 @@
          />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/tv_pinglunshijian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

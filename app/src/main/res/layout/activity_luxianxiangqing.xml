@@ -74,6 +74,7 @@
         android:layout_marginBottom="40dp">
 
         <LinearLayout
+            android:id="@+id/ll_ScrollView_nei"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
@@ -512,6 +513,7 @@
                             android:text="已加入" />
 
                         <TextView
+
                             android:id="@+id/tv_join_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -563,16 +565,16 @@
                 android:visibility="gone"
                 android:id="@+id/ll_join"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/id_recyclerview_horizontal"
+                <ListView
+                    android:id="@+id/id_xiangqing_listview"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
                     android:scrollbars="none">
-                </android.support.v7.widget.RecyclerView>
+                </ListView>
 
             </LinearLayout>
         </LinearLayout>
@@ -612,4 +614,8 @@
             android:text="加入"
             android:textColor="#ffffff" />
     </LinearLayout>
+
+
+
+
 </LinearLayout>

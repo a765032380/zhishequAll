@@ -1,16 +1,20 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.LuXianXiangQingActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HuoDongDetails;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.PingLunDialog;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
@@ -28,35 +32,35 @@ import butterknife.ButterKnife;
 public class LuXianPingLunAdapter extends BaseAdapter {
     private Context mContext;
     private List<HuoDongDetails.ObjBean.ReplyListBean> mList;
-    private List<HuoDongDetails.ObjBean.ReplyListBean> mList1=new ArrayList<>();
-    private List<HuoDongDetails.ObjBean.ReplyListBean> mList2=new ArrayList<>();
+//    private List<HuoDongDetails.ObjBean.ReplyListBean> mList1=new ArrayList<>();
+//    private List<HuoDongDetails.ObjBean.ReplyListBean> mList2=new ArrayList<>();
 
     public LuXianPingLunAdapter(Context mContext, List<HuoDongDetails.ObjBean.ReplyListBean> mList) {
         this.mContext = mContext;
-//        this.mList = mList;
+        this.mList = mList;
 
-        Log.i("YYYY","ReplyList="+mList.size());
-        for (int i=0;i<mList.size();i++){
-            Log.i("YYYY","测试");
-            Log.i("YYYY",mList.get(i).getCommentId()+"");
-
-            if (mList.get(i).getCommentId()==0){
-                mList1.add(mList.get(i));
-            }else if (mList.get(i).getCommentId()==1){
-                mList2.add(mList.get(i));
-            }
-        }
+//        Log.i("YYYY","ReplyList="+mList.size());
+//        for (int i=0;i<mList.size();i++){
+//            Log.i("YYYY","测试");
+//            Log.i("YYYY",mList.get(i).getCommentId()+"");
+//
+//            if (mList.get(i).getCommentId()==0){
+//                mList1.add(mList.get(i));
+//            }else if (mList.get(i).getCommentId()==1){
+//                mList2.add(mList.get(i));
+//            }
+//        }
 
     }
 
     @Override
     public int getCount() {
-        return mList1.size();
+        return mList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mList1.get(position);
+        return mList.get(position);
     }
 
     @Override
@@ -74,26 +78,62 @@ public class LuXianPingLunAdapter extends BaseAdapter {
         }else {
             viewHolder= (ViewHolder) view.getTag();
         }
-        final HuoDongDetails.ObjBean.ReplyListBean reply=mList1.get(position);
+        HuoDongDetails.ObjBean.ReplyListBean reply=mList.get(position);
         ImageLoaderManager.getInstance(mContext)
                 .displayImage(viewHolder.tv_touxiang,reply.getToUserUrl());
         viewHolder.tv_nickname.setText(reply.getToUserName());
         viewHolder.tv_neirong.setText(reply.getReplyContent());
         viewHolder.tv_pinglunriqi.setText(reply.getReplyTime());
-        for (int i=0;i<mList2.size();i++){
-            if (mList2.get(i).getCommentId()==mList1.get(position).getReplyId()){
-                PingLunItemAdapter adapter=new PingLunItemAdapter(mContext,mList2);
-                viewHolder.lv_item_pinglun.setAdapter(adapter);
-            }
+        if (position==0){
+            viewHolder.tv_shafa.setText("沙发");
+        }else if (position==1){
+            viewHolder.tv_shafa.setText("板凳");
+        }else if (position==2){
+            viewHolder.tv_shafa.setText("地板");
+        }else{
+            viewHolder.tv_shafa.setText((position+1)+"楼");
+        }
+
+        HuoDongDetails.ObjBean.ReplyListBean.ParentItemBean parentItem=reply.getParentItem() ;
+        if (parentItem!=null) {
+                viewHolder.ll_pinglun_item.setVisibility(View.VISIBLE);
+                viewHolder.tv_huifu_name.setText(parentItem.getFromUserName());
+                viewHolder.tv_huifu_date.setText(parentItem.getReplyTime());
+                viewHolder.tv_huifupinglun.setText(parentItem.getReplyContent());
+                viewHolder.tv_huifu_floor.setText("回复在几楼");
+        }else {
+            viewHolder.ll_pinglun_item.setVisibility(View.GONE);
         }
 
 
 
+
+
+//        for (int i=0;i<mList2.size();i++){
+//            if (mList2.get(i).getCommentId()==mList1.get(position).getReplyId()){
+//                PingLunItemAdapter adapter=new PingLunItemAdapter(mContext,mList2);
+//                viewHolder.lv_item_pinglun.setAdapter(adapter);
+//            }
+//        }
+
+
+        final HuoDongDetails.ObjBean.ReplyListBean reply2=reply;
         viewHolder.tv_pinglunhuifu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PingLunDialog pingLunDialog=new PingLunDialog(mContext,reply,0);
+
+                Log.i("YYYY","reply2:PartyId="+reply2.getPartyId()+"---CommentId="+reply2.getCommentId());
+                PingLunDialog pingLunDialog=new PingLunDialog(mContext,reply2,0);
+                pingLunDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        LuXianXiangQingActivity.luXianXiangQingActivity.upData();
+//                        notifyDataSetChanged();
+                    }
+                });
                 pingLunDialog.show();
+                pingLunDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+                pingLunDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
             }
         });
 
@@ -106,13 +146,26 @@ public class LuXianPingLunAdapter extends BaseAdapter {
         TextView tv_nickname;
         @BindView(R.id.tv_neirong)
         TextView tv_neirong;
-        @BindView(R.id.lv_item_pinglun)
-        ListView lv_item_pinglun;
+//        @BindView(R.id.lv_item_pinglun)
+//        ListView lv_item_pinglun;
         @BindView(R.id.tv_pinglunriqi)
         TextView tv_pinglunriqi;
         @BindView(R.id.tv_pinglunhuifu)
         TextView tv_pinglunhuifu;
+        @BindView(R.id.tv_shafa)
+        TextView tv_shafa;
 
+
+        @BindView(R.id.tv_huifu_name)
+        TextView tv_huifu_name;
+        @BindView(R.id.tv_huifu_date)
+        TextView tv_huifu_date;
+        @BindView(R.id.tv_huifupinglun)
+        TextView tv_huifupinglun;
+        @BindView(R.id.tv_huifu_floor)
+        TextView tv_huifu_floor;
+        @BindView(R.id.ll_pinglun_item)
+        LinearLayout ll_pinglun_item;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

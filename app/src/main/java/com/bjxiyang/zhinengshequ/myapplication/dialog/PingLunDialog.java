@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.LuXianXiangQingActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HuoDongDetails;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
@@ -56,10 +58,10 @@ public class PingLunDialog extends AlertDialog implements View.OnClickListener{
             toUserId=0;
         }else {
             this.partyId = reply.getPartyId();
-            commentId = reply.getCommentId();
-            toUserId = reply.getToUserId();
+            commentId = reply.getReplyId();
+            toUserId = reply.getFromUserId();
         }
-//        this.reply=reply;
+        this.reply=reply;
     }
 
     @Override
@@ -82,10 +84,18 @@ public class PingLunDialog extends AlertDialog implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_liuyan_cancel:
+                LuXianXiangQingActivity.isScroll=false;
                 cancel();
                 break;
             case R.id.tv_liuyan_send:
                 replyContent= String.valueOf(et_liuyan.getText());
+                if (replyContent==null){
+                    MyUntil.show(getContext(),"请输入留言内容");
+                    break;
+                }
+
+//                Log.i("YYYY","reply:PartyId="+reply.getPartyId()+"---CommentId="+reply.getCommentId());
+
                 String url= XY_Response2.URL_NEIGHBOR_ADDPARTYREPLY+"cmemberId="+
                         SPManager.getInstance().getString("c_memberId",null)+"&partyId="+partyId+
                         "&commentId="+commentId+"&replyContent="+replyContent+"&toUserId="+toUserId;
@@ -95,6 +105,7 @@ public class PingLunDialog extends AlertDialog implements View.OnClickListener{
                     public void onSuccess(Object responseObj) {
                         FanHui2 fanhui= (FanHui2) responseObj;
                         if(fanhui.getCode()==1000){
+                            LuXianXiangQingActivity.isScroll=true;
                             cancel();
                         }else {
                             MyUntil.show(getContext(),fanhui.getMsg());

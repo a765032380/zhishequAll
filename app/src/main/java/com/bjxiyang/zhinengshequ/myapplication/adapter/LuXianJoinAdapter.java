@@ -1,11 +1,14 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.R;
@@ -17,40 +20,56 @@ import java.util.List;
  * Created by Administrator on 2017/8/16 0016.
  */
 
-public class LuXianJoinAdapter extends RecyclerView.Adapter<LuXianJoinAdapter.ViewHolder>   {
-
-    private View view;
-    private ViewHolder vh;
+public class LuXianJoinAdapter extends BaseAdapter{
+    private Context mContext;
     private List<HuoDongDetails.ObjBean.JoinListBean> mList;
 
-    public LuXianJoinAdapter(List<HuoDongDetails.ObjBean.JoinListBean> mList) {
-        Log.i("YYYY","JoinList="+mList.size());
+
+    public LuXianJoinAdapter(Context mContext,List<HuoDongDetails.ObjBean.JoinListBean> mList) {
         this.mList = mList;
+        this.mContext=mContext;
     }
-
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_join,parent,false);
-        vh= new ViewHolder(view);
-        return vh;
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-
-        ImageLoaderManager.getInstance(view.getContext())
-                .displayImage(holder.iv_join_img,mList.get(position).getUserUrl());
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         return mList.size();
     }
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView iv_join_img;
+
+    @Override
+    public Object getItem(int position) {
+        return mList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View view, ViewGroup parent) {
+        ViewHolder holder;
+        if (view==null){
+            view= LayoutInflater.from(mContext).inflate(R.layout.item_joinpersonnel,null);
+            holder= new ViewHolder(view);
+            view.setTag(holder);
+        }else {
+            holder= (ViewHolder) view.getTag();
+        }
+        if (!mList.get(position).getUserUrl().equals("")) {
+            ImageLoaderManager.getInstance(view.getContext())
+                    .displayImage(holder.iv_join_img, mList.get(position).getUserUrl());
+        }
+        holder.tv_joinpersonnel_name.setText(mList.get(position).getUserName());
+        return view;
+    }
+
+    class ViewHolder{
+        ImageView iv_join_img;
+        TextView tv_joinpersonnel_name;
+        TextView tv_joinpersonnel_joinstate;
         public ViewHolder(View view){
-            super(view);
             iv_join_img = (ImageView) view.findViewById(R.id.iv_join_img);
+            tv_joinpersonnel_name= (TextView) view.findViewById(R.id.tv_joinpersonnel_name);
+            tv_joinpersonnel_joinstate= (TextView) view.findViewById(R.id.tv_joinpersonnel_joinstate);
         }
     }
 }

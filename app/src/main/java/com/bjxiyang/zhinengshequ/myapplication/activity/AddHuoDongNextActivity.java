@@ -77,7 +77,7 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
     private String startTime;
     private String endTime;
     private String bmendTime;
-    private String money="0";
+    private int money;
     private String datecount;
     private String yaoqiu;
     private String jieshao;
@@ -107,7 +107,7 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
         startTime= intent.getStringExtra("startTime");
         endTime= intent.getStringExtra("endTime");
         bmendTime= intent.getStringExtra("bmendTime");
-//        money=intent.getStringExtra("money");
+        money=intent.getIntExtra("money",0);
         datecount=intent.getStringExtra("datecount");
         yaoqiu=intent.getStringExtra("yaoqiu");
 
@@ -150,6 +150,16 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
                 break;
             case R.id.tv_wancheng:
                 jieshao= String.valueOf(et_startActivities_jieshao.getText());
+
+                if (jieshao==null){
+                    MyUntil.show(AddHuoDongNextActivity.this,"请添加活动介绍");
+                    break;
+                }
+                if(imageUrl1==null){
+                    MyUntil.show(AddHuoDongNextActivity.this,"请添加图片");
+                    break;
+                }
+
                 shangchuanImage();
                 break;
         }
@@ -157,9 +167,7 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
 
     private void shangchuanImage() {
         DialogUntil.showLoadingDialog(AddHuoDongNextActivity.this,"正在提交",false);
-        if(imageUrl1==null){
-            MyUntil.show(AddHuoDongNextActivity.this,"请添加图片");
-        }else {
+
             map=new HashMap();
             map.put("imgList",imageList);
             String imageUrl = XY_Response2.URL_NEIGHBOR_ADDPARTYIMG + "cmemberId=" +
@@ -186,7 +194,7 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
                         }
 
                         Log.i("LLLL","图片:"+responseImgList);
-
+                        Log.i("LLLL","money="+money);
                         String addHuoDongUrl=XY_Response2.URL_NEIGHBOR_ADDPARTY
                                 +"cmemberId="+SPManager.getInstance().getString("c_memberId",null)
                                 +"&endTime="+bmendTime                  // 报名截止时间
@@ -227,7 +235,7 @@ public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.
                     DialogUntil.closeLoadingDialog();
                 }
             });
-        }
+
 
     }
 

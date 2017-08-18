@@ -12,16 +12,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
+import com.bjxiyang.zhinengshequ.myapplication.dialog.HuoDongFeiYongDialog;
 import com.bjxiyang.zhinengshequ.myapplication.select_date.JudgeDate;
 import com.bjxiyang.zhinengshequ.myapplication.select_date.ScreenInfo;
 import com.bjxiyang.zhinengshequ.myapplication.select_date.WheelMain;
 import com.bjxiyang.zhinengshequ.myapplication.until.DateUtils;
+import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
+import com.bjxiyang.zhinengshequ.myapplication.until.SoftInputUtil;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -59,6 +64,15 @@ public class AddHuoDongActivity extends MySwipeBackActivity implements View.OnCl
     EditText et_startActivities_yaoqiu;
     @BindView(R.id.tv_next)
     TextView tv_next;
+    @BindView(R.id.myScrollView)
+    ScrollView myScrollView;
+    @BindView(R.id.ll_addhuodong)
+    LinearLayout ll_addhuodong;
+
+    @BindView(R.id.view_show_EditText1)
+    View view_show_EditText1;
+    @BindView(R.id.view_show_EditText2)
+    View view_show_EditText2;
 
     /***
      * Data
@@ -72,7 +86,7 @@ public class AddHuoDongActivity extends MySwipeBackActivity implements View.OnCl
     private String money;
     private String datecount;
     private String yaoqiu;
-
+    private int money_int;
     private String beginTime;
 
     /***
@@ -115,7 +129,31 @@ public class AddHuoDongActivity extends MySwipeBackActivity implements View.OnCl
         et_startActivities_startdate.setOnClickListener(this);
         et_startActivities_enddate.setOnClickListener(this);
         et_baoming_enddate.setOnClickListener(this);
-
+        et_startActivities_money.setOnClickListener(this);
+        et_startActivities_yaoqiu.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    SoftInputUtil.controlKeyboardLayout(AddHuoDongActivity.this,ll_addhuodong,view_show_EditText2);
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    // 此处为失去焦点时的处理内容
+                }
+            }
+        });
+        et_startActivities_datecount.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    SoftInputUtil.controlKeyboardLayout(AddHuoDongActivity.this,ll_addhuodong,view_show_EditText1);
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    // 此处为失去焦点时的处理内容
+                }
+            }
+        });
     }
 
     @Override
@@ -133,48 +171,50 @@ public class AddHuoDongActivity extends MySwipeBackActivity implements View.OnCl
             case R.id.et_baoming_enddate:
                 showBottoPopupWindow(et_baoming_enddate);
                 break;
-
+            case R.id.et_startActivities_money:
+                showTimeDialog();
+                break;
             case R.id.tv_next:
                 startAddress=String.valueOf(et_startActivities_go.getText());
                 toAddress=String.valueOf(et_startActivities_arrive.getText());
                 startTime=String.valueOf(et_startActivities_startdate.getText());
                 endTime=String.valueOf(et_startActivities_enddate.getText());
                 bmendTime=String.valueOf(et_baoming_enddate.getText());
-                money=String.valueOf(et_startActivities_money.getText());
+//                money=String.valueOf(et_startActivities_money.getText());
                 datecount=String.valueOf(et_startActivities_datecount.getText());
                 yaoqiu=String.valueOf(et_startActivities_yaoqiu.getText());
-//                if (startAddress==null){
-//                    MyUntil.show(AddHuoDongActivity.this,"请添加出发地");
-//                    break;
-//                }
-//                if (toAddress==null){
-//                    MyUntil.show(AddHuoDongActivity.this,"请添加目的地");
-//                    break;
-//                }
-//                if (startTime==null){
-//                    MyUntil.show(AddHuoDongActivity.this,"请添加出发时间");
-//                    break;
-//                }
-//                if (endTime==null){
-//                    MyUntil.show(AddHuoDongActivity.this,"请添加返回时间");
-//                    break;
-//                }
-//                if (bmendTime==null){
-//                    MyUntil.show(AddHuoDongActivity.this,"请添加报名截止时间");
-//                    break;
-//                }
-//                if (money==null){
-//                    MyUntil.show(AddHuoDongActivity.this,"请添加费用说明");
-//                    break;
-//                }
-//                if (datecount==null){
-//                    MyUntil.show(AddHuoDongActivity.this,"请添加约伴人数");
-//                    break;
-//                }
-//                if (yaoqiu==null){
-//                    MyUntil.show(AddHuoDongActivity.this,"请添加约伴要求");
-//                    break;
-//                }
+                if (startAddress==null){
+                    MyUntil.show(AddHuoDongActivity.this,"请添加出发地");
+                    break;
+                }
+                if (toAddress==null){
+                    MyUntil.show(AddHuoDongActivity.this,"请添加目的地");
+                    break;
+                }
+                if (startTime==null){
+                    MyUntil.show(AddHuoDongActivity.this,"请添加出发时间");
+                    break;
+                }
+                if (endTime==null){
+                    MyUntil.show(AddHuoDongActivity.this,"请添加返回时间");
+                    break;
+                }
+                if (bmendTime==null){
+                    MyUntil.show(AddHuoDongActivity.this,"请添加报名截止时间");
+                    break;
+                }
+                if (money==null){
+                    MyUntil.show(AddHuoDongActivity.this,"请添加费用说明");
+                    break;
+                }
+                if (datecount==null){
+                    MyUntil.show(AddHuoDongActivity.this,"请添加约伴人数");
+                    break;
+                }
+                if (yaoqiu==null){
+                    MyUntil.show(AddHuoDongActivity.this,"请添加约伴要求");
+                    break;
+                }
 
 
                 Intent intent=new Intent(AddHuoDongActivity.this,AddHuoDongNextActivity.class);
@@ -183,7 +223,7 @@ public class AddHuoDongActivity extends MySwipeBackActivity implements View.OnCl
                 intent.putExtra("startTime",startTime);
                 intent.putExtra("endTime",endTime);
                 intent.putExtra("bmendTime",bmendTime);
-                intent.putExtra("money",money);
+                intent.putExtra("money",money_int);
                 intent.putExtra("datecount",datecount);
                 intent.putExtra("yaoqiu",yaoqiu);
                 startActivity(intent);
@@ -259,5 +299,23 @@ public class AddHuoDongActivity extends MySwipeBackActivity implements View.OnCl
         }
 
     }
+    private void showTimeDialog(){
+        HuoDongFeiYongDialog dialog=new HuoDongFeiYongDialog(this);
+        dialog.show();
+        dialog.setOnGetSelectTime(new HuoDongFeiYongDialog.OnGetSelectTime() {
+            @Override
+            public void getSelectTime(String selectTime) {
+                money=selectTime;
+                et_startActivities_money.setText(selectTime);
+            }
+
+            @Override
+            public void getSelectTime_int(int selectTime_int) {
+                money_int=selectTime_int;
+            }
+        });
+    }
+
+
 
 }

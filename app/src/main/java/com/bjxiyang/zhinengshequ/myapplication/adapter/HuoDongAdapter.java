@@ -1,6 +1,7 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,10 +15,12 @@ import android.widget.TextView;
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.LuXianXiangQingActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FindHuoDongList;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
+import com.bjxiyang.zhinengshequ.myapplication.dialog.JoinLuXianDialog;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
@@ -34,6 +37,13 @@ import butterknife.ButterKnife;
  */
 
 public class HuoDongAdapter extends BaseAdapter {
+
+    private JoinLuXianDialog joinLuXianDialog;
+    private ViewHolder viewHolder;
+    private int partyId;
+    private boolean isJoin;
+    private int status;
+
     private Context mContext;
     private List<FindHuoDongList.ObjBean> mList;
 
@@ -58,8 +68,7 @@ public class HuoDongAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View view, ViewGroup parent) {
-        final ViewHolder viewHolder;
+    public View getView(int position, View view, ViewGroup parent) {
         if (view==null){
             view= LayoutInflater.from(mContext).inflate(R.layout.item_activityplanning,null);
             viewHolder=new ViewHolder(view);
@@ -67,33 +76,57 @@ public class HuoDongAdapter extends BaseAdapter {
         }else {
             viewHolder= (ViewHolder) view.getTag();
         }
-        final FindHuoDongList.ObjBean obj=mList.get(position);
+        FindHuoDongList.ObjBean obj=mList.get(position);
 
         ImageLoaderManager.getInstance(mContext)
                 .displayImage(viewHolder.iv_photo,obj.getUserUrl());
+
+        if (obj.getImgList().size()==3){
+            viewHolder.iv_photo1.setVisibility(View.VISIBLE);
+            viewHolder.iv_photo2.setVisibility(View.VISIBLE);
+            viewHolder.iv_photo3.setVisibility(View.VISIBLE);
+        }else if (obj.getImgList().size()==2){
+            viewHolder.iv_photo1.setVisibility(View.VISIBLE);
+            viewHolder.iv_photo2.setVisibility(View.VISIBLE);
+            viewHolder.iv_photo3.setVisibility(View.INVISIBLE);
+        }else if (obj.getImgList().size()==1){
+            viewHolder.iv_photo1.setVisibility(View.VISIBLE);
+            viewHolder.iv_photo2.setVisibility(View.INVISIBLE);
+            viewHolder.iv_photo3.setVisibility(View.INVISIBLE);
+        }else if (obj.getImgList().size()==0){
+            viewHolder.iv_photo1.setVisibility(View.INVISIBLE);
+            viewHolder.iv_photo2.setVisibility(View.INVISIBLE);
+            viewHolder.iv_photo3.setVisibility(View.INVISIBLE);
+        }
+        if (obj.getIsEnd()==0){
+            viewHolder.tv_activity_status.setText("进行中");
+        }else if (obj.getIsEnd()==1){
+            viewHolder.tv_activity_status.setText("已结束");
+        }
+
+
         for (int i=0;i<obj.getImgList().size();i++){
             if (i==0){
+
                 ImageLoaderManager.getInstance(mContext)
                         .displayImage(viewHolder.iv_photo1,obj.getImgList().get(i).getImgUrl());
-            }
-            if (i==1){
+            }else if (i==1){
+
                 ImageLoaderManager.getInstance(mContext)
                         .displayImage(viewHolder.iv_photo2,obj.getImgList().get(i).getImgUrl());
-            }
-            if (i==2){
+            }else if (i==2){
+
                 ImageLoaderManager.getInstance(mContext)
                         .displayImage(viewHolder.iv_photo3,obj.getImgList().get(i).getImgUrl());
             }
+
+
         }
 
 
         viewHolder.tv_nickname.setText(obj.getUserName());
         viewHolder.tv_publish_date.setText(obj.getAddTime());
-//        viewHolder.tv_publish_time.setText("ddddd");
-        viewHolder.tv_activity_status.setText("ddddd");
-        viewHolder.tv_activity_distance.setText("ddddd");
         viewHolder.tv_end_date.setText(obj.getEndTime());
-//        viewHolder.tv_end_time.setText("ddddd");
         viewHolder.tv_intro.setText(obj.getPartyDescribe());
         viewHolder.tv_go_address.setText(obj.getDestination());
         if (obj.getCostType()==0){
@@ -105,52 +138,98 @@ public class HuoDongAdapter extends BaseAdapter {
         if (obj.getCostType()==2){
             viewHolder.tv_go_money.setText("线下AA");
         }
+        if (obj.getCostType()==3){
+            viewHolder.tv_go_money.setText("你请客");
+        }
 
         viewHolder.tv_go_require.setText(obj.getPartyRequirement());
         viewHolder.tv_message_count.setText(obj.getReplyCount()+"");
         viewHolder.tv_join_count.setText(obj.getJoinCount()+"");
-
-        if (obj.getHaveJoin()==0){
+        partyId=mList.get(position).getPartyId();
+        Log.i("YYYY","HaveJoin="+obj.getHaveJoin());
+        if (obj.getHaveJoin()==0&&obj.getIsEnd()==0){
+            final FindHuoDongList.ObjBean obj1=obj;
             viewHolder.tv_btn_join.setText("加入");
+
+            viewHolder.tv_btn_join.setBackgroundResource(R.drawable.a_btn_join);
+            viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    isJoin=false;
+                    status=1;
+                    showTiShiJoinDialog(obj1,status);
+                }
+            });
             //加入活动
+
+        }else if (obj.getHaveJoin()==1&&obj.getIsEnd()==0){
+            final FindHuoDongList.ObjBean obj1=obj;
+            viewHolder.tv_btn_join.setBackgroundResource(R.drawable.a_btn_over);
+            viewHolder.tv_btn_join.setText("退出活动");
+
             viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String url= XY_Response2.URL_NEIGHBOR_JOINPARTY+"cmemberId="+
-                            SPManager.getInstance().getString("c_memberId",null)+
-                            "&partyId="+mList.get(position).getPartyId();
-                    RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
-                        @Override
-                        public void onSuccess(Object responseObj) {
-                            FanHui2 fanHui= (FanHui2) responseObj;
-
-                            if (fanHui.getCode()==1000){
-                                Log.i("LLLL","加入活动请求成功");
-                                obj.setHaveJoin(1);
-                                obj.setJoinCount(obj.getJoinCount()+1);
-                                viewHolder.tv_btn_join.setText("已加入");
-                                notifyDataSetChanged();
-                            }
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Object reasonObj) {
-                            Log.i("LLLL","加入活动请求失败");
-                        }
-                    });
+                    isJoin=true;
+                    status=0;
+                    showTiShiJoinDialog(obj1,status);
                 }
             });
-        }else if (obj.getHaveJoin()==1){
-            viewHolder.tv_btn_join.setText("已加入");
-            viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MyUntil.show(mContext,"你已加入该活动");
-                }
-            });
+        }else {
+            viewHolder.tv_btn_join.setBackgroundResource(R.drawable.a_btn_over);
+            viewHolder.tv_btn_join.setText("已结束");
         }
+
+//        if (obj.getHaveJoin()==0&&obj.getIsEnd()==0){
+//            viewHolder.tv_btn_join.setClickable(true);
+//            viewHolder.tv_btn_join.setBackgroundResource(R.drawable.a_btn_join);
+//            viewHolder.tv_btn_join.setText("加入");
+//            //加入活动
+//            viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    String url= XY_Response2.URL_NEIGHBOR_JOINPARTY+"cmemberId="+
+//                            SPManager.getInstance().getString("c_memberId",null)+
+//                            "&partyId="+mList.get(position1).getPartyId();
+//                    RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
+//                        @Override
+//                        public void onSuccess(Object responseObj) {
+//                            FanHui2 fanHui= (FanHui2) responseObj;
+//                            final FindHuoDongList.ObjBean obj=mList.get(position1);
+//                            if (fanHui.getCode()==1000){
+//                                Log.i("LLLL","加入活动请求成功");
+//                                obj.setHaveJoin(1);
+//                                obj.setJoinCount(obj.getJoinCount()+1);
+//                                viewHolder1.tv_btn_join.setText("已加入");
+//                                notifyDataSetChanged();
+//                            }
+//
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Object reasonObj) {
+//                            Log.i("LLLL","加入活动请求失败");
+//                        }
+//                    });
+//                }
+//            });
+//        }else if (obj.getHaveJoin()==1&&obj.getIsEnd()==0){
+//            viewHolder.tv_btn_join.setClickable(true);
+//            viewHolder.tv_btn_join.setBackgroundResource(R.drawable.a_btn_over);
+//            viewHolder.tv_btn_join.setText("已加入");
+//            viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    MyUntil.show(mContext,"你已加入该活动");
+//                }
+//            });
+//        }else {
+//            viewHolder.tv_btn_join.setBackgroundResource(R.drawable.a_btn_over);
+//            viewHolder.tv_btn_join.setText("已结束");
+//            viewHolder.tv_btn_join.setClickable(false);
+//        }
 
 
 
@@ -202,5 +281,56 @@ public class HuoDongAdapter extends BaseAdapter {
 
 
 
+    }
+    private void showTiShiJoinDialog(final FindHuoDongList.ObjBean obj, final int status) {
+
+        joinLuXianDialog=new JoinLuXianDialog(mContext,status,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = XY_Response2.URL_NEIGHBOR_JOINPARTY + "cmemberId=" +
+                                SPManager.getInstance().getString("c_memberId", null) +
+                                "&partyId=" + obj.getPartyId()
+                                +"&status="+status;
+                        RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
+                            @Override
+                            public void onSuccess(Object responseObj) {
+                                FanHui2 fanHui = (FanHui2) responseObj;
+
+                                if (fanHui.getCode() == 1000) {
+                                    if (!isJoin){
+                                        isJoin=true;
+                                        obj.setHaveJoin(1);
+                                        obj.setJoinCount(obj.getJoinCount() + 1);
+                                        viewHolder.tv_join_count.setText(obj.getJoinCount());
+                                        viewHolder.tv_btn_join.setText("退出活动");
+                                    }else {
+                                        isJoin=false;
+                                        obj.setHaveJoin(0);
+                                        obj.setJoinCount(obj.getJoinCount() -1);
+                                        viewHolder.tv_join_count.setText(obj.getJoinCount());
+                                        viewHolder.tv_btn_join.setText("加入");
+                                    }
+
+                                } else {
+                                    MyUntil.show(mContext, fanHui.getMsg());
+                                }
+                                joinLuXianDialog.dismiss();
+                            }
+                            @Override
+                            public void onFailure(Object reasonObj) {
+                                joinLuXianDialog.dismiss();
+                            }
+                        });
+
+                    }
+                });
+        joinLuXianDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                notifyDataSetChanged();
+            }
+        });
+        joinLuXianDialog.show();
     }
 }
