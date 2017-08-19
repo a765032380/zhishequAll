@@ -100,7 +100,9 @@ public class ImageLoaderManager {
     }
 
     public void displayImage(ImageView imageView,String url){
-        displayImage(imageView,url,null,null);
+        if (imageView!=null) {
+            displayImage(imageView, url, null, null);
+        }
     }
 
 }

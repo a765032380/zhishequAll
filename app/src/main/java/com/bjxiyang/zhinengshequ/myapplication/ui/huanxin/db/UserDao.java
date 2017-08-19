@@ -24,8 +24,11 @@ import java.util.Map;
 public class UserDao {
 	public static final String TABLE_NAME = "uers";
 	public static final String COLUMN_NAME_ID = "username";
-	public static final String COLUMN_NAME_NICK = "nick";
-	public static final String COLUMN_NAME_AVATAR = "avatar";
+	public static final String COLUMN_NAME_NICK = "nick";//昵称
+	public static final String COLUMN_NAME_AVATAR = "avatar";//头像
+	public static final String COLUMN_NAME_BEIZHU = "beizhu";//备注
+
+
 	
 	public static final String PREF_TABLE_NAME = "pref";
 	public static final String COLUMN_NAME_DISABLED_GROUPS = "disabled_groups";

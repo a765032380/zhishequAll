@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.util.EasyUtils;
@@ -69,7 +70,7 @@ public class SplashActivity extends BaseActivity {
 						Thread.sleep(sleepTime);
 					} catch (InterruptedException e) {
 					}
-					startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+					startActivity(new Intent(SplashActivity.this, SDLoginActivity.class));
 					finish();
 				}
 			}

@@ -5,9 +5,9 @@ package com.bjxiyang.zhinengshequ.myapplication.connectionsURL;
  */
 
 public class XY_Response2 {
-    private static final String URL="http://192.168.1.229:8080/zsq/v2/";
+//    private static final String URL="http://192.168.1.229:8080/zsq/v2/";
 
-//    private static final String URL="http://47.92.106.249:8088/zsq/v2/";
+    private static final String URL="http://47.92.106.249:8088/zsq/v2/";
 
     //获取首页信息
     public static final String URL_HOME=URL+"init/firstinit?";
@@ -26,4 +26,14 @@ public class XY_Response2 {
     public static final String URL_NEIGHBOR_ADDPARTYREPLY=URL+"neighbor/addpartyreply?";
     //街坊儿加入活动
     public static final String URL_NEIGHBOR_JOINPARTY=URL+"neighbor/joinparty?";
+    //获取好友列表
+    public static final String URL_NEIGHBOR_FRIENDLIST=URL+"neighbor/friendlist?";
+    //添加好友
+    public static final String URL_NEIGHBOR_ADDFRIEND=URL+"neighbor/addfriend?";
+    //修改好友备注
+    public static final String URL_NEIGHBOR_EDITREMARK=URL+"neighbor/editremark?";
+    //删除好友
+    public static final String URL_NEIGHBOR_DELETEFRIEND=URL+"neighbor/deletefriend?";
+
+
 }

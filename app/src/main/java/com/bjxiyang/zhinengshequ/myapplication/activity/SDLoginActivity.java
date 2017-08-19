@@ -306,6 +306,7 @@ public class SDLoginActivity extends BaseActivity {
                 EMClient.getInstance().login(uPhone, getMD5(uPassword), new EMCallBack() {
                     @Override
                     public void onSuccess() {
+
                         Log.i("YYYY","登陆成功");
 //                        finish();
                     }
@@ -319,6 +320,7 @@ public class SDLoginActivity extends BaseActivity {
                         Log.i("YYYY",error);
                         runOnUiThread(new Runnable() {
                             public void run() {
+
                             }
                         });
                     }

@@ -1,12 +1,10 @@
 package com.bjxiyang.zhinengshequ.myapplication.activity;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -240,22 +238,31 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
         }
     }
     private void setData(){
+        if (obj.getUserUrl()!=null&&!obj.getUserUrl().equals("")) {
 
-        ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
-                .displayImage(iv_photo,obj.getUserUrl());
-
+            ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
+                    .displayImage(iv_photo, obj.getUserUrl());
+        }
         for (int i=0;i<obj.getImgList().size();i++){
             if (i==0){
-                ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
-                        .displayImage(iv_photo1,obj.getImgList().get(i).getImgUrl());
+                if (obj.getImgList().get(i).getImgUrl()!=null&&!obj.getImgList().get(i).getImgUrl().equals("")) {
+                    ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
+                            .displayImage(iv_photo1, obj.getImgList().get(i).getImgUrl());
+                }
             }
             if (i==1){
-                ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
-                        .displayImage(iv_photo2,obj.getImgList().get(i).getImgUrl());
+                if (obj.getImgList().get(i).getImgUrl()!=null&&!obj.getImgList().get(i).getImgUrl().equals("")) {
+
+                    ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
+                            .displayImage(iv_photo2, obj.getImgList().get(i).getImgUrl());
+                }
             }
             if (i==2){
-                ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
-                        .displayImage(iv_photo3,obj.getImgList().get(i).getImgUrl());
+                if (obj.getImgList().get(i).getImgUrl()!=null&&!obj.getImgList().get(i).getImgUrl().equals("")) {
+
+                    ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
+                            .displayImage(iv_photo3, obj.getImgList().get(i).getImgUrl());
+                }
             }
         }
 

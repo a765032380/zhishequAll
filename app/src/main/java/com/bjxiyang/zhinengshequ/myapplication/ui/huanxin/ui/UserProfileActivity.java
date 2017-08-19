@@ -19,8 +19,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.MyXinXi_XiuGaiActivity;
+import com.bjxiyang.zhinengshequ.myapplication.bean.Users1;
+import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
+import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.dialog.XiuGaiBeiZhuDialog;
+import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
+import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
+import com.bjxiyang.zhinengshequ.myapplication.view.MyDialog;
 import com.bumptech.glide.Glide;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
@@ -40,15 +49,20 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private TextView tvUsername;
 	private ProgressDialog dialog;
 	private RelativeLayout rlNickName;
-	
-	
-	
+	private TextView tv_beizhu1;//// TODO: 2017/8/18  
+	private TextView tv_beizhu;
+
+	private String username;
+
+
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.em_activity_user_profile);
 		initView();
 		initListener();
+		getData();// TODO: 2017/8/18  
 	}
 	
 	private void initView() {
@@ -58,11 +72,14 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		tvNickName = (TextView) findViewById(R.id.user_nickname);
 		rlNickName = (RelativeLayout) findViewById(R.id.rl_nickname);
 		iconRightArrow = (ImageView) findViewById(R.id.ic_right_arrow);
+		tv_beizhu1 = (TextView) findViewById(R.id.tv_beizhu1);
+		tv_beizhu = (TextView) findViewById(R.id.tv_beizhu);
 	}
 	
+		
 	private void initListener() {
 		Intent intent = getIntent();
-		String username = intent.getStringExtra("username");
+		username = intent.getStringExtra("username");
 		boolean enableUpdate = intent.getBooleanExtra("setting", false);
 		if (enableUpdate) {
 			headPhotoUpdate.setVisibility(View.VISIBLE);
@@ -85,6 +102,43 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     			asyncFetchUserInfo(username);
     		}
 		}
+		tv_beizhu.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				XiuGaiBeiZhuDialog xiuGaiBeiZhuDialog=new XiuGaiBeiZhuDialog(UserProfileActivity.this,username);
+				xiuGaiBeiZhuDialog.show();
+			}
+		});
+		
+	}
+
+	private void getData() {
+		DialogUntil.showLoadingDialog(this, "正在加载", true);
+		String url = XY_Response.URL_GETUSERINFO + "mobilePhone=" +
+				SPManager.getInstance().getString("mobilePhone", null);
+		RequestCenter.getUserInfo(url, new DisposeDataListener() {
+			@Override
+			public void onSuccess(Object responseObj) {
+				DialogUntil.closeLoadingDialog();
+				Users1 users = (Users1) responseObj;
+				if (users.getCode().equals("1000")) {
+					setTextForHTTP(users);
+				}
+			}
+			@Override
+			public void onFailure(Object reasonObj) {
+				DialogUntil.closeLoadingDialog();
+				MyDialog.showDialog(UserProfileActivity.this);
+
+			}
+		});
+	}
+
+	private void setTextForHTTP(Users1 users) {// TODO: 2017/8/18  
+		Users1.Obj obj = users.getObj();
+		if ((obj.getNickName()) != null) {
+			tv_beizhu1.setText(obj.getRealName());
+		}		
 	}
 
 	@Override

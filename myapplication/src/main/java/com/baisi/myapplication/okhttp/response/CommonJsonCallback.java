@@ -9,7 +9,7 @@ import com.baisi.myapplication.okhttp.exception.OkHttpException;
 import com.baisi.myapplication.okhttp.listener.DisposeDataHandle;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.baisi.myapplication.okhttp.listener.DisposeHandleCookieListener;
-
+import com.baisi.myapplication.util.MyLogUntil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +18,7 @@ import org.json.JSONTokener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -110,9 +111,8 @@ public class CommonJsonCallback implements Callback {
 
     private void handleResponse(Object responseObj) {
 
-
-        Log.i("LLLLLL",String.valueOf(responseObj));
-//        Log.i("YYYYY",String.valueOf(responseObj));
+        MyLogUntil.iJsonFormat("JSON_RES",String.valueOf(responseObj),false);
+        Log.i("JSON_LLLL",String.valueOf(responseObj));
 //        Log.i("AAA",String.valueOf(responseObj));
         if (responseObj == null || responseObj.toString().trim().equals("")) {
             mListener.onFailure(new OkHttpException(NETWORK_ERROR, EMPTY_MSG));

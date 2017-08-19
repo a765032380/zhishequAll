@@ -28,7 +28,7 @@ public class UserProfileManager {
 	/**
 	 * HuanXin sync contact nick and avatar listener
 	 */
-	private List<DemoHelper.DataSyncListener> syncContactInfosListeners;
+	private List<DataSyncListener> syncContactInfosListeners;
 
 	private boolean isSyncingContactInfosWithServer = false;
 
@@ -166,7 +166,7 @@ public class UserProfileManager {
 		PreferenceManager.getInstance().setCurrentUserNick(nickname);
 	}
 
-	private void setCurrentUserAvatar(String avatar) {
+	public void setCurrentUserAvatar(String avatar) {
 		getCurrentUserInfo().setAvatar(avatar);
 		PreferenceManager.getInstance().setCurrentUserAvatar(avatar);
 	}

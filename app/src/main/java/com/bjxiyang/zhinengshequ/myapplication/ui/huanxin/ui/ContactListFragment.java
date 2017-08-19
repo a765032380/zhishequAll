@@ -16,9 +16,12 @@ package com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,11 +30,19 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
+import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
+import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
+import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.DemoDBManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.InviteMessgeDao;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.UserDao;
+import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.dialog.ShanChuHaoYouDialog;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.widget.ContactItemView;
+import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
+import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
@@ -54,6 +65,7 @@ public class ContactListFragment extends EaseContactListFragment {
     private View loadingView;
     private ContactItemView applicationItem;
     private InviteMessgeDao inviteMessgeDao;
+    private ShanChuHaoYouDialog dialog;
 
     @SuppressLint("InflateParams")
     @Override
@@ -63,17 +75,69 @@ public class ContactListFragment extends EaseContactListFragment {
         HeaderItemClickListener clickListener = new HeaderItemClickListener();
         applicationItem = (ContactItemView) headerView.findViewById(R.id.application_item);
         applicationItem.setOnClickListener(clickListener);
-//        headerView.findViewById(R.id.group_item).setOnClickListener(clickListener);
-//        headerView.findViewById(R.id.chat_room_item).setOnClickListener(clickListener);
-//        headerView.findViewById(R.id.robot_item).setOnClickListener(clickListener);
+        headerView.findViewById(R.id.group_item).setOnClickListener(clickListener);
+        headerView.findViewById(R.id.chat_room_item).setOnClickListener(clickListener);
+        headerView.findViewById(R.id.robot_item).setOnClickListener(clickListener);
+     
         
         //添加的聊天上面的布局 // TODO: 2017/8/8  
         listView.addHeaderView(headerView);
-//        add loading view
+        //add loading view
         loadingView = LayoutInflater.from(getActivity()).inflate(R.layout.em_layout_loading_data, null);
         contentContainer.addView(loadingView);
 
-        registerForContextMenu(listView);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                toBeProcessUser = (EaseUser) listView.getItemAtPosition(i);
+                dialog=new ShanChuHaoYouDialog(getContext(), new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        try {
+                            // delete contact
+                            //gll_delete
+                            String url= XY_Response2.URL_NEIGHBOR_DELETEFRIEND+"cmemberId="
+                                    + SPManager.getInstance().getString("c_memberId",null)
+                                    +"&mobilePhone="+SPManager.getInstance().getString("mobilePhone",null)
+                                    +"&friendPhone="+ toBeProcessUser;
+                            RequestCenter.neighbor_deletefriend(url, new DisposeDataListener() {
+                                @Override
+                                public void onSuccess(Object responseObj) {
+                                    FanHui2 fanHui2= (FanHui2) responseObj;
+                                    if (fanHui2.getCode()==1000){
+                                        dialog.dismiss();
+                                    }else {
+                                        MyUntil.show(getContext(),fanHui2.getMsg());
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Object reasonObj) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            deleteContact(toBeProcessUser);
+                            // remove invitation message
+                            InviteMessgeDao dao = new InviteMessgeDao(getActivity());
+                            dao.deleteMessage(toBeProcessUser.getUsername());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                dialog.show();
+
+
+
+
+                return true;
+            }
+        });
+
+
+//        registerForContextMenu(listView);
     }
     
     @Override
@@ -102,6 +166,7 @@ public class ContactListFragment extends EaseContactListFragment {
         titleBar.setRightImageResource(R.drawable.em_add);
         titleBar.setRightLayoutClickListener(new OnClickListener() {
             
+
             @Override
             public void onClick(View v) {
 //                startActivity(new Intent(getActivity(), AddContactActivity.class));
@@ -128,8 +193,9 @@ public class ContactListFragment extends EaseContactListFragment {
             }
         });
 
-        
-        // 进入添加好友页
+
+        // 进入添加好友页//// TODO: 2017/8/15  
+//        titleBar.getRightLayout().setOnClickListener(new OnClickListener() {
         addFriend.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -137,17 +203,17 @@ public class ContactListFragment extends EaseContactListFragment {
                 startActivity(new Intent(getActivity(), AddContactActivity.class));
             }
         });
-        
-        
+
+
         contactSyncListener = new ContactSyncListener();
         DemoHelper.getInstance().addSyncContactListener(contactSyncListener);
-        
+
         blackListSyncListener = new BlackListSyncListener();
         DemoHelper.getInstance().addSyncBlackListListener(blackListSyncListener);
-        
+
         contactInfoSyncListener = new ContactInfoSyncListener();
         DemoHelper.getInstance().getUserProfileManager().addSyncContactInfoListener(contactInfoSyncListener);
-        
+
         if (DemoHelper.getInstance().isContactsSyncedWithServer()) {
             loadingView.setVisibility(View.GONE);
         } else if (DemoHelper.getInstance().isSyncingContactsWithServer()) {
@@ -203,33 +269,51 @@ public class ContactListFragment extends EaseContactListFragment {
 	}
 	
 
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-	    toBeProcessUser = (EaseUser) listView.getItemAtPosition(((AdapterContextMenuInfo) menuInfo).position);
-	    toBeProcessUsername = toBeProcessUser.getUsername();
-		getActivity().getMenuInflater().inflate(R.menu.em_context_contact_list, menu);
-	}
-
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.delete_contact) {
-			try {
-                // delete contact
-                deleteContact(toBeProcessUser);
-                // remove invitation message
-                InviteMessgeDao dao = new InviteMessgeDao(getActivity());
-                dao.deleteMessage(toBeProcessUser.getUsername());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-			return true;
-		}else if(item.getItemId() == R.id.add_to_blacklist){
-			moveToBlacklist(toBeProcessUsername);
-			return true;
-		}
-		return super.onContextItemSelected(item);
-	}
+//	@Override
+//	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+//		super.onCreateContextMenu(menu, v, menuInfo);
+//	    toBeProcessUser = (EaseUser) listView.getItemAtPosition(((AdapterContextMenuInfo) menuInfo).position);
+//	    toBeProcessUsername = toBeProcessUser.getUsername();
+//		getActivity().getMenuInflater().inflate(R.menu.em_context_contact_list, menu);
+//	}
+//
+//	@Override
+//	public boolean onContextItemSelected(MenuItem item) {
+//        Log.i("YYYY",item.getItemId()+"-------"+R.id.delete_contact);
+//		if (item.getItemId() == R.id.delete_contact) {
+//			try {
+//                // delete contact
+//                //gll_delete
+//                String url= XY_Response2.URL_NEIGHBOR_DELETEFRIEND+"cmemberId="
+//                        + SPManager.getInstance().getString("c_memberId",null)
+//                        +"&mobilePhone="+SPManager.getInstance().getString("mobilePhone",null)
+//                        +"&friendPhone="+"";
+//                RequestCenter.neighbor_deletefriend(url, new DisposeDataListener() {
+//                    @Override
+//                    public void onSuccess(Object responseObj) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Object reasonObj) {
+//
+//                    }
+//                });
+//
+//                deleteContact(toBeProcessUser);
+//                // remove invitation message
+//                InviteMessgeDao dao = new InviteMessgeDao(getActivity());
+//                dao.deleteMessage(toBeProcessUser.getUsername());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//			return true;
+//		}else if(item.getItemId() == R.id.add_to_blacklist){// TODO: 2017/8/18
+//            moveToBlacklist(toBeProcessUsername);
+//			return true;
+//		}
+//		return true;
+//	}
 
 
 	/**
@@ -334,5 +418,4 @@ public class ContactListFragment extends EaseContactListFragment {
         }
         
     }
-	
 }

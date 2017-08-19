@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,8 +20,14 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HaoYouList;
+import com.bjxiyang.zhinengshequ.myapplication.bean.Users;
+import com.bjxiyang.zhinengshequ.myapplication.manager.HaoYouListManager;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
+import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.Constant;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
+import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.DemoDBManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.domain.EmojiconExampleGroupData;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.domain.RobotUser;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.widget.ChatRowVoiceCall;
@@ -30,6 +37,7 @@ import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.easeui.ui.EaseChatFragment.EaseChatFragmentHelper;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
@@ -40,10 +48,13 @@ import com.hyphenate.util.PathUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHelper{
+public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHelper {
 
 	// constant start from 11 to avoid conflict with constant in base class
     private static final int ITEM_VIDEO = 11;
@@ -73,6 +84,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     private static final int ITEM_RED_PACKET = 16;
     //end of red packet code
 
+    private String username;
     /**
      * if it is chatBot 
      */
@@ -201,7 +213,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                 break;
             case REQUEST_CODE_SELECT_AT_USER:
                 if(data != null){
-                    String username = data.getStringExtra("username");
+                    username = data.getStringExtra("username");
                     inputAtUsername(username, false);
                 }
                 break;
@@ -214,10 +226,29 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     
     @Override
     public void onSetMessageAttributes(EMMessage message) {
+        Users users = UserManager.getInstance().getUser();
+        Users.Obj obj = users.getObj();
+
+       HaoYouList haoYouList= HaoYouListManager.getInstance().getUser();
+       //// TODO: 2017/8/17  
         if(isRobot){
             //set message extension
             message.setAttribute("em_robot_message", isRobot);
         }
+//        Map<String,EaseUser> easeUserList=DemoHelper.getInstance().getContactList();
+//        Set<String> strings= easeUserList.keySet();
+//        for (String key : strings) {
+//            Log.i("UUUUU",key);
+////            System.out.println(key+"--->"+map.get(key));
+//        }
+//        String beizhu=haoYouList.getObj().get(0).getFriendRemark();
+
+        message.setAttribute("nickname", "我是测试备注");
+        //设置要发送扩展消息用户昵称
+//        message.setAttribute("nickname", obj.getRealName());
+        //设置要发送扩展消息用户头像
+        message.setAttribute("photo", obj.getHeadPhotoUrl());
+
     }
     
     @Override

@@ -25,7 +25,6 @@ import com.bjxiyang.zhinengshequ.myapplication.activity.ShouHuoDiZhiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
-import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.LoginActivity;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;

@@ -14,6 +14,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FindHuoDongList;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Floor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HaoYouList;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HuoDongDetails;
@@ -298,6 +299,19 @@ public class RequestCenter {
         RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
     }
     public static void neighbor_joinparty(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
+    }
+
+    public static void neighbor_friendlist(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, HaoYouList.class);
+    }
+    public static void neighbor_addfriend(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
+    }
+    public static void neighbor_editremark(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
+    }
+    public static void neighbor_deletefriend(String url,DisposeDataListener listener){
         RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
     }
 

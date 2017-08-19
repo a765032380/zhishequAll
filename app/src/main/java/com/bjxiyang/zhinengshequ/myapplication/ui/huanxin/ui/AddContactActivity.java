@@ -23,8 +23,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
+import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
+import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
+import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 
@@ -82,6 +88,9 @@ public class AddContactActivity extends BaseActivity{
 	 * @param view
 	 */
 	public void addContact(View view){
+		//gll_add
+
+
 		if(EMClient.getInstance().getCurrentUser().equals(nameText.getText().toString())){
 			new EaseAlertDialog(this, R.string.not_add_myself).show();
 			return;
@@ -112,6 +121,30 @@ public class AddContactActivity extends BaseActivity{
 					EMClient.getInstance().contactManager().addContact(toAddUsername, s);
 					runOnUiThread(new Runnable() {
 						public void run() {
+							String url= XY_Response2.URL_NEIGHBOR_ADDFRIEND
+									+"cmemberId="+ SPManager.getInstance().getString("c_memberId",null)
+									+"&mobilePhone="+SPManager.getInstance().getString("mobilePhone",null)
+									+"&friendPhone="+toAddUsername	//好友手机号
+									+"&friendRemark="+"";		        //好友备注
+							RequestCenter.neighbor_addfriend(url, new DisposeDataListener() {
+								@Override
+								public void onSuccess(Object responseObj) {
+									FanHui2 fanHui2= (FanHui2) responseObj;
+									if (fanHui2.getCode()==1000){
+										MyUntil.show(AddContactActivity.this,"添加好友成功");
+									}else {
+										MyUntil.show(AddContactActivity.this,fanHui2.getMsg());
+									}
+
+								}
+
+								@Override
+								public void onFailure(Object reasonObj) {
+
+								}
+							});
+
+
 							progressDialog.dismiss();
 							String s1 = getResources().getString(R.string.send_successful);
 							Toast.makeText(getApplicationContext(), s1, Toast.LENGTH_LONG).show();

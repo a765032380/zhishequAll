@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
@@ -19,7 +18,6 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.HuoDongDetails;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.PingLunDialog;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -79,8 +77,12 @@ public class LuXianPingLunAdapter extends BaseAdapter {
             viewHolder= (ViewHolder) view.getTag();
         }
         HuoDongDetails.ObjBean.ReplyListBean reply=mList.get(position);
-        ImageLoaderManager.getInstance(mContext)
-                .displayImage(viewHolder.tv_touxiang,reply.getToUserUrl());
+
+
+        if (reply.getToUserUrl()!=null&&!reply.getToUserUrl().equals("")) {
+            ImageLoaderManager.getInstance(mContext)
+                    .displayImage(viewHolder.tv_touxiang, reply.getToUserUrl());
+        }
         viewHolder.tv_nickname.setText(reply.getToUserName());
         viewHolder.tv_neirong.setText(reply.getReplyContent());
         viewHolder.tv_pinglunriqi.setText(reply.getReplyTime());

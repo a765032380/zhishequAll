@@ -55,27 +55,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_weight="2" >
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/swing_card"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:scaleType="fitXY"
             android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
             android:src="@drawable/em_default_avatar" />
-        
+
         <TextView
             android:id="@+id/tv_nick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-              android:textColor="@android:color/white"
-              android:textSize="20sp"
-              android:text="张三"
+            android:text="张三"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
             tools:ignore="HardcodedText" />
+
         <TextView
             android:id="@+id/tv_network_status"
             android:layout_width="wrap_content"
@@ -86,9 +87,9 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.3">
 
         <LinearLayout
             android:id="@+id/ll_voice_control"
@@ -105,8 +106,8 @@
 
                 <ImageView
                     android:id="@+id/iv_mute"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/em_icon_mute_normal" />
 
@@ -128,8 +129,8 @@
 
                 <ImageView
                     android:id="@+id/iv_handsfree"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/em_icon_speaker_normal" />
 
@@ -150,43 +151,70 @@
 
             <Button
                 android:id="@+id/btn_hangup_call"
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/em_call_hangup_bg"
-                android:gravity="center"
-                android:text="@string/hang_up"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/a_icon_one"
                 android:visibility="invisible" />
 
-            <LinearLayout
+            <LinearLayout               
                 android:id="@+id/ll_coming_call"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="100dp"
+                android:gravity="center">
 
-                <Button
-                    android:id="@+id/btn_refuse_call"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/em_call_hangup_bg"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/hang_up"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btn_answer_call"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="30dp"
+                    <Button
+                        android:id="@+id/btn_refuse_call"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:background="@drawable/a_icon_one"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hang_up"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="10dp"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/em_call_answer_bg"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/answer"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="100dp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_answer_call"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:background="@drawable/b_icon_three" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/answer"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="10dp"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+
             </LinearLayout>
+              
         </FrameLayout>
     </LinearLayout>
 

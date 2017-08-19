@@ -3,7 +3,7 @@ apply plugin: 'android-apt'
 //GreenDao的依赖
 apply plugin: 'org.greenrobot.greendao'
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "25.0.2"
     defaultConfig {
         multiDexEnabled true

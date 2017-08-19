@@ -16,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +24,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HaoYouList;
+import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.Constant;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
+import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.DemoDBManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.InviteMessgeDao;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.UserDao;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.runtimepermissions.PermissionsManager;
@@ -34,8 +41,8 @@ import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.ChatActivity;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.ContactListFragment;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.ConversationListFragment;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.GroupsActivity;
-import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.LoginActivity;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.ui.SettingsFragment;
+import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMClientListener;
 import com.hyphenate.EMContactListener;
@@ -44,6 +51,7 @@ import com.hyphenate.EMMultiDeviceListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.EMLog;
 
@@ -80,12 +88,41 @@ public class JieFang_HaoYou extends Fragment{
         return isCurrentAccountRemoved;
     }
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.em_activity_main,container,false);
+
+        Log.i("YYY","获取好友列表提示");
+        String url= XY_Response2.URL_NEIGHBOR_FRIENDLIST
+                +"cmemberId="+ SPManager.getInstance().getString("c_memberId",null);
+        RequestCenter.neighbor_friendlist(url, new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                HaoYouList haoYouList = (HaoYouList) responseObj;
+                if (haoYouList.getCode()==1000){
+                    Log.i("YYY","获取好友列表成功");
+                    for (int i=0;i<haoYouList.getObj().size();i++){
+                        EaseUser user=new EaseUser(haoYouList.getObj().get(i).getFriendPhone());
+                        user.setBeizhu(haoYouList.getObj().get(i).getFriendRemark());
+                        user.setAvatar(haoYouList.getObj().get(i).getHeadPhotoUrl());
+                        DemoDBManager.getInstance().closeDB();
+                        DemoDBManager.getInstance().saveContact(user);
+                        EaseCommonUtils.setUserInitialLetter(user);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+
+            }
+        });
+
+
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String packageName = getContext().getPackageName();
             PowerManager pm = (PowerManager) getContext().getSystemService(Context.POWER_SERVICE);
@@ -101,6 +138,11 @@ public class JieFang_HaoYou extends Fragment{
                 }
             }
         }
+
+
+
+
+
 //make sure activity will not in background if user is logged into another device or removed
 
         // runtime permission for android 6.0, just require all permissions here for simple
@@ -492,7 +534,7 @@ public class JieFang_HaoYou extends Fragment{
                         dialog.dismiss();
                         exceptionBuilder = null;
                         isExceptionDialogShow = false;
-                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        Intent intent = new Intent(getContext(), SDLoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
@@ -516,7 +558,7 @@ public class JieFang_HaoYou extends Fragment{
             showExceptionDialog(Constant.ACCOUNT_FORBIDDEN);
         } else if (intent.getBooleanExtra(Constant.ACCOUNT_KICKED_BY_CHANGE_PASSWORD, false) ||
                 intent.getBooleanExtra(Constant.ACCOUNT_KICKED_BY_OTHER_DEVICE, false)) {
-            startActivity(new Intent(getContext(), LoginActivity.class));
+            startActivity(new Intent(getContext(), SDLoginActivity.class));
         }
     }
 
@@ -540,7 +582,7 @@ public class JieFang_HaoYou extends Fragment{
                     public void onSuccess() {
                         getActivity().runOnUiThread(new Runnable() {
                             public void run() {
-                                startActivity(new Intent(getContext(), LoginActivity.class));
+                                startActivity(new Intent(getContext(), SDLoginActivity.class));
                             }
                         });
                     }

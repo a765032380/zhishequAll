@@ -1,8 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,20 +52,20 @@ public class LuXianJoinAdapter extends BaseAdapter{
         }else {
             holder= (ViewHolder) view.getTag();
         }
-        if (!mList.get(position).getUserUrl().equals("")) {
+        if (!mList.get(position).getUserUrl().equals("")&&mList.get(position).getUserUrl()!=null) {
             ImageLoaderManager.getInstance(view.getContext())
-                    .displayImage(holder.iv_join_img, mList.get(position).getUserUrl());
+                    .displayImage(holder.iv_joinpersonnel_photo, mList.get(position).getUserUrl());
         }
         holder.tv_joinpersonnel_name.setText(mList.get(position).getUserName());
         return view;
     }
 
     class ViewHolder{
-        ImageView iv_join_img;
+        ImageView iv_joinpersonnel_photo;
         TextView tv_joinpersonnel_name;
         TextView tv_joinpersonnel_joinstate;
         public ViewHolder(View view){
-            iv_join_img = (ImageView) view.findViewById(R.id.iv_join_img);
+            iv_joinpersonnel_photo = (ImageView) view.findViewById(R.id.iv_joinpersonnel_photo);
             tv_joinpersonnel_name= (TextView) view.findViewById(R.id.tv_joinpersonnel_name);
             tv_joinpersonnel_joinstate= (TextView) view.findViewById(R.id.tv_joinpersonnel_joinstate);
         }

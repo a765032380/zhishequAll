@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:id="@+id/layout_surface_container"
         >
+
         <com.hyphenate.media.EMCallSurfaceView
             android:id="@+id/opposite_surface"
             android:layout_width="match_parent"
@@ -30,7 +31,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
+        android:paddingRight="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/ll_top_container"
@@ -51,7 +54,7 @@
                 android:textSize="22sp"
                 android:visibility="visible" />
 
-            <Chronometer
+            <com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.widget.MyChronometer
                 android:id="@+id/chronometer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,15 +95,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/switch_camera"
-            android:layout_below="@id/btn_record_video"
-            />
+            android:layout_below="@+id/ll_top_container"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="11dp" />
+
         <Button
             android:id="@+id/btn_capture_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/capture_image"
-            android:layout_below="@id/btn_switch_camera"
-            />
+            android:visibility="invisible"
+            android:layout_below="@+id/btn_switch_camera"
+            android:layout_alignEnd="@+id/btn_switch_camera" />
+
         <SeekBar
             android:id="@+id/seekbar_y_detal"
             android:layout_width="200dp"
@@ -108,7 +115,7 @@
             android:layout_below="@id/btn_capture_image"
             android:max="200"
             android:progress="100"
-            />
+            android:visibility="invisible" />
         <!--     <Button 
             android:layout_marginTop="3dp"
             android:id="@+id/btn_toggle_video_stream"
@@ -122,12 +129,12 @@
             android:id="@+id/tv_call_monitor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/local_surface"
             android:layout_alignParentRight="true"
+            android:layout_marginBottom="6dp"
+            android:text="54146546546"
             android:textColor="#afff"
             android:textSize="12sp"
-            android:layout_marginBottom="6dp"
-            />
+            android:visibility="invisible" />
 
         <LinearLayout
             android:id="@+id/ll_surface_baseline"
@@ -163,8 +170,8 @@
 
                         <ImageView
                             android:id="@+id/iv_mute"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:scaleType="fitCenter"
                             android:src="@drawable/em_icon_mute_normal" />
 
@@ -186,8 +193,8 @@
 
                         <ImageView
                             android:id="@+id/iv_handsfree"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:scaleType="fitCenter"
                             android:src="@drawable/em_icon_speaker_normal" />
 
@@ -203,47 +210,84 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp" >
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp">
+
 
                     <Button
                         android:id="@+id/btn_hangup_call"
-                        android:layout_width="fill_parent"
-                        android:layout_height="55dp"
-                        android:background="@drawable/em_call_hangup_bg"
-                        android:gravity="center"
-                        android:text="@string/hang_up"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/a_icon_one"
                         android:visibility="invisible" />
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:text="@string/hang_up"-->
+                            <!--android:textColor="@android:color/white"-->
+                            <!--android:textSize="20sp" />-->
+
 
                     <LinearLayout
                         android:id="@+id/ll_coming_call"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="30dp"
+                        android:gravity="center"
+                        android:visibility="visible">
 
-                        <Button
-                            android:id="@+id/btn_refuse_call"
-                            android:layout_width="wrap_content"
-                            android:layout_height="55dp"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@drawable/em_call_hangup_bg"
                             android:gravity="center"
-                            android:text="@string/hang_up"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/btn_answer_call"
-                            android:layout_width="wrap_content"
-                            android:layout_height="55dp"
-                            android:layout_marginLeft="30dp"
+                            <Button
+                                android:id="@+id/btn_refuse_call"
+                                android:layout_width="65dp"
+                                android:layout_height="65dp"
+                                android:background="@drawable/a_icon_one" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/hang_up"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="100dp"
                             android:layout_weight="1"
-                            android:background="@drawable/em_call_answer_bg"
                             android:gravity="center"
-                            android:text="@string/answer"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/btn_answer_call"
+                                android:layout_width="65dp"
+                                android:layout_height="65dp"
+                                android:background="@drawable/b_icon_three" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/answer"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+
+                        </LinearLayout>
+
+
                     </LinearLayout>
                 </FrameLayout>
             </LinearLayout>

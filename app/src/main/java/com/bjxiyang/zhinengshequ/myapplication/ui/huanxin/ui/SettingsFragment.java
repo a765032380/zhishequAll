@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.Constant;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoModel;
@@ -302,7 +303,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 					rl_switch_vibrate.setVisibility(View.GONE);
 					textview1.setVisibility(View.GONE);
 					textview2.setVisibility(View.GONE);
-					settingsModel.setSettingMsgNotification(false);
+					settingsModel.setSettingMsgNotification(true);// TODO: 2017/8/18  
 				} else {
 					notifySwitch.openSwitch();
 					rl_switch_sound.setVisibility(View.VISIBLE);
@@ -315,7 +316,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 			case R.id.rl_switch_sound:
 				if (soundSwitch.isSwitchOpen()) {
 					soundSwitch.closeSwitch();
-					settingsModel.setSettingMsgSound(false);
+					settingsModel.setSettingMsgSound(true);// TODO: 2017/8/18  
 				} else {
 					soundSwitch.openSwitch();
 					settingsModel.setSettingMsgSound(true);
@@ -324,7 +325,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 			case R.id.rl_switch_vibrate:
 				if (vibrateSwitch.isSwitchOpen()) {
 					vibrateSwitch.closeSwitch();
-					settingsModel.setSettingMsgVibrate(false);
+					settingsModel.setSettingMsgVibrate(true);// TODO: 2017/8/18  
 				} else {
 					vibrateSwitch.openSwitch();
 					settingsModel.setSettingMsgVibrate(true);
@@ -454,8 +455,13 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 					public void run() {
 						pd.dismiss();
 						// show login screen
+//						((MainActivity) getActivity()).finish();
+//						startActivity(new Intent(getActivity(), LoginActivity.class));
+												
+						getActivity().finish();
 						((MainActivity) getActivity()).finish();
-						startActivity(new Intent(getActivity(), LoginActivity.class));
+						startActivity(new Intent(getActivity(), SDLoginActivity.class));
+						
 						
 					}
 				});

@@ -35,13 +35,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
+import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.Constant;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.InviteMessgeDao;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.UserDao;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.runtimepermissions.PermissionsManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.runtimepermissions.PermissionsResultAction;
-
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMClientListener;
 import com.hyphenate.EMContactListener;
@@ -108,11 +110,20 @@ public class MainActivity extends BaseActivity {
 						getIntent().getBooleanExtra(Constant.ACCOUNT_KICKED_BY_OTHER_DEVICE, false))) {
 			DemoHelper.getInstance().logout(false,null);
 			finish();
-			startActivity(new Intent(this, LoginActivity.class));
+
+			SPManager.getInstance().remove("mobilePhone");
+			SPManager.getInstance().remove("communityId_one");
+			UserManager.getInstance().removeUser();		
+			startActivity(new Intent(this, SDLoginActivity.class));
 			return;
 		} else if (getIntent() != null && getIntent().getBooleanExtra("isConflict", false)) {
 			finish();
-			startActivity(new Intent(this, LoginActivity.class));
+			
+			SPManager.getInstance().remove("mobilePhone");
+			SPManager.getInstance().remove("communityId_one");
+			UserManager.getInstance().removeUser();
+		
+			startActivity(new Intent(this, SDLoginActivity.class));
 			return;
 		}
 		setContentView(R.layout.em_activity_main);
@@ -323,13 +334,13 @@ public class MainActivity extends BaseActivity {
 					if (ChatActivity.activityInstance != null && ChatActivity.activityInstance.toChatUsername != null &&
 							username.equals(ChatActivity.activityInstance.toChatUsername)) {
 					    String st10 = getResources().getString(R.string.have_you_removed);
-//					    Toast.makeText(MainActivity.this, ChatActivity.activityInstance.getToChatUsername() + st10, Toast.LENGTH_LONG)
-//					    .show();
+					    Toast.makeText(MainActivity.this, ChatActivity.activityInstance.getToChatUsername() + st10, Toast.LENGTH_LONG)
+					    .show();
 					    ChatActivity.activityInstance.finish();
 					}
                 }
             });
-//	        updateUnreadAddressLable();
+	        updateUnreadAddressLable();
         }
         @Override
         public void onContactInvited(String username, String reason) {}
@@ -339,7 +350,7 @@ public class MainActivity extends BaseActivity {
         public void onFriendRequestDeclined(String username) {}
 	}
 
-	public static class MyMultiDeviceListener implements EMMultiDeviceListener {
+	public class MyMultiDeviceListener implements EMMultiDeviceListener {
 
 		@Override
 		public void onContactEvent(int event, String target, String ext) {
@@ -359,10 +370,7 @@ public class MainActivity extends BaseActivity {
 	}
 	
 	private void unregisterBroadcastReceiver(){
-		if (broadcastManager!=null){
-			broadcastManager.unregisterReceiver(broadcastReceiver);
-		}
-
+	    broadcastManager.unregisterReceiver(broadcastReceiver);
 	}
 
 	@Override
@@ -474,7 +482,7 @@ public class MainActivity extends BaseActivity {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			moveTaskToBack(false);
 			finish();
-			Intent intent = new Intent(this, MainActivity.class);
+			Intent intent = new Intent(this, com.bjxiyang.zhinengshequ.myapplication.activity.MainActivity.class);
 			startActivity(intent);
 			return true;
 		}
@@ -520,7 +528,12 @@ public class MainActivity extends BaseActivity {
 						exceptionBuilder = null;
 						isExceptionDialogShow = false;
 						finish();
-						Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+
+						SPManager.getInstance().remove("mobilePhone");
+						SPManager.getInstance().remove("communityId_one");
+						UserManager.getInstance().removeUser();
+						
+						Intent intent = new Intent(MainActivity.this, SDLoginActivity.class);
 						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 						startActivity(intent);
 					}
@@ -544,8 +557,13 @@ public class MainActivity extends BaseActivity {
             showExceptionDialog(Constant.ACCOUNT_FORBIDDEN);
         } else if (intent.getBooleanExtra(Constant.ACCOUNT_KICKED_BY_CHANGE_PASSWORD, false) ||
                 intent.getBooleanExtra(Constant.ACCOUNT_KICKED_BY_OTHER_DEVICE, false)) {
-            this.finish();
-            startActivity(new Intent(this, LoginActivity.class));
+            this.finish();		
+
+			SPManager.getInstance().remove("mobilePhone");
+			SPManager.getInstance().remove("communityId_one");
+			UserManager.getInstance().removeUser();
+		
+            startActivity(new Intent(this, SDLoginActivity.class));
         }
 	}
 
@@ -570,7 +588,12 @@ public class MainActivity extends BaseActivity {
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 finish();
-                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+								
+								SPManager.getInstance().remove("mobilePhone");
+								SPManager.getInstance().remove("communityId_one");
+								UserManager.getInstance().removeUser();
+								
+                                startActivity(new Intent(MainActivity.this, SDLoginActivity.class));
                             }
                         });
                     }
