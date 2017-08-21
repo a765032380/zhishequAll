@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+    <View
+        android:background="#4183FF"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#4183FF"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:background="#4183FF"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <RelativeLayout
+                android:id="@+id/iv_gerenxinxi_xiugai_fanhui"
+                android:layout_width="40dp"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/c_icon_fanhui"
+                    android:layout_gravity="center" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="个人信息"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/ll_username"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#ffffff">
+        <TextView          
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" 
+            android:layout_weight="1"
+            android:text="用户名"/>
+        <TextView
+            android:id="@+id/tv_gerenxinxi_xiugai_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="好人"/>
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/a_btn_jinru" />
+        
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+       
+        android:background="#dddddd"></View>
+
+    <LinearLayout
+        android:id="@+id/ll_gerenxinxi_xiugai_touxiang"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="头像" />
+
+        <com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView
+            android:id="@+id/iv_gerenxinxi_xiugai_touxiang"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+           android:background="@drawable/a_icon_headportrait" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/a_btn_jinru" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+       
+        android:background="#dddddd"></View>
+
+    <LinearLayout
+        android:id="@+id/ll_gerenxinxi_xiugai_sex"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="性  别" />
+
+        <TextView
+            android:id="@+id/tv_gerenxinxi_xiugai_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="男" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/a_btn_jinru" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+       
+        android:background="#dddddd"></View>
+
+    <LinearLayout
+        android:id="@+id/changepassworldlativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="修改密码" />
+
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/a_btn_jinru" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:visibility="gone"
+        android:background="#dddddd">
+    </View>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_gerenxinxi_xiugai_menjinrenzhenge"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="门禁认证" />
+
+        <TextView
+            android:id="@+id/tv_gerenxinxi_xiugai_menjinrenzhenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2e77ff"
+            android:text="点击开通" />
+
+        
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"       
+        android:background="#dddddd"></View>
+
+
+
+</LinearLayout>

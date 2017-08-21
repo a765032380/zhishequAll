@@ -13,6 +13,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FindHuoDongList;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Floor;
+import com.bjxiyang.zhinengshequ.myapplication.bean.GeRenZhongXin;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HaoYouList;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
@@ -75,8 +76,13 @@ public class RequestCenter {
 
 
     public static void uploadPictures(String url, Map<String, Object> map,DisposeDataListener listener){
-       CommonOkHttpClient.uploadImgAndParameter(map,url,new DisposeDataHandle(listener,ImageUrl.class));
+       CommonOkHttpClient.uploadImgAndParameter(map,null,url,new DisposeDataHandle(listener,ImageUrl.class));
     }
+
+    public static void uploadPictures1(String url, Map<String, Object> map,DisposeDataListener listener){
+        CommonOkHttpClient.uploadImgAndParameter(map,GetHeaders.getHeaders(),url,new DisposeDataHandle(listener,ImageUrl.class));
+    }
+
     public static void uploadPicturesList(String url, Map<String, Object> map,DisposeDataListener listener){
         CommonOkHttpClient.uploadImgAndParameterList(map,url,new DisposeDataHandle(listener,ImageUrl.class));
     }
@@ -314,6 +320,16 @@ public class RequestCenter {
     public static void neighbor_deletefriend(String url,DisposeDataListener listener){
         RequestCenter.postRequest1(url,null,null,listener, FanHui2.class);
     }
+    public static void usercenter_getUserInfo(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,null,listener, GeRenZhongXin.class);
+    }
+    public static void usercenter_updateUserInfo(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,GetHeaders.getHeaders(),listener, FanHui2.class);
+    }
+    public static void usercenter_getSysMsg(String url,DisposeDataListener listener){
+        RequestCenter.postRequest1(url,null,GetHeaders.getHeaders(),listener, FanHui2.class);
+    }
+
 
 
 

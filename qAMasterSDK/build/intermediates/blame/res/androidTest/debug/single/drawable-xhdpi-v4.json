@@ -40,12 +40,12 @@
         "source": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\qamaster_avatar.png"
     },
     {
-        "merged": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\bugtag_hint.png",
-        "source": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\bugtag_hint.png"
-    },
-    {
         "merged": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\qamaster_ic_warn.png",
         "source": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\qamaster_ic_warn.png"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\bugtag_hint.png",
+        "source": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\bugtag_hint.png"
     },
     {
         "merged": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\qamaster_btn_check_off_holo_dark.png",

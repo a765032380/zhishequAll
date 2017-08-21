@@ -1,5 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -54,33 +55,71 @@ public class JieFang_HuoDong extends Fragment implements
     private int pageCount=1;
     private int pageSize=5;
     private boolean isScoll=true;
+    private int height=0;
+    private int partyType;
+    private boolean isxiangqing=false;
 
     /***
      * OTHER
      */
     private HuoDongAdapter adapter;
-
-
+    @SuppressLint({"NewApi", "ValidFragment"})
+    public JieFang_HuoDong(){
+    }
+    @SuppressLint({"NewApi", "ValidFragment"})
+    public JieFang_HuoDong(int partyType){
+        this.partyType=partyType;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=View.inflate(getContext(), R.layout.fragment_avtivityplanning,null);
         initUI();
-        getData();
         return view;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (hidden){
+//            if (isone){
+//                height=0;
+//                isone=false;
+//            }else {
+                height = swipeRefreshLayout.getScrollY();
+//            }
+        }else {
+
+            swipeRefreshLayout.post(new Runnable() {
+                //让scrollview跳转到顶部，必须放在runnable()方法中
+                @Override
+                public void run() {
+                    swipeRefreshLayout.scrollTo(0,height);
+                }
+            });
+        }
+        super.onHiddenChanged(hidden);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         getData();
+        swipeRefreshLayout.post(new Runnable() {
+            //让scrollview跳转到顶部，必须放在runnable()方法中
+            @Override
+            public void run() {
+                swipeRefreshLayout.scrollTo(0,height);
+            }
+        });
     }
 
     private void getData() {
+
         mList=new ArrayList();
         mListAll=new ArrayList();
         String url= XY_Response2.URL_NEIGHBOR_FINDPARTY+"cmemberId="+
                 SPManager.getInstance().getString("c_memberId",null)+
+                "&partyType="+partyType+
                 "&pageCount="+pageCount+"&pageSize="+pageSize;
         RequestCenter.neighbor_findparty(url, new DisposeDataListener() {
             @Override
@@ -91,7 +130,7 @@ public class JieFang_HuoDong extends Fragment implements
                     mListAll=mList;
                     adapter=new HuoDongAdapter(getContext(),mListAll);
                     lv_avtivityplanning.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+//                    adapter.notifyDataSetChanged();
                 }else {
                     Toast.makeText(getContext(),fanhui.getMsg(),Toast.LENGTH_LONG).show();
                 }
@@ -147,11 +186,13 @@ public class JieFang_HuoDong extends Fragment implements
                 }
             }
         }, 1000);
+
     }
     private void upData() {
         mList=new ArrayList<>();
         String url= XY_Response2.URL_NEIGHBOR_FINDPARTY+"cmemberId="+
                 UserManager.getInstance().getUser().getObj().getC_memberId()+
+                "&partyType="+partyType+
                 "&pageCount="+pageCount+"&pageSize="+pageSize;
 
         RequestCenter.neighbor_findparty(url, new DisposeDataListener() {

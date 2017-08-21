@@ -29,6 +29,7 @@ public class JieFangfragment extends Fragment{
     private static final String HAOYOU="好友";
     private static final String HUODONG="活动";
     private static final String ZHOUBIANSHI="周边事";
+    private static final int HUODONGLIEBIAO_INT=0;
 
     private View view;
     private Context mContext;
@@ -91,7 +92,7 @@ public class JieFangfragment extends Fragment{
         mTitleList.add(ZHOUBIANSHI);
 
         mFragmentList.add(new JieFang_HaoYou());
-        mFragmentList.add(new JieFang_HuoDong());
+        mFragmentList.add(new JieFang_HuoDong(HUODONGLIEBIAO_INT));
 //        mFragmentList.add(new FragmentTwo());
 
     }

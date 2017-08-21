@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.baisi.myapplication.okhttp.https.HttpsUtils;
 import com.baisi.myapplication.okhttp.listener.DisposeDataHandle;
+import com.baisi.myapplication.okhttp.request.RequestParams;
 import com.baisi.myapplication.okhttp.response.CommonFileCallback;
 import com.baisi.myapplication.okhttp.response.CommonJsonCallback;
 
@@ -20,6 +21,7 @@ import javax.net.ssl.SSLSession;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -113,6 +115,7 @@ public class CommonOkHttpClient {
 //        }
         // 创建RequestBody
         okhttp3.Request request = null;
+
 //        if (map.get("iconFile")!=null){
         RequestBody body = builder.build();
         request = new okhttp3.Request.Builder().url(url)// 地址
@@ -134,7 +137,7 @@ public class CommonOkHttpClient {
 
     }
 
-    public final static void uploadImgAndParameter(Map<String, Object> map,
+    public final static void uploadImgAndParameter(Map<String, Object> map, RequestParams headers,
                                                     String url,DisposeDataHandle handle) {
 
          OkHttpClient client = new OkHttpClient.Builder()
@@ -183,11 +186,19 @@ public class CommonOkHttpClient {
 //            builder.addPart();
 
         }
+        Headers.Builder mHeaderBuild = new Headers.Builder();
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.urlParams.entrySet()) {
+                mHeaderBuild.add(entry.getKey(), entry.getValue());
+            }
+        }
+        Headers mHeader = mHeaderBuild.build();
         // 创建RequestBody
         okhttp3.Request request = null;
 //        if (map.get("iconFile")!=null){
             RequestBody body = builder.build();
             request = new okhttp3.Request.Builder().url(url)// 地址
+                    .headers(mHeader)
                     .post(body)// 添加请求体
                     .build();
 //        }

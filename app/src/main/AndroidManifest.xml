@@ -224,8 +224,33 @@
         <activity
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.YiJianFanKuiActivity"
             android:theme="@style/otherPageStyle">
-
         </activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.XiuGaiNameActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.GuanYuWoMenActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.SheZhiActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.WoFaQiDeYueYouActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.HuiFuActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.ZheKouQuanActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
+
+
 
 
         <activity

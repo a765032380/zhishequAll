@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#4183FF"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_wodeyueyou_fanghui"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.9">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="25dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/c_icon_fanhui"
+                android:paddingTop="7dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tarenhuifu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_yifabu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="他人回复"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/iv_tarenhuifu_line"
+                android:layout_width="10dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/a_bg_line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical|left"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_xitongxiaoxi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_xitongxiaoxi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="系统消息"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/iv_xitongxiaoxi_line"
+                    android:layout_width="10dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/a_bg_line" />
+            </LinearLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_username_save"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </LinearLayout>
+    
+    <ListView
+        android:id="@+id/lv_tarenhuifu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:scrollbars="none"></ListView>
+
+    <ListView
+        android:id="@+id/lv_xitongxiaoxi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:scrollbars="none">
+        
+    </ListView>
+
+</LinearLayout>

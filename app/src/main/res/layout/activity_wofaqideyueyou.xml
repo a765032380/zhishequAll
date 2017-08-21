@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <View
+        android:background="#4183FF"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_wodeyueyou_fanghui"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:background="#4183FF"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="25dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/c_icon_fanhui"
+                android:paddingTop="7dp" />
+        </RelativeLayout>
+            <com.astuetz.PagerSlidingTabStrip
+                android:layout_weight="9"
+                android:background="#4183FF"
+                android:id="@+id/tabs"
+                android:textSize="15sp"
+                app:pstsShouldExpand="true"
+                app:pstsIndicatorHeight="2dp"
+                app:pstsIndicatorColor="#FFFFFF"
+                android:layout_width="0dp"
+                android:layout_height="40dp" />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:background="#4183FF"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+        </RelativeLayout>
+
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_yifabu"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="3"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:orientation="vertical">-->
+            <!--<TextView-->
+                <!--android:id="@+id/tv_yifabu"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="已发布"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:textSize="20sp" />-->
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_yifabu_line"-->
+                <!--android:layout_width="10dp"-->
+                <!--android:layout_height="3dp"-->
+                <!--android:layout_marginTop="3dp"-->
+                <!--android:background="@drawable/a_bg_line" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="2"-->
+            <!--android:gravity="center_vertical|left"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_yibaoming"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_yibaoming"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="已报名"-->
+                    <!--android:textColor="#ffffff"-->
+                    <!--android:textSize="20sp" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_yibaoming_line"-->
+                    <!--android:layout_width="10dp"-->
+                    <!--android:layout_height="3dp"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_marginTop="3dp"-->
+                    <!--android:background="@drawable/a_bg_line" />-->
+            <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/rl_username_save"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="42dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_weight="0.8"-->
+            <!--android:gravity="center"-->
+            <!--android:visibility="invisible">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="25dp"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginRight="15dp"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:textSize="20sp" />-->
+        <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
+    <!---->
+    <!--<ListView-->
+        <!--android:id="@+id/lv_yifabu"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:scrollbars="none"></ListView>-->
+
+    <!--<ListView-->
+        <!--android:id="@+id/lv_yibaoming"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:scrollbars="none">-->
+        
+    <!--</ListView>-->
+        </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:background="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

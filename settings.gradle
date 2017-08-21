@@ -1,1 +1,1 @@
-include ':app', ':imoocsdk', ':myapplication', ':qAMasterSDK', ':easeui'
+include ':app', ':imoocsdk', ':myapplication', ':qAMasterSDK', ':easeui2'

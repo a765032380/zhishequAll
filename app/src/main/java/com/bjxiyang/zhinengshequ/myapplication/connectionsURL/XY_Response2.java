@@ -34,6 +34,13 @@ public class XY_Response2 {
     public static final String URL_NEIGHBOR_EDITREMARK=URL+"neighbor/editremark?";
     //删除好友
     public static final String URL_NEIGHBOR_DELETEFRIEND=URL+"neighbor/deletefriend?";
+    //个人信息修改
+    public static final String URL_UESRCENTER_UPDATEUSERINFO=URL+"usercenter/updateUserInfo?";
+    //个人信息查询
+    public static final String URL_UESRCENTER_GETUSERINFO=URL+"usercenter/getUserInfo?";
+    //获取系统消息
+    public static final String URL_USERCENTER_GETSYSMSG=URL+"usercenter/getSysMsg?";
+
 
 
 }

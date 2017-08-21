@@ -15,7 +15,7 @@ public class GetHeaders {
     public static RequestParams getHeaders(){
         RequestParams headers=new RequestParams();
 //        headers.put("private-token","18813045215");
-        headers.put("private-token",UserManager.getInstance().getUser().getObj().getMobilePhone()
+        headers.put("private-token",SPManager.getInstance().getString("mobilePhone",null)
                 +"_"+SPManager.getInstance().getString("loginKey",""));
 
 //        UserManager.getInstance().getUser().getObj().getMobilePhone()+

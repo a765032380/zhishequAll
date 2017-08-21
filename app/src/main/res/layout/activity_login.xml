@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/a_bg_logo">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="100dp"
+            android:text="登录"
+            android:textColor="#323232"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="如未注册，请您注册后体验"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="手机号"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_login_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入手机号"
+            android:background="@null"
+            android:inputType="number" 
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f1f1f1"
+            android:layout_marginTop="15dp"></View>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="密码"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_login_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入密码"
+            android:background="@null"
+            android:inputType="number"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f1f1f1"
+            android:layout_marginTop="15dp"></View>
+
+        <Button
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/a_btn_loginto"
+            android:layout_marginTop="20dp"
+            android:text="登录" />
+
+        <Button
+            android:textSize="20dp"
+            android:textColor="#2e77ff"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/registeredMenutForm"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/a_btn_registration"
+            android:layout_marginTop="20dp"
+            android:text="注册"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="20dp"
+            android:text="忘记密码"
+            android:textColor="#2e77ff"/>
+        <View
+            android:id="@+id/forget_password_button"
+            android:layout_width="56dp"
+            android:layout_height="1dp"
+            android:background="#2e77ff"></View>
+    </LinearLayout>
+
+</LinearLayout>

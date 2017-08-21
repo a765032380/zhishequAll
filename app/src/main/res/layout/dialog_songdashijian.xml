@@ -6,6 +6,7 @@
     android:background="@drawable/a_a_bg_beijing">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:gravity="center"
