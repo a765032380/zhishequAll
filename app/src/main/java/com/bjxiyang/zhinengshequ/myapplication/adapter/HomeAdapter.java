@@ -133,17 +133,28 @@ public class HomeAdapter extends BaseAdapter {
                     viewHolder.ll_01.setVisibility(View.VISIBLE);
                     viewHolder.ll_02.setVisibility(View.VISIBLE);
                     viewHolder.ll_03.setVisibility(View.GONE);
-                    HomeBean.ObjBean.ShopObjBean.ProductObjBean productObjBean2=
+                    HomeBean.ObjBean.ShopObjBean.ProductObjBean productObj2=
                             shopObjBean.getProductObj().get(1);
-                    setShop(viewHolder,productObjBean2);
+                    HomeBean.ObjBean.ShopObjBean.ProductObjBean productObj1=
+                            shopObjBean.getProductObj().get(0);
+                    setShop(viewHolder,productObj1);
+                    setShop2(viewHolder,productObj2);
                     break;
                 case 3:
                     viewHolder.ll_01.setVisibility(View.VISIBLE);
                     viewHolder.ll_02.setVisibility(View.VISIBLE);
                     viewHolder.ll_03.setVisibility(View.VISIBLE);
-                    HomeBean.ObjBean.ShopObjBean.ProductObjBean productObjBean3=
+                    HomeBean.ObjBean.ShopObjBean.ProductObjBean productObj31=
+                            shopObjBean.getProductObj().get(0);
+                    HomeBean.ObjBean.ShopObjBean.ProductObjBean productObj32=
+                        shopObjBean.getProductObj().get(1);
+                    HomeBean.ObjBean.ShopObjBean.ProductObjBean productObj33=
                             shopObjBean.getProductObj().get(2);
-                    setShop(viewHolder,productObjBean3);
+                    setShop(viewHolder,productObj31);
+                    setShop2(viewHolder,productObj32);
+                    setShop3(viewHolder,productObj33);
+
+
                     break;
                 default:
                     viewHolder.ll_01.setVisibility(View.GONE);
@@ -164,6 +175,32 @@ public class HomeAdapter extends BaseAdapter {
         }else {
             viewHolder.tv_zhehoujia1.setText(productObjBean.getDiscountPrice()+"");
             viewHolder.tv_yuanjia1.setText(productObjBean.getPrice()+"");
+        }
+    }
+    private void setShop2(ViewHolder viewHolder,HomeBean.ObjBean.ShopObjBean.ProductObjBean productObjBean){
+        ImageLoaderManager.getInstance(mContext)
+                .displayImage(viewHolder.goods_img2,productObjBean.getLogo());
+
+        viewHolder.tv_goodsname2.setText(productObjBean.getName());
+        if (productObjBean.getIfDiscount()==0){
+            viewHolder.tv_zhehoujia2.setText(productObjBean.getPrice()+"");
+            viewHolder.tv_yuanjia2.setText("");
+        }else {
+            viewHolder.tv_zhehoujia2.setText(productObjBean.getDiscountPrice()+"");
+            viewHolder.tv_yuanjia2.setText(productObjBean.getPrice()+"");
+        }
+    }
+    private void setShop3(ViewHolder viewHolder,HomeBean.ObjBean.ShopObjBean.ProductObjBean productObjBean){
+        ImageLoaderManager.getInstance(mContext)
+                .displayImage(viewHolder.goods_img3,productObjBean.getLogo());
+
+        viewHolder.tv_goodsname3.setText(productObjBean.getName());
+        if (productObjBean.getIfDiscount()==0){
+            viewHolder.tv_zhehoujia3.setText(productObjBean.getPrice()+"");
+            viewHolder.tv_yuanjia3.setText("");
+        }else {
+            viewHolder.tv_zhehoujia3.setText(productObjBean.getDiscountPrice()+"");
+            viewHolder.tv_yuanjia3.setText(productObjBean.getPrice()+"");
         }
     }
 
@@ -198,6 +235,33 @@ public class HomeAdapter extends BaseAdapter {
         TextView tv_zhehoujia1;
         @BindView(R.id.tv_yuanjia1)
         TextView tv_yuanjia1;
+
+
+        @BindView(R.id.goods_img2)
+        ImageView goods_img2;
+        @BindView(R.id.tv_sale2)
+        TextView tv_sale2;
+        @BindView(R.id.tv_goodsname2)
+        TextView tv_goodsname2;
+        @BindView(R.id.tv_zhehoujia2)
+        TextView tv_zhehoujia2;
+        @BindView(R.id.tv_yuanjia2)
+        TextView tv_yuanjia2;
+
+
+        @BindView(R.id.goods_img3)
+        ImageView goods_img3;
+        @BindView(R.id.tv_sale3)
+        TextView tv_sale3;
+        @BindView(R.id.tv_goodsname3)
+        TextView tv_goodsname3;
+        @BindView(R.id.tv_zhehoujia3)
+        TextView tv_zhehoujia3;
+        @BindView(R.id.tv_yuanjia3)
+        TextView tv_yuanjia3;
+
+
+
         public ViewHolder(View view){
             ButterKnife.bind(this,view);
         }

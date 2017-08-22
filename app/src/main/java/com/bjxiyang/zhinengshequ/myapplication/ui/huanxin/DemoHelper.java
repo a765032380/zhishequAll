@@ -1211,13 +1211,15 @@ public class DemoHelper {
         //如果你是从服务器中读读取到的，最好在本地进行缓存       //// TODO: 2017/8/18  
         EaseUser easeUser = null;
         Users users = UserManager.getInstance().getUser();
+        if (users!=null) {
         Users.Obj obj = users.getObj();
-        //如果用户是本人，就设置自己的头像
-        if (username.equals(EMClient.getInstance().getCurrentUser())) {
-            easeUser = new EaseUser(username);
-            easeUser.setAvatar(obj.getHeadPhotoUrl());
-            easeUser.setNick(obj.getNickName());
-            return easeUser;
+            //如果用户是本人，就设置自己的头像
+            if (username.equals(EMClient.getInstance().getCurrentUser())) {
+                easeUser = new EaseUser(username);
+                easeUser.setAvatar(obj.getHeadPhotoUrl());
+                easeUser.setNick(obj.getNickName());
+                return easeUser;
+            }
         }
         //收到别人的消息，设置别人的头像
         if (contactList != null && contactList.containsKey(username)) {

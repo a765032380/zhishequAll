@@ -89,18 +89,44 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="14dp"
-        android:id="@+id/linearLayout3">
+        android:id="@+id/linearLayout3"
+        android:orientation="horizontal">
 
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-
+    <LinearLayout
         android:gravity="center"
-        android:scrollbars="vertical"
+        android:layout_marginBottom="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_alignBottom="@+id/linearLayout3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/iv_left"
+            android:visibility="invisible"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/a_btn_left" />
+        <android.support.v7.widget.RecyclerView
+            android:layout_weight="8"
+            android:id="@+id/my_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:scrollbars="vertical"
+            />
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/iv_right"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/a_btn_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </RelativeLayout>

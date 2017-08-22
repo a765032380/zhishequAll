@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.MyFragmentAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_HuoDong;
 
@@ -28,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/8/21 0021.
  */
 
-public class WoFaQiDeYueYouActivity extends MySwipeBackActivity {
+public class WoFaQiDeYueYouActivity extends LogOutBaseActivity {
     private static final String YIFABU="已发布";
     private static final String YIBAOMING="已报名";
     private static final int YIFABU_INT=1;

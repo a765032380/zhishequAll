@@ -54,8 +54,8 @@ import mehdi.sakout.dynamicbox.DynamicBox;
 public class SDLoginActivity extends BaseActivity {
     private EditText et_zhuce_password_again;
     private Button bt_get_smscode;
-    LinearLayout loginMenutView;
-    LinearLayout regiestMenutView;
+    Button loginMenutView;
+    Button regiestMenutView;
     LinearLayout loginView;
     LinearLayout regiestView;
 
@@ -76,7 +76,7 @@ public class SDLoginActivity extends BaseActivity {
     TextView tv_pro_content;
     TextView forget_password_button;
 
-    ImageButton check_out;
+//    ImageButton check_out;
 
     String sms_id;
 
@@ -99,7 +99,7 @@ public class SDLoginActivity extends BaseActivity {
                 loginView.setVisibility(View.VISIBLE);
                 regiestView.setVisibility(View.GONE);
                 MyUntil.show(SDLoginActivity.this,"注册成功");
-                showPointForLogin();
+//                showPointForLogin();
                 qingkong();
                 DialogUntil.closeLoadingDialog();
 
@@ -115,7 +115,7 @@ public class SDLoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_sdlogin);
+        setContentView(R.layout.activity_login);
         getQuanxian();
 
         //判断有没有用户的信息,如果有,直接跳转到主界面
@@ -191,84 +191,84 @@ public class SDLoginActivity extends BaseActivity {
     private void initView()
     {
 
-        tv_pro_content= (TextView) findViewById(R.id.tv_pro_content);
-        tv_pro_content.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(SDLoginActivity.this,FuWuTiaoKuanActivity.class);
-                startActivity(intent);
-            }
-        });
+//        tv_pro_content= (TextView) findViewById(R.id.tv_pro_content);
+//        tv_pro_content.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(SDLoginActivity.this,FuWuTiaoKuanActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         point_login = (ImageView)findViewById(R.id.selected_menu_login);
         point_regiest = (ImageView) findViewById(R.id.selected_menu_regiest);
 
         input_user_name_login_editview = (EditText) findViewById(R.id.et_login_username);
         input_user_password_login_editview = (EditText) findViewById(R.id.et_login_pwd);
         //记住密码的选择框
-        check_out = (ImageButton) findViewById(R.id.checkbox_button);
+//        check_out = (ImageButton) findViewById(R.id.checkbox_button);
         //设置记住密码为选中状态
-        check_out.setSelected(true);
-        check_out.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //设置状态为相反的状态
-                boolean isCheckout = check_out.isSelected();
-                check_out.setSelected(!isCheckout);
-            }
-        });
+//        check_out.setSelected(true);
+//        check_out.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //设置状态为相反的状态
+//                boolean isCheckout = check_out.isSelected();
+//                check_out.setSelected(!isCheckout);
+//            }
+//        });
         //发送验证码按钮
-        bt_get_smscode= (Button) findViewById(R.id.bt_get_smscode);
-        //点击发送验证码按钮后的逻辑处理
-        bt_get_smscode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //设置发送验证码后的倒计时的时间
-                timeCount=60;
-                //得到用户的手机号
-                String uPhone=String.valueOf(input_user_name_regiest_editview.getText());
-//                String url=XY_Response.URL+"";
-                //判断用户输入的手机号是不是正确的手机号
-                if (!isMobilephone(uPhone)) {
-                    Toast.makeText(SDLoginActivity.this,"请输入正确的手机号",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                //弹出等待的Dialog
-                DialogUntil.showLoadingDialog(SDLoginActivity.this,"请稍等",true);
-                //设置类型为注册类型,后台需要的
-                String type="0";
-                //拼接访问的URL
-                String test= XY_Response.URL_SED_MSM+"mobilePhone="+uPhone+"&type="+type;
-                //请求后台数据
-                RequestCenter.register(test, new DisposeDataListener() {
-                    @Override
-                    public void onSuccess(Object responseObj) {
-                        //请求成功返回数据并转化为实体类
-                        FanHui fanHui= (FanHui) responseObj;
-                        //清除Dialog
-                        DialogUntil.closeLoadingDialog();
-                        //判断后台的返回码,如果是1000的话说明发送验证码成功
-                        if (fanHui.getCode().equals("1000")){
-                            //发送验证码成功以后进行操作,因为是在线程中所以发送给Handler
-                            Message message=new Message();
-                            message.what=7000;
-                            handler.sendMessage(message);
-                            //如果返回的是500的话打印返回的错误信息
-                        }else if (fanHui.getCode().equals("500")){
-                            Toast.makeText(SDLoginActivity.this,
-                                    fanHui.getMsg(),Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Object reasonObj) {
-                        //网络请求失败也要清掉Dialog
-                        DialogUntil.closeLoadingDialog();
-                        //弹出请用户检查网络的Dialog,可以选择取消或者调到网络修改的页面
-                        MyDialog.showDialog(SDLoginActivity.this,"请检查网络连接");
-                    }
-                });
-            }
-        });
+//        bt_get_smscode= (Button) findViewById(R.id.bt_get_smscode);
+//        //点击发送验证码按钮后的逻辑处理
+//        bt_get_smscode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //设置发送验证码后的倒计时的时间
+//                timeCount=60;
+//                //得到用户的手机号
+//                String uPhone=String.valueOf(input_user_name_regiest_editview.getText());
+////                String url=XY_Response.URL+"";
+//                //判断用户输入的手机号是不是正确的手机号
+//                if (!isMobilephone(uPhone)) {
+//                    Toast.makeText(SDLoginActivity.this,"请输入正确的手机号",Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                //弹出等待的Dialog
+//                DialogUntil.showLoadingDialog(SDLoginActivity.this,"请稍等",true);
+//                //设置类型为注册类型,后台需要的
+//                String type="0";
+//                //拼接访问的URL
+//                String test= XY_Response.URL_SED_MSM+"mobilePhone="+uPhone+"&type="+type;
+//                //请求后台数据
+//                RequestCenter.register(test, new DisposeDataListener() {
+//                    @Override
+//                    public void onSuccess(Object responseObj) {
+//                        //请求成功返回数据并转化为实体类
+//                        FanHui fanHui= (FanHui) responseObj;
+//                        //清除Dialog
+//                        DialogUntil.closeLoadingDialog();
+//                        //判断后台的返回码,如果是1000的话说明发送验证码成功
+//                        if (fanHui.getCode().equals("1000")){
+//                            //发送验证码成功以后进行操作,因为是在线程中所以发送给Handler
+//                            Message message=new Message();
+//                            message.what=7000;
+//                            handler.sendMessage(message);
+//                            //如果返回的是500的话打印返回的错误信息
+//                        }else if (fanHui.getCode().equals("500")){
+//                            Toast.makeText(SDLoginActivity.this,
+//                                    fanHui.getMsg(),Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Object reasonObj) {
+//                        //网络请求失败也要清掉Dialog
+//                        DialogUntil.closeLoadingDialog();
+//                        //弹出请用户检查网络的Dialog,可以选择取消或者调到网络修改的页面
+//                        MyDialog.showDialog(SDLoginActivity.this,"请检查网络连接");
+//                    }
+//                });
+//            }
+//        });
 
 
 
@@ -401,141 +401,144 @@ public class SDLoginActivity extends BaseActivity {
         //第二次密码输入框
         et_zhuce_password_again= (EditText) findViewById(R.id.et_zhuce_password_again);
         //注册按钮
-        regiest_action_button = (Button) findViewById(R.id.reg_confirm) ;
-        //点击注册按钮后的操作
-        regiest_action_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //修改密码的提交按钮
-                final String phone= String.valueOf(input_user_name_regiest_editview.getText());
-                final String yanzhengma= String.valueOf(input_user_sms_code_editview.getText());
-                final String password= String.valueOf(input_user_password_regiest_editeView.getText());
-                final String password_two= String.valueOf(et_zhuce_password_again.getText());
-                //判断用户是否输入了验证码
-                if (yanzhengma.equals("")||yanzhengma==null){
-                    Toast.makeText(SDLoginActivity.this,"请输入验证码",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                //判断手机号输入的格式
-                if (!isMobilephone(phone)) {
-                    Toast.makeText(SDLoginActivity.this,"请输入正确的手机号",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                //判断密码的输入格式
-                if (!rexCheckPassword(password)){
-                    Toast.makeText(SDLoginActivity.this,"请输入8~16位密码,密码必须包含字母和数字",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                //判断两次密码是否一致
-                if (!password.equals(password_two)){
-                    Toast.makeText(SDLoginActivity.this,"两次输入密码不一致",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if(ContextCompat.checkSelfPermission(SDLoginActivity.this,
-                            Manifest.permission.READ_PHONE_STATE)== PackageManager.PERMISSION_GRANTED){
-                        getIMEI();
-                    }
-
-                }
-                //弹出正在注册的Dialog
-                DialogUntil.showLoadingDialog(SDLoginActivity.this,"正在注册",true);
-                //拼接访问的URL
-                String url=XY_Response.URL_REGISTER+"mobilePhone="+phone+"&Dynamic="+yanzhengma+"&password="+getMD5(password);
-                RequestCenter.register(url, new DisposeDataListener() {
-                    @Override
-                    public void onSuccess(Object responseObj) {
-
-//                        new Thread(new Runnable() {
-//                            public void run() {
-//                                try {
-//                                    // call method in SDK
-//                                    EMClient.getInstance().createAccount(phone, getMD5(password));
-//                                    runOnUiThread(new Runnable() {
-//                                        public void run() {
-//                                            // save current user
-//                                            DemoHelper.getInstance().setCurrentUserName(phone);
-//                                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.Registered_successfully), Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    });
-//                                } catch (final Exception e) {
+//        regiest_action_button = (Button) findViewById(R.id.reg_confirm) ;
+//        //点击注册按钮后的操作
+//        regiest_action_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //修改密码的提交按钮
+//                final String phone= String.valueOf(input_user_name_regiest_editview.getText());
+//                final String yanzhengma= String.valueOf(input_user_sms_code_editview.getText());
+//                final String password= String.valueOf(input_user_password_regiest_editeView.getText());
+//                final String password_two= String.valueOf(et_zhuce_password_again.getText());
+//                //判断用户是否输入了验证码
+//                if (yanzhengma.equals("")||yanzhengma==null){
+//                    Toast.makeText(SDLoginActivity.this,"请输入验证码",Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                //判断手机号输入的格式
+//                if (!isMobilephone(phone)) {
+//                    Toast.makeText(SDLoginActivity.this,"请输入正确的手机号",Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                //判断密码的输入格式
+//                if (!rexCheckPassword(password)){
+//                    Toast.makeText(SDLoginActivity.this,"请输入8~16位密码,密码必须包含字母和数字",Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                //判断两次密码是否一致
+//                if (!password.equals(password_two)){
+//                    Toast.makeText(SDLoginActivity.this,"两次输入密码不一致",Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                if (Build.VERSION.SDK_INT >= 23) {
+//                    if(ContextCompat.checkSelfPermission(SDLoginActivity.this,
+//                            Manifest.permission.READ_PHONE_STATE)== PackageManager.PERMISSION_GRANTED){
+//                        getIMEI();
+//                    }
 //
-//                                }
-//                            }
-//                        }).start();
-
-                        //访问成功清除Dialog
-                        DialogUntil.closeLoadingDialog();
-                        //得到后台返回的数据并保存到实体类中
-                        FanHui fanHui= (FanHui) responseObj;
-                        //如果返回码为1000,说明注册成功
-                        if (fanHui.getCode().equals("1000")){
-                            //发送信息到Handler,让Handler进行操作
-                            Message message=new Message();
-                            message.what=8000;
-                            handler.sendMessage(message);
-                            //如果返回码为500,说明注册失败
-                        }else if (fanHui.getCode().equals("500")){
-                            //注册失败,弹出注册失败的原因
-                            Toast.makeText(SDLoginActivity.this,
-                                   fanHui.getMsg(),Toast.LENGTH_LONG).show();
-                        }
-                    }
-                    @Override
-                    public void onFailure(Object reasonObj) {
-                        //网络访问失败也要清除Dialog
-                        DialogUntil.closeLoadingDialog();
-                        //弹出检查网络的Dialog,让用户可以直接跳转到修改网络页面
-                        MyDialog.showDialog(SDLoginActivity.this,"请检查网络连接");
-                    }
-                });
-            }
-        });
+//                }
+//                //弹出正在注册的Dialog
+//                DialogUntil.showLoadingDialog(SDLoginActivity.this,"正在注册",true);
+//                //拼接访问的URL
+//                String url=XY_Response.URL_REGISTER+"mobilePhone="+phone+"&Dynamic="+yanzhengma+"&password="+getMD5(password);
+//                RequestCenter.register(url, new DisposeDataListener() {
+//                    @Override
+//                    public void onSuccess(Object responseObj) {
+//
+////                        new Thread(new Runnable() {
+////                            public void run() {
+////                                try {
+////                                    // call method in SDK
+////                                    EMClient.getInstance().createAccount(phone, getMD5(password));
+////                                    runOnUiThread(new Runnable() {
+////                                        public void run() {
+////                                            // save current user
+////                                            DemoHelper.getInstance().setCurrentUserName(phone);
+////                                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.Registered_successfully), Toast.LENGTH_SHORT).show();
+////                                        }
+////                                    });
+////                                } catch (final Exception e) {
+////
+////                                }
+////                            }
+////                        }).start();
+//
+//                        //访问成功清除Dialog
+//                        DialogUntil.closeLoadingDialog();
+//                        //得到后台返回的数据并保存到实体类中
+//                        FanHui fanHui= (FanHui) responseObj;
+//                        //如果返回码为1000,说明注册成功
+//                        if (fanHui.getCode().equals("1000")){
+//                            //发送信息到Handler,让Handler进行操作
+//                            Message message=new Message();
+//                            message.what=8000;
+//                            handler.sendMessage(message);
+//                            //如果返回码为500,说明注册失败
+//                        }else if (fanHui.getCode().equals("500")){
+//                            //注册失败,弹出注册失败的原因
+//                            Toast.makeText(SDLoginActivity.this,
+//                                   fanHui.getMsg(),Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//                    @Override
+//                    public void onFailure(Object reasonObj) {
+//                        //网络访问失败也要清除Dialog
+//                        DialogUntil.closeLoadingDialog();
+//                        //弹出检查网络的Dialog,让用户可以直接跳转到修改网络页面
+//                        MyDialog.showDialog(SDLoginActivity.this,"请检查网络连接");
+//                    }
+//                });
+//            }
+//        });
 
         loginView = (LinearLayout) findViewById(R.id.loginView);
         //布局的控制
         regiestView = (LinearLayout)findViewById(R.id.registerView);
 
         //选择登录注册按钮实例化
-        loginMenutView = (LinearLayout) findViewById(R.id.loginMenutForm);
-        regiestMenutView  = (LinearLayout) findViewById(R.id.registeredMenutForm);
+//        loginMenutView = (Button) findViewById(R.id.loginMenutForm);
+        regiestMenutView  = (Button) findViewById(R.id.registeredMenutForm);
         //选择登录按钮,点击以后为登录页面
-        loginMenutView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginView.setVisibility(View.VISIBLE);
-                regiestView.setVisibility(View.GONE);
-                showPointForLogin();
-                //清空已经填写的信息
-                qingkong();
-                islogin = true;
-            }
-        });
+//        loginMenutView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loginView.setVisibility(View.VISIBLE);
+//                regiestView.setVisibility(View.GONE);
+//                showPointForLogin();
+//                //清空已经填写的信息
+//                qingkong();
+//                islogin = true;
+//            }
+//        });
         //选择注册按钮,点击以后为注册页面
         regiestMenutView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginView.setVisibility(View.GONE);
-                regiestView.setVisibility(View.VISIBLE);
-                showPointForRegiest();
+                Intent intent=new Intent(SDLoginActivity.this,RegisteredActivity.class);
+                startActivity(intent);
+
+//                loginView.setVisibility(View.GONE);
+//                regiestView.setVisibility(View.VISIBLE);
+//                showPointForRegiest();
                 //清空已经填写的信息
-                qingkong();
-                islogin = false;
+//                qingkong();
+//                islogin = false;
 
             }
         });
         // 默认先显示登录的
-        this.showPointForLogin();
+//        this.showPointForLogin();
         //忘记密码按钮
         forget_password_button = (TextView)findViewById(R.id.forget_password_button);
-        //点击以后跳转到忘记密码页面
+//        点击以后跳转到忘记密码页面
         forget_password_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // forget password
                 Intent intent = new Intent(SDLoginActivity.this,RegisteredActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("ischange",true);
+                bundle.putBoolean("isXiuGai",true);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -543,15 +546,15 @@ public class SDLoginActivity extends BaseActivity {
     }
 
     //显示为登录
-    public void showPointForLogin(){
-        point_login.setVisibility(View.VISIBLE);
-        point_regiest.setVisibility(View.GONE);
-    }
+//    public void showPointForLogin(){
+////        point_login.setVisibility(View.VISIBLE);
+//        point_regiest.setVisibility(View.GONE);
+//    }
     //显示为注册页面
-    public void showPointForRegiest(){
-        point_regiest.setVisibility(View.VISIBLE);
-        point_login.setVisibility(View.GONE);
-    }
+//    public void showPointForRegiest(){
+//        point_regiest.setVisibility(View.VISIBLE);
+////        point_login.setVisibility(View.GONE);
+//    }
     //倒计时的方法
     public void setTimerTask(){
         mtimer = new Timer();

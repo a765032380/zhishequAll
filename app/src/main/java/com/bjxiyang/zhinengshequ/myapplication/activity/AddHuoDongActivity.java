@@ -19,6 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.HuoDongFeiYongDialog;
 import com.bjxiyang.zhinengshequ.myapplication.select_date.JudgeDate;
@@ -38,7 +39,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/8/16 0016.
  */
 
-public class AddHuoDongActivity extends MySwipeBackActivity implements View.OnClickListener {
+public class AddHuoDongActivity extends LogOutBaseActivity implements View.OnClickListener {
     /***
      * UI
      */

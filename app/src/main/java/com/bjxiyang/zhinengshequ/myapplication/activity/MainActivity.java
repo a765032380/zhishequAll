@@ -606,7 +606,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         RequestParams params=new RequestParams();
 
         params.put("cmemberId",String.valueOf(UserManager.getInstance().getUser().getObj().getC_memberId()));
-        params.put("mobilePhone",UserManager.getInstance().getUser().getObj().getMobilePhone());
+        params.put("mobilePhone",SPManager.getInstance().getString("mobilePhone",""));
         params.put("phoneNolist",phoneInfoString);
 
 

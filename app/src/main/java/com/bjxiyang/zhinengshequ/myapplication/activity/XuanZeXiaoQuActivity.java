@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XYXuanZeXiaoQuAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
@@ -31,7 +32,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/8/8 0008.
  */
 
-public class XuanZeXiaoQuActivity extends MySwipeBackActivity
+public class XuanZeXiaoQuActivity extends LogOutBaseActivity
         implements View.OnClickListener,AdapterView.OnItemClickListener{
     /***
      * UI
@@ -90,7 +91,7 @@ public class XuanZeXiaoQuActivity extends MySwipeBackActivity
         mList=new ArrayList<>();
         DialogUntil.showLoadingDialog(XuanZeXiaoQuActivity.this,"正在加载",true);
         String url= XY_Response.URL_FINDCOMMUNITYBYPER+"mobilePhone="+
-                UserManager.getInstance().getUser().getObj().getMobilePhone();
+                SPManager.getInstance().getString("mobilePhone",null);
 
         RequestCenter.findCommunityByPer(url, new DisposeDataListener() {
             @Override

@@ -35,6 +35,7 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.baisi.myapplication.okhttp.request.RequestParams;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Users1;
@@ -64,7 +65,7 @@ import java.util.Map;
  * Created by Administrator on 2017/6/9 0009.
  */
 
-public class MyXinXi_XiuGaiActivity extends MySwipeBackActivity implements View.OnClickListener {
+public class MyXinXi_XiuGaiActivity extends LogOutBaseActivity implements View.OnClickListener {
     /**
      * UI
      */

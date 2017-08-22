@@ -35,6 +35,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Users;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Users1;
 import com.bjxiyang.zhinengshequ.myapplication.bean.WuYeJiaoFei;
+import com.bjxiyang.zhinengshequ.myapplication.bean.XiTongXiaoXi;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.AliZhiFu;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DiZhiAdd;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DiZhiDelete;
@@ -48,6 +49,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.ShangPingDetail;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.TiJiaoDingDan;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.YouHuiQuan;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.update.util.GetHeaders;
 
@@ -101,10 +103,9 @@ public class RequestCenter {
      */
     public static void checkVersion(DisposeDataListener listener) {
         RequestCenter.postRequest(XY_Response.URL_UPDATEVERSION +"cmemberId="+
-                        UserManager.getInstance().getUser().getObj().getC_memberId(),
+                        SPManager.getInstance().getString("c_memberId",null),
                 null, listener, UpdateVersion.class);
     }
-
     public static void downloadFile(String url, String path, DisposeDownloadListener listener) {
         CommonOkHttpClient.downloadFile(CommonRequest.createGetRequest(url, null),
                 new DisposeDataHandle(listener, path));
@@ -327,7 +328,7 @@ public class RequestCenter {
         RequestCenter.postRequest1(url,null,GetHeaders.getHeaders(),listener, FanHui2.class);
     }
     public static void usercenter_getSysMsg(String url,DisposeDataListener listener){
-        RequestCenter.postRequest1(url,null,GetHeaders.getHeaders(),listener, FanHui2.class);
+        RequestCenter.postRequest1(url,null,GetHeaders.getHeaders(),listener, XiTongXiaoXi.class);
     }
 
 

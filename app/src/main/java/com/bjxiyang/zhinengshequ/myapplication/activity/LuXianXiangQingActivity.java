@@ -19,6 +19,7 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.LuXianJoinAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.LuXianPingLunAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HuoDongDetails;
@@ -30,6 +31,7 @@ import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
+import com.bjxiyang.zhinengshequ.myapplication.view.MyScrollView;
 
 import java.util.List;
 
@@ -42,7 +44,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  * Created by Administrator on 2017/8/16 0016.
  */
 
-public class LuXianXiangQingActivity extends MySwipeBackActivity
+public class LuXianXiangQingActivity extends LogOutBaseActivity
         implements View.OnClickListener{
     /**
      * UI
@@ -112,7 +114,7 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
     @BindView(R.id.iv_yijiaru_heidian)
     ImageView iv_yijiaru_heidian;
     @BindView(R.id.myScrollView)
-    ScrollView myScrollView;
+    MyScrollView myScrollView;
     @BindView(R.id.ll_ScrollView_nei)
     LinearLayout ll_ScrollView_nei;
 
@@ -151,12 +153,18 @@ public class LuXianXiangQingActivity extends MySwipeBackActivity
         tv_yijiaru.setOnClickListener(this);
         tv_fabiaoyanlun.setOnClickListener(this);
         tv_join.setOnClickListener(this);
-        myScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        myScrollView.setOnScrollChanged(new MyScrollView.OnScrollChanged() {
             @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                heightY=scrollY;
+            public void onScroll(int l, int t, int oldl, int oldt) {
+                heightY=t;
             }
         });
+//        myScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                heightY=scrollY;
+//            }
+//        });
 
     }
 

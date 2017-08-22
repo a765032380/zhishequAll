@@ -13,11 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.CommonActionSheetDialog;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
@@ -33,7 +35,7 @@ import java.util.regex.Pattern;
  * Created by gll on 17-5-23.
  */
 
-public class XY_AddKeyaccreditActivity extends MySwipeBackActivity implements View.OnClickListener {
+public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements View.OnClickListener {
 
     private LinearLayout add_select_yezhu,add_select_zuke;
     private List<SelectPlot.Obj> mList;
@@ -207,7 +209,7 @@ public class XY_AddKeyaccreditActivity extends MySwipeBackActivity implements Vi
         mList=new ArrayList<>();
         DialogUntil.showLoadingDialog(XY_AddKeyaccreditActivity.this,"正在加载",true);
         String url= XY_Response.URL_FINDCOMMUNITYBYPER+"mobilePhone="+
-                UserManager.getInstance().getUser().getObj().getMobilePhone();
+                SPManager.getInstance().getString("mobilePhone","");
         RequestCenter.findCommunityByPer(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {

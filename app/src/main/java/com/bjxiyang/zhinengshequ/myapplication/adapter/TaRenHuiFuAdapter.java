@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.bean.XiTongXiaoXi;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
 
 import java.util.List;
@@ -23,11 +24,13 @@ import butterknife.ButterKnife;
 
 public class TaRenHuiFuAdapter extends BaseAdapter {
     private Context mContext;
-    private List mList;
+    private List<XiTongXiaoXi.ObjBean> mList;
+    private int type;
 
-    public TaRenHuiFuAdapter(Context mContext, List mList) {
+    public TaRenHuiFuAdapter(Context mContext, List mList,int type) {
         this.mContext = mContext;
         this.mList = mList;
+        this.type=type;
     }
 
     @Override
@@ -58,12 +61,26 @@ public class TaRenHuiFuAdapter extends BaseAdapter {
 
         ImageLoaderManager.getInstance(mContext)
                 .displayImage(viewHolder.iv_photo,null);
+        if (type==2){
+            viewHolder.ll_tarenhuifu.setVisibility(View.GONE);
+            viewHolder.ll_xitongxiaoxi.setVisibility(View.VISIBLE);
+//            ImageLoaderManager.getInstance(mContext)
+//                    .displayImage(viewHolder.iv_photo,mList.get(i).get);
+            viewHolder.tv_date.setText(mList.get(i).getAddTime());
+            viewHolder.tv_xitongxiaoxi_neirong.setText(mList.get(i).getMsgContent());
+            viewHolder.tv_huifunideren.setText("希洋科技");
+            viewHolder.iv_photo.setImageResource(R.mipmap.ic_launcher);
 
-        viewHolder.tv_huifunideren.setText("");
-        viewHolder.tv_date.setText("");
-        viewHolder.tv_huifu_fatie.setText("");
-        viewHolder.tv_huifu_neirong.setText("");
-        viewHolder.tv_wodefabiao.setText("");
+        }else if (type==2){
+            viewHolder.ll_tarenhuifu.setVisibility(View.VISIBLE);
+            viewHolder.ll_xitongxiaoxi.setVisibility(View.GONE);
+            viewHolder.tv_huifunideren.setText("");
+            viewHolder.tv_date.setText("");
+            viewHolder.tv_huifu_fatie.setText("");
+            viewHolder.tv_huifu_neirong.setText("");
+            viewHolder.tv_wodefabiao.setText("");
+
+        }
 
 
         return view;
@@ -76,6 +93,8 @@ public class TaRenHuiFuAdapter extends BaseAdapter {
         LinearLayout ll_tarenhuifu;
         @BindView(R.id.ll_xitongxiaoxi)
         LinearLayout ll_xitongxiaoxi;
+        @BindView(R.id.tv_xitongxiaoxi_neirong)
+        TextView tv_xitongxiaoxi_neirong;
 
 
         @BindView(R.id.iv_photo)

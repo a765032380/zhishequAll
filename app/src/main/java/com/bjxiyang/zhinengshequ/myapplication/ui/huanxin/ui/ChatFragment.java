@@ -243,7 +243,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 //        }
 //        String beizhu=haoYouList.getObj().get(0).getFriendRemark();
 
-        message.setAttribute("nickname", "我是测试备注");
+        message.setAttribute("nickname",obj.getNickName());
         //设置要发送扩展消息用户昵称
 //        message.setAttribute("nickname", obj.getRealName());
         //设置要发送扩展消息用户头像

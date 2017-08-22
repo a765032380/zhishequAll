@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
@@ -25,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/8/21 0021.
  */
 
-public class XiuGaiNameActivity extends MySwipeBackActivity implements View.OnClickListener {
+public class XiuGaiNameActivity extends LogOutBaseActivity implements View.OnClickListener {
 
     @BindView(R.id.rl_username_fanghui)
     RelativeLayout rl_username_fanghui;

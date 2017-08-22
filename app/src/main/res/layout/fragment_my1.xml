@@ -5,6 +5,7 @@
 
     android:orientation="vertical">
     <View
+        android:fitsSystemWindows="true"
         android:background="#4183FF"
         android:layout_width="match_parent"
         android:layout_height="25dp"/>
@@ -90,7 +91,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:singleLine="true"
-                    android:text="13700008888"
+                    android:text="未登陆"
                     android:textColor="#333333"
                     android:textSize="20sp" />
 
@@ -490,6 +491,41 @@
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
         android:background="#dddddd"></View>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_gerenxinxi_xiugai_menjinrenzhenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#323232"
+            android:text="门禁认证" />
+
+        <TextView
+            android:id="@+id/tv_gerenxinxi_xiugai_menjinrenzhenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2e77ff"
+            android:text="0" />
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd">
+
+    </View>
 
 </LinearLayout>
 

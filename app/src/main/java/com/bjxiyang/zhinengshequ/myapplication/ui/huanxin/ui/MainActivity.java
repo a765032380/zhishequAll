@@ -112,15 +112,20 @@ public class MainActivity extends BaseActivity {
 			finish();
 
 			SPManager.getInstance().remove("mobilePhone");
+			SPManager.getInstance().remove("c_memberId");
 			SPManager.getInstance().remove("communityId_one");
+			SPManager.getInstance().remove("communityName");
 			UserManager.getInstance().removeUser();		
 			startActivity(new Intent(this, SDLoginActivity.class));
 			return;
 		} else if (getIntent() != null && getIntent().getBooleanExtra("isConflict", false)) {
 			finish();
-			
+
 			SPManager.getInstance().remove("mobilePhone");
+			SPManager.getInstance().remove("c_memberId");
 			SPManager.getInstance().remove("communityId_one");
+			SPManager.getInstance().remove("communityName");
+
 			UserManager.getInstance().removeUser();
 		
 			startActivity(new Intent(this, SDLoginActivity.class));

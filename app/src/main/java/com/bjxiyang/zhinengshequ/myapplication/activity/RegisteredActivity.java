@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
@@ -33,19 +34,20 @@ import java.util.regex.Pattern;
 
 public class RegisteredActivity extends MySwipeBackActivity implements View.OnClickListener{
 
-    private ImageView zhuce_logo;
+//    private ImageView zhuce_logo;
     private String sms_id;
 
     private int timeCount = 60;
 
-
+    private TextView tv_pro_content;
     boolean isChangePassworld;
     boolean isXiuGai=false;
 
     private Timer mtimer;
-    LinearLayout regiestView;
+//    LinearLayout regiestView;
     private LinearLayout ln_fuwutiaokuan;
-
+    private TextView tv_title;
+    private TextView tv_title_two;
     private Button bt_get_smscode;
     private EditText et_zhuce_password_again;
     //注册模块的
@@ -68,6 +70,7 @@ public class RegisteredActivity extends MySwipeBackActivity implements View.OnCl
                     UserManager.getInstance().removeUser();
                     Intent intent=new Intent(RegisteredActivity.this,SDLoginActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
             }
             return false;
@@ -76,7 +79,8 @@ public class RegisteredActivity extends MySwipeBackActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registered);
+        setContentView(R.layout.activity_register);
+
         Intent intent = getIntent();
         isXiuGai=intent.getBooleanExtra("isXiuGai",false);
         isChangePassworld = intent.getBooleanExtra("ischange",true);
@@ -100,8 +104,10 @@ public class RegisteredActivity extends MySwipeBackActivity implements View.OnCl
 
     }
     public void initView(){
+        tv_title_two= (TextView) findViewById(R.id.tv_title_two);
+        tv_title= (TextView) findViewById(R.id.tv_title);
         ln_fuwutiaokuan= (LinearLayout) findViewById(R.id.ln_fuwutiaokuan);
-        zhuce_logo= (ImageView) findViewById(R.id.zhuce_logo);
+//        zhuce_logo= (ImageView) findViewById(R.id.zhuce_logo);
         //手机号输入框
         input_user_name_regiest_editview = (EditText)findViewById(R.id.inputusernameedittext);
         //发送验证码的按钮
@@ -116,23 +122,35 @@ public class RegisteredActivity extends MySwipeBackActivity implements View.OnCl
         et_zhuce_password_again= (EditText) findViewById(R.id.et_zhuce_password_again);
 
         //显示LOGO
-        zhuce_logo.setVisibility(View.VISIBLE);
+//        zhuce_logo.setVisibility(View.VISIBLE);
         //注册按钮
         regiest_action_button = (Button) findViewById(R.id.reg_confirm);
         regiest_action_button.setOnClickListener(this);
         //设置提交按钮的文本
-        regiest_action_button.setText("修改密码");
+        tv_pro_content= (TextView) findViewById(R.id.tv_pro_content);
+        tv_pro_content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RegisteredActivity.this,FuWuTiaoKuanActivity.class);
+                startActivity(intent);
+            }
+        });
         //布局的控制
-        regiestView = (LinearLayout)findViewById(R.id.registerView);
+//        regiestView = (LinearLayout)findViewById(R.id.registerView);
         //显示布局
-        regiestView.setVisibility(View.VISIBLE);
+//        regiestView.setVisibility(View.VISIBLE);
 
         if (isXiuGai){
             ln_fuwutiaokuan.setVisibility(View.GONE);
+            tv_title_two.setVisibility(View.GONE);
+            regiest_action_button.setText("修改密码");
+            tv_title.setText("修改密码");
         }else {
             ln_fuwutiaokuan.setVisibility(View.VISIBLE);
+            tv_title_two.setVisibility(View.VISIBLE);
+            regiest_action_button.setText("注册");
+            tv_title.setText("注册账号");
         }
-
     }
 
     public void setTimerTask(){
@@ -192,7 +210,13 @@ public class RegisteredActivity extends MySwipeBackActivity implements View.OnCl
                 }
 
                 DialogUntil.showLoadingDialog(RegisteredActivity.this,"请稍等",true);
-                String type="1";
+                String type;
+                if (isXiuGai){
+                    type="1";
+                }else{
+                    type="0";
+                }
+
                 String test= XY_Response.URL_SED_MSM+"mobilePhone="+phone1+"&type="+type;
                 //发送短信验证码
                 RequestCenter.register(test, new DisposeDataListener() {

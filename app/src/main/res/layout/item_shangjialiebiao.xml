@@ -108,8 +108,7 @@
                 <ImageView
                     android:id="@+id/goods_img1"
                     android:layout_width="95dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/a_img_banner" />
+                    android:layout_height="80dp" />
 
             </LinearLayout>
 
@@ -145,6 +144,7 @@
             </LinearLayout>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_sale1"
                 android:layout_width="50dp"
                 android:layout_height="20dp"
@@ -171,8 +171,7 @@
                 <ImageView
                     android:id="@+id/goods_img2"
                     android:layout_width="95dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/a_img_banner" />
+                    android:layout_height="80dp"/>
 
             </LinearLayout>
 
@@ -208,6 +207,7 @@
             </LinearLayout>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_sale2"
                 android:layout_width="50dp"
                 android:layout_height="20dp"
@@ -235,8 +235,7 @@
                 <ImageView
                     android:id="@+id/goods_img3"
                     android:layout_width="95dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/a_img_banner" />
+                    android:layout_height="80dp"/>
 
             </LinearLayout>
 
@@ -274,6 +273,7 @@
             </LinearLayout>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_sale3"
                 android:layout_width="50dp"
                 android:layout_height="20dp"

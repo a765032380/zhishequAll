@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
@@ -38,7 +39,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/8/16 0016.
  */
 
-public class AddHuoDongNextActivity extends MySwipeBackActivity implements View.OnClickListener {
+public class AddHuoDongNextActivity extends LogOutBaseActivity implements View.OnClickListener {
     private static final int RESULT_LOAD_IMAGE_ONE=1;
     private static final int RESULT_LOAD_IMAGE_TWO=2;
     private static final int RESULT_LOAD_IMAGE_THREE=3;

@@ -19,6 +19,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.KaiMenYouXiDialog;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -75,10 +76,8 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
 
                 anim.start();
 
-
-
                 DialogUntil.showLoadingDialog(v.getContext(),"正在开门",true);
-                customberId= UserManager.getInstance().getUser().getObj().getC_memberId();
+                customberId= Integer.valueOf(SPManager.getInstance().getString("c_memberId",""));
                 lockId=mList.get(position).getLockId();
                 String url= XY_Response.URL_OPENDOOR+"customberId="+customberId+"&lockId="+lockId;
                 RequestCenter.openDoor(url, new DisposeDataListener() {

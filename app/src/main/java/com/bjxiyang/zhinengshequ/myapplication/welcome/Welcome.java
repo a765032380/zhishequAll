@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.MainActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.MyWebViewActivity;
-import com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.BaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.QiDongYe;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
@@ -121,7 +121,7 @@ public class Welcome extends BaseActivity {
         }
     }
     private void goHome() {
-        startActivity(new Intent(Welcome.this, SDLoginActivity.class));
+        startActivity(new Intent(Welcome.this, MainActivity.class));
         finish();
     }
     private void goGuide() {

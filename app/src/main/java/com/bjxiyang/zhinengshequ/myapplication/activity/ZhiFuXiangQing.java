@@ -21,6 +21,7 @@ import com.alipay.sdk.app.PayTask;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.AliZhiFu;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
@@ -53,7 +54,7 @@ import java.util.TimerTask;
 
 
 //【程序猿的三重境界】第一重:无尽bug常作客,困闷调试伴不眠。第二重:千行代码过,bug不沾身。第三重:编码间,bug灰飞烟灭。
-public class ZhiFuXiangQing extends MySwipeBackActivity implements View.OnClickListener{
+public class ZhiFuXiangQing extends LogOutBaseActivity implements View.OnClickListener{
     private RelativeLayout rl_zhifudingdan_fanghui;
     private TextView tv_zhifudingdan_dianming;
     private TextView tv_zhifudingdan_quedingzhifu;

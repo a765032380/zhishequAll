@@ -17,6 +17,7 @@ import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.PermissionList;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.UserState;
@@ -54,7 +55,7 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
     private Set<SwipeListLayout> sets = new HashSet();
     private TextView tv_delete;
     private SwipeListLayout sll_main;
-    private int c_memberId = UserManager.getInstance().getUser().getObj().getC_memberId();
+    private int c_memberId = Integer.parseInt(SPManager.getInstance().getString("c_memberId",""));
     public XYKeyaccreditAdapter(Context mContext, List mList) {
         this.mContext = mContext;
         this.mList = mList;
@@ -145,7 +146,7 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
             }else if (mList.get(position).getRoleType()==(UserType.USER_LESSEE)){
                 //否则就是租客类型的
                 viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_icon_tenant);
-                if (mList.get(position).getC_memberId()!= UserManager.getInstance().getUser().getObj().getC_memberId()){
+                if (mList.get(position).getC_memberId()!= Integer.valueOf(SPManager.getInstance().getString("c_memberId",""))){
 
 //                    viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
 //                    viewholder.item_xiugai.setVisibility(View.VISIBLE);
@@ -215,7 +216,7 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
                     status2= UserState.START_USING;
                 }
         String url= XY_Response.URL_UPDATEPERMISSIONS
-        +"mobilePhone="+ UserManager.getInstance().getUser().getObj().getMobilePhone()
+        +"mobilePhone="+ SPManager.getInstance().getString("mobilePhone","")
         +"&communityId="+communityId+"&nperId="+nperId+"&floorId="+floorId+"&unitId="
         +unitId+"&doorId="+doorId+"&status="+status2+"&permissionId="+permissionId;
 
@@ -368,7 +369,7 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
                 permissionId=obj2.getPermissionId();
                 DialogUntil.showLoadingDialog(mContext,"正在提交",true);
                 String url1= XY_Response.URL_DELETEPERMISSIONS+"mobilePhone="+
-                        UserManager.getInstance().getUser().getObj().getMobilePhone()+
+                        SPManager.getInstance().getString("mobilePhone","")+
                         "&communityId="+communityId+"&nperId="+nperId+"&floorId="+floorId+
                         "&unitId="+unitId+"&doorId="+doorId+
                         "&permissionId="+permissionId;

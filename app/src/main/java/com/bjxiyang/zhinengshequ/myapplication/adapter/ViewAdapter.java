@@ -121,7 +121,7 @@ public class ViewAdapter extends LoopPagerAdapter{
     }
     @Override
     public int getRealCount() {
-        return 2;
+        return 1;
     }
 
     private void startActivity(Class mClass){

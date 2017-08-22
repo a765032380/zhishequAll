@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.ZheKouQuanAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.YouHuiQuan;
 import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by Administrator on 2017/7/2 0002.
  */
 
-public class ZheKouQuanActivity extends MySwipeBackActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class ZheKouQuanActivity extends LogOutBaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     private RelativeLayout rl_zhekouquan_fanhui;
     private ListView lv_zhekouquan;
 private SwipeRefreshLayout swipeRefreshLayout;

@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.astuetz.PagerSlidingTabStrip;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.MyFragmentAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_HuoDong;
 import com.bjxiyang.zhinengshequ.myapplication.fragment_xiaoxi.TaRenHuiFuFragment;
@@ -26,8 +27,8 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/8/21 0021.
  */
 
-public class HuiFuActivity extends MySwipeBackActivity{
-    private static final String TARENHUIFU="他人回复";
+public class HuiFuActivity extends LogOutBaseActivity {
+//    private static final String TARENHUIFU="他人回复";
     private static final String XITONGXIAOXI="系统消息";
     private static final int TARENHUIFU_INT=1;//暂时无用
     private static final int XITONGXIAOXI_INT=2;//暂时无用
@@ -86,10 +87,10 @@ public class HuiFuActivity extends MySwipeBackActivity{
         //实例化集合
         mTitleList=new ArrayList<>();
         mFragmentList=new ArrayList<>();
-        mTitleList.add(TARENHUIFU);
+//        mTitleList.add(TARENHUIFU);
         mTitleList.add(XITONGXIAOXI);
 
-        mFragmentList.add(new TaRenHuiFuFragment(TARENHUIFU_INT));
+//        mFragmentList.add(new TaRenHuiFuFragment(TARENHUIFU_INT));
         mFragmentList.add(new TaRenHuiFuFragment(XITONGXIAOXI_INT));
 
     }

@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XiaoQuGongGaoAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
@@ -27,7 +28,7 @@ import java.util.List;
  * Created by Administrator on 2017/6/9 0009.
  */
 
-public class XiaoQuGongGaoActivity extends MySwipeBackActivity
+public class XiaoQuGongGaoActivity extends LogOutBaseActivity
         implements View.OnClickListener
         ,AdapterView.OnItemClickListener
         ,SwipeRefreshLayout.OnRefreshListener{

@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
 
@@ -15,7 +16,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
  * Created by Administrator on 2017/6/10 0010.
  */
 
-public class XiaoQuGongGaoXiangQingActivity extends MySwipeBackActivity {
+public class XiaoQuGongGaoXiangQingActivity extends LogOutBaseActivity {
     /**
      * UI
      */

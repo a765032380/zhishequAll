@@ -47,7 +47,6 @@ import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyListView;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyScrollView;
-import com.google.gson.Gson;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.paradoxie.autoscrolltextview.VerticalTextview;
@@ -426,10 +425,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     }
     private void setChaoShiList(List<HomeBean.ObjBean.ShopObjBean> chaoshiList){
-
-        HomeAdapter homeAdapter=new HomeAdapter(getContext(),chaoshiList);
-        lv_shangping.setAdapter(homeAdapter);
-        MyUntil.setListViewHeightBasedOnChildren(lv_shangping,homeAdapter);
+        if (chaoshiList.size()>0) {
+            HomeAdapter homeAdapter = new HomeAdapter(getContext(), chaoshiList);
+            lv_shangping.setAdapter(homeAdapter);
+            MyUntil.setListViewHeightBasedOnChildren(lv_shangping, homeAdapter);
+        }
     }
     private void initLocation(){
 
@@ -495,7 +495,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 //                location.getLongitude();    //获取经度信息
                 Log.i("llll","经度:"+location.getLatitude()+"纬度:"+location.getLongitude());
 
-                String url=XY_Response2.URL_HOME_SELLER+"cmemberId="+ UserManager.getInstance().getUser().getObj().getC_memberId()
+                String url=XY_Response2.URL_HOME_SELLER+"cmemberId="+
+                        SPManager.getInstance().getString("c_memberId","")
                         +"&lng="+location.getLongitude()+"&lat="+location.getLatitude();
 
                 RequestCenter.home_Seller(url, new DisposeDataListener() {
@@ -504,7 +505,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                         HomeBean2 homeBean2= (HomeBean2) responseObj;
                         List<HomeBean.ObjBean.ShopObjBean> chaoshiList=homeBean2.getObj();
 //                        List<HomeBean.ObjBean.ShopObjBean> chaoshiList= (List<HomeBean.ObjBean.ShopObjBean>) responseObj;
-                        setChaoShiList(chaoshiList);
+                        if (chaoshiList.size()>0){
+                            setChaoShiList(chaoshiList);
+                        }
 
                         Log.i("LLLL","请求成功");
                     }

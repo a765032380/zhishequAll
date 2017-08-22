@@ -6,6 +6,7 @@
     >
 
     <View
+        android:fitsSystemWindows="true"
         android:background="#4183FF"
         android:layout_width="match_parent"
         android:layout_height="25dp"/>

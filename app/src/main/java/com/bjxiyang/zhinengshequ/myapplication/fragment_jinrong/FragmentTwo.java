@@ -17,6 +17,7 @@ import com.bjxiyang.zhinengshequ.myapplication.activity.XY_JinRongWebActivity;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XY_ErshoufangAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Loan;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -52,7 +53,7 @@ public class FragmentTwo extends Fragment implements AdapterView.OnItemClickList
 
     private List<Loan.Obj> getData() {
         String url= XY_Response.URL_SELECTADVANCEINFO+"cmemberId="
-                + UserManager.getInstance().getUser().getObj().getC_memberId()+"&gType="+
+                + SPManager.getInstance().getString("c_memberId","")+"&gType="+
                 XY_ErshoufangAdapter.DANBAODAI;
         RequestCenter.selectAdvanceInfo(url, new DisposeDataListener() {
             @Override

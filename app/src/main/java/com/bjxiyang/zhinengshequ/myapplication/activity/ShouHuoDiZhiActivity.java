@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.ShouHuoDiZhiAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DiZhiList;
 import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus;
@@ -25,7 +26,7 @@ import java.util.List;
  * Created by Administrator on 2017/6/24 0024.
  */
 
-public class ShouHuoDiZhiActivity extends MySwipeBackActivity
+public class ShouHuoDiZhiActivity extends LogOutBaseActivity
         implements View.OnClickListener,AdapterView.OnItemClickListener,
          SwipeRefreshLayout.OnRefreshListener{
     private RelativeLayout rl_shouhuopdizhi_fanghui;

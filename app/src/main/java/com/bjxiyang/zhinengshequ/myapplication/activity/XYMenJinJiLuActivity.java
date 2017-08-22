@@ -12,9 +12,11 @@ import android.widget.Toast;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XYMenJinJiLuAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoorList;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
@@ -28,7 +30,7 @@ import java.util.List;
  * Created by gll on 17-5-23.
  */
 
-public class XYMenJinJiLuActivity extends MySwipeBackActivity
+public class XYMenJinJiLuActivity extends LogOutBaseActivity
         implements
         SwipeRefreshLayout.OnRefreshListener
 ,RefreshLayout.OnLoadListener
@@ -101,7 +103,7 @@ public class XYMenJinJiLuActivity extends MySwipeBackActivity
         DialogUntil.showLoadingDialog(XYMenJinJiLuActivity.this,"正在加载",true);
 
         String url= XY_Response.URL_OPENDOORLIST+"customberId="+
-                UserManager.getInstance().getUser().getObj().getC_memberId()+
+                SPManager.getInstance().getString("c_memberId",null)+
                 "&pageNo="+pageNo+"&pageSize="+pageSize;
 
         RequestCenter.openDoorList(url, new DisposeDataListener() {

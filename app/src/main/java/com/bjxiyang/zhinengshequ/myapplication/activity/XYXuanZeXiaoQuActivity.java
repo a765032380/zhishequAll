@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XYXuanZeXiaoQuAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.AddFangWu;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Door;
@@ -28,6 +29,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.Plots;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Unit;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.KaiMenYouXiDialog;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.SelectType;
@@ -46,7 +48,7 @@ import okhttp3.MediaType;
  * Created by gll on 17-5-23.
  */
 
-public class XYXuanZeXiaoQuActivity extends MySwipeBackActivity implements AdapterView.OnItemClickListener,View.OnClickListener {
+public class XYXuanZeXiaoQuActivity extends LogOutBaseActivity implements AdapterView.OnItemClickListener,View.OnClickListener {
     public static final MediaType FORM_CONTENT_TYPE
             = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
 
@@ -114,7 +116,7 @@ public class XYXuanZeXiaoQuActivity extends MySwipeBackActivity implements Adapt
     private void initUI() {
         et_name= (EditText) findViewById(R.id.et_name);
         tv_lianxidianhua= (TextView) findViewById(R.id.tv_lianxidianhua);
-        tv_lianxidianhua.setText(UserManager.getInstance().getUser().getObj().getMobilePhone());
+        tv_lianxidianhua.setText(SPManager.getInstance().getString("mobilePhone",""));
         select_yezhu= (LinearLayout) findViewById(R.id.select_yezhu);
         select_zuhu= (LinearLayout) findViewById(R.id.select_zuhu);
         select_jiaren= (LinearLayout) findViewById(R.id.select_jiaren);
@@ -147,7 +149,7 @@ public class XYXuanZeXiaoQuActivity extends MySwipeBackActivity implements Adapt
         mList=new ArrayList<>();
         switch (type1){
             case 0:
-                phone= UserManager.getInstance().getUser().getObj().getMobilePhone();
+                phone= SPManager.getInstance().getString("mobilePhone","");
                 String url= XY_Response.URL_FINDCOMMUNITY+"mobilePhone="+phone;
                 RequestCenter.findCommunity(url, new DisposeDataListener() {
                     @Override

@@ -17,6 +17,7 @@ import com.bjxiyang.zhinengshequ.myapplication.activity.XY_JinRongWebActivity;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XY_ErshoufangAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Loan;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -53,7 +54,7 @@ public class FragmentThree extends Fragment implements AdapterView.OnItemClickLi
     }
     private List<Loan.Obj> getData() {
         String url= XY_Response.URL_SELECTSECONDHAND+"cmemberId="+
-                UserManager.getInstance().getUser().getObj().getC_memberId();
+                SPManager.getInstance().getString("c_memberId","");
         RequestCenter.selectSecondHand(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {

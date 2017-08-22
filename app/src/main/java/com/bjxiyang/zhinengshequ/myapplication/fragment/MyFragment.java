@@ -23,15 +23,18 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SheZhiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.ShouHuoDiZhiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.WoFaQiDeYueYouActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit;
 import com.bjxiyang.zhinengshequ.myapplication.activity.YiJianFanKuiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.ZheKouQuanActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GeRenZhongXin;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
+import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.Text;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.until.LogOutUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.CommonDialog;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -52,6 +55,8 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     private LinearLayout yijianfankui;
     private LinearLayout lianxikefu;
     private LinearLayout jiamenghezuo;
+    private LinearLayout ll_gerenxinxi_xiugai_menjinrenzhenge;
+    private TextView tv_gerenxinxi_xiugai_menjinrenzhenge;
 
     /**
      * UI
@@ -137,7 +142,13 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onResume() {
-        getData();
+        if (SPManager.getInstance().getString("c_memberId",null)!=null ||
+                !SPManager.getInstance().getString("c_memberId","").equals("")){
+            getData();
+        }
+
+
+
 //        if (!UserManager.getInstance().getUser().getObj().getHeadPhotoUrl().equals("")&&
 //                UserManager.getInstance().getUser().getObj().getHeadPhotoUrl()!=null ){
 //            ImageLoaderManager.getInstance(getContext()).displayImage(gerenxinxi_touxiang,
@@ -149,7 +160,10 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onHiddenChanged(boolean hidden) {
         if (!hidden){
-            getData();
+            if (SPManager.getInstance().getString("c_memberId",null)!=null ||
+                    !SPManager.getInstance().getString("c_memberId","").equals("")){
+                getData();
+            }
 //            if (!UserManager.getInstance().getUser().getObj().getHeadPhotoUrl().equals("")&&
 //                    UserManager.getInstance().getUser().getObj().getHeadPhotoUrl()!=null ){
 //                ImageLoaderManager.getInstance(getContext()).displayImage(gerenxinxi_touxiang,
@@ -160,6 +174,10 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     }
 
     public void initView(){
+        tv_gerenxinxi_xiugai_menjinrenzhenge=view.findViewById(R.id.tv_gerenxinxi_xiugai_menjinrenzhenge);
+        ll_gerenxinxi_xiugai_menjinrenzhenge=view.findViewById(R.id.ll_gerenxinxi_xiugai_menjinrenzhenge);
+        ll_gerenxinxi_xiugai_menjinrenzhenge.setOnClickListener(this);
+
         iv_tongzhi_tishi=view.findViewById(R.id.iv_tongzhi_tishi);
         my_alldingdan_tishi = view.findViewById(R.id.my_alldingdan_tishi);
         my_tuikuantuihuo_tishi = view.findViewById(R.id.my_tuikuantuihuo_tishi);
@@ -208,11 +226,11 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 //        siginoutbutton= (Button) view.findViewById(R.id.siginoutbutton);
         account_people= (TextView) view.findViewById(R.id.account_people);
         gerenxinxi_touxiang= (CircleImageView) view.findViewById(R.id.gerenxinxi_touxiang);
-        if (!UserManager.getInstance().getUser().getObj().getHeadPhotoUrl().equals("")&&
-                UserManager.getInstance().getUser().getObj().getHeadPhotoUrl()!=null ){
-            ImageLoaderManager.getInstance(getContext()).displayImage(gerenxinxi_touxiang,
-                    UserManager.getInstance().getUser().getObj().getHeadPhotoUrl());
-        }
+//        if (!UserManager.getInstance().getUser().getObj().getHeadPhotoUrl().equals("")&&
+//                UserManager.getInstance().getUser().getObj().getHeadPhotoUrl()!=null ){
+//            ImageLoaderManager.getInstance(getContext()).displayImage(gerenxinxi_touxiang,
+//                    UserManager.getInstance().getUser().getObj().getHeadPhotoUrl());
+//        }
 
         gerenxinxi.setOnClickListener(this);
         yijianfankui.setOnClickListener(this);
@@ -227,7 +245,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     //得到用户对象
     public void getUserInfo(){
         if (UserManager.getInstance().getUser()!=null){
-            String phone = String.valueOf(UserManager.getInstance().getUser().getObj().getMobilePhone());
+            String phone = String.valueOf(SPManager.getInstance().getString("mobilePhone",""));
             account_people.setText(phone);
         }
     }
@@ -310,9 +328,11 @@ public class MyFragment extends Fragment implements View.OnClickListener{
             //跳转到个人信息页面
             case R.id.gerenxinxi:
                 Intent intent1=new Intent(getContext(),MyXinXiActivity.class);
-                intent1.putExtra("HeadPhotoUrl",geRenZhongXin.getObj().getHeadPhotoUrl());
-                intent1.putExtra("sex",geRenZhongXin.getObj().getSex());
-                intent1.putExtra("NickName",geRenZhongXin.getObj().getNickName());
+                if (geRenZhongXin!=null) {
+                    intent1.putExtra("HeadPhotoUrl", geRenZhongXin.getObj().getHeadPhotoUrl());
+                    intent1.putExtra("sex", geRenZhongXin.getObj().getSex());
+                    intent1.putExtra("NickName", geRenZhongXin.getObj().getNickName());
+                }
                 startActivity(intent1);
 //                startIntent(MyXinXiActivity.class);
                 break;
@@ -404,7 +424,10 @@ public class MyFragment extends Fragment implements View.OnClickListener{
             case R.id.mydate:
                 MyUntil.mStartActivity(getContext(), WoFaQiDeYueYouActivity.class);
                 break;
-
+            //门禁认证
+            case R.id.ll_gerenxinxi_xiugai_menjinrenzhenge:
+                MyUntil.mStartActivity(getContext(), XYKeyAccredit.class);
+                break;
 
         }
     }
@@ -434,7 +457,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
             account_people.setText(SPManager.getInstance().getString("mobilePhone","未登陆"));
         }
 
-
+        tv_gerenxinxi_xiugai_menjinrenzhenge.setText(objBean.getEntranceCount()+"");
         tv_youhuiquancount.setText(objBean.getCoupon()+"");
         if (SPManager.getInstance().getInt("messageInfo",0)<objBean.getMessageInfo()){
             SPManager.getInstance().putInt("messageInfo",objBean.getMessageInfo());

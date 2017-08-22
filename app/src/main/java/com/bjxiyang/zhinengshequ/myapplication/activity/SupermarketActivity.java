@@ -156,7 +156,6 @@ public class SupermarketActivity extends MySwipeBackActivity implements
             tv_totle_money.setText("当前购物车是空的");
             xuanhaole.setVisibility(View.GONE);
         }
-        Log.i("YYYY",UserManager.getInstance().getUser().getObj().getMobilePhone());
         initUi();
     }
     public List<ItemBean> getListAll(){
@@ -205,7 +204,6 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         });
     }
     private void getShangPingList(int sellerId){
-        Log.i("YYY","测试显示无数据sellerId="+sellerId);
         DialogUntil.showLoadingDialog(this,"正在加载",true);
         String url_list= BianLiDianResponse.URL_PRODUCT_LIST+"sellerId="+sellerId;
         RequestCenter.order_product_list(url_list, new DisposeDataListener() {
@@ -431,6 +429,13 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     }
 
     @Override
+    protected void onResume() {
+        communityId=SPManager.getInstance().getInt("communityId",0);
+        getDianMing(communityId);
+        super.onResume();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             //返回的按键
@@ -453,16 +458,19 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                 break;
             //选择排序的方式
             case R.id.ll_jiage:
-                if (!jiageIsOne){
-                    iv_up.setBackgroundResource(R.drawable.a_icon_price_pre);
-                    jiageIsOne=true;
-                }else {
-                    iv_up.setBackgroundResource(R.drawable.a_icon_price);
-                    jiageIsOne=false;
+
+                if (goodsAdapter!=null&&catograyAdapter!=null&&lv_good!=null&&list_fenlei!=null&&list_fenlei.size()>0) {
+                    goodsAdapter = new GoodsAdapter(SupermarketActivity.this, SupermarketActivity.this,
+                            bubble_sort(list_fenlei.get(position1).getProducts()), catograyAdapter);
+                    lv_good.setAdapter(goodsAdapter);
+                    if (!jiageIsOne){
+                        iv_up.setBackgroundResource(R.drawable.a_icon_price_pre);
+                        jiageIsOne=true;
+                    }else {
+                        iv_up.setBackgroundResource(R.drawable.a_icon_price);
+                        jiageIsOne=false;
+                    }
                 }
-                goodsAdapter=new GoodsAdapter(SupermarketActivity.this,SupermarketActivity.this,
-                        bubble_sort(list_fenlei.get(position1).getProducts()),catograyAdapter);
-                lv_good.setAdapter(goodsAdapter);
 //                update(false);
                 break;
             //提交订单的按键
@@ -496,7 +504,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                     update(false);
                     getShangPingList(result.getId());
                 }else if (dianMing.getCode()==BianLiDianStatus.STATUS_CODE_ERROR_USER_NOTLOGIN){
-                    LogOutUntil.logout();
+                    LogOutUntil.logout(SupermarketActivity.this);
                 }else {
                     showWuShuJu();
                 }

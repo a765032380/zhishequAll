@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.WuYeJiaoFeiAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
 import com.bjxiyang.zhinengshequ.myapplication.bean.WuYeJiaoFei;
@@ -31,7 +32,7 @@ import java.util.List;
  * Created by Administrator on 2017/6/9 0009.
  */
 
-public class WuYeJiaoFeiActivity extends MySwipeBackActivity
+public class WuYeJiaoFeiActivity extends LogOutBaseActivity
         implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
 
     private RelativeLayout iv_wuyejiaofei_fanhui;
@@ -91,7 +92,7 @@ public class WuYeJiaoFeiActivity extends MySwipeBackActivity
         mList=new ArrayList<>();
         DialogUntil.showLoadingDialog(this,"正在加载",true);
         String url= XY_Response.URL_GETPROPERTYLIST+"cmemberId="+
-                UserManager.getInstance().getUser().getObj().getC_memberId();
+                SPManager.getInstance().getString("c_memberId","");
         RequestCenter.getPropertyList(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {

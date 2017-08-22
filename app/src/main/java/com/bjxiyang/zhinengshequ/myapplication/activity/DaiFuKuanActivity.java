@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.DaiFuKuanAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DingDan;
 import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus;
@@ -28,7 +29,7 @@ import java.util.List;
  * Created by Administrator on 2017/7/1 0001.
  */
 
-public class DaiFuKuanActivity extends MySwipeBackActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
+public class DaiFuKuanActivity extends LogOutBaseActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
     private RelativeLayout iv_daifukuan_fanhui;
     private ListView lv_daifukuan;
     private TextView dingdan_title;

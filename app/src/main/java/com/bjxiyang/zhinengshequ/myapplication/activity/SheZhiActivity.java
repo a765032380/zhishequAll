@@ -96,9 +96,13 @@ public class SheZhiActivity extends MySwipeBackActivity implements View.OnClickL
                 logOutHuanXin();
                 SPManager.getInstance().remove("mobilePhone");
                 SPManager.getInstance().remove("communityId_one");
+                SPManager.getInstance().remove("c_memberId");
                 UserManager.getInstance().removeUser();
                 MyUntil.mStartActivity(this,SDLoginActivity.class);
                 finish();
+                if (MainActivity.mainActivity!=null){
+                    MainActivity.mainActivity.finish();
+                }
                 break;
 
         }

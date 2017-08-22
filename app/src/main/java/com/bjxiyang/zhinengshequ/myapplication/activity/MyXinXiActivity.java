@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ImageUrl;
@@ -39,7 +40,7 @@ import java.util.Map;
  * Created by Administrator on 2017/6/1 0001.
  */
 
-public class MyXinXiActivity extends MySwipeBackActivity implements View.OnClickListener {
+public class MyXinXiActivity extends LogOutBaseActivity implements View.OnClickListener {
     private Map map=new HashMap();
     private SelectSexDialog dialog;
     private File mFile;
@@ -57,9 +58,9 @@ public class MyXinXiActivity extends MySwipeBackActivity implements View.OnClick
     private LinearLayout ll_gerenxinxi_xiugai_sex;
 
     private RelativeLayout iv_gerenxinxi_xiugai_fanhui;
-    private String mHeadPhotoUrl;
-    private String sex;
-    private String mNickName;
+    private String mHeadPhotoUrl="";
+    private String sex="";
+    private String mNickName="";
 
 
 
@@ -67,13 +68,17 @@ public class MyXinXiActivity extends MySwipeBackActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gerenxinxi_xiugai1);
-        Intent intent=getIntent();
-        mHeadPhotoUrl=intent.getStringExtra("HeadPhotoUrl");
-        sex=intent.getStringExtra("sex");
-        mNickName=intent.getStringExtra("NickName");
-
         initUI();
-        setTextForHTTP();
+        if (SPManager.getInstance().getString("c_memberId",null)!=null ||
+                !SPManager.getInstance().getString("c_memberId","").equals("")) {
+            Intent intent = getIntent();
+            mHeadPhotoUrl = intent.getStringExtra("HeadPhotoUrl");
+            sex = intent.getStringExtra("sex");
+            mNickName = intent.getStringExtra("NickName");
+            setTextForHTTP();
+        }
+
+
     }
 
 
@@ -144,7 +149,7 @@ public class MyXinXiActivity extends MySwipeBackActivity implements View.OnClick
         if (mNickName!=null){
             tv_gerenxinxi_xiugai_name.setText(mNickName);
         }
-        if (sex.equals(0)){
+        if (sex.equals("0")){
             tv_gerenxinxi_xiugai_sex.setText("女");
         }else {
             tv_gerenxinxi_xiugai_sex.setText("男");

@@ -15,9 +15,11 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XYKeyaccreditAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.PermissionList;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -33,7 +35,7 @@ import java.util.Set;
  * Created by gll on 17-5-23.
  */
 
-public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
+public class XYKeyAccredit extends LogOutBaseActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
 
     /**
      *
@@ -106,7 +108,7 @@ public class XYKeyAccredit extends MySwipeBackActivity implements View.OnClickLi
         mList=new ArrayList<>();
         DialogUntil.showLoadingDialog(XYKeyAccredit.this,"正在加载",true);
         String url= XY_Response.URL_FINDPERMISSIONS+"mobilePhone="+
-                UserManager.getInstance().getUser().getObj().getMobilePhone();
+                SPManager.getInstance().getString("mobilePhone",null);
         RequestCenter.findPermissions(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {

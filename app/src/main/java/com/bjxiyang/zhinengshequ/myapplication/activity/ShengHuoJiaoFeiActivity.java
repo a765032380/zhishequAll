@@ -10,10 +10,12 @@ import android.widget.Toast;
 
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.CommonActionSheetDialog;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
@@ -26,7 +28,7 @@ import java.util.List;
  * Created by Administrator on 2017/7/18 0018.
  */
 
-public class ShengHuoJiaoFeiActivity extends MySwipeBackActivity implements View.OnClickListener{
+public class ShengHuoJiaoFeiActivity extends LogOutBaseActivity implements View.OnClickListener{
 
     public static final int SHUIFEI=1;
     public static final int DIANFEI=2;
@@ -83,7 +85,7 @@ public class ShengHuoJiaoFeiActivity extends MySwipeBackActivity implements View
         mList_plot=new ArrayList<>();
         DialogUntil.showLoadingDialog(ShengHuoJiaoFeiActivity.this,"正在加载",true);
         String url= XY_Response.URL_FINDCOMMUNITYBYPER+"mobilePhone="+
-                UserManager.getInstance().getUser().getObj().getMobilePhone();
+                SPManager.getInstance().getString("mobilePhone","");
 
         RequestCenter.findCommunityByPer(url, new DisposeDataListener() {
             @Override

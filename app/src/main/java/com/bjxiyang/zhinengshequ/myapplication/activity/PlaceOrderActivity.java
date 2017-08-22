@@ -14,6 +14,7 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.baisi.myapplication.okhttp.request.RequestParams;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.PlaceOrderAdapter;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DiZhiList;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
@@ -37,7 +38,7 @@ import java.util.List;
  * Created by Administrator on 2017/5/31 0031.
  */
 
-public class PlaceOrderActivity extends MySwipeBackActivity
+public class PlaceOrderActivity extends LogOutBaseActivity
         implements View.OnClickListener{
     private static final int SHOUHUODIZHI=0;
 
