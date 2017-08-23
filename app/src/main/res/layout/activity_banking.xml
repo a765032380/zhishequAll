@@ -9,12 +9,56 @@
         android:background="#4183FF"
         android:layout_width="match_parent"
         android:layout_height="25dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#4183FF"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#4183FF">
+
+            <RelativeLayout
+                android:id="@+id/rl_jinrong_fanhui"
+                android:layout_width="40dp"
+                android:layout_height="64dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="7dp"
+                    android:src="@drawable/c_icon_fanhui" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="让贷款简单点"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:pstsShouldExpand="true"
         app:pstsIndicatorHeight="3dp"
-        app:pstsIndicatorColor="#4183FF"
+        app:pstsIndicatorColor="#FFFFFF"
+        android:background="#4183FF"
         android:layout_width="match_parent"
         android:layout_height="48dip" />
     <android.support.v4.view.ViewPager

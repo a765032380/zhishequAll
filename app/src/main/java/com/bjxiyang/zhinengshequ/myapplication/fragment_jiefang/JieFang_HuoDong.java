@@ -63,6 +63,10 @@ public class JieFang_HuoDong extends Fragment implements
      * OTHER
      */
     private HuoDongAdapter adapter;
+    private boolean isOne=true;
+
+
+
     @SuppressLint({"NewApi", "ValidFragment"})
     public JieFang_HuoDong(){
     }
@@ -126,11 +130,16 @@ public class JieFang_HuoDong extends Fragment implements
             public void onSuccess(Object responseObj) {
                 FindHuoDongList fanhui= (FindHuoDongList) responseObj;
                 if (fanhui.getCode()==1000){
-                    mList=fanhui.getObj();
-                    mListAll=mList;
-                    adapter=new HuoDongAdapter(getContext(),mListAll);
-                    lv_avtivityplanning.setAdapter(adapter);
-//                    adapter.notifyDataSetChanged();
+                    if (isOne) {
+                        mList = fanhui.getObj();
+                        mListAll = mList;
+                        adapter = new HuoDongAdapter(getContext(), mListAll);
+                        lv_avtivityplanning.setAdapter(adapter);
+                        isOne=false;
+                    }else {
+                        mListAll=mList;
+                        adapter.notifyDataSetChanged();
+                    }
                 }else {
                     Toast.makeText(getContext(),fanhui.getMsg(),Toast.LENGTH_LONG).show();
                 }

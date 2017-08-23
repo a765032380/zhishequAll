@@ -3,10 +3,12 @@ package com.bjxiyang.zhinengshequ.myapplication.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
@@ -36,6 +38,7 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
 ,RefreshLayout.OnLoadListener
 {
     private RelativeLayout ib_menjinjilu_fanghui;
+    private RelativeLayout ib_menjinjilu_guolv;
     private ListView lv_menjinjilu;
     private XYMenJinJiLuAdapter adapter;
     private List<OpenDoorList.Obj> mList;
@@ -46,6 +49,7 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
     private RefreshLayout swipeRefreshLayout;
     private SwipeRefreshLayout swipeRefreshLayout1;
     private SwipeRefreshLayout swipeRefreshLayout2;
+    private TextView tv_menjinjilu_xiaoquid;
 
     private boolean isScoll=true;
 
@@ -58,14 +62,30 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.xy_activity_menjinjilu);
+        setContentView(R.layout.xy_activity_menjinjilu1);
         initUI();
 
     }
 
     private void initUI() {
-        mListAll=new ArrayList<>();
+        tv_menjinjilu_xiaoquid= (TextView) findViewById(R.id.tv_menjinjilu_xiaoquid);
+        if (SPManager.getInstance().getString("test_men",null)!=null) {
+            tv_menjinjilu_xiaoquid.setText(SPManager.getInstance().getString("test_men",null));
+        }else {
+            tv_menjinjilu_xiaoquid.setText("请选择地址");
+        }
 
+
+
+        mListAll=new ArrayList<>();
+        ib_menjinjilu_guolv= (RelativeLayout) findViewById(R.id.ib_menjinjilu_guolv);
+        //选择时间按键
+        ib_menjinjilu_guolv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         ll_activity_wuwangluo= (LinearLayout) findViewById(R.id.ll_activity_wuwangluo);
         ll_activity_wujilu= (LinearLayout) findViewById(R.id.ll_activity_wujilu);
 
@@ -101,7 +121,8 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
     private void getData() {
         mList=new ArrayList<>();
         DialogUntil.showLoadingDialog(XYMenJinJiLuActivity.this,"正在加载",true);
-
+        Log.i("llll",SPManager.getInstance().getString("c_memberId",""));
+//        customberId
         String url= XY_Response.URL_OPENDOORLIST+"customberId="+
                 SPManager.getInstance().getString("c_memberId",null)+
                 "&pageNo="+pageNo+"&pageSize="+pageSize;
@@ -194,7 +215,7 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
     private void upData() {
         mList=new ArrayList<>();
         String url= XY_Response.URL_OPENDOORLIST+"customberId="+
-                UserManager.getInstance().getUser().getObj().getC_memberId()+
+                SPManager.getInstance().getString("c_memberId","")+
                 "&pageNo="+pageNo+"&pageSize="+pageSize;
 
         RequestCenter.openDoorList(url, new DisposeDataListener() {

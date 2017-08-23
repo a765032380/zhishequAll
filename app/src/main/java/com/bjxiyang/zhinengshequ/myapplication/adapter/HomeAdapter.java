@@ -110,15 +110,7 @@ public class HomeAdapter extends BaseAdapter {
 
             viewHolder.tv_distance.setText(df.format(jili/1000)+"km");
             viewHolder.tv_time.setText(shopObjBean.getTransitTime()+"分钟");
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SPManager.getInstance().putInt("sellerId", shopObjBean.getSellerId());
-                    SPManager.getInstance().putString("shopName",shopObjBean.getSellerName());
-                    MyUntil.mStartActivity(mContext, SupermarketActivity.class);
 
-                }
-            });
 
             switch (shopObjBean.getProductObj().size()){
                 case 1:
@@ -162,6 +154,15 @@ public class HomeAdapter extends BaseAdapter {
                     viewHolder.ll_03.setVisibility(View.GONE);
                     break;
             }
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SPManager.getInstance().putInt("sellerId", shopObjBean.getSellerId());
+                SPManager.getInstance().putString("shopName",shopObjBean.getSellerName());
+                MyUntil.mStartActivity(mContext, SupermarketActivity.class);
+
+            }
+        });
         return view;
     }
     private void setShop(ViewHolder viewHolder,HomeBean.ObjBean.ShopObjBean.ProductObjBean productObjBean){

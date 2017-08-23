@@ -226,7 +226,7 @@ public class RequestCenter {
         RequestCenter.postRequest(url,GetHeaders.getHeaders(),listener, ShangPingDetail.class);
     }
     public static void order_user_address_list(String url,DisposeDataListener listener){
-        RequestCenter.postRequest(url,null,listener, DiZhiList.class);
+        RequestCenter.postRequest1(url,null,GetHeaders.getHeaders(),listener, DiZhiList.class);
     }
     public static void order_user_address_add(String url,DisposeDataListener listener){
         RequestCenter.postRequest(url,GetHeaders.getHeaders(),listener, DiZhiAdd.class);

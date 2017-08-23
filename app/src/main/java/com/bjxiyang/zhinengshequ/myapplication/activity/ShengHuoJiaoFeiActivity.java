@@ -1,6 +1,7 @@
 package com.bjxiyang.zhinengshequ.myapplication.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -191,16 +192,20 @@ public class ShengHuoJiaoFeiActivity extends LogOutBaseActivity implements View.
                 getData();
                 break;
             case R.id.ll_shuifei:
-                startActivity(SHUIFEI);
+                startAli();
+//                startActivity(SHUIFEI);
                 break;
             case R.id.ll_dianfei:
-                startActivity(DIANFEI);
+                startAli();
+//                startActivity(DIANFEI);
                 break;
             case R.id.ll_ranqifei:
-                startActivity(RANQIFEI);
+                startAli();
+//                startActivity(RANQIFEI);
                 break;
             case R.id.ll_kuandaifei:
-                startActivity(KUANDAIFEI);
+                startAli();
+//                startActivity(KUANDAIFEI);
                 break;
             case R.id.ll_wuyefei:
                 MyUntil.mStartActivity(ShengHuoJiaoFeiActivity.this,WuYeJiaoFeiActivity.class);
@@ -213,5 +218,19 @@ public class ShengHuoJiaoFeiActivity extends LogOutBaseActivity implements View.
 //        Intent intent=new Intent(ShengHuoJiaoFeiActivity.this,ShengHuoPayActivity.class);
 //        intent.putExtra("type",type);
 //        startActivity(intent);
+    }
+    private void startAli(){
+        String appPackageName="com.eg.android.AlipayGphone";
+        try{
+            Intent intent =getPackageManager().getLaunchIntentForPackage(appPackageName);
+            intent.setData(Uri.parse("alipays://platformapi/startapp?appId=20000193"));
+            startActivity(intent);
+        }catch(Exception e){
+            Toast.makeText(this, "没有安装支付宝", Toast.LENGTH_LONG).show();
+        }
+//        Intent i = new Intent();
+////        i.setAction(Intent.);
+//        i.setData(Uri.parse("alipays://platformapi/startapp?appId=49"));
+//        startActivity(i);
     }
 }

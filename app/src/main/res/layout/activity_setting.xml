@@ -62,6 +62,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/ll_setting_clear"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -218,6 +219,7 @@
         android:layout_marginRight="15dp"></View>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/ll_setting_pingfen"
         android:layout_width="match_parent"
         android:layout_height="50dp"

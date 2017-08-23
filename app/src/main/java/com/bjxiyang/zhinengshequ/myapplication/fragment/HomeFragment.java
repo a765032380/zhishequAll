@@ -25,6 +25,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.BianLiDianListActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.MyWebViewActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XiaoQuGongGaoActivity;
@@ -99,6 +100,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     public TextView tv_more;
     @BindView(R.id.list_view_home_jinrong)
     public ListView list_view_home_jinrong;
+    @BindView(R.id.tv_chaoshitejia_more)
+    public TextView tv_chaoshitejia_more;
 
     /**
      * DATE
@@ -218,7 +221,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @TargetApi(Build.VERSION_CODES.M)
     private void initUI() {
 
-
+        tv_chaoshitejia_more.setOnClickListener(this);
         ll_xuanzedizhi.setOnClickListener(this);
         tv_more.setOnClickListener(this);
 
@@ -354,6 +357,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             case R.id.tv_more:
                 Intent intent=new Intent(getContext(), JinRongActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.tv_chaoshitejia_more:
+                Intent intent1=new Intent(getContext(), BianLiDianListActivity.class);
+                startActivity(intent1);
                 break;
         }
     }

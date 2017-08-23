@@ -12,7 +12,7 @@ public class OpenDoorList {
     /**
      * code : 1000
      * msg : 获取开门列表成功
-     * obj : [{"unitName":"一单元","resultCode":0,"communityName":"鹏阁小区","nperName":"二期","floorName":"三栋","openTime":"2017-06-17 10:47:57","userName":"租客人"},{"unitName":"一单元","resultCode":0,"communityName":"鹏阁小区","nperName":"二期","floorName":"三栋","openTime":"2017-06-17 10:47:23","userName":"租客人"}]
+     * obj : [{"unitName":"","headPhotoUrl":"http://47.92.106.249:8088//img//1503305799636.jpg","resultCode":0,"communityName":"鹏景阁大厦","nperName":"一期","floorName":"","openTime":"2017-08-23 09:04:36","userName":""},{"unitName":"","headPhotoUrl":"http://47.92.106.249:8088//img//1503305799636.jpg","resultCode":0,"communityName":"鹏景阁大厦","nperName":"一期","floorName":"","openTime":"2017-08-22 21:35:33","userName":""},{"unitName":"","headPhotoUrl":"http://47.92.106.249:8088//img//1503305799636.jpg","resultCode":0,"communityName":"鹏景阁大厦","nperName":"一期","floorName":"","openTime":"2017-08-22 21:35:26","userName":""}]
      */
 
     private String code;
@@ -45,16 +45,18 @@ public class OpenDoorList {
 
     public static class Obj {
         /**
-         * unitName : 一单元
+         * unitName :
+         * headPhotoUrl : http://47.92.106.249:8088//img//1503305799636.jpg
          * resultCode : 0
-         * communityName : 鹏阁小区
-         * nperName : 二期
-         * floorName : 三栋
-         * openTime : 2017-06-17 10:47:57
-         * userName : 租客人
+         * communityName : 鹏景阁大厦
+         * nperName : 一期
+         * floorName :
+         * openTime : 2017-08-23 09:04:36
+         * userName :
          */
 
         private String unitName;
+        private String headPhotoUrl;
         private int resultCode;
         private String communityName;
         private String nperName;
@@ -68,6 +70,14 @@ public class OpenDoorList {
 
         public void setUnitName(String unitName) {
             this.unitName = unitName;
+        }
+
+        public String getHeadPhotoUrl() {
+            return headPhotoUrl;
+        }
+
+        public void setHeadPhotoUrl(String headPhotoUrl) {
+            this.headPhotoUrl = headPhotoUrl;
         }
 
         public int getResultCode() {

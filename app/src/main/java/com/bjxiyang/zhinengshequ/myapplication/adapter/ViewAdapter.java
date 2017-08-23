@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.BianLiDianListActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.ShengHuoJiaoFeiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
@@ -72,7 +73,7 @@ public class ViewAdapter extends LoopPagerAdapter{
             view3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(SupermarketActivity.class);
+                    startActivity(BianLiDianListActivity.class);
 //                    Toast.makeText(mContext,"点击了按键3",Toast.LENGTH_LONG).show();
                 }
             });

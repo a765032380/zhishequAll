@@ -146,11 +146,10 @@ public class HuoDongAdapter extends BaseAdapter {
         viewHolder.tv_message_count.setText(obj.getReplyCount()+"");
         viewHolder.tv_join_count.setText(obj.getJoinCount()+"");
         partyId=mList.get(position).getPartyId();
-        Log.i("YYYY","HaveJoin="+obj.getHaveJoin());
+
         if (obj.getHaveJoin()==0&&obj.getIsEnd()==0){
             final FindHuoDongList.ObjBean obj1=obj;
             viewHolder.tv_btn_join.setText("加入");
-
             viewHolder.tv_btn_join.setBackgroundResource(R.drawable.a_btn_join);
             viewHolder.tv_btn_join.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -46,7 +46,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/a_l_icon_dizhi" />
+                android:background="@drawable/a_icon_dingwei" />
 
             <TextView
                 android:id="@+id/tv_item_wuyejiaofei_dizhi"
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="￥"
-                    android:textColor="#ee8e4e"
+                    android:textColor="#323232"
                     android:textSize="28sp" />
 
                 <TextView
@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="88.00"
-                    android:textColor="#ee8e4e"
+                    android:textColor="#323232"
                     android:textSize="28sp" />
 
             </LinearLayout>
@@ -110,12 +110,15 @@
                 android:orientation="vertical"
                 >
 
-                <ImageView
+                <TextView
                     android:id="@+id/iv_item_wuyejiaofei_jiaofei"
                     android:layout_width="120dp"
-                    android:layout_height="30dp"
+                    android:layout_height="35dp"
+                    android:gravity="center"
+                    android:text="缴费"
+                    android:textColor="#ffffff"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/a_btn_jiaofei" />
+                    android:background="@drawable/a_btn_jaiofei" />
             </LinearLayout>
 
             <LinearLayout

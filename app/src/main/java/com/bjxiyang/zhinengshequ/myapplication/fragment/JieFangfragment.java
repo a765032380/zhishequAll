@@ -17,6 +17,7 @@ import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.MyFragmentAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_HaoYou;
 import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_HuoDong;
+import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_ZhouBianShi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +94,7 @@ public class JieFangfragment extends Fragment{
 
         mFragmentList.add(new JieFang_HaoYou());
         mFragmentList.add(new JieFang_HuoDong(HUODONGLIEBIAO_INT));
-//        mFragmentList.add(new FragmentTwo());
+        mFragmentList.add(new JieFang_ZhouBianShi());
 
     }
 

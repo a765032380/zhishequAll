@@ -444,7 +444,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                 break;
             //选择商家名字
             case R.id.ll_shopname:
-                getData();
+//                getData();
                 break;
             //弹出购物车
             case R.id.tv_car:
@@ -490,7 +490,8 @@ public class SupermarketActivity extends MySwipeBackActivity implements
             @Override
             public void onSuccess(Object responseObj) {
                 DianMing dianMing= (DianMing) responseObj;
-                if (dianMing.getCode() == BianLiDianStatus.STATUS_CODE_SUCCESS) {
+                if (dianMing.getCode() == BianLiDianStatus.STATUS_CODE_SUCCESS||
+                        dianMing.getCode()==BianLiDianStatus.STATUS_CODE_ERROR_USER_NOTLOGIN) {
 
                     resultList = dianMing.getResult();
                     result = resultList.get(0);
@@ -503,8 +504,6 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                     tv_shopname.setText(result.getShopName());
                     update(false);
                     getShangPingList(result.getId());
-                }else if (dianMing.getCode()==BianLiDianStatus.STATUS_CODE_ERROR_USER_NOTLOGIN){
-                    LogOutUntil.logout(SupermarketActivity.this);
                 }else {
                     showWuShuJu();
                 }

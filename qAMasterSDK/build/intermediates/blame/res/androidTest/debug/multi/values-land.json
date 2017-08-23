@@ -1,5 +1,29 @@
 [
     {
+        "outputFile": "C:\\Users\\Lenovo\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-land\\values-land.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 70,
+                    "endOffset": 121
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-land\\values-land.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 70,
+                        "endOffset": 121
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-land\\values-land.xml",
         "map": [
             {
@@ -12,6 +36,30 @@
                 },
                 "from": {
                     "file": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-land\\values-land.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 70,
+                        "endOffset": 121
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\Users\\Administrator\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-land\\values-land.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 70,
+                    "endOffset": 121
+                },
+                "from": {
+                    "file": "C:\\Users\\Administrator\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-land\\values-land.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

@@ -250,6 +250,11 @@
             android:theme="@style/otherPageStyle">
         </activity>
 
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.BianLiDianListActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
+
 
 
 

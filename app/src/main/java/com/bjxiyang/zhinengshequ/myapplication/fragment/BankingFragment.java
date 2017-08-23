@@ -10,7 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.BianLiDianListActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.JinRongActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.MyWebViewActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.ShengHuoJiaoFeiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XYKeyAccredit;
@@ -51,6 +53,22 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
     public LinearLayout ll_shangpintuijia;
     @BindView(R.id.ll_jinrongfuwu1)
     public LinearLayout ll_jinrongfuwu1;
+    @BindView(R.id.ll_jinrongfuwu2)
+    public LinearLayout ll_jinrongfuwu2;
+    @BindView(R.id.ll_jinrongfuwu3)
+    public LinearLayout ll_jinrongfuwu3;
+    @BindView(R.id.ll_jinrongfuwu4)
+    public LinearLayout ll_jinrongfuwu4;
+    @BindView(R.id.ll_jinrongfuwu5)
+    public LinearLayout ll_jinrongfuwu5;
+
+
+
+
+
+
+
+
     @BindView(R.id.ll_xiyanglvyou)
     public LinearLayout ll_xiyanglvyou;
     @BindView(R.id.ll_zhoubianyou)
@@ -74,6 +92,12 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
         ll_tejiashangpin.setOnClickListener(this);
         ll_shangpintuijia.setOnClickListener(this);
         ll_jinrongfuwu1.setOnClickListener(this);
+        ll_jinrongfuwu2.setOnClickListener(this);
+        ll_jinrongfuwu3.setOnClickListener(this);
+        ll_jinrongfuwu4.setOnClickListener(this);
+        ll_jinrongfuwu5.setOnClickListener(this);
+
+
         ll_xiyanglvyou.setOnClickListener(this);
         ll_zhoubianyou.setOnClickListener(this);
         ll_service_selectaddress.setOnClickListener(this);
@@ -98,7 +122,7 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
                 break;
             //便利店
             case R.id.ll_bianlidian:
-                startActivity(SupermarketActivity.class);
+                startActivity(BianLiDianListActivity.class);
                 break;
             //生活缴费
             case R.id.ll_sehnghuojiaofei:
@@ -124,11 +148,40 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
             case R.id.ll_jinrongfuwu1:
                 startActivity(JinRongActivity.class);
                 break;
+            //过桥垫资
+            case R.id.ll_jinrongfuwu2:
+                startActivity(JinRongActivity.class);
+                break;
+            //抵押
+            case R.id.ll_jinrongfuwu3:
+                Intent intent=new Intent(getContext(),JinRongActivity.class);
+                intent.putExtra("type",1);
+                startActivity(intent);
+                break;
+            //信用
+            case R.id.ll_jinrongfuwu4:
+                Intent intent2=new Intent(getContext(),JinRongActivity.class);
+                intent2.putExtra("type",2);
+                startActivity(intent2);
+                break;
+            //二手房
+            case R.id.ll_jinrongfuwu5:
+                Intent intent3=new Intent(getContext(),JinRongActivity.class);
+                intent3.putExtra("type",3);
+                startActivity(intent3);
+                break;
             //希洋旅游
             case R.id.ll_xiyanglvyou:
+                Intent intent4=new Intent(getContext(), MyWebViewActivity.class);
+                intent4.putExtra("url","");
+                startActivity(intent4);
+
                 break;
             //周边游
             case R.id.ll_zhoubianyou:
+                Intent intent5=new Intent(getContext(), MyWebViewActivity.class);
+                intent5.putExtra("url","");
+                startActivity(intent5);
                 break;
             //选择地址
             case R.id.ll_service_selectaddress:

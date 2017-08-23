@@ -62,7 +62,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
                 viewholder.tv_xinyong_xiakuanqixian= (TextView) view.findViewById(R.id.tv_xinyong_xiakuanqixian);
                 viewholder.tv_xinyon_yuecankaolilv= (TextView) view.findViewById(R.id.tv_xinyon_yuecankaolilv);
                 viewholder.tv_xinyong_daikuanedu= (TextView) view.findViewById(R.id.tv_xinyong_daikuanedu);
-                viewholder.tv_xinyong_dibuxinxi= (TextView) view.findViewById(R.id.tv_xinyong_dibuxinxi);
+//                viewholder.tv_xinyong_dibuxinxi= (TextView) view.findViewById(R.id.tv_xinyong_dibuxinxi);
             }else
             if (mList.get(position).getgType()==SHOULOUGUOQIAO){
                 view= LayoutInflater.from(mContext).inflate(R.layout.xy_item_shulouguoqiao,null);
@@ -72,7 +72,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
                 viewholder.tv_daikuanedu= (TextView) view.findViewById(R.id.tv_daikuanedu);
                 viewholder.tv_xiakuanqixian= (TextView) view.findViewById(R.id.tv_xiakuanqixian);
                 viewholder.tv_yuecankaolilv= (TextView) view.findViewById(R.id.tv_yuecankaolilv);
-                viewholder.tv_dibuxinxi= (TextView) view.findViewById(R.id.tv_dibuxinxi);
+//                viewholder.tv_dibuxinxi= (TextView) view.findViewById(R.id.tv_dibuxinxi);
             }else if (mList.get(position).getgType()==XINYONG){
                 view= LayoutInflater.from(mContext).inflate(R.layout.xy_item_shulouguoqiao,null);
                 viewholder.tv_fangchanshuloudianzi= (TextView) view.findViewById(R.id.tv_fangchanshuloudianzi);
@@ -81,7 +81,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
                 viewholder.tv_daikuanedu= (TextView) view.findViewById(R.id.tv_daikuanedu);
                 viewholder.tv_xiakuanqixian= (TextView) view.findViewById(R.id.tv_xiakuanqixian);
                 viewholder.tv_yuecankaolilv= (TextView) view.findViewById(R.id.tv_yuecankaolilv);
-                viewholder.tv_dibuxinxi= (TextView) view.findViewById(R.id.tv_dibuxinxi);
+//                viewholder.tv_dibuxinxi= (TextView) view.findViewById(R.id.tv_dibuxinxi);
                 viewholder.shuloudianzi_diyawu= (TextView) view.findViewById(R.id.shuloudianzi_diyawu);
             }else if (mList.get(position).getgType()==ERSHOUFANG){
                 view= LayoutInflater.from(mContext).inflate(R.layout.xy_item_ershoufanganjie,null);
@@ -92,8 +92,8 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
                 viewholder.tv_ershoufanganjie_ertao= (TextView) view.findViewById(R.id.tv_ershoufanganjie_ertao);
                 viewholder.tv_ershoufang_ertaolilv= (TextView) view.findViewById(R.id.tv_ershoufang_ertaolilv);
                 viewholder.tv_ershoufang_ertaonianxian= (TextView) view.findViewById(R.id.tv_ershoufang_ertaonianxian);
-                viewholder.tv_ershoufang_dibuxinxi= (TextView) view.findViewById(R.id.tv_ershoufang_dibuxinxi);
-                viewholder.tv_ershoufang_dibuxinxi.setSelected(true);
+//                viewholder.tv_ershoufang_dibuxinxi= (TextView) view.findViewById(R.id.tv_ershoufang_dibuxinxi);
+//                viewholder.tv_ershoufang_dibuxinxi.setSelected(true);
             }
             view.setTag(viewholder);
         }else {
@@ -105,7 +105,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
             viewholder.tv_xinyong_xiakuanqixian.setText(mList.get(position).getgEntertainTime());
             viewholder.tv_xinyon_yuecankaolilv.setText(mList.get(position).getgMonthlyRate());
             viewholder.tv_xinyong_daikuanedu.setText(mList.get(position).getgQuota());
-            viewholder.tv_xinyong_dibuxinxi.setText(mList.get(position).getgMomo());
+//            viewholder.tv_xinyong_dibuxinxi.setText(mList.get(position).getgMomo());
         }else if (mList.get(position).getgType()==SHOULOUGUOQIAO){
             viewholder.tv_fangchanshuloudianzi.setText(mList.get(position).getgName());
             viewholder.tv_daikuanqixian.setText(mList.get(position).getgLoanTerm());
@@ -120,7 +120,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
             viewholder.tv_daikuanedu.setText(mList.get(position).getgQuota());
             viewholder.tv_xiakuanqixian.setText(mList.get(position).getgEntertainTime());
             viewholder.tv_yuecankaolilv.setText(mList.get(position).getgMonthlyRate());
-            viewholder.tv_dibuxinxi.setText(mList.get(position).getgMomo());
+//            viewholder.tv_dibuxinxi.setText(mList.get(position).getgMomo());
         }else  if (mList.get(position).getgType()==XINYONG){
                 viewholder.shuloudianzi_diyawu.setVisibility(View.INVISIBLE);
             viewholder.tv_fangchanshuloudianzi.setText(mList.get(position).getgName());
@@ -130,7 +130,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
             viewholder.tv_daikuanedu.setText(mList.get(position).getgQuota());
             viewholder.tv_xiakuanqixian.setText(mList.get(position).getgEntertainTime());
             viewholder.tv_yuecankaolilv.setText(mList.get(position).getgMonthlyRate());
-            viewholder.tv_dibuxinxi.setText(mList.get(position).getgMomo());
+//            viewholder.tv_dibuxinxi.setText(mList.get(position).getgMomo());
         }else if (mList.get(position).getgType()==ERSHOUFANG){
 //            if (mList.get(position).getgType()==ERSHOUFANG){
             viewholder.tv_ershoufananjie_title.setText(mList.get(position).getsName());
@@ -140,7 +140,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
             viewholder.tv_ershoufanganjie_ertao.setText(mList.get(position).getSecendNper());
             viewholder.tv_ershoufang_ertaolilv.setText(mList.get(position).getSecendInterestRate());
             viewholder.tv_ershoufang_ertaonianxian.setText(mList.get(position).getSecendLife());
-            viewholder.tv_ershoufang_dibuxinxi.setText(mList.get(position).getsMemo());
+//            viewholder.tv_ershoufang_dibuxinxi.setText(mList.get(position).getsMemo());
         }
 
 
@@ -153,7 +153,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
         TextView tv_xinyong_xiakuanqixian;
         TextView tv_xinyon_yuecankaolilv;
         TextView tv_xinyong_daikuanedu;
-        TextView tv_xinyong_dibuxinxi;
+//        TextView tv_xinyong_dibuxinxi;
         //二手房页面参数
         TextView tv_ershoufananjie_title;
         TextView tv_ershoufanganjie_shouqi;
@@ -162,7 +162,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
         TextView tv_ershoufanganjie_ertao;
         TextView tv_ershoufang_ertaolilv;
         TextView tv_ershoufang_ertaonianxian;
-        TextView tv_ershoufang_dibuxinxi;
+//        TextView tv_ershoufang_dibuxinxi;
         //售楼过桥页面参数
         TextView tv_fangchanshuloudianzi;
         TextView tv_daikuanqixian;
@@ -170,7 +170,7 @@ public class XY_ErshoufangAdapter extends BaseAdapter {
         TextView tv_daikuanedu;
         TextView tv_xiakuanqixian;
         TextView tv_yuecankaolilv;
-        TextView tv_dibuxinxi;
+//        TextView tv_dibuxinxi;
         TextView shuloudianzi_diyawu;
     }
 }

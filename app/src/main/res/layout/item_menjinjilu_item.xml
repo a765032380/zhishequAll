@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="82dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+    <TextView
+        android:id="@+id/tv_menjinjilu_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:12:12"
+        android:textColor="#323232"
+        android:textSize="14sp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="5dp">
+        <ImageView
+            android:id="@+id/iv_menjinjilu_item_up"
+            android:layout_width="2dp"
+            android:layout_height="37dp"
+            android:background="@drawable/a_bg_theprogressbar"/>
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:background="@drawable/a_icon_blue1"/>
+        <ImageView
+            android:id="@+id/iv_menjinjilu_item_below"
+            android:layout_width="2dp"
+            android:layout_height="36dp"
+            android:background="@drawable/a_bg_theprogressbar"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_menjinjilu_sex"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:background="@drawable/a_icon_display"
+        android:layout_marginLeft="5dp"/>
+    <ImageView
+        android:id="@+id/iv_menjinjilu_touxiang"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/c_img_touxiang"
+        android:layout_marginLeft="5dp"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:layout_marginLeft="5dp"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/menjinjilu_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="姓名"
+        android:textColor="#323232"
+        android:textSize="15sp"/>
+    <TextView
+        android:id="@+id/menjinjilu_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地址"
+        android:textSize="13sp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="5dp"/>
+
+
+</LinearLayout>
+
+</LinearLayout>

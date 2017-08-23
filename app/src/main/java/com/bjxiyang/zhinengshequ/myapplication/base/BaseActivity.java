@@ -47,9 +47,9 @@ public class BaseActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
 //            window.setNavigationBarColor(Color.TRANSPARENT);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            setTranslucentStatus(true);
+//        }
 //
 
         //设置系统栏设置颜色

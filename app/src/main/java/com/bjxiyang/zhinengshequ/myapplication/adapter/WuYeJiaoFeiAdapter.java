@@ -66,7 +66,7 @@ public class WuYeJiaoFeiAdapter extends BaseAdapter {
             viewHolder.iv_item_wuyejiaofei_biaoji = (ImageView) view.findViewById(R.id.iv_item_wuyejiaofei_biaoji);
             viewHolder.tv_item_wuyejiaofei_dizhi = (TextView) view.findViewById(R.id.tv_item_wuyejiaofei_dizhi);
             viewHolder.tv_item_wuyejiaofei_money = (TextView) view.findViewById(R.id.tv_item_wuyejiaofei_money);
-            viewHolder.iv_item_wuyejiaofei_jiaofei = (ImageView) view.findViewById(R.id.iv_item_wuyejiaofei_jiaofei);
+            viewHolder.iv_item_wuyejiaofei_jiaofei = (TextView) view.findViewById(R.id.iv_item_wuyejiaofei_jiaofei);
             viewHolder.tv_item_wuyejiaofei_wuyegongsiname = (TextView) view.findViewById(R.id.tv_item_wuyejiaofei_wuyegongsiname);
             viewHolder.jiaofeizhuangtai = (TextView) view.findViewById(R.id.jiaofeizhuangtai);
             viewHolder.ll_item_gone_text = (LinearLayout) view.findViewById(R.id.ll_item_gone_text);
@@ -203,7 +203,7 @@ public class WuYeJiaoFeiAdapter extends BaseAdapter {
         ImageView iv_item_wuyejiaofei_biaoji;
         TextView tv_item_wuyejiaofei_dizhi;
         TextView tv_item_wuyejiaofei_money;
-        ImageView iv_item_wuyejiaofei_jiaofei;
+        TextView iv_item_wuyejiaofei_jiaofei;
 
         TextView tv_item_wuyejiaofei_wuyegongsiname;
         TextView tv_item_wuyejiaofei_dingdanhao;

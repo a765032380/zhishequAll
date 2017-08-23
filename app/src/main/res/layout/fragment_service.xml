@@ -455,6 +455,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="invisible"
                     android:layout_weight="1"
                     android:id="@+id/ll_chongzhika"
                     android:layout_width="0dp"
@@ -671,13 +672,104 @@
                         android:textSize="12sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_weight="4"
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_jinrongfuwu2"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_jinrongfuwu2"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/a_icon_credit" />
+
+                    <TextView
+                        android:id="@+id/tv_jinrongfuwu2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="过桥垫资"
+                        android:textSize="12sp" />
+
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/ll_jinrongfuwu3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_jinrongfuwu3"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/a_icon_mortgage" />
+
+                    <TextView
+                        android:id="@+id/tv_jinrongfuwu3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="抵押"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/ll_jinrongfuwu4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_jinrongfuwu4"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/a_icon_thebridgematendowment" />
+
+                    <TextView
+                        android:id="@+id/tv_jinrongfuwu4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="信用"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/ll_jinrongfuwu5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_jinrongfuwu5"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/a_icon_thesecondary" />
+
+                    <TextView
+                        android:id="@+id/tv_jinrongfuwu5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="二手房"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+         
 
             </LinearLayout>
 
