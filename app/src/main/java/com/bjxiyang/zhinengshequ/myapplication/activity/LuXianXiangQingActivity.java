@@ -6,9 +6,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -26,11 +28,13 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.HuoDongDetails;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.JoinLuXianDialog;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.PingLunDialog;
+import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_HuoDong;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
+import com.bjxiyang.zhinengshequ.myapplication.view.MyListView;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyScrollView;
 
 import java.util.List;
@@ -38,6 +42,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import me.imid.swipebacklayout.lib.Utils;
 
 
 /**
@@ -92,11 +97,11 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
     @BindView(R.id.tv_join_count)
     TextView tv_join_count;
     @BindView(R.id.lv_luxianxiangqing)
-    ListView lv_luxianxiangqing;
+    MyListView lv_luxianxiangqing;
     @BindView(R.id.tv_pinglun_none)
     TextView tv_pinglun_none;
     @BindView(R.id.id_xiangqing_listview)
-    ListView id_xiangqing_listview;
+    MyListView id_xiangqing_listview;
     @BindView(R.id.tv_fabiaoyanlun)
     TextView tv_fabiaoyanlun;
     @BindView(R.id.tv_join)
@@ -117,6 +122,10 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
     MyScrollView myScrollView;
     @BindView(R.id.ll_ScrollView_nei)
     LinearLayout ll_ScrollView_nei;
+    @BindView(R.id.im_tupian)
+    LinearLayout im_tupian;
+
+
 
     private JoinLuXianDialog joinLuXianDialog;
     public static LuXianXiangQingActivity luXianXiangQingActivity;
@@ -130,6 +139,8 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
     private boolean isOne=true;
     public static int heightY;
     public static boolean isScroll=false;
+//    private boolean isTwo=false;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -191,7 +202,7 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
                         });
                         isOne=false;
                     }else {
-                            heightY = myScrollView.getChildAt(0).getHeight();
+//                            heightY = myScrollView.getChildAt(0).getHeight();
 //                            .getMeasuredHeight() - myScrollView.getHeight();
                             myScrollView.post(new Runnable() {
                                 //让scrollview跳转到顶部，必须放在runnable()方法中
@@ -214,11 +225,54 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
             }
         });
     }
+//    @Override
+//    public void onBackPressed() {
+//        Intent intent=new Intent();
+//        if (isJoin){
+//            intent.putExtra("isJoin",1);
+//        }else {
+//            intent.putExtra("isJoin",2);
+//        }
+//
+//        setResult(0,intent);
+//        super.onBackPressed();
+//    }
+//    @Override
+//    public void scrollToFinishActivity() {
+//        Utils.convertActivityToTranslucent(this);
+//        getSwipeBackLayout().scrollToFinishActivity();
+//        Intent intent=new Intent();
+//        intent.putExtra("isJoin",isJoin);
+//        setResult(0,intent);
+//    }
+
+//    @Override
+//    protected void onDestroy() {
+//        Intent intent=new Intent();
+//        intent.putExtra("isJoin",isJoin);
+//        setResult(0,intent);
+//        super.onDestroy();
+//    }
+//
+//    @Override
+//    protected void onPostResume() {
+//        Intent intent=new Intent();
+//        intent.putExtra("isJoin",isJoin);
+//        setResult(0,intent);
+//        super.onPostResume();
+//    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_luxianxiangqing_fanhui:
+//                Intent intent=new Intent();
+//                if (isJoin){
+//                    intent.putExtra("isJoin",1);
+//                }else {
+//                    intent.putExtra("isJoin",2);
+//                }
+//                setResult(0,intent);
                 finish();
                 break;
             case R.id.ll_luxianxiangqing_more:
@@ -251,27 +305,32 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
             ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
                     .displayImage(iv_photo, obj.getUserUrl());
         }
-        for (int i=0;i<obj.getImgList().size();i++){
-            if (i==0){
-                if (obj.getImgList().get(i).getImgUrl()!=null&&!obj.getImgList().get(i).getImgUrl().equals("")) {
-                    ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
-                            .displayImage(iv_photo1, obj.getImgList().get(i).getImgUrl());
+        if (obj.getImgList().size()>0) {
+            im_tupian.setVisibility(View.VISIBLE);
+            for (int i = 0; i < obj.getImgList().size(); i++) {
+                if (i == 0) {
+                    if (obj.getImgList().get(i).getImgUrl() != null && !obj.getImgList().get(i).getImgUrl().equals("")) {
+                        ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
+                                .displayImage(iv_photo1, obj.getImgList().get(i).getImgUrl());
+                    }
                 }
-            }
-            if (i==1){
-                if (obj.getImgList().get(i).getImgUrl()!=null&&!obj.getImgList().get(i).getImgUrl().equals("")) {
+                if (i == 1) {
+                    if (obj.getImgList().get(i).getImgUrl() != null && !obj.getImgList().get(i).getImgUrl().equals("")) {
 
-                    ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
-                            .displayImage(iv_photo2, obj.getImgList().get(i).getImgUrl());
+                        ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
+                                .displayImage(iv_photo2, obj.getImgList().get(i).getImgUrl());
+                    }
                 }
-            }
-            if (i==2){
-                if (obj.getImgList().get(i).getImgUrl()!=null&&!obj.getImgList().get(i).getImgUrl().equals("")) {
+                if (i == 2) {
+                    if (obj.getImgList().get(i).getImgUrl() != null && !obj.getImgList().get(i).getImgUrl().equals("")) {
 
-                    ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
-                            .displayImage(iv_photo3, obj.getImgList().get(i).getImgUrl());
+                        ImageLoaderManager.getInstance(LuXianXiangQingActivity.this)
+                                .displayImage(iv_photo3, obj.getImgList().get(i).getImgUrl());
+                    }
                 }
             }
+        }else {
+            im_tupian.setVisibility(View.GONE);
         }
 
 
@@ -306,22 +365,33 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
         tv_join_count.setText(obj.getJoinCount()+"");
         partyId=obj.getPartyId();
 
-        if (obj.getHaveJoin()==0){
-            tv_join.setText("加入");
-            isJoin=false;
-
-            tv_join.setBackgroundResource(R.drawable.a_btn_join);
-
-            //加入活动
-
-        }else if (obj.getHaveJoin()==1){
-
+        if (obj.getIsEnd()==0){
+            if (obj.getHaveJoin()==0){
+                tv_join.setClickable(true);
+                tv_join.setText("加入");
+                isJoin=false;
+                tv_join.setBackgroundResource(R.drawable.a_btn_join);
+                //加入活动
+            }else if (obj.getHaveJoin()==1){
+                tv_join.setClickable(true);
+                tv_join.setBackgroundResource(R.drawable.a_btn_over);
+                tv_join.setText("退出活动");
+                isJoin=true;
+            }
+        }else if (obj.getIsEnd()==1){
+            tv_join.setText("已结束");
+            tv_join.setClickable(false);
             tv_join.setBackgroundResource(R.drawable.a_btn_over);
-            tv_join.setText("退出活动");
-            isJoin=true;
         }
-
-
+        if (!isOne) {
+            Intent intent = new Intent();
+            if (!isJoin) {
+                intent.putExtra("isJoin", 1);
+            } else {
+                intent.putExtra("isJoin", 2);
+            }
+            setResult(0, intent);
+        }
 
         //加入活动
 //        tv_join.setOnClickListener(new View.OnClickListener() {
@@ -356,13 +426,14 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
     private void setLuXianPingLun(List<HuoDongDetails.ObjBean.ReplyListBean> pinglunList){
         LuXianPingLunAdapter adapter=new LuXianPingLunAdapter(LuXianXiangQingActivity.this,pinglunList);
         lv_luxianxiangqing.setAdapter(adapter);
-        MyUntil.setListViewHeightBasedOnChildren(lv_luxianxiangqing,adapter);
+//        setListViewHeightBasedOnChildren(lv_luxianxiangqing);
+//        MyUntil.setListViewHeightBasedOnChildren(lv_luxianxiangqing,adapter);
     }
 
     private void setLuXianJoin(List<HuoDongDetails.ObjBean.JoinListBean> joinListList){
         LuXianJoinAdapter joinAdapter=new LuXianJoinAdapter(LuXianXiangQingActivity.this,joinListList);
         id_xiangqing_listview.setAdapter(joinAdapter);
-        MyUntil.setListViewHeightBasedOnChildren(id_xiangqing_listview,joinAdapter);
+//        MyUntil.setListViewHeightBasedOnChildren(id_xiangqing_listview,joinAdapter);
     }
 
     private void showPingLun(){
@@ -411,21 +482,24 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
                         RequestCenter.neighbor_joinparty(url, new DisposeDataListener() {
                             @Override
                             public void onSuccess(Object responseObj) {
+                                //需要回调
                                 FanHui2 fanHui = (FanHui2) responseObj;
-
                                 if (fanHui.getCode() == 1000) {
-                                    MyUntil.show(LuXianXiangQingActivity.this,"测试");
                                     if (!isJoin){
+
                                         obj.setHaveJoin(1);
                                         obj.setJoinCount(obj.getJoinCount() + 1);
                                         tv_join_count.setText(obj.getJoinCount());
                                         tv_join.setText("退出活动");
+//                                        isJoin=true;
                                     }else {
                                         obj.setHaveJoin(0);
                                         obj.setJoinCount(obj.getJoinCount() - 1);
                                         tv_join_count.setText(obj.getJoinCount());
                                         tv_join.setText("加入");
+//                                        isJoin=false;
                                     }
+
                                 } else {
                                     MyUntil.show(LuXianXiangQingActivity.this, fanHui.getMsg());
                                 }
@@ -480,4 +554,31 @@ public class LuXianXiangQingActivity extends LogOutBaseActivity
         }
 
     }
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        // 获取ListView对应的Adapter
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
+            // listAdapter.getCount()返回数据项的数目
+            View listItem = listAdapter.getView(i, null, listView);
+            // 计算子项View 的宽高
+            listItem.measure(0, 0);
+            // 统计所有子项的总高度
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        // listView.getDividerHeight()获取子项间分隔符占用的高度
+        // params.height最后得到整个ListView完整显示需要的高度
+        listView.setLayoutParams(params);
+    }
+
+
+
+
 }

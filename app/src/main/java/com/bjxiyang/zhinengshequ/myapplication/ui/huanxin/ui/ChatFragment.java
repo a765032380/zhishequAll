@@ -226,8 +226,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     
     @Override
     public void onSetMessageAttributes(EMMessage message) {
-        Users users = UserManager.getInstance().getUser();
-        Users.Obj obj = users.getObj();
+//        Users users = UserManager.getInstance().getUser();
+//        Users.Obj obj = users.getObj();
 
        HaoYouList haoYouList= HaoYouListManager.getInstance().getUser();
        //// TODO: 2017/8/17  
@@ -243,11 +243,11 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 //        }
 //        String beizhu=haoYouList.getObj().get(0).getFriendRemark();
 
-        message.setAttribute("nickname",obj.getNickName());
+        message.setAttribute("nickname",SPManager.getInstance().getString("nickName",""));
         //设置要发送扩展消息用户昵称
 //        message.setAttribute("nickname", obj.getRealName());
         //设置要发送扩展消息用户头像
-        message.setAttribute("photo", obj.getHeadPhotoUrl());
+        message.setAttribute("photo", SPManager.getInstance().getString("headPhotoUrl",""));
 
     }
     

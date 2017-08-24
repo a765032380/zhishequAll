@@ -85,6 +85,16 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
                     public void onSuccess(Object responseObj) {
                         DialogUntil.closeLoadingDialog();
                         anim.stop();
+
+                        int selectColor=position%3;
+                        if (selectColor==0){
+                            viewHolder.image_tu.setBackgroundResource(R.drawable.purple_00000);
+                        }else if (selectColor==1){
+                            viewHolder.image_tu.setBackgroundResource(R.drawable.red_00000);
+                        }else {
+                            viewHolder.image_tu.setBackgroundResource(R.drawable.yellow_00000);
+                        }
+
                         OpenDoor openDoor= (OpenDoor) responseObj;
                         if (openDoor.getCode().equals("1000")){
                             Toast.makeText(v.getContext(),"开门成功",Toast.LENGTH_LONG).show();
@@ -101,6 +111,14 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
 
                     @Override
                     public void onFailure(Object reasonObj) {
+                        int selectColor=position%3;
+                        if (selectColor==0){
+                            viewHolder.image_tu.setBackgroundResource(R.drawable.purple_00000);
+                        }else if (selectColor==1){
+                            viewHolder.image_tu.setBackgroundResource(R.drawable.red_00000);
+                        }else {
+                            viewHolder.image_tu.setBackgroundResource(R.drawable.yellow_00000);
+                        }
                         DialogUntil.closeLoadingDialog();
                         anim.stop();
                         MyDialog.showDialog(v.getContext());

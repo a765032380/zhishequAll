@@ -59,7 +59,7 @@ public class MyXinXiActivity extends LogOutBaseActivity implements View.OnClickL
 
     private RelativeLayout iv_gerenxinxi_xiugai_fanhui;
     private String mHeadPhotoUrl="";
-    private String sex="";
+    private String sex="0";
     private String mNickName="";
 
 
@@ -73,6 +73,7 @@ public class MyXinXiActivity extends LogOutBaseActivity implements View.OnClickL
                 !SPManager.getInstance().getString("c_memberId","").equals("")) {
             Intent intent = getIntent();
             mHeadPhotoUrl = intent.getStringExtra("HeadPhotoUrl");
+
             sex = intent.getStringExtra("sex");
             mNickName = intent.getStringExtra("NickName");
             setTextForHTTP();
@@ -149,10 +150,14 @@ public class MyXinXiActivity extends LogOutBaseActivity implements View.OnClickL
         if (mNickName!=null){
             tv_gerenxinxi_xiugai_name.setText(mNickName);
         }
-        if (sex.equals("0")){
-            tv_gerenxinxi_xiugai_sex.setText("女");
+        if (sex!=null) {
+            if (sex.equals("0")) {
+                tv_gerenxinxi_xiugai_sex.setText("女");
+            } else {
+                tv_gerenxinxi_xiugai_sex.setText("男");
+            }
         }else {
-            tv_gerenxinxi_xiugai_sex.setText("男");
+            tv_gerenxinxi_xiugai_sex.setText("女");
         }
 
         if (mHeadPhotoUrl!=null&&!mHeadPhotoUrl.equals("")){

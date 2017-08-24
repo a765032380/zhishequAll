@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XYXuanZeXiaoQuActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.XuanZeXiaoQuActivity;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.MyMenJinAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ByCom;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
@@ -329,7 +330,10 @@ public class RadialButtonLayout extends FrameLayout{
                             MyUntil.show(getContext(), "当前数据为空");
                         }
                     } else {
-                        MyUntil.show(getContext(), byCom.getMsg());
+                        MyUntil.show(getContext(), "请先选择小区");
+                        Intent intent=new Intent(getContext(), XuanZeXiaoQuActivity.class);
+                        getContext().startActivity(intent);
+
                     }
                 }
 

@@ -109,6 +109,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private List<Banner.Obj> list = new ArrayList<>();
     private Banner banner;
     private int myScrollViewHeight=0;
+    private boolean isOne=true;
     /***
      * 百度地图
      */
@@ -360,6 +361,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 break;
             case R.id.tv_chaoshitejia_more:
                 Intent intent1=new Intent(getContext(), BianLiDianListActivity.class);
+                intent1.putExtra("type",1);
                 startActivity(intent1);
                 break;
         }
@@ -495,56 +497,63 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             location.getBuildingName();    //室内精准定位下，获取楼宇名称
             location.getFloor();    //室内精准定位下，获取当前位置所处的楼层信息
 
-            if (location.getLocType() == BDLocation.TypeGpsLocation||
-                    location.getLocType() == BDLocation.TypeNetWorkLocation||
-                    location.getLocType() == BDLocation.TypeOffLineLocation) {
-//                location.getLatitude();    //获取纬度信息
-//                location.getLongitude();    //获取经度信息
+//            if (location.getLocType() == BDLocation.TypeGpsLocation||
+//                    location.getLocType() == BDLocation.TypeNetWorkLocation||
+//                    location.getLocType() == BDLocation.TypeOffLineLocation) {
+                location.getLatitude();    //获取纬度信息
+                location.getLongitude();    //获取经度信息
                 Log.i("llll","经度:"+location.getLatitude()+"纬度:"+location.getLongitude());
-
-                String url=XY_Response2.URL_HOME_SELLER+"cmemberId="+
-                        SPManager.getInstance().getString("c_memberId","")
-                        +"&lng="+location.getLongitude()+"&lat="+location.getLatitude();
-
-                RequestCenter.home_Seller(url, new DisposeDataListener() {
-                    @Override
-                    public void onSuccess(Object responseObj) {
-                        HomeBean2 homeBean2= (HomeBean2) responseObj;
-                        List<HomeBean.ObjBean.ShopObjBean> chaoshiList=homeBean2.getObj();
+                if (isOne) {
+                    String url = XY_Response2.URL_HOME_SELLER + "cmemberId=" +
+                            SPManager.getInstance().getString("c_memberId", "0")
+                            + "&lng=" + location.getLongitude() + "&lat=" + location.getLatitude()
+                            + "&type=" + 1;
+                    Log.i("lll", url);
+                    RequestCenter.home_Seller(url, new DisposeDataListener() {
+                        @Override
+                        public void onSuccess(Object responseObj) {
+                            HomeBean2 homeBean2 = (HomeBean2) responseObj;
+                            List<HomeBean.ObjBean.ShopObjBean> chaoshiList = homeBean2.getObj();
 //                        List<HomeBean.ObjBean.ShopObjBean> chaoshiList= (List<HomeBean.ObjBean.ShopObjBean>) responseObj;
-                        if (chaoshiList.size()>0){
-                            setChaoShiList(chaoshiList);
+                            if (chaoshiList.size() > 0) {
+                                setChaoShiList(chaoshiList);
+                            }
+
+                            Log.i("LLLL", "请求成功");
                         }
 
-                        Log.i("LLLL","请求成功");
-                    }
+                        @Override
+                        public void onFailure(Object reasonObj) {
+                            Log.i("LLLL", "请求失败");
+                        }
+                    });
+                    isOne=false;
 
-                    @Override
-                    public void onFailure(Object reasonObj) {
-                        Log.i("LLLL","请求失败");
-                    }
-                });
+                }
+                mLocationClient.stop();
 //                Message message=new Message();
 //                message.obj=location;
 //                mHandle.sendMessage(message);
 
                 //当前为GPS定位结果，可获取以下信息
 
-            }  else if (location.getLocType() == BDLocation.TypeServerError) {
-                Log.i("LLL","定位失败");
-                //当前网络定位失败
-                //可将定位唯一ID、IMEI、定位失败时间反馈至loc-bugs@baidu.com
-
-            } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
-                Log.i("LLL","定位失败");
-                //当前网络不通
-
-            } else if (location.getLocType() == BDLocation.TypeCriteriaException) {
-                Log.i("LLL","定位失败");
-                //当前缺少定位依据，可能是用户没有授权，建议弹出提示框让用户开启权限
-                //可进一步参考onLocDiagnosticMessage中的错误返回码
-
-            }
+//            }  else if (location.getLocType() == BDLocation.TypeServerError) {
+//                Log.i("LLL","定位失败");
+//                //当前网络定位失败
+//                //可将定位唯一ID、IMEI、定位失败时间反馈至loc-bugs@baidu.com
+//
+//            } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
+//                Log.i("LLL","定位失败");
+//                //当前网络不通
+//
+//            } else if (location.getLocType() == BDLocation.TypeCriteriaException) {
+//                Log.i("LLL","定位失败");
+//                //当前缺少定位依据，可能是用户没有授权，建议弹出提示框让用户开启权限
+//                //可进一步参考onLocDiagnosticMessage中的错误返回码
+//
+//            }else {
+//                mLocationClient.stop();
+//            }
         }
     }
 

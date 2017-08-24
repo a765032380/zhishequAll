@@ -490,16 +490,16 @@ public class ZhiFuXiangQing extends LogOutBaseActivity implements View.OnClickLi
             if (second>=1){
                 second--;
                 if (second<10){
-                    tv_zhifudingdan_time.setText(minute+":0"+second);
+                    tv_zhifudingdan_time.setText(minute-1+":0"+second);
                 }else {
-                    tv_zhifudingdan_time.setText(minute + ":" + second);
+                    tv_zhifudingdan_time.setText(minute-1 + ":" + second);
                 }
             }
             if (second==0){
                 if (minute>0){
                     minute--;
                     second=59;
-                    tv_zhifudingdan_time.setText(minute+":"+second);
+                    tv_zhifudingdan_time.setText(minute-1+":"+second);
                 }
             }
         }else {

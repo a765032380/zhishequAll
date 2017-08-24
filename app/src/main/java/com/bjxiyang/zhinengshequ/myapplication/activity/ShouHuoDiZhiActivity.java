@@ -12,7 +12,6 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.ShouHuoDiZhiAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
-import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DiZhiList;
 import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.BianLiDianResponse;
@@ -63,9 +62,11 @@ public class ShouHuoDiZhiActivity extends LogOutBaseActivity
             public void onSuccess(Object responseObj) {
                 DiZhiList diZhiList= (DiZhiList) responseObj;
                 if (diZhiList.getCode()== BianLiDianStatus.STATUS_CODE_SUCCESS){
-                    mList=diZhiList.getResult();
-                    adapter=new ShouHuoDiZhiAdapter(ShouHuoDiZhiActivity.this,mList);
-                    lv_shouhuodizhi.setAdapter(adapter);
+                    mList = diZhiList.getResult();
+                    if (mList.size()>0) {
+                        adapter = new ShouHuoDiZhiAdapter(ShouHuoDiZhiActivity.this, mList);
+                        lv_shouhuodizhi.setAdapter(adapter);
+                    }
                 }else {
                     MyUntil.show(ShouHuoDiZhiActivity.this,diZhiList.getMsg());
                 }

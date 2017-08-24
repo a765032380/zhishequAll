@@ -2,6 +2,8 @@ package com.bjxiyang.zhinengshequ.myapplication.update;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +82,12 @@ public class CommonDialog extends Dialog
 		LinearLayout layout2 = (LinearLayout) findChildViewById(R.id.signal_layout);
 		titleView = (TextView) findChildViewById(R.id.title);
 		contentTextView = (TextView) findChildViewById(R.id.message);
-		contentTextView.setText(contentMsg);
+		CharSequence charSequence= Html.fromHtml(contentMsg);
+
+		contentTextView.setText(charSequence);
+		//该语句在设置后必加，不然没有任何效果
+		contentTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
 		contentTextView.setGravity(Gravity.CENTER);
 		if (msg != null && !"".equals(msg))
 		{

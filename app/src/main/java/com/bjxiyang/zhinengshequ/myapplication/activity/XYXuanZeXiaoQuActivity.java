@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -27,11 +28,15 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.Floor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Plots;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Unit;
+import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DiZhiAdd;
+import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus;
+import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.BianLiDianResponse;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.KaiMenYouXiDialog;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
+import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.SelectType;
 import com.bjxiyang.zhinengshequ.myapplication.until.UserType;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -91,6 +96,7 @@ public class XYXuanZeXiaoQuActivity extends LogOutBaseActivity implements Adapte
     private int unitId;
     private int doorId;
     private int roleType= UserType.USER_OWNER;
+    private boolean isXiaoQu;
 
     Handler handler=new Handler(new Handler.Callback() {
         @Override
@@ -111,6 +117,8 @@ public class XYXuanZeXiaoQuActivity extends LogOutBaseActivity implements Adapte
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xy_activity_xuanzexiaoqu);
+        Intent intent=getIntent();
+        isXiaoQu=intent.getBooleanExtra("isXiaoQu",false);
         initUI();
     }
     private void initUI() {
@@ -294,36 +302,44 @@ public class XYXuanZeXiaoQuActivity extends LogOutBaseActivity implements Adapte
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (type<4){
-            if (type== SelectType.XIAOQU){
-                communityId=plots.getObj().get(position).getCommunityId();
-                nperId=plots.getObj().get(position).getNperId();
+        if (isXiaoQu){
+            Intent intent=new Intent();
+            intent.putExtra("communityId",plots.getObj().get(position).getCommunityId());
+            intent.putExtra("communityName",xiaoqu = mList.get(position));
+            setResult(0,intent);
+            finish();
+        }else {
+            if (type < 4) {
+                if (type == SelectType.XIAOQU) {
+                    communityId = plots.getObj().get(position).getCommunityId();
+                    nperId = plots.getObj().get(position).getNperId();
 
-                type= SelectType.LOUHAO;
-                xiaoqu=mList.get(position);
-                update();
-            }else if (type== SelectType.LOUHAO){
-                floorId=floor.getObj().get(position).getFloorId();
-                type= SelectType.DANYUAN;
-                louhao=mList.get(position);
-                update();
-            }else if (type== SelectType.DANYUAN){
-                unitId=unit.getObj().get(position).getUnitId();
-                type= SelectType.MEN;
-                danyuan=mList.get(position);
-                update();
+                    type = SelectType.LOUHAO;
+                    xiaoqu = mList.get(position);
+                    update();
+                } else if (type == SelectType.LOUHAO) {
+                    floorId = floor.getObj().get(position).getFloorId();
+                    type = SelectType.DANYUAN;
+                    louhao = mList.get(position);
+                    update();
+                } else if (type == SelectType.DANYUAN) {
+                    unitId = unit.getObj().get(position).getUnitId();
+                    type = SelectType.MEN;
+                    danyuan = mList.get(position);
+                    update();
 
-            }else if (type== SelectType.MEN){
-                doorId=door.getObj().get(position).getDoorId();
-                type++;
-                showQueren();
-                //拼接地址
-                men=mList.get(position);
-                xiaoqu_dizhi=xiaoqu+"-"+louhao+"-"+danyuan+"-"+men;
-                add_xiaoqu_dizhi.setText(xiaoqu_dizhi);
-                return;
+                } else if (type == SelectType.MEN) {
+                    doorId = door.getObj().get(position).getDoorId();
+                    type++;
+                    showQueren();
+                    //拼接地址
+                    men = mList.get(position);
+                    xiaoqu_dizhi = xiaoqu + "-" + louhao + "-" + danyuan + "-" + men;
+                    add_xiaoqu_dizhi.setText(xiaoqu_dizhi);
+                    return;
+                }
+                setTitle();
             }
-            setTitle();
         }
 
     }
@@ -394,6 +410,25 @@ public class XYXuanZeXiaoQuActivity extends LogOutBaseActivity implements Adapte
                         DialogUntil.closeLoadingDialog();
                         AddFangWu fanHui = (AddFangWu) responseObj;
                         if (fanHui.getCode().equals("1000")) {
+                            String url_add = BianLiDianResponse.URL_ORDER_USER_ADDRESS_ADD +
+                                    "name=" + name + "&sex=" + 1 + "&phone=" + phone + "&communityId=" + communityId +
+                                    "&nperId=" + nperId + "&floorId=" + floorId + "&unitId=" + unitId +
+                                    "&doorId=" + doorId+"&address="+"";
+                            Log.i("llll",url_add);
+                            RequestCenter.order_user_address_add(url_add, new DisposeDataListener() {
+                                @Override
+                                public void onSuccess(Object responseObj) {
+                                }
+                                @Override
+                                public void onFailure(Object reasonObj) {
+                                }
+                            });
+
+
+
+
+
+
 
                             if (fanHui.getObj().getType() == 1) {
                                 KaiMenYouXiDialog kaiMenYouXiDialog =

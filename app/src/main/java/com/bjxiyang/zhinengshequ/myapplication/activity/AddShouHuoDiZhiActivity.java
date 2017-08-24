@@ -45,6 +45,7 @@ public class AddShouHuoDiZhiActivity extends LogOutBaseActivity implements View.
     private ImageView iv_xinzengshouhuodizhi_xuanze2;
     private EditText et_xinzengshouhuodizhi_phone;
     private LinearLayout ll_xinzengshouhuodizhi_loudong;
+    private TextView tv_shouhuodizhi;
     private TextView tv_title;
     private int sex=1;
     private EditText et_select_text;
@@ -102,6 +103,8 @@ public class AddShouHuoDiZhiActivity extends LogOutBaseActivity implements View.
     }
 
     private void initUI() {
+        tv_shouhuodizhi= (TextView) findViewById(R.id.tv_shouhuodizhi);
+        tv_shouhuodizhi.setOnClickListener(this);
         tv_title= (TextView) findViewById(R.id.tv_title);
         rl_xinzengshouhuodizhi_fanghui= (RelativeLayout) findViewById(R.id.rl_xinzengshouhuodizhi_fanghui);
         et_select_text= (EditText) findViewById(R.id.et_select_text);
@@ -130,6 +133,25 @@ public class AddShouHuoDiZhiActivity extends LogOutBaseActivity implements View.
                 name = String.valueOf(et_xinzengshouhuodizhi_name.getText());
                 phone = String.valueOf(et_xinzengshouhuodizhi_phone.getText());
                 address = String.valueOf(et_select_text.getText());
+                if (communityId==0){
+                    MyUntil.show(AddShouHuoDiZhiActivity.this,"请选择小区");
+                    break;
+                }
+                if (name==null||name.equals("")){
+                    MyUntil.show(AddShouHuoDiZhiActivity.this,"请输入收货人");
+                    break;
+                }
+                if (phone==null||phone.equals("")){
+                    MyUntil.show(AddShouHuoDiZhiActivity.this,"请输入手机号");
+                    break;
+                }
+                if (address==null||address.equals("")){
+                    MyUntil.show(AddShouHuoDiZhiActivity.this,"请输入具体地址");
+                    break;
+                }
+
+
+
                 DialogUntil.showLoadingDialog(AddShouHuoDiZhiActivity.this,"正在提交",true);
                 if (type==1){
                     String url_update= BianLiDianResponse.URL_ORDER_USER_ADDRESS_UPDATE+
@@ -137,8 +159,8 @@ public class AddShouHuoDiZhiActivity extends LogOutBaseActivity implements View.
                             "&name=" + name + "&sex=" + sex + "&phone=" + phone +
                             "&communityId=" + communityId +
                             "&nperId=" + nperId + "&floorId=" + floorId +
-                            "&unitId=" + unitId + "&doorId=" + doorId;
-
+                            "&unitId=" + unitId + "&doorId=" + doorId+"&address="+address;
+                    Log.i("llll",url_update);
                     RequestCenter.order_user_address_update(url_update, new DisposeDataListener() {
                         @Override
                         public void onSuccess(Object responseObj) {
@@ -160,8 +182,9 @@ public class AddShouHuoDiZhiActivity extends LogOutBaseActivity implements View.
                 }else {
                     String url_add = BianLiDianResponse.URL_ORDER_USER_ADDRESS_ADD +
                             "name=" + name + "&sex=" + sex + "&phone=" + phone + "&communityId=" + communityId +
-                            "&nperId=" + nperId + "&floorId=" + floorId + "&unitId=" + unitId + "&doorId=" + doorId;
-                    Log.i("YYYY","测试保存新增收货地址");
+                            "&nperId=" + nperId + "&floorId=" + floorId + "&unitId=" + unitId +
+                            "&doorId=" + doorId+"&address="+address;
+                    Log.i("llll",url_add);
                     RequestCenter.order_user_address_add(url_add, new DisposeDataListener() {
                         @Override
                         public void onSuccess(Object responseObj) {
@@ -197,6 +220,11 @@ public class AddShouHuoDiZhiActivity extends LogOutBaseActivity implements View.
                 break;
             case R.id.ll_xinzengshouhuodizhi_loudong:
                     getData();
+                break;
+            case R.id.tv_shouhuodizhi:
+                Intent intent=new Intent(AddShouHuoDiZhiActivity.this,XYXuanZeXiaoQuActivity.class);
+                intent.putExtra("isXiaoQu",true);
+                startActivityForResult(intent,0);
                 break;
         }
     }
@@ -267,6 +295,18 @@ public class AddShouHuoDiZhiActivity extends LogOutBaseActivity implements View.
         }else {
             et_select_text.setText("请添加小区");
         }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data!=null){
+            if (resultCode==0){
+                communityId=data.getIntExtra("communityId",0);
+                tv_shouhuodizhi.setText(data.getStringExtra("communityName"));
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
 
     }
 }

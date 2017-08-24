@@ -2,8 +2,10 @@ package com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -30,6 +32,8 @@ import com.bjxiyang.zhinengshequ.myapplication.view.RefreshLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by Administrator on 2017/8/15 0015.
  */
@@ -55,7 +59,7 @@ public class JieFang_HuoDong extends Fragment implements
     private int pageCount=1;
     private int pageSize=5;
     private boolean isScoll=true;
-    private int height=0;
+    private int height;
     private int partyType;
     private boolean isxiangqing=false;
 
@@ -64,7 +68,9 @@ public class JieFang_HuoDong extends Fragment implements
      */
     private HuoDongAdapter adapter;
     private boolean isOne=true;
-
+    public boolean isJoin;
+    private int position;
+    public static JieFang_HuoDong jieFang_huoDong;
 
 
     @SuppressLint({"NewApi", "ValidFragment"})
@@ -74,25 +80,24 @@ public class JieFang_HuoDong extends Fragment implements
     public JieFang_HuoDong(int partyType){
         this.partyType=partyType;
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=View.inflate(getContext(), R.layout.fragment_avtivityplanning,null);
+        jieFang_huoDong=this;
+        mList=new ArrayList();
+        mListAll=new ArrayList();
         initUI();
+        getData();
         return view;
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         if (hidden){
-//            if (isone){
-//                height=0;
-//                isone=false;
-//            }else {
                 height = swipeRefreshLayout.getScrollY();
-//            }
         }else {
-
             swipeRefreshLayout.post(new Runnable() {
                 //让scrollview跳转到顶部，必须放在runnable()方法中
                 @Override
@@ -105,9 +110,30 @@ public class JieFang_HuoDong extends Fragment implements
     }
 
     @Override
+    public void onPause() {
+        if (swipeRefreshLayout!=null) {
+            height = swipeRefreshLayout.getScrollY();
+        }
+        super.onPause();
+    }
+
+    @Override
     public void onResume() {
-        super.onResume();
-        getData();
+
+//        if (onJoinListener!=null) {
+//            isJoin = onJoinListener.OnJoin();
+//            if (isJoin) {
+//                mListAll.get(position).setHaveJoin(0);
+//                mListAll.get(position).setJoinCount(mListAll.get(position).getJoinCount() - 1);
+//            } else {
+//                mListAll.get(position).setHaveJoin(1);
+//                mListAll.get(position).setJoinCount(mListAll.get(position).getJoinCount() + 1);
+//            }
+//            if (adapter!=null){
+//                adapter.notifyDataSetChanged();
+//            }
+//        }
+//        getData();
         swipeRefreshLayout.post(new Runnable() {
             //让scrollview跳转到顶部，必须放在runnable()方法中
             @Override
@@ -115,12 +141,12 @@ public class JieFang_HuoDong extends Fragment implements
                 swipeRefreshLayout.scrollTo(0,height);
             }
         });
+        super.onResume();
     }
 
     private void getData() {
 
-        mList=new ArrayList();
-        mListAll=new ArrayList();
+
         String url= XY_Response2.URL_NEIGHBOR_FINDPARTY+"cmemberId="+
                 SPManager.getInstance().getString("c_memberId",null)+
                 "&partyType="+partyType+
@@ -130,16 +156,24 @@ public class JieFang_HuoDong extends Fragment implements
             public void onSuccess(Object responseObj) {
                 FindHuoDongList fanhui= (FindHuoDongList) responseObj;
                 if (fanhui.getCode()==1000){
-                    if (isOne) {
-                        mList = fanhui.getObj();
-                        mListAll = mList;
+                    mList = fanhui.getObj();
+//                    if (isOne) {
+                        mListAll=mList;
                         adapter = new HuoDongAdapter(getContext(), mListAll);
                         lv_avtivityplanning.setAdapter(adapter);
-                        isOne=false;
-                    }else {
-                        mListAll=mList;
-                        adapter.notifyDataSetChanged();
-                    }
+                        swipeRefreshLayout.post(new Runnable() {
+                            //让scrollview跳转到顶部，必须放在runnable()方法中
+                            @Override
+                            public void run() {
+                                swipeRefreshLayout.scrollTo(0,height);
+                            }
+                        });
+
+//                        isOne=false;
+//                    }else {
+//                        mListAll=mList;
+//                        adapter.notifyDataSetChanged();
+//                    }
                 }else {
                     Toast.makeText(getContext(),fanhui.getMsg(),Toast.LENGTH_LONG).show();
                 }
@@ -156,6 +190,7 @@ public class JieFang_HuoDong extends Fragment implements
 //        lv_avtivityplanning.setAdapter(adapter);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void initUI() {
         iv_add_activityplanning= (ImageView) view.findViewById(R.id.iv_add_activityplanning);
         iv_add_activityplanning.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +203,12 @@ public class JieFang_HuoDong extends Fragment implements
         swipeRefreshLayout.setOnRefreshListener(this);
         lv_avtivityplanning= (ListView) view.findViewById(R.id.lv_avtivityplanning);
         lv_avtivityplanning.setOnItemClickListener(this);
-
+        swipeRefreshLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                height=i1;
+            }
+        });
 
 
 
@@ -231,9 +271,41 @@ public class JieFang_HuoDong extends Fragment implements
 
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+        this.position=position;
         Intent intent=new Intent(getContext(), LuXianXiangQingActivity.class);
-        intent.putExtra("partyId",mList.get(position).getPartyId());
-        startActivity(intent);
+        intent.putExtra("partyId",mListAll.get(position).getPartyId());
+        if (mListAll.get(position).getHaveJoin()==0){
+            isJoin=false;
+        }else {
+            isJoin=true;
+        }
+
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) { //resultCode为回传的标记，我在B中回传的是RESULT_OK
+            case 0:
+                if (data!=null) {
+                    int inJoin = data.getIntExtra("isJoin", 0);
+                    if (inJoin == 1) {
+                        mListAll.get(position).setHaveJoin(0);
+                        mListAll.get(position).setJoinCount(mListAll.get(position).getJoinCount() - 1);
+                    } else if (inJoin == 2) {
+                        mListAll.get(position).setHaveJoin(1);
+                        mListAll.get(position).setJoinCount(mListAll.get(position).getJoinCount() + 1);
+                    }
+                    if (adapter != null) {
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

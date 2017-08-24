@@ -79,7 +79,8 @@ public class ShouHuoDiZhiAdapter extends BaseAdapter {
         }
         viewHolder.tv_item_shouhuodizhi_dizhi.setText(
                 mList.get(position).getCommunityName()+mList.get(position).getNperName()
-                        +mList.get(position).getUnitName()+mList.get(position).getDoorName());
+                        +mList.get(position).getUnitName()+mList.get(position).getDoorName()
+                    +mList.get(position).getAddress());
         viewHolder.tv_item_shouhuodizhi_name.setText(mList.get(position).getName());
         if (mList.get(position).getSex()==1){
             viewHolder.tv_item_shouhuodizhi_sex.setText("先生");

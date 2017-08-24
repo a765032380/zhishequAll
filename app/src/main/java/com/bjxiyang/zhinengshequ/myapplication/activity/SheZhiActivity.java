@@ -137,18 +137,19 @@ public class SheZhiActivity extends MySwipeBackActivity implements View.OnClickL
                         dialog.setCancelable(false);
                         dialog.show();
                     } else {
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(SheZhiActivity.this);
-                        dialog.setTitle("提示");
-                        dialog.setCancelable(false);
-                        dialog.setMessage("该版本已是最新版本");
-                        dialog.setIcon(R.mipmap.ic_launcher);
-                        dialog.setNegativeButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // TODO Auto-generated method stub
-                            }
-                        });
-                        dialog.show();
+                        MyUntil.show(SheZhiActivity.this,"该版本已是最新版本");
+//                        AlertDialog.Builder dialog = new AlertDialog.Builder(SheZhiActivity.this);
+//                        dialog.setTitle("提示");
+//                        dialog.setCancelable(false);
+//                        dialog.setMessage("该版本已是最新版本");
+//                        dialog.setIcon(R.mipmap.ic_launcher);
+//                        dialog.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                // TODO Auto-generated method stub
+//                            }
+//                        });
+//                        dialog.create().show();
                         //弹出一个toast提示当前已经是最新版本等处理
                     }
                 }else {

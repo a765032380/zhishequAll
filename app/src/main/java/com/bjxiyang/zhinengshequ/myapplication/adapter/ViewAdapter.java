@@ -73,7 +73,10 @@ public class ViewAdapter extends LoopPagerAdapter{
             view3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(BianLiDianListActivity.class);
+                    Intent intent=new Intent(mContext,BianLiDianListActivity.class);
+                    intent.putExtra("type",0);
+                    mContext.startActivity(intent);
+
 //                    Toast.makeText(mContext,"点击了按键3",Toast.LENGTH_LONG).show();
                 }
             });

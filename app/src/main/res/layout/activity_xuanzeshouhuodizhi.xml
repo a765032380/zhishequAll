@@ -92,11 +92,13 @@
             </LinearLayout>
 
             <ListView
+
                 android:id="@+id/lv_shouhuodizhi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></ListView>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
@@ -116,6 +118,7 @@
             </LinearLayout>
 
             <ListView
+                android:visibility="gone"
                 android:id="@+id/lv_buzaipeisongfanwei"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></ListView>

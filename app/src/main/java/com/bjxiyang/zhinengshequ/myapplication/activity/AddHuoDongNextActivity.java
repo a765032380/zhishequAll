@@ -21,6 +21,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui2;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ImageUrl;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
+import com.bjxiyang.zhinengshequ.myapplication.luban.LuBan;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
@@ -152,11 +153,11 @@ public class AddHuoDongNextActivity extends LogOutBaseActivity implements View.O
             case R.id.tv_wancheng:
                 jieshao= String.valueOf(et_startActivities_jieshao.getText());
 
-                if (jieshao==null){
+                if (jieshao==null||jieshao.equals("")){
                     MyUntil.show(AddHuoDongNextActivity.this,"请添加活动介绍");
                     break;
                 }
-                if(imageUrl1==null){
+                if(imageUrl1==null||imageUrl1.equals("")){
                     MyUntil.show(AddHuoDongNextActivity.this,"请添加图片");
                     break;
                 }
@@ -259,7 +260,14 @@ public class AddHuoDongNextActivity extends LogOutBaseActivity implements View.O
                 case RESULT_LOAD_IMAGE_ONE:
                     imageUrl1=String.valueOf(selectedImage);
                     iv_delete1.setVisibility(View.VISIBLE);
-                    imageList.add(mFile);
+                    LuBan.setOnGetImage(AddHuoDongNextActivity.this, mFile, new LuBan.OnGetImage() {
+                        @Override
+                        public void getImage(File file) {
+                            imageList.add(mFile);
+
+                        }
+                    });
+
                     ImageLoaderManager.getInstance(AddHuoDongNextActivity.this)
                             .displayImage(iv_addimg1, String.valueOf(selectedImage));
                     iv_addimg2.setVisibility(View.VISIBLE);
@@ -267,7 +275,13 @@ public class AddHuoDongNextActivity extends LogOutBaseActivity implements View.O
                 case RESULT_LOAD_IMAGE_TWO:
                     imageUrl2=String.valueOf(selectedImage);
                     iv_delete2.setVisibility(View.VISIBLE);
-                    imageList.add(mFile);
+                    LuBan.setOnGetImage(AddHuoDongNextActivity.this, mFile, new LuBan.OnGetImage() {
+                        @Override
+                        public void getImage(File file) {
+                            imageList.add(mFile);
+
+                        }
+                    });
                     ImageLoaderManager.getInstance(AddHuoDongNextActivity.this)
                             .displayImage(iv_addimg2,String.valueOf(selectedImage));
                     iv_addimg3.setVisibility(View.VISIBLE);
@@ -275,7 +289,13 @@ public class AddHuoDongNextActivity extends LogOutBaseActivity implements View.O
                 case RESULT_LOAD_IMAGE_THREE:
                     imageUrl3=String.valueOf(selectedImage);
                     iv_delete3.setVisibility(View.VISIBLE);
-                    imageList.add(mFile);
+                    LuBan.setOnGetImage(AddHuoDongNextActivity.this, mFile, new LuBan.OnGetImage() {
+                        @Override
+                        public void getImage(File file) {
+                            imageList.add(mFile);
+
+                        }
+                    });
                     ImageLoaderManager.getInstance(AddHuoDongNextActivity.this)
                             .displayImage(iv_addimg3,String.valueOf(selectedImage));
                     break;

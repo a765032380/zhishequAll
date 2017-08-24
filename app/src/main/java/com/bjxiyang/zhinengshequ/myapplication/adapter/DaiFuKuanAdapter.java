@@ -163,9 +163,6 @@ public class DaiFuKuanAdapter extends BaseAdapter {
                     SimpleDateFormat formatter=new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
                     Date curDate = new Date(System.currentTimeMillis());//获取当前时间
                     String str = formatter.format(curDate);
-                    Log.i("dateyyy","当前时间:"+str);
-                    Log.i("dateyyy","服务器返回时间:"+mList.get(position).getOrderInfo().getPayLimitTime());
-                    Log.i("dateyyy","剩余时间:");
 
 
                     long between=(DateUtils.getDate(mList.get(position).getOrderInfo().getPayLimitTime()).getTime()-curDate.getTime());//除以1000是为了转换成秒
@@ -433,6 +430,7 @@ public class DaiFuKuanAdapter extends BaseAdapter {
                     viewHolder.tv_item_dingdan_quzhifu.setVisibility(View.VISIBLE);
                     viewHolder.tv_item_dingdan_zhifuzhuangtai.setText("已收货");
                     viewHolder.tv_quzhifu.setText("退货");
+                    final ViewHolder finalViewHolder = viewHolder;
                     viewHolder.tv_item_dingdan_quzhifu.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -444,6 +442,7 @@ public class DaiFuKuanAdapter extends BaseAdapter {
                                     public void onSuccess(Object responseObj) {
                                         OrderDelete orderDelete = (OrderDelete) responseObj;
                                         if (orderDelete.getCode() == BianLiDianStatus.STATUS_CODE_SUCCESS) {
+                                            finalViewHolder.tv_quzhifu.setText("退货中");
                                             mList.get(position1).getOrderInfo().setSubStatus(100);
                                             notifyDataSetChanged();
                                         } else {
@@ -933,4 +932,5 @@ public class DaiFuKuanAdapter extends BaseAdapter {
 //        long day = (date.getTime()) / (24 * 60 * 60 * 1000);
 //        return day;
     }
+
 }

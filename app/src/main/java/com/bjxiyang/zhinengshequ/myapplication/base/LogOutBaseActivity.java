@@ -19,6 +19,5 @@ public class LogOutBaseActivity extends MySwipeBackActivity{
             LogOutUntil.logout(this);
         }
 
-
     }
 }

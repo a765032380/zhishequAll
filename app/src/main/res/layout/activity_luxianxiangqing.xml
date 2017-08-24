@@ -106,7 +106,6 @@
                         android:id="@+id/tv_nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="用户昵称"
                         android:textColor="#323232"
                         android:textSize="14sp" />
 
@@ -118,8 +117,7 @@
                         <TextView
                             android:id="@+id/tv_publish_date"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="08-14" />
+                            android:layout_height="wrap_content" />
 
                         <TextView
                             android:id="@+id/tv_publish_time"
@@ -182,7 +180,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="08-15"
                     android:textColor="#2e77ff"
                     android:textSize="14sp" />
 
@@ -203,15 +200,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="对对对对对对多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多"
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
 
             <LinearLayout
+                android:id="@+id/im_tupian"
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -261,7 +258,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="2017-08-05"
                     android:textColor="#415582"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -291,7 +287,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="2017-09-01"
                     android:textColor="#415582"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -321,7 +316,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="望京地铁"
                     android:textColor="#415582"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -351,7 +345,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="沙河地铁"
                     android:textColor="#415582"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -381,7 +374,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="AA"
                     android:textSize="14sp" />
 
 
@@ -411,7 +403,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="不限"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -439,7 +430,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="肤白貌美，人傻钱多"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -478,7 +468,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"
-                            android:text="4" />
+                            android:text="0" />
 
 
                     </LinearLayout>
@@ -519,7 +509,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7dp"
-                            android:text="4" />
+                            android:text="0" />
                     </LinearLayout>
 
                     <ImageView
@@ -539,12 +529,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ListView
+                <com.bjxiyang.zhinengshequ.myapplication.view.MyListView
                     android:id="@+id/lv_luxianxiangqing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:scrollbars="none"></ListView>
+                    android:scrollbars="none">
+
+                </com.bjxiyang.zhinengshequ.myapplication.view.MyListView>
 
                 <View
                     android:layout_width="match_parent"
@@ -566,16 +558,16 @@
                 android:visibility="gone"
                 android:id="@+id/ll_join"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ListView
+                <com.bjxiyang.zhinengshequ.myapplication.view.MyListView
                     android:id="@+id/id_xiangqing_listview"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:scrollbars="none">
-                </ListView>
+                </com.bjxiyang.zhinengshequ.myapplication.view.MyListView>
 
             </LinearLayout>
         </LinearLayout>

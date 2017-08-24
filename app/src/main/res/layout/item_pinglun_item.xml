@@ -37,6 +37,7 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_huifu_floor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

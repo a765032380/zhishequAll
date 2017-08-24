@@ -47,11 +47,11 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="30dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:text="编辑"
+                android:background="@drawable/a_btn_addshouquan"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
         </RelativeLayout>

@@ -14,12 +14,12 @@
             android:id="@+id/iv_shangminxiangqing_img"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@drawable/a_shangchao_img"
+
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"/>
 
-
+        <!--android:background="@drawable/a_shangchao_img"-->
         <ImageView
             android:id="@+id/iv_shangminxiangqing_fanhui"
             android:layout_width="39dp"
@@ -30,6 +30,7 @@
             android:background="@drawable/c_btn_fanhui" />
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/iv_shangminxiangqing_fenxiang"
             android:layout_width="39dp"
             android:layout_height="39dp"

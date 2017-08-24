@@ -19,6 +19,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.BianLiDianResponse;
 import com.bjxiyang.zhinengshequ.myapplication.until.DateUtils;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
+import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 
 import java.util.ArrayList;
@@ -73,6 +74,11 @@ int headerViewsCount;
                 YouHuiQuan youhuiquan= (YouHuiQuan) responseObj;
                 if (youhuiquan.getCode() == BianLiDianStatus.STATUS_CODE_SUCCESS){
                     mList=youhuiquan.getResult();
+                    if (mList.size()==0){
+                        MyUntil.show(getContext(),"当前无可用优惠券");
+                        dismiss();
+                    }
+
                     for (int i=mList.size()-1;i>=0;i--){
 
                         Date startdate=null;

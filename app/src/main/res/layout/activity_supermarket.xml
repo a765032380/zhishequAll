@@ -3,7 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <View
+        android:id="@+id/view_title"
+        android:fitsSystemWindows="true"
+        android:background="#4183FF"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,11 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <View
-                    android:fitsSystemWindows="true"
-                    android:background="#4183FF"
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"/>
+
 
                 <RelativeLayout
                     android:id="@+id/rl_title"
@@ -94,6 +95,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:visibility="invisible"
                             android:id="@+id/ll_search"
                             android:layout_width="150dp"
                             android:layout_height="27dp"
@@ -140,9 +142,8 @@
                                 android:layout_weight="3"/>
 
                             <ImageView
-                                android:layout_weight="1"
                                 android:id="@+id/iv_up"
-                                android:layout_width="0dp"
+                                android:layout_width="10dp"
                                 android:layout_height="20dp"
                                 android:background="@drawable/a_icon_price_pre"/>
 

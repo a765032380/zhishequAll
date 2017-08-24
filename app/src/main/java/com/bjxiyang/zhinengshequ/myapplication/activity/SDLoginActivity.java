@@ -693,7 +693,7 @@ public class SDLoginActivity extends BaseActivity {
         obj.setC_memberId(Integer.parseInt(SPManager.getInstance().getString("c_memberId",null)));
         obj.setMobilePhone(SPManager.getInstance().getString("mobilePhone",null));
 //        obj.setRealName(SPManager.getInstance().getString("realName",null));
-//        obj.setNickName(SPManager.getInstance().getString("nickName",null));
+        obj.setNickName(SPManager.getInstance().getString("nickName",null));
 //        obj.setSex(SPManager.getInstance().getString("sex",null));
         obj.setHeadPhotoUrl(SPManager.getInstance().getString("headPhotoUrl",null));
 //        obj.setStatus(SPManager.getInstance().getString("status",null));

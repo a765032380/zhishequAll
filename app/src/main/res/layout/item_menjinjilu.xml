@@ -8,7 +8,7 @@
         android:id="@+id/ll_date_gone"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginLeft="52.6dp"
+        android:layout_marginLeft="92.5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -69,6 +69,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="82dp"
+        android:layout_marginLeft="40dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

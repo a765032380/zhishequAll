@@ -79,11 +79,11 @@ public class LuXianPingLunAdapter extends BaseAdapter {
         HuoDongDetails.ObjBean.ReplyListBean reply=mList.get(position);
 
 
-        if (reply.getToUserUrl()!=null&&!reply.getToUserUrl().equals("")) {
+        if (reply.getFromUserUrl()!=null&&!reply.getFromUserUrl().equals("")) {
             ImageLoaderManager.getInstance(mContext)
-                    .displayImage(viewHolder.tv_touxiang, reply.getToUserUrl());
+                    .displayImage(viewHolder.tv_touxiang, reply.getFromUserUrl());
         }
-        viewHolder.tv_nickname.setText(reply.getToUserName());
+        viewHolder.tv_nickname.setText(reply.getFromUserName());
         viewHolder.tv_neirong.setText(reply.getReplyContent());
         viewHolder.tv_pinglunriqi.setText(reply.getReplyTime());
         if (position==0){
@@ -102,7 +102,7 @@ public class LuXianPingLunAdapter extends BaseAdapter {
                 viewHolder.tv_huifu_name.setText(parentItem.getFromUserName());
                 viewHolder.tv_huifu_date.setText(parentItem.getReplyTime());
                 viewHolder.tv_huifupinglun.setText(parentItem.getReplyContent());
-                viewHolder.tv_huifu_floor.setText("回复在几楼");
+//                viewHolder.tv_huifu_floor.setText("回复在几楼");
         }else {
             viewHolder.ll_pinglun_item.setVisibility(View.GONE);
         }

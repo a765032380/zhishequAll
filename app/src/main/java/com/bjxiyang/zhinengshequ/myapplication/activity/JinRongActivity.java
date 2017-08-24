@@ -89,6 +89,7 @@ public class JinRongActivity extends MySwipeBackActivity{
         tabs.setTextColor(Color.WHITE);
         switch (type){
             case 0:
+
                 mMyFragmentAdapter.setPrimaryItem(mViewPager,0,new FragmentOne());
                 break;
             case 1:

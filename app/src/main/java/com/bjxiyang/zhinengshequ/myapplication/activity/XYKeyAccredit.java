@@ -108,7 +108,7 @@ public class XYKeyAccredit extends LogOutBaseActivity implements View.OnClickLis
         mList=new ArrayList<>();
         DialogUntil.showLoadingDialog(XYKeyAccredit.this,"正在加载",true);
         String url= XY_Response.URL_FINDPERMISSIONS+"mobilePhone="+
-                SPManager.getInstance().getString("mobilePhone",null);
+                SPManager.getInstance().getString("mobilePhone","0");
         RequestCenter.findPermissions(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {

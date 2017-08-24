@@ -30,7 +30,6 @@
                 android:id="@+id/tv_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="用户昵称"
                 android:textColor="#323232"
                 android:textSize="14sp" />
 
@@ -42,8 +41,7 @@
                 <TextView
                     android:id="@+id/tv_publish_date"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="08-14" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:visibility="gone"
@@ -104,10 +102,9 @@
             android:id="@+id/tv_end_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="08-15"
             android:layout_marginLeft="10dp"
             android:textColor="#2e77ff"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:visibility="gone"
@@ -126,7 +123,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="对对对对对对多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多"
         android:textColor="#323232"
         android:textSize="15sp" />
 
@@ -152,7 +148,6 @@
             android:id="@+id/tv_go_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="小树林"
             android:layout_marginLeft="5dp"
             android:textSize="14sp" />
     </LinearLayout>
@@ -180,7 +175,6 @@
             android:id="@+id/tv_go_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AA"
             android:layout_marginLeft="5dp"
             android:textSize="14sp" />
     </LinearLayout>
@@ -208,38 +202,40 @@
             android:id="@+id/tv_go_require"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="肤白貌美，人傻钱多"
             android:layout_marginLeft="5dp"
             android:textSize="14sp" />
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/ll_image_three"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="25dp"
-        android:gravity="center">
-        <ImageView
-            android:visibility="invisible"
-            android:id="@+id/iv_photo1"
-            android:layout_width="0dp"
-            android:layout_height="110dp" 
-            android:layout_weight="1"/>
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
-            android:visibility="invisible"
+            android:id="@+id/iv_photo1"
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/iv_photo2"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_marginLeft="5dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:visibility="invisible" />
 
         <ImageView
-            android:visibility="invisible"
             android:id="@+id/iv_photo3"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_marginLeft="5dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:visibility="invisible" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -256,12 +252,13 @@
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:background="@drawable/a_icon_chat"/>
-        <TextView
-            android:id="@+id/tv_message_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:text="4"
-            android:layout_marginLeft="7dp"/>
+
+            <TextView
+                android:id="@+id/tv_message_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:text="0" />
 
 
         </LinearLayout>
@@ -278,12 +275,12 @@
             android:text="已入伙"
             android:layout_marginLeft="7dp" />
 
-        <TextView
-            android:id="@+id/tv_join_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"
-            android:layout_marginLeft="7dp" />
+            <TextView
+                android:id="@+id/tv_join_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:text="0" />
         </LinearLayout>
         
         <TextView

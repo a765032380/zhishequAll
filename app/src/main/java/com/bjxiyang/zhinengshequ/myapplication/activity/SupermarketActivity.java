@@ -104,6 +104,9 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     LinearLayout ll_first;
     @BindView(R.id.bottomSheetLayout)
     BottomSheetLayout bottomSheetLayout;
+    @BindView(R.id.view_title)
+    View view_title;
+
     ImageView iv_shangminxiangqing_img;
     ImageView fanhui;
     TextView tv_spName;
@@ -184,7 +187,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
 
         if (SPManager.getInstance().getInt("sellerId",-1)!=-1){
             tv_shopname.setText(SPManager.getInstance().getString("shopName",""));
-            getShangPingList(SPManager.getInstance().getInt("sellerId",-1));
+            getShangPingList();
         }
         tv_totle_money.setText("￥"+ String.valueOf(df.format(UnitGetGouWuChe.getZongJia())));
         update(false);
@@ -203,8 +206,9 @@ public class SupermarketActivity extends MySwipeBackActivity implements
             }
         });
     }
-    private void getShangPingList(int sellerId){
+    private void getShangPingList(){
         DialogUntil.showLoadingDialog(this,"正在加载",true);
+        sellerId=SPManager.getInstance().getInt("sellerId",0);
         String url_list= BianLiDianResponse.URL_PRODUCT_LIST+"sellerId="+sellerId;
         RequestCenter.order_product_list(url_list, new DisposeDataListener() {
             @Override
@@ -412,15 +416,15 @@ public class SupermarketActivity extends MySwipeBackActivity implements
 
     @Override
     public void onRefresh() {
-        communityId = SPManager.getInstance().getInt("communityId",-1);
+        sellerId = SPManager.getInstance().getInt("sellerId",-1);
 
-        if (communityId==-1){
+        if (sellerId==-1){
             showSelectSJ();
             MyUntil.show(this,"请选择商家");
-        }else if (communityId==-2){
+        }else if (sellerId==-2){
             showWuShuJu();
         } else{
-            getDianMing(communityId);
+            getShangPingList();
 
         }
         swipeRefreshLayout1.setRefreshing(false);
@@ -430,8 +434,8 @@ public class SupermarketActivity extends MySwipeBackActivity implements
 
     @Override
     protected void onResume() {
-        communityId=SPManager.getInstance().getInt("communityId",0);
-        getDianMing(communityId);
+//        communityId=SPManager.getInstance().getInt("communityId",0);
+//        getDianMing(communityId);
         super.onResume();
     }
 
@@ -458,18 +462,18 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                 break;
             //选择排序的方式
             case R.id.ll_jiage:
-
+                if (!jiageIsOne){
+                    iv_up.setBackgroundResource(R.drawable.a_icon_price_pre);
+                    jiageIsOne=true;
+                }else {
+                    iv_up.setBackgroundResource(R.drawable.a_icon_price);
+                    jiageIsOne=false;
+                }
                 if (goodsAdapter!=null&&catograyAdapter!=null&&lv_good!=null&&list_fenlei!=null&&list_fenlei.size()>0) {
                     goodsAdapter = new GoodsAdapter(SupermarketActivity.this, SupermarketActivity.this,
                             bubble_sort(list_fenlei.get(position1).getProducts()), catograyAdapter);
                     lv_good.setAdapter(goodsAdapter);
-                    if (!jiageIsOne){
-                        iv_up.setBackgroundResource(R.drawable.a_icon_price_pre);
-                        jiageIsOne=true;
-                    }else {
-                        iv_up.setBackgroundResource(R.drawable.a_icon_price);
-                        jiageIsOne=false;
-                    }
+
                 }
 //                update(false);
                 break;
@@ -503,7 +507,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
 
                     tv_shopname.setText(result.getShopName());
                     update(false);
-                    getShangPingList(result.getId());
+                    getShangPingList();
                 }else {
                     showWuShuJu();
                 }
@@ -748,13 +752,14 @@ public class SupermarketActivity extends MySwipeBackActivity implements
 
         if(bottomSheetLayout.isSheetShowing()){
             bottomSheetLayout.dismissSheet();
+//            view_title.setVisibility(View.VISIBLE);
         }else {
             if(listItem.size()!=0){
                 bottomSheetLayout.showWithSheetView(bottomDetailSheet);
             }
         }
-        bottomSheetLayout.setPeekSheetTranslation(1700);
-        bottomSheetLayout.setMinimumHeight(1500);
+        bottomSheetLayout.setPeekSheetTranslation(1920);
+        bottomSheetLayout.setMinimumHeight(1920);
     }
     private View createMealDetailView(List<ItemBean> listItem, final int position, final ShangPinList.Result.Products products)
     {
@@ -911,7 +916,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
 
             }
         });
-
+//        view_title.setVisibility(View.GONE);
         return view;
     }
 

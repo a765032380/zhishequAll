@@ -42,7 +42,7 @@ public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements Vie
     private RelativeLayout ib_menjinjilu_fanghui;
     private EditText et_name;
     private EditText et_lianxidianhua;
-    private ImageButton ib_quedingtianjia;
+    private TextView ib_quedingtianjia;
     private String name;
     private String phone;
     private ImageButton ib_yezhujiashu;
@@ -88,7 +88,7 @@ public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements Vie
         ib_menjinjilu_fanghui.setOnClickListener(this);
         et_name= (EditText) findViewById(R.id.et_name);
         et_lianxidianhua= (EditText) findViewById(R.id.et_lianxidianhua);
-        ib_quedingtianjia= (ImageButton) findViewById(R.id.ib_quedingtianjia);
+        ib_quedingtianjia= (TextView) findViewById(R.id.ib_quedingtianjia);
         ib_quedingtianjia.setOnClickListener(this);
         ib_yezhujiashu= (ImageButton) findViewById(R.id.ib_yezhujiashu);
         ib_zuke= (ImageButton) findViewById(R.id.ib_zuke);

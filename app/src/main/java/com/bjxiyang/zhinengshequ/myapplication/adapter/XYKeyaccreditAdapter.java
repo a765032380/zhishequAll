@@ -120,18 +120,15 @@ public class XYKeyaccreditAdapter extends BaseAdapter{
 
             if (mList.get(position).getC_memberId()==c_memberId){
                     activeUser=mList.get(position).getRoleType();
+                if (activeUser==UserType.USER_OWNER||activeUser==UserType.USER_LESSEE){
+                    viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
+                }
             }
-            //&&c_memberId==mList.get(position).getC_memberId()
-            if (activeUser==UserType.USER_OWNER||activeUser==UserType.USER_LESSEE){
+            else {
                 viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
-//                viewholder.item_xiugai.setVisibility(View.GONE);
-            }else {
-                viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
-//                viewholder.item_xiugai.setVisibility(View.VISIBLE);
             }
             if (mList.get(position).getRoleType()==(UserType.USER_FOLK)){
-                viewholder.ib_jinyong_qiyong.setVisibility(View.VISIBLE);
-//                viewholder.item_xiugai.setVisibility(View.VISIBLE);
+                viewholder.ib_jinyong_qiyong.setVisibility(View.GONE);
                 //如果是家人类型，就显示家人类型的图片
                 viewholder.iv_zukejiaren.setBackgroundResource(R.drawable.a_icon_people);
             }else if (mList.get(position).getRoleType()==(UserType.USER_OWNER)) {

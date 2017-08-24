@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -104,23 +105,24 @@ public class HuoDongAdapter extends BaseAdapter {
             viewHolder.tv_activity_status.setText("已结束");
         }
 
+        if (obj.getImgList().size()>0) {
+            viewHolder.ll_image_three.setVisibility(View.VISIBLE);
+            for (int i = 0; i < obj.getImgList().size(); i++) {
+                if (i == 0) {
+                    ImageLoaderManager.getInstance(mContext)
+                            .displayImage(viewHolder.iv_photo1, obj.getImgList().get(i).getImgUrl());
+                } else if (i == 1) {
 
-        for (int i=0;i<obj.getImgList().size();i++){
-            if (i==0){
+                    ImageLoaderManager.getInstance(mContext)
+                            .displayImage(viewHolder.iv_photo2, obj.getImgList().get(i).getImgUrl());
+                } else if (i == 2) {
 
-                ImageLoaderManager.getInstance(mContext)
-                        .displayImage(viewHolder.iv_photo1,obj.getImgList().get(i).getImgUrl());
-            }else if (i==1){
-
-                ImageLoaderManager.getInstance(mContext)
-                        .displayImage(viewHolder.iv_photo2,obj.getImgList().get(i).getImgUrl());
-            }else if (i==2){
-
-                ImageLoaderManager.getInstance(mContext)
-                        .displayImage(viewHolder.iv_photo3,obj.getImgList().get(i).getImgUrl());
+                    ImageLoaderManager.getInstance(mContext)
+                            .displayImage(viewHolder.iv_photo3, obj.getImgList().get(i).getImgUrl());
+                }
             }
-
-
+        }else {
+            viewHolder.ll_image_three.setVisibility(View.GONE);
         }
 
 
@@ -276,7 +278,8 @@ public class HuoDongAdapter extends BaseAdapter {
         TextView tv_join_count;
         @BindView(R.id.tv_btn_join)
         TextView tv_btn_join;
-
+        @BindView(R.id.ll_image_three)
+        LinearLayout ll_image_three;
 
 
 

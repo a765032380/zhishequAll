@@ -86,6 +86,15 @@ public class DiZhiList {
         private String communityName;
         private int unitId;
         private int communityId;
+        private String address;
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
 
         public int getDoorId() {
             return doorId;

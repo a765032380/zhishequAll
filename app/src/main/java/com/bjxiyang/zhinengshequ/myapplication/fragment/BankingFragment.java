@@ -136,13 +136,19 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
             case R.id.ll_chongzhika:
                 break;
             case R.id.ll_bianlidian2:
-                startActivity(SupermarketActivity.class);
+                startActivity(BianLiDianListActivity.class);
                 break;
             //特价商品
             case R.id.ll_tejiashangpin:
+                Intent spTeJia=new Intent(getContext(),BianLiDianListActivity.class);
+                spTeJia.putExtra("type",1);
+                startActivity(spTeJia);
                 break;
             //商品推荐
             case R.id.ll_shangpintuijia:
+                Intent spTuiJian=new Intent(getContext(),BianLiDianListActivity.class);
+                spTuiJian.putExtra("type",2);
+                startActivity(spTuiJian);
                 break;
             //金融服务
             case R.id.ll_jinrongfuwu1:

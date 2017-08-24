@@ -64,16 +64,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_weight="5"
+            android:layout_weight="1"
             android:text="选择收货地址" />
 
 
         <ImageButton
             android:id="@+id/ib_tijiaodingdan_xuanzeshouhuodizhi"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="20dp"
             android:layout_marginRight="15dp"
-            android:layout_weight="0.2"
             android:background="@drawable/f_btn_jinru" />
     </LinearLayout>
     <TextView
@@ -293,7 +292,7 @@
                 <ListView
                     android:id="@+id/lv_tijiaodingdan"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
                     android:scrollbars="none"
                     android:layout_marginRight="35dp"

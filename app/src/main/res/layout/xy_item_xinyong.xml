@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="115dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-   android:layout_marginTop="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:background="@drawable/a_bg_beijing">
+   >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:background="@drawable/a_bg_beijing">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#f1f1f1">
+
+        </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginTop="15dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -94,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+               >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="invisible"
-                android:layout_marginTop="20dp">
+               >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -221,14 +232,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="#f1f1f1"
-        android:visibility="gone">
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_xinyong_dibuxinxi"
@@ -242,5 +245,5 @@
         android:textSize="14sp"
         android:visibility="gone" />
 
-
+    </LinearLayout>
 </LinearLayout>
