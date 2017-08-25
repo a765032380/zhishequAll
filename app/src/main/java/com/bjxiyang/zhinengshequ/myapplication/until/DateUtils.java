@@ -74,6 +74,12 @@ public class DateUtils {
         return sdf.format(new Date());
     }
 
+    public static String getCurrentTime_Today2() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  HH:mm");
+        return sdf.format(new Date());
+    }
+
+
     /**
      * 调此方法输入所要转换的时间输入例如（"2014-06-14-16-09-00"）返回时间戳
      *

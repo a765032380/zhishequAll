@@ -1,5 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -418,7 +419,7 @@ public class HomeBean {
                 this.productObj = productObj;
             }
 
-            public static class ProductObjBean {
+            public static class ProductObjBean implements Serializable {
                 /**
                  * des :
                  * price : 39999900
@@ -434,6 +435,33 @@ public class HomeBean {
                 private int ifDiscount;
                 private int discountPrice;
                 private String logo;
+                private int sellerId;
+                private int id;
+                private String sellerName;
+
+                public int getSellerId() {
+                    return sellerId;
+                }
+
+                public void setSellerId(int sellerId) {
+                    this.sellerId = sellerId;
+                }
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public String getSellerName() {
+                    return sellerName;
+                }
+
+                public void setSellerName(String sellerName) {
+                    this.sellerName = sellerName;
+                }
 
                 public String getDes() {
                     return des;

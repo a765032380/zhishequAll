@@ -42,10 +42,12 @@ public class GouWuChe {
     private int discountPrice;
     private int stockNum;
     private int status;
-    @Generated(hash = 80540742)
+    private String sellerName;
+    @Generated(hash = 1838907359)
     public GouWuChe(Long id, int spid, int userId, int sellerId, int count,
             String logo, String name, String des, int productTypeId, int price,
-            int ifDiscount, int discountPrice, int stockNum, int status) {
+            int ifDiscount, int discountPrice, int stockNum, int status,
+            String sellerName) {
         this.id = id;
         this.spid = spid;
         this.userId = userId;
@@ -60,6 +62,7 @@ public class GouWuChe {
         this.discountPrice = discountPrice;
         this.stockNum = stockNum;
         this.status = status;
+        this.sellerName = sellerName;
     }
     @Generated(hash = 495316655)
     public GouWuChe() {
@@ -148,6 +151,11 @@ public class GouWuChe {
     public void setStatus(int status) {
         this.status = status;
     }
-
+    public String getSellerName() {
+        return this.sellerName;
+    }
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
 
 }

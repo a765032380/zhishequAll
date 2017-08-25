@@ -8,6 +8,7 @@ import com.bjxiyang.zhinengshequ.myapplication.bianlidian.GouWuCheDao;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -237,6 +238,9 @@ public class BaseDao<T> {
             objects = (List<T>) daoSession.getDao(object).loadAll();
         } catch (Exception e) {
             Log.e(TAG,e.toString());
+        }
+        if (objects==null){
+            objects=new ArrayList<>();
         }
         return objects;
     }

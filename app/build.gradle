@@ -61,7 +61,7 @@ android {
 
 
 greendao {
-    schemaVersion 1
+    schemaVersion 2
     daoPackage 'com.bjxiyang.zhinengshequ.myapplication.bianlidian'
     targetGenDir 'src/main/java'
 }
@@ -151,4 +151,8 @@ dependencies {
     compile files('libs/ShareSDK-SinaWeibo-3.0.1.jar')
     compile files('libs/ShareSDK-QZone-3.0.1.jar')
     compile files('libs/ShareSDK-QQ-3.0.1.jar')
+
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    //强大的下拉刷新控件
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
 }

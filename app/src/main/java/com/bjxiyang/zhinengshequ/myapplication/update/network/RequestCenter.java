@@ -6,6 +6,7 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.baisi.myapplication.okhttp.listener.DisposeDownloadListener;
 import com.baisi.myapplication.okhttp.request.CommonRequest;
 import com.baisi.myapplication.okhttp.request.RequestParams;
+import com.bjxiyang.zhinengshequ.myapplication.bean.AddFangWu;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Banner;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ByCom;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Door;
@@ -139,7 +140,7 @@ public class RequestCenter {
         RequestCenter.postRequest(url,GetHeaders.getHeaders(),listener, Door.class);
     }
     public static void addCommunity(String url,DisposeDataListener listener){
-        RequestCenter.postRequest(url,GetHeaders.getHeaders(),listener, FanHui.class);
+        RequestCenter.postRequest(url,GetHeaders.getHeaders(),listener, AddFangWu.class);
     }
     public static void findCommunityByPer(String url,DisposeDataListener listener){
         RequestCenter.postRequest(url,GetHeaders.getHeaders(),listener, SelectPlot.class);

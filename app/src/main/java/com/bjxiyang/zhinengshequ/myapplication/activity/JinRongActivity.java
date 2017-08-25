@@ -89,22 +89,27 @@ public class JinRongActivity extends MySwipeBackActivity{
         tabs.setTextColor(Color.WHITE);
         switch (type){
             case 0:
-
-                mMyFragmentAdapter.setPrimaryItem(mViewPager,0,new FragmentOne());
+//                mMyFragmentAdapter.setPrimaryItem(mViewPager,0,new FragmentOne());
+                mViewPager.setCurrentItem(0);
                 break;
             case 1:
-                mMyFragmentAdapter.setPrimaryItem(mViewPager,0,new FragmentOne());
+                mViewPager.setCurrentItem(1);
+//                mMyFragmentAdapter.setPrimaryItem(mViewPager,0,new FragmentOne());
                 break;
             case 2:
-                mMyFragmentAdapter.setPrimaryItem(mViewPager,1,new FragmentTwo());
+                mViewPager.setCurrentItem(2);
+//                mMyFragmentAdapter.setPrimaryItem(mViewPager,1,new FragmentTwo());
                 break;
             case 3:
-                mMyFragmentAdapter.setPrimaryItem(mViewPager,2,new FragmentFour());
+                mViewPager.setCurrentItem(3);
+                //                mMyFragmentAdapter.setPrimaryItem(mViewPager,2,new FragmentFour());
                 break;
             case 4:
-                mMyFragmentAdapter.setPrimaryItem(mViewPager,3,new FragmentThree());
+                mViewPager.setCurrentItem(4);
+//                mMyFragmentAdapter.setPrimaryItem(mViewPager,3,new FragmentThree());
                 break;
         }
+
 
 
     }

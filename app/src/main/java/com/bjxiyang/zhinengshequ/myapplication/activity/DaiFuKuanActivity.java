@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -42,7 +43,7 @@ public class DaiFuKuanActivity extends LogOutBaseActivity implements View.OnClic
     private LinearLayout ll_tuikuan_nodata;
 
 
-    private List<DingDan.ResultBean> mList;
+    private List<DingDan.ResultBean> mList=new ArrayList<>();
     private int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,17 @@ public class DaiFuKuanActivity extends LogOutBaseActivity implements View.OnClic
         iv_daifukuan_fanhui= (RelativeLayout) findViewById(R.id.iv_daifukuan_fanhui);
         iv_daifukuan_fanhui.setOnClickListener(this);
         lv_daifukuan= (ListView) findViewById(R.id.lv_daifukuan);
+
+//        lv_daifukuan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent=new Intent(DaiFuKuanActivity.this,DingDanXiangQingActivity.class);
+//                Bundle bundle=new Bundle();
+//                bundle.putSerializable("xiangqing",mList.get(i));
+//                intent.putExtra("xiangqing",bundle);
+//                startActivity(intent);
+//            }
+//        });
 //        DaiFuKuanAdapter adapter=new DaiFuKuanAdapter(DaiFuKuanActivity.this,mList);
 //        lv_daifukuan.setAdapter(adapter);
     }
@@ -103,7 +115,7 @@ public class DaiFuKuanActivity extends LogOutBaseActivity implements View.OnClic
     }
 
     private void getData(){
-        mList=new ArrayList<>();
+
         DialogUntil.showLoadingDialog(DaiFuKuanActivity.this,"正在加载",true);
         String url_all_dingdan= BianLiDianResponse.URL_ORDER_LIST+"type="+type;
         RequestCenter.order_list(url_all_dingdan, new DisposeDataListener() {

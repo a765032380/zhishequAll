@@ -3,7 +3,7 @@ package com.bjxiyang.zhinengshequ.myapplication.greendao;
 import android.content.Context;
 
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
-import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuCheDao;
+import com.bjxiyang.zhinengshequ.myapplication.bianlidian.GouWuCheDao;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 

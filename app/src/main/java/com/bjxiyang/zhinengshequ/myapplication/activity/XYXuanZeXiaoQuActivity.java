@@ -408,52 +408,50 @@ public class XYXuanZeXiaoQuActivity extends LogOutBaseActivity implements Adapte
                     @Override
                     public void onSuccess(Object responseObj) {
                         DialogUntil.closeLoadingDialog();
-                        AddFangWu fanHui = (AddFangWu) responseObj;
+                         AddFangWu fanHui = (AddFangWu) responseObj;
                         if (fanHui.getCode().equals("1000")) {
                             String url_add = BianLiDianResponse.URL_ORDER_USER_ADDRESS_ADD +
                                     "name=" + name + "&sex=" + 1 + "&phone=" + phone + "&communityId=" + communityId +
                                     "&nperId=" + nperId + "&floorId=" + floorId + "&unitId=" + unitId +
                                     "&doorId=" + doorId+"&address="+"";
-                            Log.i("llll",url_add);
-                            RequestCenter.order_user_address_add(url_add, new DisposeDataListener() {
-                                @Override
-                                public void onSuccess(Object responseObj) {
-                                }
-                                @Override
-                                public void onFailure(Object reasonObj) {
-                                }
-                            });
-
-
-
-
-
-
-
-                            if (fanHui.getObj().getType() == 1) {
-                                KaiMenYouXiDialog kaiMenYouXiDialog =
-                                        new KaiMenYouXiDialog(XYXuanZeXiaoQuActivity.this, getOpenDoor_obj(fanHui.getObj()));
-                                kaiMenYouXiDialog.show();
-                                kaiMenYouXiDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                RequestCenter.order_user_address_add(url_add, new DisposeDataListener() {
                                     @Override
-                                    public void onDismiss(DialogInterface dialog) {
-                                        finish();
-                                        Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
-                                        startActivity(intent);
+                                    public void onSuccess(Object responseObj) {
+                                    }
+                                    @Override
+                                    public void onFailure(Object reasonObj) {
                                     }
                                 });
+                            if (fanHui.getObj()!=null) {
+                                if (fanHui.getObj().getType() == 1) {
+                                    KaiMenYouXiDialog kaiMenYouXiDialog =
+                                            new KaiMenYouXiDialog(XYXuanZeXiaoQuActivity.this, getOpenDoor_obj(fanHui.getObj()));
+                                    kaiMenYouXiDialog.show();
+                                    kaiMenYouXiDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            finish();
+                                            Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
+                                            startActivity(intent);
+                                        }
+                                    });
 
 
-                            } else if (fanHui.getObj().getType() == 0) {
-                                finish();
-                                Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
-                                startActivity(intent);
-                            } else {
-                                finish();
-                                Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
-                                startActivity(intent);
+                                } else if (fanHui.getObj().getType() == 0) {
+                                    finish();
+                                    Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
+                                    startActivity(intent);
+                                } else {
+                                    finish();
+                                    Intent intent = new Intent(XYXuanZeXiaoQuActivity.this, XYKeyAccredit.class);
+                                    startActivity(intent);
+                                }
                             }
-                        }
+                            }else {
+                                MyUntil.show(XYXuanZeXiaoQuActivity.this,fanHui.getMsg());
+                            }
+
+
                     }
                     @Override
                     public void onFailure(Object reasonObj) {

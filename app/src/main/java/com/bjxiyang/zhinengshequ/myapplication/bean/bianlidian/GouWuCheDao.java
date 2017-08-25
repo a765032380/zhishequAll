@@ -18,6 +18,8 @@ public class GouWuCheDao extends AbstractDao<GouWuChe, Long> {
 
     public static final String TABLENAME = "GOU_WU_CHE";
 
+
+
     /**
      * Properties of entity GouWuChe.<br/>
      * Can be used for QueryBuilder and for referencing column names.
@@ -37,13 +39,10 @@ public class GouWuCheDao extends AbstractDao<GouWuChe, Long> {
         public final static Property DiscountPrice = new Property(11, int.class, "discountPrice", false, "DISCOUNT_PRICE");
         public final static Property StockNum = new Property(12, int.class, "stockNum", false, "STOCK_NUM");
         public final static Property Status = new Property(13, int.class, "status", false, "STATUS");
+        public final static Property SellerName = new Property(14, String.class, "sellerName", false, "SELLER_NAME");
     }
 
 
-    public GouWuCheDao(DaoConfig config) {
-        super(config);
-    }
-    
     public GouWuCheDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
     }
@@ -65,7 +64,8 @@ public class GouWuCheDao extends AbstractDao<GouWuChe, Long> {
                 "\"IF_DISCOUNT\" INTEGER NOT NULL ," + // 10: ifDiscount
                 "\"DISCOUNT_PRICE\" INTEGER NOT NULL ," + // 11: discountPrice
                 "\"STOCK_NUM\" INTEGER NOT NULL ," + // 12: stockNum
-                "\"STATUS\" INTEGER NOT NULL );"); // 13: status
+                "\"STATUS\" INTEGER NOT NULL ," + // 13: status
+                "\"SELLER_NAME\" TEXT);"); // 14: sellerName
     }
 
     /** Drops the underlying database table. */
@@ -107,6 +107,11 @@ public class GouWuCheDao extends AbstractDao<GouWuChe, Long> {
         stmt.bindLong(12, entity.getDiscountPrice());
         stmt.bindLong(13, entity.getStockNum());
         stmt.bindLong(14, entity.getStatus());
+ 
+        String sellerName = entity.getSellerName();
+        if (sellerName != null) {
+            stmt.bindString(15, sellerName);
+        }
     }
 
     @Override
@@ -142,6 +147,11 @@ public class GouWuCheDao extends AbstractDao<GouWuChe, Long> {
         stmt.bindLong(12, entity.getDiscountPrice());
         stmt.bindLong(13, entity.getStockNum());
         stmt.bindLong(14, entity.getStatus());
+ 
+        String sellerName = entity.getSellerName();
+        if (sellerName != null) {
+            stmt.bindString(15, sellerName);
+        }
     }
 
     @Override
@@ -165,7 +175,8 @@ public class GouWuCheDao extends AbstractDao<GouWuChe, Long> {
             cursor.getInt(offset + 10), // ifDiscount
             cursor.getInt(offset + 11), // discountPrice
             cursor.getInt(offset + 12), // stockNum
-            cursor.getInt(offset + 13) // status
+            cursor.getInt(offset + 13), // status
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // sellerName
         );
         return entity;
     }
@@ -186,6 +197,7 @@ public class GouWuCheDao extends AbstractDao<GouWuChe, Long> {
         entity.setDiscountPrice(cursor.getInt(offset + 11));
         entity.setStockNum(cursor.getInt(offset + 12));
         entity.setStatus(cursor.getInt(offset + 13));
+        entity.setSellerName(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
      }
     
     @Override

@@ -82,9 +82,11 @@ public class GoodsAdapter extends BaseAdapter{
         int position1=position;
         mList= DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
         GouWuChe gouwuche1 = null;
-        for (int i=0;i<mList.size();i++){
-            if (mList.get(i).getSpid()==list.get(position1).getId()){
-               gouwuche1=mList.get(i);
+        if (mList!=null&&mList.size()>0) {
+            for (int i = 0; i < mList.size(); i++) {
+                if (mList.get(i).getSpid() == list.get(position1).getId()) {
+                    gouwuche1 = mList.get(i);
+                }
             }
         }
 //        if (gouwuche==null){
@@ -144,9 +146,11 @@ public class GoodsAdapter extends BaseAdapter{
 //                }
                 gouwuche=null;
                 mList= DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
-                for (int i=0;i<mList.size();i++){
-                    if (mList.get(i).getSpid()==list.get(position2).getId()){
-                        gouwuche=mList.get(i);
+                if (mList!=null&&mList.size()>0) {
+                    for (int i = 0; i < mList.size(); i++) {
+                        if (mList.get(i).getSpid() == list.get(position2).getId()) {
+                            gouwuche = mList.get(i);
+                        }
                     }
                 }
                 if (gouwuche==null){
@@ -177,9 +181,11 @@ public class GoodsAdapter extends BaseAdapter{
             public void onClick(View v) {
                 gouwuche=null;
                 mList= DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
-                for (int i=0;i<mList.size();i++){
-                    if (mList.get(i).getSpid()==list.get(position2).getId()){
-                        gouwuche=mList.get(i);
+                if (mList!=null&&mList.size()>0) {
+                    for (int i = 0; i < mList.size(); i++) {
+                        if (mList.get(i).getSpid() == list.get(position2).getId()) {
+                            gouwuche = mList.get(i);
+                        }
                     }
                 }
                 if (gouwuche==null){
@@ -207,7 +213,7 @@ public class GoodsAdapter extends BaseAdapter{
 //                if(list.get(position).getPackage_product_info()!=null&&list.get(position).getTitle()!=null){
                 catograyAdapter.notifyDataSetChanged();
 
-                supermarketfragment.showDetailSheet(supermarketfragment.getListAll(),position2,list.get(position2));
+                supermarketfragment.showDetailSheet(list.get(position2));
 //                }else{
 //                    Toast.makeText(context, "没有详情!", Toast.LENGTH_SHORT).show();
 //                }

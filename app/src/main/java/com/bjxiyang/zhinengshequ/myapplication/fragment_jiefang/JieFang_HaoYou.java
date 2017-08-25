@@ -180,7 +180,7 @@ public class JieFang_HaoYou extends Fragment{
     EMClientListener clientListener = new EMClientListener() {
         @Override
         public void onMigrate2x(boolean success) {
-            Toast.makeText(getContext(), "onUpgradeFrom 2.x to 3.x " + (success ? "success" : "fail"), Toast.LENGTH_LONG).show();
+//            Toast.makeText(getContext(), "onUpgradeFrom 2.x to 3.x " + (success ? "success" : "fail"), Toast.LENGTH_LONG).show();
             if (success) {
                 refreshUIWithMessage();
             }
@@ -353,8 +353,8 @@ public class JieFang_HaoYou extends Fragment{
                     if (ChatActivity.activityInstance != null && ChatActivity.activityInstance.toChatUsername != null &&
                             username.equals(ChatActivity.activityInstance.toChatUsername)) {
                         String st10 = getResources().getString(R.string.have_you_removed);
-                        Toast.makeText(getActivity(), ChatActivity.activityInstance.getToChatUsername() + st10, Toast.LENGTH_LONG)
-                                .show();
+//                        Toast.makeText(getActivity(), ChatActivity.activityInstance.getToChatUsername() + st10, Toast.LENGTH_LONG)
+//                                .show();
                         ChatActivity.activityInstance.finish();
                     }
                 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,6 +30,8 @@ import com.bjxiyang.zhinengshequ.myapplication.until.DateUtils;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.SoftInputUtil;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -292,14 +295,37 @@ public class AddHuoDongActivity extends LogOutBaseActivity implements View.OnCli
             @Override
             public void onClick(View arg0) {
 
+//                DateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
+//                String   str = df.format(new Date());
+
+
+                String   str = DateUtils.getCurrentTime_Today2();
+//                SimpleDateFormat   formatter   =   new SimpleDateFormat("yyyyMMddHHmm");
+//                Date curDate =  new Date(System.currentTimeMillis());
+//                String   str   =   formatter.format(curDate);
+
                 switch (type){
                     case ONE:
                         beginTime1 = wheelMainDate.getTime().toString();
+                        Log.i("time_time",str+"-------"+beginTime1);
+
+
+                        if (str!=null&&!str.equals("")) {
+                            isTrue = DateUtils.isDateOneBigger(beginTime1, str);
+                            if (isTrue){
+//                                tv.setText(DateUtils.formateStringH(beginTime1,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
+                            }else {
+                                MyUntil.show(AddHuoDongActivity.this,"出发时间不能早于当前时间");
+                                break;
+                            }
+                        }
+
                         if (beginTime2!=null&&!beginTime2.equals("")) {
                             isTrue = DateUtils.isDateOneBigger(beginTime2, beginTime1);
                             if (isTrue){
-                                tv.setText(DateUtils.formateStringH(beginTime1,DateUtils.yyyyMMddHHmm));
-                                mPopupWindow.dismiss();
+//                                tv.setText(DateUtils.formateStringH(beginTime1,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
                             }else {
                                 MyUntil.show(AddHuoDongActivity.this,"出发时间不能晚于返回时间");
                                 break;
@@ -308,8 +334,8 @@ public class AddHuoDongActivity extends LogOutBaseActivity implements View.OnCli
                         if (beginTime3!=null&&!beginTime3.equals("")) {
                             isTrue = DateUtils.isDateOneBigger(beginTime1, beginTime3);
                             if (isTrue){
-                                tv.setText(DateUtils.formateStringH(beginTime1,DateUtils.yyyyMMddHHmm));
-                                mPopupWindow.dismiss();
+//                                tv.setText(DateUtils.formateStringH(beginTime1,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
                             }else {
                                 MyUntil.show(AddHuoDongActivity.this,"出发时间不能早于截止时间");
                                 break;
@@ -320,11 +346,24 @@ public class AddHuoDongActivity extends LogOutBaseActivity implements View.OnCli
                         break;
                     case TWO:
                         beginTime2 = wheelMainDate.getTime().toString();
+
+
+                        if (str!=null&&!str.equals("")) {
+                            isTrue = DateUtils.isDateOneBigger(beginTime2, str);
+                            if (isTrue){
+//                                tv.setText(DateUtils.formateStringH(beginTime2,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
+                            }else {
+                                MyUntil.show(AddHuoDongActivity.this,"返回时间不能早于当前时间");
+                                break;
+                            }
+                        }
+
                         if (beginTime1!=null&&!beginTime1.equals("")) {
                             isTrue = DateUtils.isDateOneBigger(beginTime2, beginTime1);
                             if (isTrue){
-                                tv.setText(DateUtils.formateStringH(beginTime2,DateUtils.yyyyMMddHHmm));
-                                mPopupWindow.dismiss();
+//                                tv.setText(DateUtils.formateStringH(beginTime2,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
                             }else {
                                 MyUntil.show(AddHuoDongActivity.this,"返回时间不能早于出发时间");
                                 break;
@@ -333,8 +372,8 @@ public class AddHuoDongActivity extends LogOutBaseActivity implements View.OnCli
                         if (beginTime3!=null&&!beginTime3.equals("")) {
                             isTrue = DateUtils.isDateOneBigger(beginTime2, beginTime3);
                             if (isTrue){
-                                tv.setText(DateUtils.formateStringH(beginTime2,DateUtils.yyyyMMddHHmm));
-                                mPopupWindow.dismiss();
+//                                tv.setText(DateUtils.formateStringH(beginTime2,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
                             }else {
                                 MyUntil.show(AddHuoDongActivity.this,"返回时间不能早于截止时间");
                                 break;
@@ -345,11 +384,21 @@ public class AddHuoDongActivity extends LogOutBaseActivity implements View.OnCli
                         break;
                     case THREE:
                         beginTime3 = wheelMainDate.getTime().toString();
+                        if (str!=null&&!str.equals("")) {
+                            isTrue = DateUtils.isDateOneBigger(beginTime3, str);
+                            if (isTrue){
+//                                tv.setText(DateUtils.formateStringH(beginTime1,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
+                            }else {
+                                MyUntil.show(AddHuoDongActivity.this,"报名截止时间不能早于当前时间");
+                                break;
+                            }
+                        }
                         if (beginTime1!=null&&!beginTime1.equals("")) {
                             isTrue = DateUtils.isDateOneBigger(beginTime1, beginTime3);
                             if (isTrue){
-                                tv.setText(DateUtils.formateStringH(beginTime3,DateUtils.yyyyMMddHHmm));
-                                mPopupWindow.dismiss();
+//                                tv.setText(DateUtils.formateStringH(beginTime3,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
                             }else {
                                 MyUntil.show(AddHuoDongActivity.this,"截止时间不能晚于出发时间");
                                 break;
@@ -358,8 +407,8 @@ public class AddHuoDongActivity extends LogOutBaseActivity implements View.OnCli
                         if (beginTime2!=null&&!beginTime2.equals("")) {
                             isTrue = DateUtils.isDateOneBigger(beginTime2, beginTime3);
                             if (isTrue){
-                                tv.setText(DateUtils.formateStringH(beginTime3,DateUtils.yyyyMMddHHmm));
-                                mPopupWindow.dismiss();
+//                                tv.setText(DateUtils.formateStringH(beginTime3,DateUtils.yyyyMMddHHmm));
+//                                mPopupWindow.dismiss();
                             }else {
                                 MyUntil.show(AddHuoDongActivity.this,"截止时间不能晚于返回时间");
                                 break;

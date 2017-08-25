@@ -23,6 +23,7 @@ import com.bjxiyang.zhinengshequ.R;
 public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
+    private static final ScaleType FIT_XY = ScaleType.FIT_XY;
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
     private static final int COLORDRAWABLE_DIMENSION = 1;
@@ -61,7 +62,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
 
     public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        super.setScaleType(SCALE_TYPE);
+        super.setScaleType(FIT_XY);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
 
@@ -80,12 +81,12 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
 
     @Override
     public ScaleType getScaleType() {
-        return SCALE_TYPE;
+        return FIT_XY;
     }
 
     @Override
     public void setScaleType(ScaleType scaleType) {
-        if (scaleType != SCALE_TYPE) {
+        if (scaleType != FIT_XY) {
             throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType));
         }
     }

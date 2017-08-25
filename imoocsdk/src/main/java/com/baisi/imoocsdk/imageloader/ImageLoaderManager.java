@@ -92,7 +92,11 @@ public class ImageLoaderManager {
                              DisplayImageOptions options,
                              ImageLoadingListener listener){
         if (mImageLoader!=null){
-            mImageLoader.displayImage(url,imageView,options,listener);
+            if (imageView!=null) {
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                mImageLoader.displayImage(url,imageView,options,listener);
+            }
+
         }
     }
     public void displayImage(ImageView imageView,String url,ImageLoadingListener listener){

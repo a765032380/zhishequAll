@@ -62,11 +62,12 @@ public class CatograyAdapter extends BaseAdapter{
         int count = 0;
         mList= DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
 
+        if (mList!=null&&mList.size()>0) {
+            for (int i = 0; i < mList.size(); i++) {
 
-        for (int i=0;i<mList.size();i++){
-
-            if (mList.get(i).getProductTypeId()==list.get(position).getId()){
-                count = count + mList.get(i).getCount();
+                if (mList.get(i).getProductTypeId() == list.get(position).getId()) {
+                    count = count + mList.get(i).getCount();
+                }
             }
         }
 //        for (int i = 0; i < list.get(position).getProducts().size(); i++) {

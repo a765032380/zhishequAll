@@ -1,6 +1,7 @@
 package com.bjxiyang.zhinengshequ.myapplication.base;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.LogOutUntil;

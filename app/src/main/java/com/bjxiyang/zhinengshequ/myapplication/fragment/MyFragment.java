@@ -1,6 +1,7 @@
 package com.bjxiyang.zhinengshequ.myapplication.fragment;
 
 import com.bjxiyang.zhinengshequ.myapplication.activity.DaiFuKuanActivity;
+import com.bjxiyang.zhinengshequ.myapplication.activity.GouWuCheActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.HuiFuActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.MyXinXiActivity;
 import android.content.Context;
@@ -416,6 +417,8 @@ public class MyFragment extends Fragment implements View.OnClickListener{
                 break;
             //购物车
             case R.id.tv_gouwuche:
+                Intent intent2=new Intent(getContext(), GouWuCheActivity.class);
+                startActivity(intent2);
                 break;
             //我的草稿
             case R.id.wodecaogao:

@@ -146,8 +146,6 @@ public class BianLiDianListActivity extends MySwipeBackActivity {
                         if (chaoshiList.size() > 0) {
                             setChaoShiList(chaoshiList);
                         }
-
-                        Log.i("LLLL", "请求成功");
                     }
 
                     @Override

@@ -16,6 +16,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.MyFragmentAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_HaoYou;
+import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_HuiHua;
 import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_HuoDong;
 import com.bjxiyang.zhinengshequ.myapplication.fragment_jiefang.JieFang_ZhouBianShi;
 
@@ -27,6 +28,7 @@ import java.util.List;
  */
 
 public class JieFangfragment extends Fragment{
+    private static final String HUIHUA="会话";
     private static final String HAOYOU="好友";
     private static final String HUODONG="活动";
     private static final String ZHOUBIANSHI="周边事";
@@ -88,10 +90,11 @@ public class JieFangfragment extends Fragment{
     }
 
     private void getData(){
+        mTitleList.add(HUIHUA);
         mTitleList.add(HAOYOU);
         mTitleList.add(HUODONG);
         mTitleList.add(ZHOUBIANSHI);
-
+        mFragmentList.add(new JieFang_HuiHua());
         mFragmentList.add(new JieFang_HaoYou());
         mFragmentList.add(new JieFang_HuoDong(HUODONGLIEBIAO_INT));
         mFragmentList.add(new JieFang_ZhouBianShi());

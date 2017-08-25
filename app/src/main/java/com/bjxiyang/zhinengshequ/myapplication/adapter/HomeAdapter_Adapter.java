@@ -1,5 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,12 @@ import android.widget.TextView;
 
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.SupermarketActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 
+import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -20,6 +25,7 @@ import java.util.List;
 public class HomeAdapter_Adapter extends RecyclerView.Adapter<HomeAdapter_Adapter.ViewHolder> {
     private View view;
     private List<HomeBean.ObjBean.ShopObjBean.ProductObjBean> mList;
+    private DecimalFormat df = new DecimalFormat("0.00");
     public HomeAdapter_Adapter(List<HomeBean.ObjBean.ShopObjBean.ProductObjBean> mList) {
         this.mList = mList;
     }
@@ -32,12 +38,26 @@ public class HomeAdapter_Adapter extends RecyclerView.Adapter<HomeAdapter_Adapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         ImageLoaderManager.getInstance(view.getContext())
                 .displayImage(holder.goods_img3,mList.get(position).getLogo());
         holder.tv_goodsname3.setText(mList.get(position).getName());
-        holder.tv_zhehoujia3.setText(mList.get(position).getDiscountPrice()+"");
-        holder.tv_yuanjia3.setText(mList.get(position).getPrice()+"");
+        holder.tv_zhehoujia3.setText(df.format(mList.get(position).getDiscountPrice()/100)+"");
+        holder.tv_yuanjia3.setText(df.format(mList.get(position).getPrice()/100)+"");
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPManager.getInstance().putInt("sellerId", mList.get(position).getSellerId());
+                SPManager.getInstance().putString("shopName",mList.get(position).getSellerName());
+                Intent intent=new Intent(view.getContext(), SupermarketActivity.class);
+                intent.putExtra("position",position);
+                intent.putExtra("product", mList.get(position));
+                view.getContext().startActivity(intent);
+            }
+        });
+
+
+
     }
 
     @Override

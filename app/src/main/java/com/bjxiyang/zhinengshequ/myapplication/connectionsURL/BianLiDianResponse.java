@@ -5,8 +5,8 @@ package com.bjxiyang.zhinengshequ.myapplication.connectionsURL;
  */
 
 public class BianLiDianResponse {
-    public static final String URL="http://192.168.1.229:8080/zsqAPI/api/user/";
-//    public static final String URL="http://47.92.106.249:18088/zsq/api/user/";
+//    public static final String URL="http://192.168.1.229:8080/zsqAPI/api/user/";
+    public static final String URL="http://47.92.106.249:18088/zsq/api/user/";
 
     public static final String URL_SELLER_LIST=URL+"seller/list?";
 

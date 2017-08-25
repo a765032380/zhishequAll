@@ -1,5 +1,6 @@
 package com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -52,7 +53,7 @@ public class DingDan {
         this.result = result;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable {
         /**
          * orderInfo : {"id":47,"orderNo":"1002017071047","userId":1,"sellerId":1,"totalAmount":1,"afterDiscountAmount":1,"couponUserId":0,"payType":3,"userAddressId":12,"communityId":1,"nperId":1,"floorId":1,"unitId":1,"doorId":0,"receiver":"张","receiveAddress":"华彩国际一期一栋3单元207","receivePhone":"18513558770","remark":"","status":30,"subStatus":0,"sendTime":"","expectSendTime":"","createTime":"2017-07-10 02:24:33","payLimitTime":"2017-07-10 02:34:33","cancelRemark":"","tradeNo":"2017071021001004440221281794","receiveTime":""}
          * orderInfoProducts : [{"id":141,"afterDiscountPrice":1,"num":1,"price":1,"name":"中央音乐学院","orderId":47,"productId":26}]
@@ -97,7 +98,7 @@ public class DingDan {
             this.subStatusLogs = subStatusLogs;
         }
 
-        public static class OrderInfoBean {
+        public static class OrderInfoBean implements Serializable  {
             /**
              * id : 47
              * orderNo : 1002017071047
@@ -373,7 +374,7 @@ public class DingDan {
             }
         }
 
-        public static class SellerBean {
+        public static class SellerBean implements Serializable {
             /**
              * id : 1
              * loginName : test
@@ -609,7 +610,7 @@ public class DingDan {
             }
         }
 
-        public static class OrderInfoProductsBean {
+        public static class OrderInfoProductsBean implements Serializable {
             /**
              * id : 141
              * afterDiscountPrice : 1

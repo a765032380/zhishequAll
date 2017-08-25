@@ -18,15 +18,17 @@ public class UnitGetGouWuChe {
     public static double getZongJia() {
         mList = DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
         zongji = 0;
-        for (int i = 0; i < mList.size(); i++) {
-            if (mList.get(i).getSellerId() == SPManager.getInstance().getInt("sellerId", 0)) {
-                if (mList.get(i).getIfDiscount() == 0) {
-                    zongji = zongji + mList.get(i).getCount() * mList.get(i).getPrice();
-                } else {
-                    zongji = zongji + mList.get(i).getCount() * mList.get(i).getDiscountPrice();
+        if (mList != null && mList.size() > 0){
+            for (int i = 0; i < mList.size(); i++) {
+                if (mList.get(i).getSellerId() == SPManager.getInstance().getInt("sellerId", 0)) {
+                    if (mList.get(i).getIfDiscount() == 0) {
+                        zongji = zongji + mList.get(i).getCount() * mList.get(i).getPrice();
+                    } else {
+                        zongji = zongji + mList.get(i).getCount() * mList.get(i).getDiscountPrice();
+                    }
                 }
-            }
 
+            }
         }
         return zongji / 100;
     }
@@ -34,9 +36,11 @@ public class UnitGetGouWuChe {
     public static int getConuntAll() {
         mList = DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
         count = 0;
-        for (int i = 0; i < mList.size(); i++) {
-            if (mList.get(i).getSellerId() == SPManager.getInstance().getInt("sellerId", 0)) {
-                count = count + mList.get(i).getCount();
+        if (mList != null && mList.size() > 0) {
+            for (int i = 0; i < mList.size(); i++) {
+                if (mList.get(i).getSellerId() == SPManager.getInstance().getInt("sellerId", 0)) {
+                    count = count + mList.get(i).getCount();
+                }
             }
         }
         return count;

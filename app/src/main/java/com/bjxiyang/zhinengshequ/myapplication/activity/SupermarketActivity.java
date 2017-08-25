@@ -1,10 +1,8 @@
 package com.bjxiyang.zhinengshequ.myapplication.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
@@ -30,9 +27,9 @@ import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.GoodsAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.ProductAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
+import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ItemBean;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
-import com.bjxiyang.zhinengshequ.myapplication.bean.Unit;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DianMing;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.ShangPinList;
@@ -150,26 +147,43 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     private  GouWuCheDialog dialog;
     private GuardApplication myApp;
     private View bottomSheet;
+    private Intent intent;
+    private boolean isOne=true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket);
         ButterKnife.bind(this);
-        if (UnitGetGouWuChe.getConuntAll()==0){
-            tv_totle_money.setText("当前购物车是空的");
-            xuanhaole.setVisibility(View.GONE);
-        }
+
         initUi();
-    }
-    public List<ItemBean> getListAll(){
-        List<ItemBean> list_all=new ArrayList<ItemBean>();
-        ItemBean itemBean=new ItemBean();
-        itemBean.setKey("1");
-        itemBean.setNote1("2");
-        itemBean.setNote2("3");
-        itemBean.setValue("4");
-        list_all.add(itemBean);
-        return list_all;
+        intent=getIntent();
+//        if (intent!=null){
+//            isOne=false;
+            HomeBean.ObjBean.ShopObjBean.ProductObjBean productObjBean= (HomeBean.ObjBean.ShopObjBean.ProductObjBean) intent.getSerializableExtra("product");
+
+            if (productObjBean!=null){
+                tv_shopname.setText(SPManager.getInstance().getString("shopName",""));
+                sellerId=SPManager.getInstance().getInt("sellerId",0);
+                showDetailSheet(setProduct(productObjBean));
+                if (UnitGetGouWuChe.getConuntAll()==0){
+                    tv_totle_money.setText("当前购物车是空的");
+                    xuanhaole.setVisibility(View.GONE);
+                }
+            }else {
+                if (SPManager.getInstance().getInt("sellerId",-1)!=-1){
+                    tv_shopname.setText(SPManager.getInstance().getString("shopName",""));
+                    getShangPingList();
+                }
+                if (UnitGetGouWuChe.getConuntAll()==0){
+                    tv_totle_money.setText("当前购物车是空的");
+                    xuanhaole.setVisibility(View.GONE);
+                }
+            }
+//        }
+
+
+
     }
     private void initUi() {
         swipeRefreshLayout1.setOnRefreshListener(this);
@@ -185,10 +199,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         myApp = GuardApplication.getContent();
         addListener();
 
-        if (SPManager.getInstance().getInt("sellerId",-1)!=-1){
-            tv_shopname.setText(SPManager.getInstance().getString("shopName",""));
-            getShangPingList();
-        }
+
         tv_totle_money.setText("￥"+ String.valueOf(df.format(UnitGetGouWuChe.getZongJia())));
         update(false);
 
@@ -734,16 +745,20 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         }
     }
     //创建套餐详情view
-    public void showDetailSheet(List<ItemBean> listItem, int position, ShangPinList.Result.Products products){
-        bottomDetailSheet = createMealDetailView(listItem,position, products);
+    public void showDetailSheet(ShangPinList.Result.Products products){
+        bottomDetailSheet = createMealDetailView( products);
 
         bottomSheetLayout.addOnSheetStateChangeListener(
                 new BottomSheetLayout.OnSheetStateChangeListener() {
                     @Override
                     public void onSheetStateChanged(BottomSheetLayout.State state) {
                         if (state==BottomSheetLayout.State.HIDDEN){
-                            catograyAdapter.notifyDataSetChanged();
-                            goodsAdapter.notifyDataSetChanged();
+                            if (isOne) {
+                                isOne=false;
+                                getShangPingList();
+                            }
+//                            catograyAdapter.notifyDataSetChanged();
+//                            goodsAdapter.notifyDataSetChanged();
                             update(false);
                             bottomSheetLayout.dismissSheet();
                         }
@@ -754,14 +769,14 @@ public class SupermarketActivity extends MySwipeBackActivity implements
             bottomSheetLayout.dismissSheet();
 //            view_title.setVisibility(View.VISIBLE);
         }else {
-            if(listItem.size()!=0){
+//            if(listItem.size()!=0){
                 bottomSheetLayout.showWithSheetView(bottomDetailSheet);
-            }
+//            }
         }
         bottomSheetLayout.setPeekSheetTranslation(1920);
         bottomSheetLayout.setMinimumHeight(1920);
     }
-    private View createMealDetailView(List<ItemBean> listItem, final int position, final ShangPinList.Result.Products products)
+    private View createMealDetailView(final ShangPinList.Result.Products products)
     {
         isShow=true;
 //        onAttach(getActivity());
@@ -782,8 +797,6 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         tv_xuanhaole= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_xuanhaole);
         tv_zongjia= (TextView) view.findViewById(R.id.tv_shangpinxiangqing_money);
 
-
-        final int position1=position;
         tv_xuanhaole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -918,6 +931,19 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         });
 //        view_title.setVisibility(View.GONE);
         return view;
+    }
+    private ShangPinList.Result.Products setProduct(HomeBean.ObjBean.ShopObjBean.ProductObjBean product){
+        ShangPinList.Result.Products products =new ShangPinList.Result.Products();
+//        products.setId();
+        products.setDiscountPrice(product.getDiscountPrice());
+        products.setDes(product.getDes());
+        products.setPrice(product.getPrice());
+        products.setLogo(product.getLogo());
+        products.setName(product.getName());
+        products.setId(product.getId());
+        products.setSellerId(product.getSellerId());
+        product.setIfDiscount(product.getIfDiscount());
+        return products;
     }
 
 }

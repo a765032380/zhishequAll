@@ -2,6 +2,7 @@ package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.format.Time;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.DingDanXiangQingActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.ZhiFuXiangQing;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DianMing;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DingDan;
@@ -80,7 +82,7 @@ public class DaiFuKuanAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
         ViewHolder viewHolder=null;
         if (view==null){
             view= LayoutInflater.from(mContext).inflate(R.layout.item_dingdan,null);
@@ -533,7 +535,16 @@ public class DaiFuKuanAdapter extends BaseAdapter {
         DingDanItemAdapter adapter = new DingDanItemAdapter(mContext,list);
         viewHolder.lv_item_dingdan.setAdapter(adapter);
         setListViewHeightBasedOnChildren(viewHolder.lv_item_dingdan);
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(mContext,DingDanXiangQingActivity.class);
+//                Bundle bundle=new Bundle();
+//                bundle.putSerializable("xiangqing",mList.get(position));
+                intent.putExtra("xiangqing",mList.get(position));
+                mContext.startActivity(intent);
+            }
+        });
         return view;
     }
     public class ViewHolder{

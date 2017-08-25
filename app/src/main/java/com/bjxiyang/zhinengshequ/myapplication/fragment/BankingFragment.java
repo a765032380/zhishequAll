@@ -156,18 +156,21 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
                 break;
             //过桥垫资
             case R.id.ll_jinrongfuwu2:
-                startActivity(JinRongActivity.class);
+
+                Intent intent6=new Intent(getContext(),JinRongActivity.class);
+                intent6.putExtra("type",0);
+                startActivity(intent6);
                 break;
             //抵押
             case R.id.ll_jinrongfuwu3:
                 Intent intent=new Intent(getContext(),JinRongActivity.class);
-                intent.putExtra("type",1);
+                intent.putExtra("type",2);
                 startActivity(intent);
                 break;
             //信用
             case R.id.ll_jinrongfuwu4:
                 Intent intent2=new Intent(getContext(),JinRongActivity.class);
-                intent2.putExtra("type",2);
+                intent2.putExtra("type",1);
                 startActivity(intent2);
                 break;
             //二手房

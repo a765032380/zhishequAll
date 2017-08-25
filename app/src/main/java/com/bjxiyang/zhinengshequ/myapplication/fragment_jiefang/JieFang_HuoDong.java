@@ -201,6 +201,7 @@ public class JieFang_HuoDong extends Fragment implements
         });
         swipeRefreshLayout= (RefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setOnLoadListener(this);
         lv_avtivityplanning= (ListView) view.findViewById(R.id.lv_avtivityplanning);
         lv_avtivityplanning.setOnItemClickListener(this);
         swipeRefreshLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
@@ -216,6 +217,7 @@ public class JieFang_HuoDong extends Fragment implements
 
     @Override
     public void onRefresh() {
+        pageCount=1;
         getData();
         swipeRefreshLayout.setRefreshing(false);
     }
@@ -240,7 +242,7 @@ public class JieFang_HuoDong extends Fragment implements
     private void upData() {
         mList=new ArrayList<>();
         String url= XY_Response2.URL_NEIGHBOR_FINDPARTY+"cmemberId="+
-                UserManager.getInstance().getUser().getObj().getC_memberId()+
+                SPManager.getInstance().getString("c_memberId","")+
                 "&partyType="+partyType+
                 "&pageCount="+pageCount+"&pageSize="+pageSize;
 
@@ -292,7 +294,9 @@ public class JieFang_HuoDong extends Fragment implements
                     int inJoin = data.getIntExtra("isJoin", 0);
                     if (inJoin == 1) {
                         mListAll.get(position).setHaveJoin(0);
-                        mListAll.get(position).setJoinCount(mListAll.get(position).getJoinCount() - 1);
+                        if (mListAll.get(position).getJoinCount()>0){
+                            mListAll.get(position).setJoinCount(mListAll.get(position).getJoinCount() - 1);
+                        }
                     } else if (inJoin == 2) {
                         mListAll.get(position).setHaveJoin(1);
                         mListAll.get(position).setJoinCount(mListAll.get(position).getJoinCount() + 1);

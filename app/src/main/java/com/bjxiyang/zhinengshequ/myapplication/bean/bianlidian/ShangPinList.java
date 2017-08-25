@@ -145,6 +145,15 @@ public class ShangPinList {
             private int discountPrice;
             private int stockNum;
             private int status;
+            private String sellerName;
+
+            public String getSellerName() {
+                return sellerName;
+            }
+
+            public void setSellerName(String sellerName) {
+                this.sellerName = sellerName;
+            }
 
             private int count;
 
