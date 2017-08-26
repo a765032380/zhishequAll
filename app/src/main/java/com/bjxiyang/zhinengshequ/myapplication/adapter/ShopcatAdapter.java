@@ -2,10 +2,13 @@ package com.bjxiyang.zhinengshequ.myapplication.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.StrikethroughSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +21,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
+import com.baisi.imoocsdk.imageloader.ImageLoaderManager;
 import com.bjxiyang.zhinengshequ.R;
+import com.bjxiyang.zhinengshequ.myapplication.activity.PlaceOrderActivity;
+import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.entity.GoodsInfo;
 import com.bjxiyang.zhinengshequ.myapplication.entity.StoreInfo;
+import com.bjxiyang.zhinengshequ.myapplication.greendao.DaoUtils;
 import com.bjxiyang.zhinengshequ.myapplication.until.UtilTool;
 import com.bjxiyang.zhinengshequ.myapplication.until.UtilsLog;
 
+import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +55,8 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
     private GroupEditorListener groupEditorListener;
     private int count = 0;
     private boolean flag=true; //组的编辑按钮是否可见，true可见，false不可见
-
+    private List<GouWuChe> mList;
+    private DecimalFormat df = new DecimalFormat("0.00");
 
     public ShopcatAdapter(List<StoreInfo> groups, Map<String, List<GoodsInfo>> childrens, Context mcontext) {
         this.groups = groups;
@@ -91,8 +102,10 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        final GroupViewHolder groupViewHolder;
+    public View getGroupView( int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        final int groupPosition1=groupPosition;
+
+         GroupViewHolder groupViewHolder;
         if (convertView == null) {
             convertView = View.inflate(mcontext, R.layout.item_shopcat_group, null);
             groupViewHolder = new GroupViewHolder(convertView);
@@ -100,13 +113,15 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
         } else {
             groupViewHolder = (GroupViewHolder) convertView.getTag();
         }
-        final StoreInfo group = (StoreInfo) getGroup(groupPosition);
+         StoreInfo group = (StoreInfo) getGroup(groupPosition);
+        final StoreInfo group1 = group;
         groupViewHolder.storeName.setText(group.getName());
+
         groupViewHolder.storeCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                group.setChoosed(((CheckBox) v).isChecked());
-                checkInterface.checkGroup(groupPosition, ((CheckBox) v).isChecked());
+                group1.setChoosed(((CheckBox) v).isChecked());
+                checkInterface.checkGroup(groupPosition1, ((CheckBox) v).isChecked());
             }
         });
         groupViewHolder.storeCheckBox.setChecked(group.isChoosed());
@@ -140,8 +155,8 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final ChildViewHolder childViewHolder;
+    public View getChildView( int groupPosition,  int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+         final ChildViewHolder childViewHolder;
         if (convertView == null) {
             convertView = View.inflate(mcontext, R.layout.item_shopcat_product, null);
             childViewHolder = new ChildViewHolder(convertView);
@@ -178,13 +193,72 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
             }
         }
 
+        Log.i("lllll",getChildrenCount(groupPosition)+"-----"+childPosition);
+
+
         final GoodsInfo child = (GoodsInfo) getChild(groupPosition, childPosition);
+       double mtotalPrice = 0.00;
+       int mtotalCount = 0;
+
+            StoreInfo group = groups.get(groupPosition);
+            List<GoodsInfo> child1 = childrens.get(group.getId());
+            for (int j = 0; j < child1.size(); j++) {
+                GoodsInfo good = child1.get(j);
+                if (good.isChoosed()) {
+                    mtotalCount++;
+                    mtotalPrice += good.getPrice() * good.getCount();
+                }
+            }
+        if ((getChildrenCount(groupPosition)-1)==childPosition){
+            childViewHolder.qujiesuan.setVisibility(View.VISIBLE);
+            final int groupPosition1=groupPosition;
+            childViewHolder.tv_item_gouwuche_price.setText(df.format(mtotalPrice) + "");
+            childViewHolder.tv_item_gouwuche_jiesuan.setText("去支付(" + mtotalCount + ")");
+            childViewHolder.tv_item_gouwuche_jiesuan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(mcontext, PlaceOrderActivity.class);
+
+                    StoreInfo group = groups.get(groupPosition1);
+                    List<GoodsInfo> child1 = childrens.get(group.getId());
+                    List list=new ArrayList();
+                    for (int j = 0; j < child1.size(); j++) {
+                        GoodsInfo good = child1.get(j);
+                        if (good.isChoosed()) {
+                            list.add(good.getId());
+                        }
+                    }
+                    intent.putExtra("list", (Serializable) list);
+                    intent.putExtra("type",5);
+
+//                    intent.putExtra("spId", products.getId());
+//                    intent.putExtra("sellerId", products.getSellerId());
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("product", products);
+//                    intent.putExtras(bundle);
+//
+//                    if (mtotalCount == 0) {
+//                        UtilTool.toast(mcontext, "请选择要支付的商品");
+//                        return;
+//                    }
+
+
+                    mcontext.startActivity(intent);
+                }
+            });
+        }else {
+            childViewHolder.qujiesuan.setVisibility(View.GONE);
+        }
+
         if (child != null) {
-            childViewHolder.goodsName.setText(child.getDesc());
-            childViewHolder.goodsPrice.setText("￥" + child.getPrice() + "");
+            childViewHolder.goodsName.setText(child.getName());
+            childViewHolder.goodsPrice.setText("￥" + df.format(child.getPrice()) + "");
             childViewHolder.goodsNum.setText(String.valueOf(child.getCount()));
-            childViewHolder.goodsImage.setImageResource(R.drawable.cmaz);
-            childViewHolder.goods_size.setText("门票:" + child.getColor() + ",类型:" + child.getSize());
+            Log.i("llll",child.getGoodsImg()+"");
+            ImageLoaderManager.getInstance(mcontext)
+                    .displayImage(childViewHolder.goodsImage,child.getGoodsImg());
+//            childViewHolder.goodsImage.setImageResource(R.drawable.cmaz);
+//            childViewHolder.goods_size.setText("门票:" + child.getColor() + ",类型:" + child.getSize());
             //设置打折前的原价
             SpannableString spannableString = new SpannableString("￥" + child.getPrime_price() + "");
             StrikethroughSpan span = new StrikethroughSpan();
@@ -196,30 +270,52 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
             childViewHolder.goodsPrimePrice.setText(spannableString);
             childViewHolder.goodsBuyNum.setText("x" + child.getCount() + "");
             childViewHolder.singleCheckBox.setChecked(child.isChoosed());
+            final GoodsInfo child3=child;
+
+            final ChildViewHolder childViewHolder1=childViewHolder;
+
+            final int groupPosition1=groupPosition;
+            final int childPosition1=childPosition;
             childViewHolder.singleCheckBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    child.setChoosed(((CheckBox) v).isChecked());
-                    childViewHolder.singleCheckBox.setChecked(((CheckBox) v).isChecked());
-                    checkInterface.checkChild(groupPosition, childPosition, ((CheckBox) v).isChecked());
+                    child3.setChoosed(((CheckBox) v).isChecked());
+                    childViewHolder1.singleCheckBox.setChecked(((CheckBox) v).isChecked());
+                    checkInterface.checkChild(groupPosition1, childPosition1, ((CheckBox) v).isChecked());
                 }
             });
             childViewHolder.increaseGoodsNum.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    modifyCountInterface.doIncrease(groupPosition, childPosition, childViewHolder.goodsNum, childViewHolder.singleCheckBox.isChecked());
+                    modifyCountInterface.doIncrease(groupPosition1, childPosition1, childViewHolder.goodsNum, childViewHolder.singleCheckBox.isChecked());
+
+                    mList=DaoUtils.getStudentInstance().QueryObject(GouWuChe.class,"where _ID=?", new String[]{child.getId()});
+//                    mList=DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
+//                    for (int i=0;i<mList.size();i++){
+//                        Log.i("llll","循环内"+mList.get(i).getId()+"----"+mList.get(i).getSellerId());
+//                    }
+//                    Log.i("llll","循环外"+child.getId()+"----"+groups.get(groupPosition).getId());
+//
+                    mList.get(0).setCount(mList.get(0).getCount()+1);
+                    DaoUtils.getStudentInstance().updateObject(mList.get(0));
+
                 }
             });
             childViewHolder.reduceGoodsNum.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    modifyCountInterface.doDecrease(groupPosition, childPosition, childViewHolder.goodsNum, childViewHolder.singleCheckBox.isChecked());
+
+                    modifyCountInterface.doDecrease(groupPosition1, childPosition1, childViewHolder.goodsNum, childViewHolder.singleCheckBox.isChecked());
+                    mList=DaoUtils.getStudentInstance().QueryObject(GouWuChe.class,"where _ID=?", new String[]{child.getId()});
+                    mList.get(0).setCount(mList.get(0).getCount()-1);
+                    DaoUtils.getStudentInstance().updateObject(mList.get(0));
+
                 }
             });
             childViewHolder.goodsNum.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showDialog(groupPosition,childPosition,childViewHolder.goodsNum,childViewHolder.singleCheckBox.isChecked(),child);
+                    showDialog(groupPosition1,childPosition1,childViewHolder.goodsNum,childViewHolder.singleCheckBox.isChecked(),child);
                 }
             });
             childViewHolder.delGoods.setOnClickListener(new View.OnClickListener() {
@@ -231,14 +327,20 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    modifyCountInterface.childDelete(groupPosition,childPosition);
+                                    modifyCountInterface.childDelete(groupPosition1,childPosition1);
+                                    mList=DaoUtils.getStudentInstance().QueryObject(GouWuChe.class,"where _ID=?", new String[]{child.getId()});
+                                    DaoUtils.getStudentInstance().deleteObject(mList.get(0));
                                 }
                             })
                             .create()
-                            .show();;
+                            .show();
                 }
             });
         }
+
+
+
+
         return convertView;
     }
 
@@ -468,6 +570,14 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
         TextView delGoods;
         @BindView(R.id.edit_goods_data)
         LinearLayout editGoodsData;
+        @BindView(R.id.qujiesuan)
+        LinearLayout qujiesuan;
+        @BindView(R.id.tv_item_gouwuche_price)
+        TextView tv_item_gouwuche_price;
+        @BindView(R.id.tv_item_gouwuche_jiesuan)
+        TextView tv_item_gouwuche_jiesuan;
+
+
 
         public ChildViewHolder(View view) {
             ButterKnife.bind(this, view);

@@ -23,6 +23,7 @@ public class SPToGouWuChe {
         gouWuChe.setPrice(resultBean.getPrice());
         gouWuChe.setProductTypeId(resultBean.getProductTypeId());
         gouWuChe.setStatus(resultBean.getStatus());
+
         return gouWuChe;
     }
     public static GouWuChe splistToGouWuChe(ShangPinList.Result.Products resultBean){
@@ -38,6 +39,7 @@ public class SPToGouWuChe {
         gouWuChe.setPrice(resultBean.getPrice());
         gouWuChe.setProductTypeId(resultBean.getProductTypeId());
         gouWuChe.setStatus(resultBean.getStatus());
+        gouWuChe.setSellerName(resultBean.getSellerName());
         return gouWuChe;
 
 

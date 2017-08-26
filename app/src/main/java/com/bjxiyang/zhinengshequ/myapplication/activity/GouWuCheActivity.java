@@ -3,9 +3,10 @@ package com.bjxiyang.zhinengshequ.myapplication.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.util.ArraySet;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +27,15 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.entity.GoodsInfo;
 import com.bjxiyang.zhinengshequ.myapplication.entity.StoreInfo;
 import com.bjxiyang.zhinengshequ.myapplication.greendao.DaoUtils;
-import com.bjxiyang.zhinengshequ.myapplication.until.UnitGetGouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.until.UtilTool;
 import com.bjxiyang.zhinengshequ.myapplication.until.UtilsLog;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,7 +85,7 @@ public class GouWuCheActivity extends MySwipeBackActivity implements View.OnClic
     private ShopcatAdapter adapter;
     private List<StoreInfo> groups; //组元素的列表
     private Map<String, List<GoodsInfo>> childs; //子元素的列表
-
+    private DecimalFormat df = new DecimalFormat("0.##");
 
     private List<GouWuChe> mList;
 
@@ -221,45 +222,165 @@ public class GouWuCheActivity extends MySwipeBackActivity implements View.OnClic
         groups = new ArrayList<StoreInfo>();
         childs = new HashMap<String, List<GoodsInfo>>();
         mList = DaoUtils.getStudentInstance().QueryAll(GouWuChe.class);
-        for (int i=mList.size()-1;i>0;i--){
-            if (mList.get(i).getCount()==0){
+
+        for (int i=mList.size()-1;i>=0;i--) {
+            if (mList.get(i).getCount() == 0) {
+                DaoUtils.getStudentInstance().deleteObject(mList.get(i));
                 mList.remove(i);
             }
         }
-        if (mList != null && mList.size()-1>0){
-            int j = 0;
-            for (int i = 0; i < mList.size() - 1; i++) {
+        List setId=new ArrayList();
+        Set<Integer> setSellerId=new ArraySet();
+        Set setSellerName=new ArraySet();
 
-                if (mList.get(i).getSellerId() == mList.get(i + 1).getSellerId()) {
-                    groups.add(new StoreInfo(j + "", mList.get(i).getSellerName()));
-                    if (mList.get(mList.size() - 2).getSellerId() != mList.get(mList.size() - 1).getSellerId()) {
-                        groups.add(new StoreInfo(j + "", mList.get(mList.size() - 1).getSellerName()));
-                    }
-                    j=i;
-
-                }
-
-            }
-            List<GoodsInfo> goods = new ArrayList<>();
-            for (int k = 0; k <= j; k++) {
-//                    int[] img = {R.drawable.cmaz, R.drawable.cmaz, R.drawable.cmaz, R.drawable.cmaz, R.drawable.cmaz, R.drawable.cmaz};
-                //i-j 就是商品的id， 对应着第几个店铺的第几个商品，1-1 就是第一个店铺的第一个商品
-                goods.add(new GoodsInfo(j + "-" + k,
-                        mList.get(k).getName(),
-                        mList.get(k).getDes(),
-                        mList.get(k).getDiscountPrice(),
-                        mList.get(k).getPrice(),
-                        "", "",
-                        mList.get(k).getLogo(),
-                        mList.get(k).getCount()));
-            }
-            childs.put(groups.get(j).getId(), goods);
-
-        }else {
-            clearCart();
+        for (int i=0;i<mList.size();i++){
+            setSellerId.add(mList.get(i).getSellerId());
+            setSellerName.add(mList.get(i).getSellerName());
         }
-        mcontext = this;
+        Object[] seller = setSellerId.toArray();
+        Object[] sellerName = setSellerName.toArray();
+//        for (int i=0;i<seller.length;i++){
+//
+//        }
+        List<GoodsInfo> goods = null;
 
+             for (int j=0;j<seller.length;j++) {
+                 groups.add(new StoreInfo(String.valueOf(seller[j]) + "", String.valueOf(sellerName[j])));
+                 goods = new ArrayList<>();
+                 for (int i = 0; i < mList.size(); i++) {
+                    if (Integer.valueOf(String.valueOf(seller[j]))==mList.get(i).getSellerId()) {
+
+                    double yuanjia;
+                    double youhui;
+                    if (mList.get(i).getIfDiscount() == 0) {
+                        youhui = Double.parseDouble(df.format(((double) mList.get(i).getPrice() / 100)));
+                        yuanjia = Double.parseDouble(df.format(((double) mList.get(i).getDiscountPrice() / 100)));
+                    } else {
+                        youhui = Double.parseDouble(df.format(((double) mList.get(i).getDiscountPrice() / 100)));
+                        yuanjia = Double.parseDouble(df.format(((double) mList.get(i).getPrice() / 100)));
+                    }
+                    goods.add(new GoodsInfo(mList.get(i).getId() + "",
+                            mList.get(i).getName(),
+                            mList.get(i).getDes(),
+                            youhui,
+                            yuanjia,
+                            "", "",
+                            mList.get(i).getLogo(),
+                            mList.get(i).getCount()));
+                }
+            }
+            childs.put(groups.get(j).getId()+ "", goods);
+//            childs.put(mList.get(i).getId()+ "", goods);
+        }
+//        for (int i=0;i<mList.size();i++){
+//            childs.put(mList.get(i).getId()+ "", goods);
+//
+//        }
+//
+//
+//        mList=DaoUtils.getStudentInstance().QueryObject(GouWuChe.class,"distinct SELLER_ID from GOU_WU_CHE",new String[]{});
+//        if (mList.size()==0){
+//            clearCart();
+//        }else if (mList.size()==1) {
+//            groups.add(new StoreInfo(mList.get(0).getId() + "", mList.get(0).getSellerName()));
+//            List<GoodsInfo> goods = new ArrayList<>();
+//            double yuanjia=0;
+//            double youhui=0;
+//            if (mList.get(0).getIfDiscount()==0){
+//                youhui= Double.parseDouble(df.format(((double)mList.get(0).getPrice()/100)));
+//                yuanjia=Double.parseDouble(df.format(((double)mList.get(0).getDiscountPrice()/100)));
+//            }else {
+//                youhui= Double.parseDouble(df.format(((double)mList.get(0).getDiscountPrice()/100)));
+//                yuanjia= Double.parseDouble(df.format(((double)mList.get(0).getPrice()/100)));
+//            }
+//            goods.add(new GoodsInfo(mList.get(0).getId()+"",
+//                    mList.get(0).getName(),
+//                    mList.get(0).getDes(),
+//                    youhui,
+//                    yuanjia,
+//                    "", "",
+//                    mList.get(0).getLogo(),
+//                    mList.get(0).getCount()));
+//            childs.put(groups.get(0).getId(), goods);
+//        }else if (mList.size()>1){
+//            List<GoodsInfo> goods = null;
+//            int j = 0;
+//            groups.add(new StoreInfo(mList.get(0).getId() + "", mList.get(0).getSellerName()));
+//            for (int i = 1; i < mList.size(); i++) {
+//                for (int l=0;l<=i;l++) {
+//                    groups.add(new StoreInfo(mList.get(i).getId() + "", mList.get(i).getSellerName()));
+//                    j++;
+//                }
+//            }
+//            for (int i = 1; i < mList.size(); i++) {
+//                    for (int l=0;l<=i;l++) {
+////                            if (mList.get(i).getSellerId() == mList.get(l).getSellerId()) {
+//                                goods = new ArrayList<>();
+//                                double yuanjia;
+//                                double youhui;
+//                                if (mList.get(i).getIfDiscount() == 0) {
+//                                    youhui = Double.parseDouble(df.format(((double) mList.get(i).getPrice() / 100)));
+//                                    yuanjia = Double.parseDouble(df.format(((double) mList.get(i).getDiscountPrice() / 100)));
+//                                } else {
+//                                    youhui = Double.parseDouble(df.format(((double) mList.get(i).getDiscountPrice() / 100)));
+//                                    yuanjia = Double.parseDouble(df.format(((double) mList.get(i).getPrice() / 100)));
+//                                }
+//                                goods.add(new GoodsInfo(mList.get(i).getId() + "",
+//                                        mList.get(i).getName(),
+//                                        mList.get(i).getName(),
+//                                        youhui,
+//                                        yuanjia,
+//                                        "", "",
+//                                        mList.get(i).getLogo(),
+//                                        mList.get(i).getCount()));
+//                            }
+////                        }
+//                        if (goods!=null) {
+//                            childs.put(groups.get(j).getId(), goods);
+//                        }
+//                    }
+
+//                    if (i<mList.size()-2) {
+//                        if (mList.get(i).getSellerId() != mList.get(i + 1).getSellerId()) {
+//                            groups.add(new StoreInfo(mList.get(i).getId() + "", mList.get(i).getSellerName()));
+//                            j++;
+//                        }
+//                    }else {
+//                        if (mList.get(mList.size() - 2).getSellerId() != mList.get(mList.size() - 1).getSellerId()) {
+//                            groups.add(new StoreInfo(mList.get(i).getId() + "", mList.get(mList.size() - 1).getSellerName()));
+//                            j++;
+//                        }
+//                    }
+//                    List<GoodsInfo> goods = new ArrayList<>();
+//
+//                    for (int k = 0; k <= i; k++) {
+////                        for (int l=0;l<=j;l++){
+////                        if (mList.get(k).getId().equals(groups.get(l).getId())) {
+//                            double yuanjia = 0;
+//                            double youhui = 0;
+//                            if (mList.get(k).getIfDiscount() == 0) {
+//                                youhui = Double.parseDouble(df.format(((double) mList.get(k).getPrice() / 100)));
+//                                yuanjia = Double.parseDouble(df.format(((double) mList.get(k).getDiscountPrice() / 100)));
+//                            } else {
+//                                youhui = Double.parseDouble(df.format(((double) mList.get(k).getDiscountPrice() / 100)));
+//                                yuanjia = Double.parseDouble(df.format(((double) mList.get(k).getPrice() / 100)));
+//                            }
+//                            goods.add(new GoodsInfo(mList.get(k).getId() + "",
+//                                    mList.get(k).getName(),
+//                                    mList.get(k).getName(),
+//                                    youhui,
+//                                    yuanjia,
+//                                    "", "",
+//                                    mList.get(k).getLogo(),
+//                                    mList.get(k).getCount()));
+//                        }
+////                    }
+//
+//                        childs.put(groups.get(j).getId(), goods);
+////                    }
+//                }
+//            }
+        mcontext = this;
 //        for (int i = 0; i < 5; i++) {
 //            groups.add(new StoreInfo(i + "", "小马的第" + (i + 1) + "号当铺"));
 //            List<GoodsInfo> goods = new ArrayList<>();
@@ -271,6 +392,7 @@ public class GouWuCheActivity extends MySwipeBackActivity implements View.OnClic
 //            childs.put(groups.get(i).getId(), goods);
 //        }
     }
+
 
     /**
      * 删除操作

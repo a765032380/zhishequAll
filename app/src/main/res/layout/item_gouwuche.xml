@@ -57,14 +57,16 @@
         android:layout_height="50dp"
         android:scrollbars="none"
         android:divider="#00000000"></ListView>
+
     <LinearLayout
+        android:id="@+id/ll_bton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
         android:gravity="center_vertical|right"
-        android:orientation="horizontal"
-        android:layout_marginRight="15dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,15 +86,16 @@
             android:layout_height="wrap_content"
             android:text="888.88"
             android:textColor="#ff5454" />
+
         <TextView
             android:id="@+id/tv_item_gouwuche_jiesuan"
             android:layout_width="100dp"
-            android:layout_height="37dp" 
-            android:background="@drawable/a_a_btn_clear"
+            android:layout_height="37dp"
             android:layout_marginLeft="30dp"
-            android:textColor="#ffffff"
+            android:background="@drawable/a_a_btn_clear"
+            android:gravity="center"
             android:text="结算"
-            android:gravity="center"/>
+            android:textColor="#ffffff" />
     </LinearLayout>
 
 </LinearLayout>

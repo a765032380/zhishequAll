@@ -77,6 +77,8 @@ public class PlaceOrderActivity extends LogOutBaseActivity
     private ShangPinList.Result.Products products;
 
     public static PlaceOrderActivity placeorder;
+    private List listSpId;
+    private  List<GouWuChe> mListAll;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -118,6 +120,7 @@ public class PlaceOrderActivity extends LogOutBaseActivity
         tv_dianming.setText(SPManager.getInstance().getString("shopName",""));
         Intent intent=getIntent();
         type=intent.getIntExtra("type",0);
+        listSpId= (List) intent.getSerializableExtra("list");
 //        tv_tijiaodingdan_money.setText("￥"+df.format((double)UnitGetGouWuChe.getZongJia()));
 //        if (intent.getIntExtra("userAddressId",0)!=0){
 //            userAddressId=intent.getIntExtra("userAddressId",0);
@@ -151,7 +154,30 @@ public class PlaceOrderActivity extends LogOutBaseActivity
             }
             adapter=new PlaceOrderAdapter(this,list);
             lv_tijiaodingdan.setAdapter(adapter);
-        }else {
+        }else if (type==5){
+            mListAll=new ArrayList<>();
+            for (int i=0;i<listSpId.size();i++){
+                mList=DaoUtils.getStudentInstance()
+                        .QueryObject(GouWuChe.class,
+                                "where _ID in (?)",
+                                new String[]{String.valueOf(listSpId.get(i))});
+                mListAll.add(mList.get(0));
+            }
+
+            for (int i=0;i<mListAll.size();i++){
+
+                if(mListAll.get(i).getIfDiscount()==0){
+                    jiage+=mListAll.get(i).getCount()*mListAll.get(i).getPrice();
+                }else {
+                    jiage+=mListAll.get(i).getCount()*mListAll.get(i).getDiscountPrice();
+                }
+                count+=mListAll.get(i).getCount();
+            }
+            adapter=new PlaceOrderAdapter(this,mListAll);
+            lv_tijiaodingdan.setAdapter(adapter);
+            MyUntil.setListViewHeightBasedOnChildren(lv_tijiaodingdan,adapter);
+
+        }else  {
 
             for (int i=mList.size()-1;i>=0;i--){
                 if (mList.get(i).getSellerId() != SPManager.getInstance().getInt("sellerId", 0)) {
@@ -206,6 +232,9 @@ public class PlaceOrderActivity extends LogOutBaseActivity
                 
                 String productJson1="[";
                 String productJson="";
+                if (type==5){
+                    mList=mListAll;
+                }
                 for (int i=0;i<mList.size();i++){
                     sellerId=mList.get(0).getSellerId();
                     if (mList.get(i).getCount()==0){
@@ -219,21 +248,22 @@ public class PlaceOrderActivity extends LogOutBaseActivity
                         } else {
                             productJson = productJson + "{\"productId\":" + mList.get(i).getSpid() + ",\"num\":" + mList.get(i).getCount() + "}";
                         }
-                    }else {
-//                            if (mList.get(i).getSellerId() != SPManager.getInstance().getInt("sellerId", 0)) {
-                                if (mList.get(i).getSpid() == products.getId()) {
+                    }else if (type==5){
+
+                        if (i != mList.size() - 1) {
+                            productJson = productJson + "{\"productId\":" + mList.get(i).getSpid() + ",\"num\":" + mList.get(i).getCount() + "},";
+                        } else {
+                            productJson = productJson + "{\"productId\":" + mList.get(i).getSpid() + ",\"num\":" + mList.get(i).getCount() + "}";
+                        }
+
+
+                    } else {
+                        if (mList.get(i).getSpid() == products.getId()) {
 //                            if (i != mList.size() - 1) {
 //                                productJson = productJson + "{\"productId\":" + mList.get(i).getSpid() + ",\"num\":" + mList.get(i).getCount() + "},";
-//                            } else {
-                                    productJson = productJson + "{\"productId\":" + mList.get(i).getSpid() + ",\"num\":" + mList.get(i).getCount() + "}";
-//                            }
-                                }
-                            
-//                        }
-                        
-                        
-                        
-
+//                            } else
+                            productJson = productJson + "{\"productId\":" + mList.get(i).getSpid() + ",\"num\":" + mList.get(i).getCount() + "}";
+                        }
                     }
                 }
                 productJson=productJson1+productJson+"]";

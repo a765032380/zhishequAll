@@ -22,15 +22,16 @@
             android:button="@null"
             android:drawableLeft="@drawable/checkbox_bg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
+
         <ImageView
-            android:layout_marginBottom="5dp"
             android:id="@+id/goods_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/cmaz"
-            android:layout_width="100dp"
-            android:layout_height="120dp"/>
+            android:src="@drawable/cmaz" />
 
         <RelativeLayout
             android:padding="2dp"
@@ -51,6 +52,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/goods_size"
                 android:paddingTop="5dp"
                 android:layout_alignParentLeft="true"
@@ -152,6 +154,7 @@
                         android:layout_height="35dp" />
                 </RelativeLayout>
                 <TextView
+                    android:visibility="gone"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
                     android:id="@+id/goodsSize"
@@ -176,4 +179,45 @@
             android:layout_height="2.5dp"
             android:background="@color/white"/>
     </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/qujiesuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总计："
+            android:textColor="#323232" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥"
+            android:textColor="#ff5454" />
+
+        <TextView
+            android:id="@+id/tv_item_gouwuche_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="888.88"
+            android:textColor="#ff5454" />
+
+        <TextView
+            android:id="@+id/tv_item_gouwuche_jiesuan"
+            android:layout_width="100dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/a_a_btn_clear"
+            android:gravity="center"
+            android:text="结算"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
 </LinearLayout>
