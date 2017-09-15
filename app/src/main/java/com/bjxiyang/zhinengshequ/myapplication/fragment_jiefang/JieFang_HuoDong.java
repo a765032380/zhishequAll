@@ -20,19 +20,15 @@ import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.activity.AddHuoDongActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.LuXianXiangQingActivity;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.HuoDongAdapter;
-import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FindHuoDongList;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by Administrator on 2017/8/15 0015.

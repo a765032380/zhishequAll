@@ -21,7 +21,7 @@ import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyDialog;
@@ -122,7 +122,7 @@ public class YiJianFanKuiActivity extends MySwipeBackActivity implements View.On
                 phone= String.valueOf(et_fankuiyijian_lianxifangshi.getText());
                 String url= XY_Response.URL_USERSUGGEST
                         +"mobilePhone="+
-                        UserManager.getInstance().getUser().getObj().getMobilePhone()+
+                        SPManager.getInstance().getString("mobilePhone","")+
                         "&suggestContent="+yijian+"&contactWay="+phone;
                 DialogUntil.showLoadingDialog(this,"正在提交",false);
                 if(mFile==null){

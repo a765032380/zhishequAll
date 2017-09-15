@@ -18,24 +18,19 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
-import com.bjxiyang.zhinengshequ.myapplication.activity.XYXuanZeXiaoQuActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.XuanZeXiaoQuActivity;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.MyMenJinAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ByCom;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
-import com.bjxiyang.zhinengshequ.myapplication.manager.RecyclerViewManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.LogOutUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.nineoldandroids.animation.ValueAnimator;
-
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +38,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.R.attr.animation;
 
 /**
  *

@@ -40,6 +40,7 @@ public class SPToGouWuChe {
         gouWuChe.setProductTypeId(resultBean.getProductTypeId());
         gouWuChe.setStatus(resultBean.getStatus());
         gouWuChe.setSellerName(resultBean.getSellerName());
+//        gouWuChe.setSpid(resultBean.getSpId());
         return gouWuChe;
 
 

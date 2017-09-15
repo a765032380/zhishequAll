@@ -1,10 +1,8 @@
 package com.bjxiyang.zhinengshequ.myapplication.update.util;
 
-import android.util.Log;
 
 import com.baisi.myapplication.okhttp.request.RequestParams;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 
 /**
  * Created by Administrator on 2017/7/3 0003.

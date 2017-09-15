@@ -173,6 +173,8 @@ public class PlaceOrderActivity extends LogOutBaseActivity
                 }
                 count+=mListAll.get(i).getCount();
             }
+            sellerId=mListAll.get(0).getSellerId();
+            tv_dianming.setText(mListAll.get(0).getSellerName());
             adapter=new PlaceOrderAdapter(this,mListAll);
             lv_tijiaodingdan.setAdapter(adapter);
             MyUntil.setListViewHeightBasedOnChildren(lv_tijiaodingdan,adapter);

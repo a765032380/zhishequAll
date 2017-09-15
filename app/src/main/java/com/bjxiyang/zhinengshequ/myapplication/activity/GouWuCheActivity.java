@@ -229,47 +229,75 @@ public class GouWuCheActivity extends MySwipeBackActivity implements View.OnClic
                 mList.remove(i);
             }
         }
-        List setId=new ArrayList();
         Set<Integer> setSellerId=new ArraySet();
-        Set setSellerName=new ArraySet();
 
+        Set setSellerName=new ArraySet();
+//        List setSellerId=new ArrayList();
+//        List setSellerName=new ArrayList();
+
+//        for (int i = 0; i < mList.size(); i++) {
+//            GouWuChe gouWuChe=mList.get(i);
+//            Log.i("lllll","名字："+gouWuChe.getName()
+//            +"--商家ID："+gouWuChe.getSellerId()
+//            +"--购物车ID："+gouWuChe.getId()
+//            +"--商品ID："+gouWuChe.getSpid());
+//                for (int l=0;l<=i;l++) {
+//                    if (mList.get(i).getSellerId() != mList.get(l).getSellerId()) {
+//                        setSellerId.add(mList.get(i).getSellerId());
+//                        setSellerName.add(mList.get(i).getSellerName());
+//                    }
+//                }
+//            }
+        Map map=new HashMap();
+        Map map2=new HashMap();
         for (int i=0;i<mList.size();i++){
+            GouWuChe gouWuChe=mList.get(i);
+            Log.i("lllll","名字："+gouWuChe.getName()
+            +"--商家ID："+gouWuChe.getSellerId()
+            +"--购物车ID："+gouWuChe.getId()
+            +"--商品ID："+gouWuChe.getSpid());
+
             setSellerId.add(mList.get(i).getSellerId());
             setSellerName.add(mList.get(i).getSellerName());
+            map.put(mList.get(i).getSellerId(),mList.get(i).getSellerName());
+            map2.put(mList.get(i).getSellerId(),mList.get(i).getId());
         }
-        Object[] seller = setSellerId.toArray();
-        Object[] sellerName = setSellerName.toArray();
+
 //        for (int i=0;i<seller.length;i++){
 //
 //        }
         List<GoodsInfo> goods = null;
+        int j=0;
+        for (Integer str : setSellerId) {
+//             for (int j=0;j<setSellerId.size();j++) {
+                 groups.add(new StoreInfo(String.valueOf(str) + "", String.valueOf(map.get(str))));
 
-             for (int j=0;j<seller.length;j++) {
-                 groups.add(new StoreInfo(String.valueOf(seller[j]) + "", String.valueOf(sellerName[j])));
-                 goods = new ArrayList<>();
+                goods = new ArrayList<>();
                  for (int i = 0; i < mList.size(); i++) {
-                    if (Integer.valueOf(String.valueOf(seller[j]))==mList.get(i).getSellerId()) {
+                    if (str==mList.get(i).getSellerId()) {
+                        Log.i("lllll",String.valueOf(str) + ""+ String.valueOf(map.get(str)));
 
-                    double yuanjia;
-                    double youhui;
-                    if (mList.get(i).getIfDiscount() == 0) {
-                        youhui = Double.parseDouble(df.format(((double) mList.get(i).getPrice() / 100)));
-                        yuanjia = Double.parseDouble(df.format(((double) mList.get(i).getDiscountPrice() / 100)));
-                    } else {
-                        youhui = Double.parseDouble(df.format(((double) mList.get(i).getDiscountPrice() / 100)));
-                        yuanjia = Double.parseDouble(df.format(((double) mList.get(i).getPrice() / 100)));
+                        double yuanjia;
+                        double youhui;
+                        if (mList.get(i).getIfDiscount() == 0) {
+                            youhui = Double.parseDouble(df.format(((double) mList.get(i).getPrice() / 100)));
+                            yuanjia = Double.parseDouble(df.format(((double) mList.get(i).getDiscountPrice() / 100)));
+                        } else {
+                            youhui = Double.parseDouble(df.format(((double) mList.get(i).getDiscountPrice() / 100)));
+                            yuanjia = Double.parseDouble(df.format(((double) mList.get(i).getPrice() / 100)));
+                        }
+                        goods.add(new GoodsInfo(mList.get(i).getId() + "",
+                                mList.get(i).getName(),
+                                mList.get(i).getDes(),
+                                youhui,
+                                yuanjia,
+                                "", "",
+                                mList.get(i).getLogo(),
+                                mList.get(i).getCount()));
                     }
-                    goods.add(new GoodsInfo(mList.get(i).getId() + "",
-                            mList.get(i).getName(),
-                            mList.get(i).getDes(),
-                            youhui,
-                            yuanjia,
-                            "", "",
-                            mList.get(i).getLogo(),
-                            mList.get(i).getCount()));
-                }
             }
             childs.put(groups.get(j).getId()+ "", goods);
+            j++;
 //            childs.put(mList.get(i).getId()+ "", goods);
         }
 //        for (int i=0;i<mList.size();i++){

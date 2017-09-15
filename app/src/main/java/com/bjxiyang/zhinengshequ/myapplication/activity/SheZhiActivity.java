@@ -13,7 +13,6 @@ import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.CommonDialog;
@@ -97,7 +96,6 @@ public class SheZhiActivity extends MySwipeBackActivity implements View.OnClickL
                 SPManager.getInstance().remove("mobilePhone");
                 SPManager.getInstance().remove("communityId_one");
                 SPManager.getInstance().remove("c_memberId");
-                UserManager.getInstance().removeUser();
                 MyUntil.mStartActivity(this,SDLoginActivity.class);
                 finish();
                 if (MainActivity.mainActivity!=null){

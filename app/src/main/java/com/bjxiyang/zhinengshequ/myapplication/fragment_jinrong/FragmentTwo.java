@@ -18,7 +18,6 @@ import com.bjxiyang.zhinengshequ.myapplication.adapter.XY_ErshoufangAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Loan;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 

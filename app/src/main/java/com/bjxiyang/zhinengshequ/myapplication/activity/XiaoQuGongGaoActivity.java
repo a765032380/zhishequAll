@@ -13,10 +13,9 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XiaoQuGongGaoAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
-import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GongGao;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -81,7 +80,7 @@ public class XiaoQuGongGaoActivity extends LogOutBaseActivity
         mList=new ArrayList<>();
         DialogUntil.showLoadingDialog(this,"正在加载",true);
         String url= XY_Response.URL_GETNOTICELIST+"cmemberId="+
-                UserManager.getInstance().getUser().getObj().getC_memberId();
+                SPManager.getInstance().getString("c_memberId","");
 
         RequestCenter.getNoticeList(url, new DisposeDataListener() {
             @Override

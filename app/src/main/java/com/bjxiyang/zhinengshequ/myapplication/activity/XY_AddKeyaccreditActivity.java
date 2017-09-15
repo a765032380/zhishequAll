@@ -5,8 +5,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,13 +18,12 @@ import android.widget.Toast;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
-import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.CommonActionSheetDialog;
+import com.bjxiyang.zhinengshequ.myapplication.manager.MyPreferences;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.UserType;
@@ -58,7 +61,8 @@ public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements Vie
     private int doorId;
     private int roleType= UserType.USER_FOLK;
 
-
+    private int guideResourceId = 0;//引导页图片资源id
+    private View view;
     Handler handler=new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -75,6 +79,8 @@ public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements Vie
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xy_activity_tianjiashouquan);
+        setGuideResId(R.drawable.c_bg_hahaha);//添加引导页
+        addGuideImage();//添加引导页
         initUI();
     }
 
@@ -118,7 +124,7 @@ public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements Vie
                 }
 
                 String url= XY_Response.URL_ADDPERMISSION+"mobilePhone="
-                        + UserManager.getInstance().getUser().getObj().getMobilePhone()+
+                        + SPManager.getInstance().getString("mobilePhone","")+
                         "&communityId="+communityId+"&nperId="+nperId+
                         "&floorId="+floorId+"&unitId="+unitId+"&doorId="+
                         doorId+"&roleType="+roleType+"&customerName="+name+"&customerTel="
@@ -131,7 +137,18 @@ public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements Vie
                         DialogUntil.closeLoadingDialog();
                         FanHui fanHui= (FanHui) responseObj;
                         if (fanHui.getCode().equals("1000")){
-                            finish();
+                            boolean fristload=SPManager.getInstance().getBoolean("check", false);
+//                            sharepreferences = XY_AddKeyaccreditActivity.this.getSharedPreferences("check", MODE_PRIVATE);
+//                            boolean fristload = sharepreferences.getBoolean("fristload", true);
+
+                            if (!fristload) {
+                                MainActivity.status = 2;
+                                SPManager.getInstance().putBoolean("check", true);
+                                finish();
+                            }else {
+
+                                finish();
+                            }
                         }else {
                             MyUntil.show(XY_AddKeyaccreditActivity.this,fanHui.getMsg());
                         }
@@ -240,5 +257,41 @@ public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements Vie
         Pattern p = Pattern.compile("^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\\d{8}$");
         Matcher m = p.matcher(phone);
         return m.matches();
+    }
+    public void addGuideImage() {
+        // Intent intent = getIntent();
+        // String fristload = intent.getStringExtra("fristload");
+        //查找通过setContentView上的根布局
+        view = getWindow().getDecorView().findViewById(R.id.my_content_view);
+        if (view == null) return;
+        if (MyPreferences.activityIsGuided(this, this.getClass().getName())) {
+            //引导过了
+            return;
+        }
+        ViewParent viewParent = view.getParent();
+        if (viewParent instanceof FrameLayout) {
+            final FrameLayout frameLayout = (FrameLayout) viewParent;
+            if (guideResourceId != 0) {//设置了引导图片
+                final ImageView guideImage = new ImageView(this);
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                guideImage.setLayoutParams(params);
+                guideImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                guideImage.setImageResource(guideResourceId);
+                guideImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        frameLayout.removeView(guideImage);
+
+                         MyPreferences.setIsGuided(getApplicationContext(), XY_AddKeyaccreditActivity.this.getClass().getName());//设为已引导
+                    }
+                });
+                frameLayout.addView(guideImage);//添加引导图片
+
+            }
+        }
+    }
+    protected void setGuideResId(int resId) {
+        this.guideResourceId = resId;
     }
 }

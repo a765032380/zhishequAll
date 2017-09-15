@@ -4,32 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alipay.sdk.app.PayTask;
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
 import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
-import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.AliZhiFu;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.BianLiDianResponse;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.greendao.DaoUtils;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OrderWeiXin;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ProPayOrder;
 import com.bjxiyang.zhinengshequ.myapplication.bean.ProPayOrderByAli;
@@ -256,11 +251,8 @@ public class ZhiFuXiangQing extends LogOutBaseActivity implements View.OnClickLi
             });
 
         }else {
-
-            MyUntil.show(ZhiFuXiangQing.this, UserManager.getInstance().getUser().getObj().getC_memberId()
-                    + "--" + propertyId + "--" + fee);
             String url = XY_Response.URL_PROPAYORDER + "cmemberId=" +
-                    UserManager.getInstance().getUser().getObj().getC_memberId() +
+                    SPManager.getInstance().getString("c_memberId","") +
                     "&propertyId=" + propertyId +
                     "&fee=" + fee;
             RequestCenter.proPayOrder(url, new DisposeDataListener() {
@@ -363,12 +355,12 @@ public class ZhiFuXiangQing extends LogOutBaseActivity implements View.OnClickLi
 
         }else {
             url= XY_Response.URL_PROPAYORDERBYALI+"cmemberId="+
-                    UserManager.getInstance().getUser().getObj().getC_memberId()+
+                    SPManager.getInstance().getString("c_memberId","")+
                     "&propertyId="+propertyId+
                     "&fee="+fee;
             DialogUntil.showLoadingDialog(ZhiFuXiangQing.this,"正在提交",true);
 
-            MyUntil.show(ZhiFuXiangQing.this, UserManager.getInstance().getUser().getObj().getC_memberId()
+            MyUntil.show(ZhiFuXiangQing.this, SPManager.getInstance().getString("c_memberId","")
                     +"--"+propertyId+"--"+fee);
             RequestCenter.proPayOrderByAli(url, new DisposeDataListener() {
                 @Override

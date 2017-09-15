@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,8 +43,6 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean2;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
-import com.bjxiyang.zhinengshequ.myapplication.test.HomeItem;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyListView;
@@ -62,7 +61,7 @@ import butterknife.ButterKnife;
  * Created by gll on 2017/8/2.
  */
 
-public class HomeFragment extends BaseFragment implements View.OnClickListener{
+public class HomeFragment extends BaseFragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
     private static final int ERSHOUFANG=1;
     private static final int DIANZI=2;
     private static final int XINYONG=3;
@@ -102,7 +101,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     public ListView list_view_home_jinrong;
     @BindView(R.id.tv_chaoshitejia_more)
     public TextView tv_chaoshitejia_more;
-
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
     /**
      * DATE
      */
@@ -132,8 +132,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private View view;
     private static OngetData ongetData;
     private boolean isone=true;
-
-
 
     public Handler mHandle=new Handler(new Handler.Callback() {
         @Override
@@ -180,8 +178,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 if(tv_xiaoqugonggao.isScrollContainer()) {
                     tv_xiaoqugonggao.stopAutoScroll();
                 }
-
-
 //                tv_jinrongtuijian.stopAutoScroll();
 //                tv_xiaoqugonggao.stopAutoScroll();
             }
@@ -221,7 +217,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     @TargetApi(Build.VERSION_CODES.M)
     private void initUI() {
-
+        swipeRefreshLayout.setOnRefreshListener(this);
         tv_chaoshitejia_more.setOnClickListener(this);
         ll_xuanzedizhi.setOnClickListener(this);
         tv_more.setOnClickListener(this);
@@ -230,13 +226,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         mRollViewPager.setPlayDelay(2000);
         //设置透明度
         mRollViewPager.setAnimationDurtion(500);
-
         home_viewpage_btn.setHintView(new ColorPointHintView(getContext(),0xff4183ff,0xffc6daff));
         ViewAdapter viewAdapter=new ViewAdapter(home_viewpage_btn,getActivity());
         home_viewpage_btn.setAdapter(viewAdapter);
-
-
-
 
         myScrollView.post(new Runnable() {
             //让scrollview跳转到顶部，必须放在runnable()方法中
@@ -245,7 +237,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 myScrollView.scrollTo(0, 0);
             }
         });
-
         myScrollView.setOnScrollChanged(new MyScrollView.OnScrollChanged() {
             @Override
             public void onScroll(int l, int scrollY, int oldl, int oldt) {
@@ -271,10 +262,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 //                }
 //            }
 //        });
-
     }
-
-
     private  List<Banner.Obj> initDate() {
 
         list=new ArrayList<>();
@@ -320,7 +308,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     newestBean=homebean.getObj().getNewestObj();
                     noticeBean=homebean.getObj().getNoticeObj();
                     specialBean=homebean.getObj().getShopObj();
-
 //                    list= bannerBean.getObj();
                     if (bannerBean.size()>0){
                         local();
@@ -337,8 +324,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     if (specialBean.size()>0){
                         setChaoShiList(specialBean);
                     }
-
-
                 }
             }
 
@@ -365,6 +350,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 startActivity(intent1);
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        mLocationClient = new LocationClient(GuardApplication.getContent());
+        //声明LocationClient类
+        mLocationClient.registerLocationListener( myListener );
+        initLocation();
+        mLocationClient.start();
+        //注册监听函数
+        getDate();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     public interface OngetData{

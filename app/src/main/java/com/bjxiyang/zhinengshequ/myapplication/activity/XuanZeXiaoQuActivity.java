@@ -3,7 +3,11 @@ package com.bjxiyang.zhinengshequ.myapplication.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -13,11 +17,10 @@ import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XYXuanZeXiaoQuAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
-import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
+import com.bjxiyang.zhinengshequ.myapplication.manager.MyPreferences;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -57,10 +60,15 @@ public class XuanZeXiaoQuActivity extends LogOutBaseActivity
     private int floorId;
     private int unitId;
 
+    private int guideResourceId = 0;//引导页图片资源id
+    private View view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xuanzexiaoqu1);
+        setGuideResId(R.drawable.b_bg_hahaha);//添加引导页
+        addGuideImage();//添加引导页
         xuanzexiaoquactivity=this;
         ButterKnife.bind(this);
         initUI();
@@ -152,4 +160,42 @@ public class XuanZeXiaoQuActivity extends LogOutBaseActivity
 
         finish();
     }
+
+    public void addGuideImage() {
+        // Intent intent = getIntent();
+        // String fristload = intent.getStringExtra("fristload");
+        //查找通过setContentView上的根布局
+        view = getWindow().getDecorView().findViewById(R.id.my_content_view);
+        if (view == null) return;
+        if (MyPreferences.activityIsGuided(this, this.getClass().getName())) {
+            //引导过了
+            return;
+        }
+        ViewParent viewParent = view.getParent();
+        if (viewParent instanceof FrameLayout) {
+            final FrameLayout frameLayout = (FrameLayout) viewParent;
+            if (guideResourceId != 0) {//设置了引导图片
+                final ImageView guideImage = new ImageView(this);
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                guideImage.setLayoutParams(params);
+                guideImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                guideImage.setImageResource(guideResourceId);
+                guideImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        frameLayout.removeView(guideImage);
+
+                         MyPreferences.setIsGuided(getApplicationContext(), XuanZeXiaoQuActivity.this.getClass().getName());//设为已引导
+                    }
+                });
+                frameLayout.addView(guideImage);//添加引导图片
+
+            }
+        }
+    }
+    protected void setGuideResId(int resId) {
+        this.guideResourceId = resId;
+    }
+
 }

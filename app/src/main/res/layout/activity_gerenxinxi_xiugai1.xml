@@ -158,11 +158,12 @@
         android:id="@+id/changepassworldlativelayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="0dp"
@@ -216,8 +217,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"       
-        android:background="#dddddd"></View>
+        android:layout_height="1dp"
+        android:background="#dddddd"
+        android:visibility="gone"></View>
 
 
 

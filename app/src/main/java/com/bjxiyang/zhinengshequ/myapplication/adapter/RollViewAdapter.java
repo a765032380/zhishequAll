@@ -51,12 +51,9 @@ public class RollViewAdapter extends LoopPagerAdapter{
                         Intent intent=new Intent(container.getContext(), MyWebViewActivity.class);
                         intent.putExtra("url",mList.get(position1).getAdInf());
                         container.getContext().startActivity(intent);
-                        Toast.makeText(container.getContext(),"调用H5", Toast.LENGTH_LONG).show();
                     }else if (mList.get(position1).getAdType()==2){
                         Intent intent=new Intent(container.getContext(), SupermarketActivity.class);
                         container.getContext().startActivity(intent);
-
-                        Toast.makeText(container.getContext(),"跳转到商超页面", Toast.LENGTH_LONG).show();
                     }
 
                 }

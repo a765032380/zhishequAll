@@ -262,7 +262,10 @@
             android:name="com.bjxiyang.zhinengshequ.myapplication.activity.GouWuCheActivity"
             android:theme="@style/myActionBar">
         </activity>
-
+        <activity
+            android:name="com.bjxiyang.zhinengshequ.myapplication.activity.SouSuoActivity"
+            android:theme="@style/otherPageStyle">
+        </activity>
 
 
         <activity

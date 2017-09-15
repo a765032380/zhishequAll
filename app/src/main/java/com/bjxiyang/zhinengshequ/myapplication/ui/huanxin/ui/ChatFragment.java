@@ -21,14 +21,10 @@ import android.widget.Toast;
 
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HaoYouList;
-import com.bjxiyang.zhinengshequ.myapplication.bean.Users;
 import com.bjxiyang.zhinengshequ.myapplication.manager.HaoYouListManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.Constant;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
-import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.DemoDBManager;
-import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.domain.EmojiconExampleGroupData;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.domain.RobotUser;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.widget.ChatRowVoiceCall;
 import com.hyphenate.chat.EMClient;
@@ -37,12 +33,10 @@ import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.EaseConstant;
-import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.easeui.ui.EaseChatFragment.EaseChatFragmentHelper;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
 import com.hyphenate.easeui.widget.chatrow.EaseCustomChatRowProvider;
-import com.hyphenate.easeui.widget.emojicon.EaseEmojiconMenu;
 import com.hyphenate.util.EasyUtils;
 import com.hyphenate.util.PathUtil;
 

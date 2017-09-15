@@ -10,8 +10,8 @@ android {
         applicationId "com.bjxiyang.zhinengshequ"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 5
-        versionName "1.4"
+        versionCode 6
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         packagingOptions {
             exclude "lib/x86/librealm-jni.so"
@@ -90,7 +90,7 @@ dependencies {
     compile 'com.amap.api:location:latest.integration'
     compile 'pub.devrel:easypermissions:0.4.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //注解框架
     compile 'com.jakewharton:butterknife:8.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'

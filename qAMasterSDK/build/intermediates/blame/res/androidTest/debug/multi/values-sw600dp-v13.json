@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Administrator\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+        "outputFile": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 116
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 179
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -43,7 +43,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\Lenovo\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+        "outputFile": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -54,7 +54,7 @@
                     "endOffset": 116
                 },
                 "from": {
-                    "file": "C:\\Users\\Lenovo\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -73,7 +73,7 @@
                     "endOffset": 179
                 },
                 "from": {
-                    "file": "C:\\Users\\Lenovo\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -86,7 +86,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+        "outputFile": "C:\\Users\\gll\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -97,7 +97,7 @@
                     "endOffset": 116
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -116,7 +116,7 @@
                     "endOffset": 179
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\zhishequ21\\zhishequ21\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\qAMasterSDK\\build\\intermediates\\bundles\\debug\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,

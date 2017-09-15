@@ -15,6 +15,11 @@
         <!--android:layout_height="40dp">-->
         <!---->
     <!--</LinearLayout>-->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
 <com.bjxiyang.zhinengshequ.myapplication.view.MyScrollView
     android:id="@+id/myScrollView"
@@ -244,6 +249,8 @@
 
     </LinearLayout>
 </com.bjxiyang.zhinengshequ.myapplication.view.MyScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
     <TextView
         android:alpha="0"
         android:id="@+id/title_gone"

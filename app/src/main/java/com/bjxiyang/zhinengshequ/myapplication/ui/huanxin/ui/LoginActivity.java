@@ -30,11 +30,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bjxiyang.zhinengshequ.R;
-import com.bjxiyang.zhinengshequ.myapplication.activity.*;
 import com.bjxiyang.zhinengshequ.myapplication.activity.MainActivity;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
-import com.bjxiyang.zhinengshequ.myapplication.bean.Users;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
+import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.DemoDBManager;
 import com.hyphenate.EMCallBack;
@@ -158,12 +156,9 @@ public class LoginActivity extends BaseActivity {
 			public void onSuccess() {
 				Log.d(TAG, "login: onSuccess");
 
-				Users users = UserManager.getInstance().getUser();
-				Users.Obj obj = users.getObj();
-
 				// 将自己服务器返回的环信账号、昵称和头像URL设置到帮助类中。
-				DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(obj.getRealName());
-				DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(obj.getHeadPhotoUrl());
+				DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(SPManager.getInstance().getString("nickName",""));
+				DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(SPManager.getInstance().getString("headPhotoUrl",""));
 			
 				// ** manually load all local groups and conversation
 			    EMClient.getInstance().groupManager().loadAllGroups();

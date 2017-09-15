@@ -23,8 +23,8 @@ public class ShouSuoActivity extends MySwipeBackActivity {
 
     @BindView(R.id.et_allapp)
     EditText et_allapp;
-    @BindView(R.id.iv_search_fanhui)
-    RelativeLayout iv_search_fanhui;
+//    @BindView(R.id.iv_search_fanhui)
+//    RelativeLayout iv_search_fanhui;
     @BindView(R.id.ll_activity_wujilu)
     LinearLayout ll_activity_wujilu;
 

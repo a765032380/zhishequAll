@@ -146,6 +146,15 @@ public class ShangPinList {
             private int stockNum;
             private int status;
             private String sellerName;
+            private int spId;
+
+            public int getSpId() {
+                return spId;
+            }
+
+            public void setSpId(int spId) {
+                this.spId = spId;
+            }
 
             public String getSellerName() {
                 return sellerName;

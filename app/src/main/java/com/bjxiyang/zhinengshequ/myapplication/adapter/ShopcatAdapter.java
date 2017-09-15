@@ -214,9 +214,14 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
             final int groupPosition1=groupPosition;
             childViewHolder.tv_item_gouwuche_price.setText(df.format(mtotalPrice) + "");
             childViewHolder.tv_item_gouwuche_jiesuan.setText("去支付(" + mtotalCount + ")");
+            final int finalMtotalCount = mtotalCount;
             childViewHolder.tv_item_gouwuche_jiesuan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (finalMtotalCount == 0) {
+                        UtilTool.toast(mcontext, "请选择要支付的商品");
+                        return;
+                    }
                     Intent intent=new Intent(mcontext, PlaceOrderActivity.class);
 
                     StoreInfo group = groups.get(groupPosition1);
@@ -237,10 +242,7 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
 //                    bundle.putSerializable("product", products);
 //                    intent.putExtras(bundle);
 //
-//                    if (mtotalCount == 0) {
-//                        UtilTool.toast(mcontext, "请选择要支付的商品");
-//                        return;
-//                    }
+
 
 
                     mcontext.startActivity(intent);

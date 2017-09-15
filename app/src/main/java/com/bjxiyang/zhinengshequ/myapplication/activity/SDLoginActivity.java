@@ -32,7 +32,6 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.Users;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
-import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -105,6 +104,7 @@ public class SDLoginActivity extends BaseActivity {
 
             }
             if (msg.what==7000){
+                MyUntil.show(SDLoginActivity.this,"短信发送成功，请注意查收");
                 startCountdown();
             }
 
@@ -217,58 +217,58 @@ public class SDLoginActivity extends BaseActivity {
 //            }
 //        });
         //发送验证码按钮
-//        bt_get_smscode= (Button) findViewById(R.id.bt_get_smscode);
-//        //点击发送验证码按钮后的逻辑处理
-//        bt_get_smscode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //设置发送验证码后的倒计时的时间
-//                timeCount=60;
-//                //得到用户的手机号
-//                String uPhone=String.valueOf(input_user_name_regiest_editview.getText());
-////                String url=XY_Response.URL+"";
-//                //判断用户输入的手机号是不是正确的手机号
-//                if (!isMobilephone(uPhone)) {
-//                    Toast.makeText(SDLoginActivity.this,"请输入正确的手机号",Toast.LENGTH_LONG).show();
-//                    return;
-//                }
-//                //弹出等待的Dialog
-//                DialogUntil.showLoadingDialog(SDLoginActivity.this,"请稍等",true);
-//                //设置类型为注册类型,后台需要的
-//                String type="0";
-//                //拼接访问的URL
-//                String test= XY_Response.URL_SED_MSM+"mobilePhone="+uPhone+"&type="+type;
-//                //请求后台数据
-//                RequestCenter.register(test, new DisposeDataListener() {
-//                    @Override
-//                    public void onSuccess(Object responseObj) {
-//                        //请求成功返回数据并转化为实体类
-//                        FanHui fanHui= (FanHui) responseObj;
-//                        //清除Dialog
-//                        DialogUntil.closeLoadingDialog();
-//                        //判断后台的返回码,如果是1000的话说明发送验证码成功
-//                        if (fanHui.getCode().equals("1000")){
-//                            //发送验证码成功以后进行操作,因为是在线程中所以发送给Handler
-//                            Message message=new Message();
-//                            message.what=7000;
-//                            handler.sendMessage(message);
-//                            //如果返回的是500的话打印返回的错误信息
-//                        }else if (fanHui.getCode().equals("500")){
-//                            Toast.makeText(SDLoginActivity.this,
-//                                    fanHui.getMsg(),Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Object reasonObj) {
-//                        //网络请求失败也要清掉Dialog
-//                        DialogUntil.closeLoadingDialog();
-//                        //弹出请用户检查网络的Dialog,可以选择取消或者调到网络修改的页面
-//                        MyDialog.showDialog(SDLoginActivity.this,"请检查网络连接");
-//                    }
-//                });
-//            }
-//        });
+        bt_get_smscode= (Button) findViewById(R.id.bt_get_smscode);
+        //点击发送验证码按钮后的逻辑处理
+        bt_get_smscode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //设置发送验证码后的倒计时的时间
+                timeCount=60;
+                //得到用户的手机号
+                String uPhone=String.valueOf(input_user_name_login_editview.getText());
+//                String url=XY_Response.URL+"";
+                //判断用户输入的手机号是不是正确的手机号
+                if (!isMobilephone(uPhone)) {
+                    Toast.makeText(SDLoginActivity.this,"请输入正确的手机号",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //弹出等待的Dialog
+                DialogUntil.showLoadingDialog(SDLoginActivity.this,"请稍等",true);
+                //设置类型为注册类型,后台需要的
+                String type="3";
+                //拼接访问的URL
+                String test= XY_Response.URL_SED_MSM+"mobilePhone="+uPhone+"&type="+type;
+                //请求后台数据
+                RequestCenter.register(test, new DisposeDataListener() {
+                    @Override
+                    public void onSuccess(Object responseObj) {
+                        //请求成功返回数据并转化为实体类
+                        FanHui fanHui= (FanHui) responseObj;
+                        //清除Dialog
+                        DialogUntil.closeLoadingDialog();
+                        //判断后台的返回码,如果是1000的话说明发送验证码成功
+                        if (fanHui.getCode().equals("1000")){
+                            //发送验证码成功以后进行操作,因为是在线程中所以发送给Handler
+                            Message message=new Message();
+                            message.what=7000;
+                            handler.sendMessage(message);
+                            //如果返回的是500的话打印返回的错误信息
+                        }else if (fanHui.getCode().equals("500")){
+                            Toast.makeText(SDLoginActivity.this,
+                                    fanHui.getMsg(),Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Object reasonObj) {
+                        //网络请求失败也要清掉Dialog
+                        DialogUntil.closeLoadingDialog();
+                        //弹出请用户检查网络的Dialog,可以选择取消或者调到网络修改的页面
+                        MyDialog.showDialog(SDLoginActivity.this,"请检查网络连接");
+                    }
+                });
+            }
+        });
 
 
 
@@ -281,7 +281,7 @@ public class SDLoginActivity extends BaseActivity {
                 //登录时输入的手机号
                  String uPhone = String.valueOf(input_user_name_login_editview.getText());
                 //登录时输入的密码
-                 String uPassword = String.valueOf(input_user_password_login_editview.getText());
+                 String uPassword = String.valueOf(input_user_sms_code_editview.getText());
 //                if (isMobilephone(uPhone)){
 //                        Toast.makeText(SDLoginActivity.this,"输入格式没问题",Toast.LENGTH_LONG).show();
 //                        String url= XY_Response.URL_LOGIN+"mobilePhone="+uPhone+"&password="+uPassword;
@@ -291,40 +291,22 @@ public class SDLoginActivity extends BaseActivity {
                     return;
                 }
                 //判断用户输入的密码格式是否正确
-                if (!rexCheckPassword(uPassword)){
-                    Toast.makeText(SDLoginActivity.this,"请输入8~16位密码,密码必须包含字母和数字",Toast.LENGTH_LONG).show();
-                    return;
-                }
+//                if (!rexCheckPassword(uPassword)){
+//                    Toast.makeText(SDLoginActivity.this,"请输入8~16位密码,密码必须包含字母和数字",Toast.LENGTH_LONG).show();
+//                    return;
+//                }
                 //弹出正在登陆的等待动画
                 DialogUntil.showLoadingDialog(SDLoginActivity.this,"正在登陆",true);
                 //拼接访问的URL
-                String url=XY_Response.URL_LOGIN+"mobilePhone="+uPhone+"&password="+getMD5(uPassword)
-                        +"&deviceId="+ YZTEsdk.getXulie(SDLoginActivity.this);
+                String url=XY_Response.URL_LOGIN
+                        +"mobilePhone="
+                        +uPhone+"&dynamicCode="
+                        +uPassword
+                        +"&deviceId="+ YZTEsdk.getXulie(SDLoginActivity.this)+"";
 
                 RequestParams headers=new RequestParams();
                 headers.put("user-agent", ""+"appId="+ APP_ID.APP_ID+"");
-                EMClient.getInstance().login(uPhone, getMD5(uPassword), new EMCallBack() {
-                    @Override
-                    public void onSuccess() {
 
-                        Log.i("YYYY","登陆成功");
-//                        finish();
-                    }
-                    @Override
-                    public void onProgress(int progress, String status) {
-                        Log.i("YYYY",status);
-                    }
-                    @Override
-                    public void onError(int code, String error) {
-
-                        Log.i("YYYY",error);
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-
-                            }
-                        });
-                    }
-                });
 
 
 
@@ -339,6 +321,30 @@ public class SDLoginActivity extends BaseActivity {
                         if (users.getCode().equals("1000")){
                             //登陆成功以后将用户的实体类保存到单例模式下的用户实体类中
                             UserManager.getInstance().setUser(users);
+
+                            EMClient.getInstance().login(users.getObj().getMobilePhone(), users.getObj().getPassword(), new EMCallBack() {
+                                @Override
+                                public void onSuccess() {
+                                }
+                                @Override
+                                public void onProgress(int progress, String status) {
+                                    Log.i("YYYY",status);
+                                }
+                                @Override
+                                public void onError(int code, String error) {
+
+                                    Log.i("YYYY",error);
+                                    runOnUiThread(new Runnable() {
+                                        public void run() {
+
+                                        }
+                                    });
+                                }
+                            });
+
+
+
+
 //                            if (check_out.isSelected()){
                                 //将用户的信息报错到SP中
                                 setSP(users);
@@ -604,7 +610,7 @@ public class SDLoginActivity extends BaseActivity {
 
     //开始倒计时
     public void startCountdown(){
-        regiest_action_button.setEnabled(true);
+//        regiest_action_button.setEnabled(true);
         changeSmsButton();
         bt_get_smscode.setEnabled(false);
         setTimerTask();
@@ -675,16 +681,16 @@ public class SDLoginActivity extends BaseActivity {
         SPManager.getInstance().putString("mobilePhone",users.getObj().getMobilePhone());
         SPManager.getInstance().putString("realName",users.getObj().getRealName());
         SPManager.getInstance().putString("nickName",users.getObj().getNickName());
-        SPManager.getInstance().putString("sex",users.getObj().getSex());
+        SPManager.getInstance().putInt("sex",users.getObj().getSex());
         SPManager.getInstance().putString("headPhotoUrl",users.getObj().getHeadPhotoUrl());
 //        SPManager.getInstance().putString("status",users.getObj().get(0).getStatus());
-        SPManager.getInstance().putString("birthday",users.getObj().getBirthday());
-        SPManager.getInstance().putString("email",users.getObj().getEmail());
-        SPManager.getInstance().putString("address",users.getObj().getAddress());
-        SPManager.getInstance().putString("qq",users.getObj().getQq());
-        SPManager.getInstance().putString("weChat",users.getObj().getWeChat());
-        SPManager.getInstance().putString("age", users.getObj().getAge());
-        SPManager.getInstance().putString("ownerId",users.getObj().getOwnerId());
+//        SPManager.getInstance().putString("birthday",users.getObj().getBirthday());
+//        SPManager.getInstance().putString("email",users.getObj().getEmail());
+//        SPManager.getInstance().putString("address",users.getObj().getAddress());
+//        SPManager.getInstance().putString("qq",users.getObj().getQq());
+//        SPManager.getInstance().putString("weChat",users.getObj().getWeChat());
+//        SPManager.getInstance().putString("age", users.getObj().getAge());
+//        SPManager.getInstance().putString("ownerId",users.getObj().getOwnerId());
     }
     //从SP中得到数据保存到实体类中
     private Users setUserforSP(){

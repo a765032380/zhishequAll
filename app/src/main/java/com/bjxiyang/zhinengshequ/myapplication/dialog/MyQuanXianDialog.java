@@ -21,7 +21,6 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Phoneinfo;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
 import com.google.gson.Gson;
 
@@ -141,8 +140,8 @@ public class MyQuanXianDialog extends Dialog {
 //                phoneInfoString;
         RequestParams params=new RequestParams();
 
-        params.put("cmemberId",String.valueOf(UserManager.getInstance().getUser().getObj().getC_memberId()));
-        params.put("mobilePhone", UserManager.getInstance().getUser().getObj().getMobilePhone());
+        params.put("cmemberId",SPManager.getInstance().getString("c_memberId",""));
+        params.put("mobilePhone", SPManager.getInstance().getString("mobilePhone",""));
         params.put("phoneNolist",phoneInfoString);
 
 

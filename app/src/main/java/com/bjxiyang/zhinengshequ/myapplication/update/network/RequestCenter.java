@@ -51,7 +51,6 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.TiJiaoDingDan;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.YouHuiQuan;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.update.util.GetHeaders;
 
 import java.io.File;

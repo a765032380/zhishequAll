@@ -28,6 +28,7 @@ import java.util.List;
 
 /**
  * Created by fengyongge on 2016/5/24 0024.
+ * 李
  */
 
 public class GoodsAdapter extends BaseAdapter{
@@ -116,12 +117,16 @@ public class GoodsAdapter extends BaseAdapter{
             if (gouwuche1.getCount()<1){
                 viewholder.tv_acount.setVisibility(View.INVISIBLE);
                 viewholder.iv_remove.setVisibility(View.INVISIBLE);
-                catograyAdapter.notifyDataSetChanged();
+                if (catograyAdapter!=null) {
+                    catograyAdapter.notifyDataSetChanged();
+                }
             }else{
                 viewholder.tv_acount.setVisibility(View.VISIBLE);
                 viewholder.iv_remove.setVisibility(View.VISIBLE);
                 viewholder.tv_acount.setText(String.valueOf(gouwuche1.getCount()));
-                catograyAdapter.notifyDataSetChanged();
+                if (catograyAdapter!=null) {
+                    catograyAdapter.notifyDataSetChanged();
+                }
             }
         }else{
             viewholder.tv_acount.setVisibility(View.INVISIBLE);
@@ -159,7 +164,9 @@ public class GoodsAdapter extends BaseAdapter{
                 }
                 supermarketfragment.handlerCarNum(1,gouwuche,true);
 
-                catograyAdapter.notifyDataSetChanged();
+                if (catograyAdapter!=null) {
+                    catograyAdapter.notifyDataSetChanged();
+                }
 
                 int[] loc = new int[2];
                 viewholder.iv_add.getLocationInWindow(loc);
@@ -201,7 +208,9 @@ public class GoodsAdapter extends BaseAdapter{
                 supermarketfragment.handlerCarNum(0,gouwuche,true);
 
 //                supermarketfragment.handlerCarNum(0,list.get(position),true);
-                catograyAdapter.notifyDataSetChanged();
+                if (catograyAdapter!=null) {
+                    catograyAdapter.notifyDataSetChanged();
+                }
 
             }
         });
@@ -211,7 +220,9 @@ public class GoodsAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
 //                if(list.get(position).getPackage_product_info()!=null&&list.get(position).getTitle()!=null){
-                catograyAdapter.notifyDataSetChanged();
+                if (catograyAdapter!=null) {
+                    catograyAdapter.notifyDataSetChanged();
+                }
 
                 supermarketfragment.showDetailSheet(list.get(position2));
 //                }else{

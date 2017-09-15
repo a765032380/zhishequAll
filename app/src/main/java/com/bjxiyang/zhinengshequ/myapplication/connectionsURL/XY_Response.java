@@ -11,11 +11,15 @@ public class XY_Response {
 
 //    public static final String URL="http://192.168.1.229:8080/zsq/";
     public static final String URL="http://47.92.106.249:8088/zsq/";
+    public static final String URL2="http://47.92.106.249:8088/zsq/v2/";
 
-    public static final String URL_LOGIN=URL+"init/login?";
+
+
+
+    public static final String URL_LOGIN=URL2+"init/login?";
     public static final String URL_REGISTER=URL+"init/registered?";
     public static final String URL_FINDPWD=URL+"init/findPwd?";
-    public static final String URL_SED_MSM=URL+"init/getDynamic?";
+    public static final String URL_SED_MSM=URL2+"init/getDynamic?";
     public static final String URL_BANNERLIST=URL+"init/bannerList?";
     public static final String URL_STARTADPAGE=URL+"init/startadpage?";
 

@@ -29,13 +29,10 @@ import com.bjxiyang.zhinengshequ.myapplication.activity.YiJianFanKuiActivity;
 import com.bjxiyang.zhinengshequ.myapplication.activity.ZheKouQuanActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.GeRenZhongXin;
 import com.bjxiyang.zhinengshequ.myapplication.bean.UpdateVersion;
-import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.Text;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response2;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.R;
-import com.bjxiyang.zhinengshequ.myapplication.until.LogOutUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.CommonDialog;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -243,13 +240,6 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 
     }
 
-    //得到用户对象
-    public void getUserInfo(){
-        if (UserManager.getInstance().getUser()!=null){
-            String phone = String.valueOf(SPManager.getInstance().getString("mobilePhone",""));
-            account_people.setText(phone);
-        }
-    }
     //检查更新代码
     private void checkVersion() {
         DialogUntil.showLoadingDialog(mContext,"正在检查更新",true);

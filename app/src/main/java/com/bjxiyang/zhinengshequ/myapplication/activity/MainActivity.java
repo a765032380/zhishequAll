@@ -25,6 +25,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -32,6 +33,10 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,8 +57,8 @@ import com.bjxiyang.zhinengshequ.myapplication.fragment.BankingFragment;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.HomeFragment;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.MyFragment;
 import com.bjxiyang.zhinengshequ.myapplication.fragment.JieFangfragment;
+import com.bjxiyang.zhinengshequ.myapplication.manager.MyPreferences;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.CommonDialog;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -110,10 +115,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     RelativeLayout content_layout;
 
 
+
+
     /**
      * DATE
      */
     private boolean isOpen;
+    private int guideResourceId = 0;//引导页图片资源id
+    private int guideResourceId1 = 0;//引导页图片资源id
+    public static int status = 1;
+    private View view;
     /***
      * Other
      */
@@ -140,6 +151,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        setGuideResId(R.drawable.a_bg_hahaha);//添加引导页
+        if (status == 1){
+            addGuideImage();//添加引导页
+        }
+
 //        Users users=new Users();
 //        Users.Obj obj=new Users.Obj();
 //        obj.setC_memberId(0);
@@ -230,6 +246,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     }
     @Override
     protected void onResume() {
+
+        if (status == 2) {
+            setGuideResId1(R.drawable.f_bg_hahaha);//添加引导页
+            addGuideImage1();//添加引导页
+        }
+
         isForeground = true;
         super.onResume();
     }
@@ -605,7 +627,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //                phoneInfoString;
         RequestParams params=new RequestParams();
 
-        params.put("cmemberId",String.valueOf(UserManager.getInstance().getUser().getObj().getC_memberId()));
+        params.put("cmemberId",SPManager.getInstance().getString("c_memberId",""));
         params.put("mobilePhone",SPManager.getInstance().getString("mobilePhone",""));
         params.put("phoneNolist",phoneInfoString);
 
@@ -791,4 +813,75 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         intent.setData(Uri.parse("package:" + getPackageName()));
         startActivity(intent);
     }
+    public void addGuideImage() {
+        // Intent intent = getIntent();
+        // String fristload = intent.getStringExtra("fristload");
+        //查找通过setContentView上的根布局
+        view = getWindow().getDecorView().findViewById(R.id.my_content_view);
+        if (view == null) return;
+        if (MyPreferences.activityIsGuided(this, this.getClass().getName())) {
+            //引导过了
+            return;
+        }
+        ViewParent viewParent = view.getParent();
+        if (viewParent instanceof FrameLayout) {
+            final FrameLayout frameLayout = (FrameLayout) viewParent;
+            if (guideResourceId != 0) {//设置了引导图片
+                final ImageView guideImage = new ImageView(this);
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                guideImage.setLayoutParams(params);
+                guideImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                guideImage.setImageResource(guideResourceId);
+                guideImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        frameLayout.removeView(guideImage);
+
+//                         MyPreferences.setIsGuided(getApplicationContext(), MainActivity.this.getClass().getName());//设为已引导
+                    }
+                });
+                frameLayout.addView(guideImage);//添加引导图片
+
+            }
+        }
+    }
+    public void addGuideImage1() {
+        view = getWindow().getDecorView().findViewById(R.id.my_content_view);
+        if (view == null) return;
+        if (MyPreferences.activityIsGuided(this, this.getClass().getName())) {
+            //引导过了
+            return;
+        }
+        ViewParent viewParent = view.getParent();
+        if (viewParent instanceof FrameLayout) {
+            final FrameLayout frameLayout = (FrameLayout) viewParent;
+
+            if (guideResourceId1 != 0) {//设置了引导图片
+                final ImageView guideImage = new ImageView(this);
+                FrameLayout.LayoutParams params1 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                guideImage.setLayoutParams(params1);
+                guideImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                guideImage.setImageResource(guideResourceId1);
+                guideImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        frameLayout.removeView(guideImage);
+                        MyPreferences.setIsGuided(getApplicationContext(), MainActivity.this.getClass().getName());//设为已引导
+                    }
+                });
+                frameLayout.addView(guideImage);//添加引导图片
+            }
+        }
+    }
+    protected void setGuideResId(int resId) {
+        this.guideResourceId = resId;
+    }
+
+    protected void setGuideResId1(int resId) {
+        this.guideResourceId1 = resId;
+    }
+
+
+
 }

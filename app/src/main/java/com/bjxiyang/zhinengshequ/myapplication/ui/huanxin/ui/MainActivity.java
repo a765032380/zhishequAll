@@ -37,7 +37,6 @@ import android.widget.Toast;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.activity.SDLoginActivity;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.Constant;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.DemoHelper;
 import com.bjxiyang.zhinengshequ.myapplication.ui.huanxin.db.InviteMessgeDao;
@@ -115,7 +114,6 @@ public class MainActivity extends BaseActivity {
 			SPManager.getInstance().remove("c_memberId");
 			SPManager.getInstance().remove("communityId_one");
 			SPManager.getInstance().remove("communityName");
-			UserManager.getInstance().removeUser();		
 			startActivity(new Intent(this, SDLoginActivity.class));
 			return;
 		} else if (getIntent() != null && getIntent().getBooleanExtra("isConflict", false)) {
@@ -125,9 +123,6 @@ public class MainActivity extends BaseActivity {
 			SPManager.getInstance().remove("c_memberId");
 			SPManager.getInstance().remove("communityId_one");
 			SPManager.getInstance().remove("communityName");
-
-			UserManager.getInstance().removeUser();
-		
 			startActivity(new Intent(this, SDLoginActivity.class));
 			return;
 		}
@@ -536,8 +531,6 @@ public class MainActivity extends BaseActivity {
 
 						SPManager.getInstance().remove("mobilePhone");
 						SPManager.getInstance().remove("communityId_one");
-						UserManager.getInstance().removeUser();
-						
 						Intent intent = new Intent(MainActivity.this, SDLoginActivity.class);
 						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 						startActivity(intent);
@@ -566,8 +559,6 @@ public class MainActivity extends BaseActivity {
 
 			SPManager.getInstance().remove("mobilePhone");
 			SPManager.getInstance().remove("communityId_one");
-			UserManager.getInstance().removeUser();
-		
             startActivity(new Intent(this, SDLoginActivity.class));
         }
 	}
@@ -596,8 +587,6 @@ public class MainActivity extends BaseActivity {
 								
 								SPManager.getInstance().remove("mobilePhone");
 								SPManager.getInstance().remove("communityId_one");
-								UserManager.getInstance().removeUser();
-								
                                 startActivity(new Intent(MainActivity.this, SDLoginActivity.class));
                             }
                         });

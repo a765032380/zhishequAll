@@ -3,6 +3,7 @@ package com.bjxiyang.zhinengshequ.myapplication.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -26,9 +27,8 @@ import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.CatograyAdapt
 import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.GoodsAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.supermarket.ProductAdapter;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
-import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
+import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.HomeBean;
-import com.bjxiyang.zhinengshequ.myapplication.bean.ItemBean;
 import com.bjxiyang.zhinengshequ.myapplication.bean.SelectPlot;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DianMing;
 import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.GouWuChe;
@@ -41,16 +41,14 @@ import com.bjxiyang.zhinengshequ.myapplication.dialog.CommonActionSheetDialog;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.GouWuCheDialog;
 import com.bjxiyang.zhinengshequ.myapplication.greendao.DaoUtils;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
-import com.bjxiyang.zhinengshequ.myapplication.until.LogOutUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.SPToGouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.until.UnitGetGouWuChe;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
-import com.bjxiyang.zhinengshequ.myapplication.view.MyListView;
+import com.bjxiyang.zhinengshequ.myapplication.view.PullListView;
+import com.bjxiyang.zhinengshequ.myapplication.view.SearchView;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,9 +60,11 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/8/7 0007.
  */
 
-public class SupermarketActivity extends MySwipeBackActivity implements
-        View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+public class SupermarketActivity extends LogOutBaseActivity implements
+        View.OnClickListener,SwipeRefreshLayout.OnRefreshListener ,
+        SearchView.SearchViewListener{
     /**
+     *
      * UI
      */
     @BindView(R.id.ll_shopname)
@@ -72,7 +72,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     @BindView(R.id.tv_shopname)
     TextView tv_shopname;
     @BindView(R.id.et_allapp)
-    EditText et_allapp;
+    TextView et_allapp;
     @BindView(R.id.ll_jiage)
     LinearLayout ll_jiage;
     @BindView(R.id.iv_up)
@@ -86,9 +86,9 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     @BindView(R.id.xuanhaole)
     TextView xuanhaole;
     @BindView(R.id.lv_good)
-    ListView lv_good;
+    PullListView lv_good;
     @BindView(R.id.lv_catogary)
-    ListView lv_catogary;
+    PullListView lv_catogary;
     @BindView(R.id.swipeRefreshLayout1)
     SwipeRefreshLayout swipeRefreshLayout1;
     @BindView(R.id.swipeRefreshLayout2)
@@ -103,6 +103,14 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     BottomSheetLayout bottomSheetLayout;
     @BindView(R.id.view_title)
     View view_title;
+    @BindView(R.id.main_search_layout)
+    SearchView searchView;
+    @BindView(R.id.rl_title)
+    RelativeLayout rl_title;
+    private boolean isShowTitle=true;
+
+
+
 
     ImageView iv_shangminxiangqing_img;
     ImageView fanhui;
@@ -118,6 +126,33 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     TextView  tv_shuliang1;
     TextView tv_xuanhaole;
     TextView tv_zongjia;
+    /**
+     * 搜索结果的数据
+     */
+    private List<ShangPinList.Result.Products> resultData;
+
+    /**
+     * 热搜框列表adapter
+     */
+    private ArrayAdapter<String> hintAdapter;
+
+    /**
+     * 自动补全列表adapter
+     */
+    private ArrayAdapter<String> autoCompleteAdapter;
+    /**
+     * 搜索过程中自动补全数据
+     */
+    private List<String> autoCompleteData;
+    /**
+     * 默认提示框显示项的个数
+     */
+    private static int DEFAULT_HINT_SIZE = 4;
+
+    /**
+     * 提示框显示项的个数
+     */
+    private static int hintSize = DEFAULT_HINT_SIZE;
 
     private TextView tv_count,tv_totle_money2;
     /**
@@ -143,19 +178,20 @@ public class SupermarketActivity extends MySwipeBackActivity implements
     private List<SelectPlot.Obj> mList_plot;
     private List<ShangPinList.Result> list_fenlei;
     private List<ShangPinList.Result.Products> list_shangpin;
+    private List<ShangPinList.Result.Products> list_shangpinAll;
     private ViewGroup anim_mask_layout;//动画层
     private  GouWuCheDialog dialog;
     private GuardApplication myApp;
     private View bottomSheet;
     private Intent intent;
     private boolean isOne=true;
-
+    public static SupermarketActivity supermarketActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket);
         ButterKnife.bind(this);
-
+        supermarketActivity=this;
         initUi();
         intent=getIntent();
 //        if (intent!=null){
@@ -181,10 +217,97 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                 }
             }
 //        }
-
-
-
+        initData();
+        initViews();
     }
+    private void initViews() {
+//        lvResults = (ListView) findViewById(R.id.main_lv_search_results);
+        //设置监听
+        searchView.setSearchViewListener(this);
+        //设置adapter
+        searchView.setTipsHintAdapter(hintAdapter);
+        searchView.setAutoCompleteAdapter(autoCompleteAdapter);
+
+//        lv_good.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                Toast.makeText(SupermarketActivity.this, position + "", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+    }
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        //从数据库获取数据
+        getDbData();
+        //初始化热搜版数据
+//        getHintData();
+        //初始化自动补全数据
+        getAutoCompleteData(null);
+        //初始化搜索结果数据
+        getResultData(null);
+    }
+    /**
+     * 获取db 数据
+     */
+    private void getDbData() {
+//        dbData = new ArrayList<>();
+//        for (int i = 0; i < list_shangpinAll.size(); i++) {
+//
+//            dbData.add(list_shangpinAll.get(i));
+//        }
+    }
+    /**
+     * 获取自动补全data 和adapter
+     */
+    private void getAutoCompleteData(String text) {
+        if (autoCompleteData == null) {
+            //初始化
+            autoCompleteData = new ArrayList<>(hintSize);
+        } else {
+            // 根据text 获取auto data
+            autoCompleteData.clear();
+            for (int i = 0, count = 0; i < list_shangpinAll.size()
+                    && count < hintSize; i++) {
+                if (list_shangpinAll.get(i).getName().contains(text.trim())) {
+                    autoCompleteData.add(list_shangpinAll.get(i).getName());
+                    count++;
+                }
+            }
+        }
+        if (autoCompleteAdapter == null) {
+            autoCompleteAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, autoCompleteData);
+        } else {
+            autoCompleteAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * 获取搜索结果data和adapter
+     */
+    private void getResultData(String text) {
+        if (goodsAdapter == null) {
+            // 初始化
+            resultData = new ArrayList<>();
+        } else {
+            resultData.clear();
+            for (int i = 0; i < list_shangpinAll.size(); i++) {
+                if (list_shangpinAll.get(i).getName().contains(text.trim())) {
+                    resultData.add(list_shangpinAll.get(i));
+                }
+            }
+        }
+        goodsAdapter = new GoodsAdapter(this,this, resultData,catograyAdapter);
+        lv_good.setAdapter(goodsAdapter);
+//        if (goodsAdapter == null) {
+//            goodsAdapter = new GoodsAdapter(this,this, resultData,catograyAdapter);
+//        } else {
+//            goodsAdapter.notifyDataSetChanged();
+//        }
+    }
+
+
     private void initUi() {
         swipeRefreshLayout1.setOnRefreshListener(this);
         swipeRefreshLayout2.setOnRefreshListener(this);
@@ -194,7 +317,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         ll_shopname.setOnClickListener(this);
         tv_car.setOnClickListener(this);
         xuanhaole.setOnClickListener(this);
-
+        et_allapp.setOnClickListener(this);
 
         myApp = GuardApplication.getContent();
         addListener();
@@ -218,6 +341,7 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         });
     }
     private void getShangPingList(){
+        list_shangpinAll=new ArrayList<>();
         DialogUntil.showLoadingDialog(this,"正在加载",true);
         sellerId=SPManager.getInstance().getInt("sellerId",0);
         String url_list= BianLiDianResponse.URL_PRODUCT_LIST+"sellerId="+sellerId;
@@ -237,6 +361,9 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                         catograyAdapter.notifyDataSetChanged();
                         list_shangpin = list_fenlei.get(0).getProducts();
 
+                        for (int i=0;i<list_fenlei.size();i++){
+                            list_shangpinAll.addAll(list_fenlei.get(i).getProducts());
+                        }
                         goodsAdapter = new GoodsAdapter(SupermarketActivity.this, SupermarketActivity.this, bubble_sort(list_shangpin), catograyAdapter);
                         lv_good.setAdapter(goodsAdapter);
                         goodsAdapter.notifyDataSetChanged();
@@ -253,7 +380,6 @@ public class SupermarketActivity extends MySwipeBackActivity implements
 
             }
         });
-
     }
     public void handlerCarNum(int type, GouWuChe gouWuChe1, boolean refreshGoodList){
         if (type==1) {
@@ -493,6 +619,12 @@ public class SupermarketActivity extends MySwipeBackActivity implements
                 Intent intent = new Intent(SupermarketActivity.this, PlaceOrderActivity.class);
                 intent.putExtra("type", 10);
                 startActivity(intent);
+                break;
+            case R.id.et_allapp:
+//                Intent intent1=new Intent(SupermarketActivity.this,SouSuoActivity.class);
+//                intent1.putExtra("list", (Serializable) list_shangpinAll);
+//                startActivity(intent1);
+                showSouSuo();
                 break;
         }
 
@@ -946,4 +1078,55 @@ public class SupermarketActivity extends MySwipeBackActivity implements
         return products;
     }
 
+    @Override
+    public void onRefreshAutoComplete(String text) {
+        //更新数据
+        getAutoCompleteData(text);
+    }
+
+    @Override
+    public void onSearch(String text) {
+        //更新result数据
+        getResultData(text);
+        lv_good.setVisibility(View.VISIBLE);
+        //第一次获取结果 还未配置适配器
+        if (lv_good.getAdapter() == null) {
+            //获取搜索数据 设置适配器
+            lv_good.setAdapter(goodsAdapter);
+        } else {
+            //更新搜索数据
+            goodsAdapter.notifyDataSetChanged();
+        }
+        Toast.makeText(this, "完成搜素", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void showSouSuo(){
+        isShowTitle=false;
+        lv_catogary.setVisibility(View.GONE);
+        rl_title.setVisibility(View.GONE);
+        searchView.setVisibility(View.VISIBLE);
+        searchView.etInput.setText("");
+        searchView.ivDelete.setVisibility(View.GONE);
+    }
+    public void showTitle(){
+        isShowTitle=true;
+        lv_catogary.setVisibility(View.VISIBLE);
+        rl_title.setVisibility(View.VISIBLE);
+        searchView.setVisibility(View.GONE);
+        getShangPingList();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            if (isShowTitle){
+                return super.onKeyDown(keyCode, event);
+            }else {
+                showTitle();
+                return false;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

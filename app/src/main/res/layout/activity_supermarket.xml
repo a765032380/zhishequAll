@@ -14,12 +14,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.bjxiyang.zhinengshequ.myapplication.view.SearchView
+            android:id="@+id/main_search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"></com.bjxiyang.zhinengshequ.myapplication.view.SearchView>
         <com.flipboard.bottomsheet.BottomSheetLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/bottomSheetLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:background="@color/white">
 
             <LinearLayout
@@ -33,7 +37,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="#4183FF"
-
                     android:gravity="center_vertical">
 
                     <RelativeLayout
@@ -53,19 +56,24 @@
 
                     <LinearLayout
 
+                        android:id="@+id/ll_title"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="#4183ff"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true">
+
                         <RelativeLayout
                             android:id="@+id/ib_fanghui"
                             android:layout_width="30dp"
-                            android:layout_gravity="center"
-                            android:layout_height="42dp">
+                            android:layout_height="42dp"
+                            android:layout_gravity="center">
 
                             <ImageView
-                                android:layout_width="15dp"
+                                android:layout_width="10dp"
                                 android:layout_height="20dp"
                                 android:layout_centerHorizontal="true"
                                 android:layout_centerVertical="true"
@@ -75,10 +83,11 @@
 
                         <LinearLayout
                             android:id="@+id/ll_shopname"
-                            android:layout_width="120dp"
+                            android:layout_width="0dp"
                             android:layout_height="25dp"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:layout_weight="1">
 
 
                             <TextView
@@ -96,12 +105,13 @@
 
                         <LinearLayout
                             android:id="@+id/ll_search"
-                            android:layout_width="150dp"
+                            android:layout_width="0dp"
                             android:layout_height="27dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/b_img_img"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:layout_weight="1.5">
 
                             <ImageView
                                 android:layout_width="12dp"
@@ -109,7 +119,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:background="@drawable/b_icon_search" />
 
-                            <EditText
+                            <TextView
                                 android:id="@+id/et_allapp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -123,28 +133,29 @@
 
                         <LinearLayout
                             android:id="@+id/ll_jiage"
+                            android:layout_width="0dp"
                             android:layout_height="25dp"
-                            android:layout_width="match_parent"
-                            android:gravity="center_vertical"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center_vertical|right"
                             android:orientation="horizontal"
-                            android:layout_marginRight="10dp">
-                         
+                            android:layout_weight="0.5">
+
                             <TextView
                                 android:id="@+id/tv_jiage"
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
                                 android:text="价格"
                                 android:textColor="#ffffff"
-                                android:textSize="13sp"
-                                android:layout_weight="3"/>
+                                android:textSize="13sp" />
 
                             <ImageView
                                 android:id="@+id/iv_up"
                                 android:layout_width="10dp"
                                 android:layout_height="20dp"
-                                android:background="@drawable/a_icon_price_pre"/>
+                                android:layout_marginLeft="5dp"
+                                android:background="@drawable/a_icon_price_pre" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -160,36 +171,39 @@
                     android:layout_below="@id/rl_title"
                     android:background="@color/line" />
 
-                <android.support.v4.widget.SwipeRefreshLayout
-                    android:id="@+id/swipeRefreshLayout1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/view">
+
 
                     <LinearLayout
                         android:layout_marginBottom="70dp"
                         android:id="@+id/ll_first"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
                         android:orientation="horizontal">
 
-                        <ListView
-                            android:id="@+id/lv_catogary"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="#f8f8f8"
-                            android:choiceMode="singleChoice"></ListView>
+                        <com.bjxiyang.zhinengshequ.myapplication.view.PullListView
 
-                        <ListView
-                            android:id="@+id/lv_good"
-                            android:layout_width="0dp"
+                            android:id="@+id/lv_catogary"
+                            android:layout_width="100dp"
                             android:layout_height="match_parent"
+                            android:background="#f8f8f8"
+                            android:choiceMode="singleChoice">
+
+                        </com.bjxiyang.zhinengshequ.myapplication.view.PullListView>
+                        <android.support.v4.widget.SwipeRefreshLayout
+                            android:id="@+id/swipeRefreshLayout1"
+                            android:layout_width="0dp"
                             android:layout_weight="2.9"
-                            android:divider="#00000000"></ListView>
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/view">
+                        <com.bjxiyang.zhinengshequ.myapplication.view.PullListView
+                            android:id="@+id/lv_good"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:divider="#00000000">
+                        </com.bjxiyang.zhinengshequ.myapplication.view.PullListView>
+                        </android.support.v4.widget.SwipeRefreshLayout>
                     </LinearLayout>
-                </android.support.v4.widget.SwipeRefreshLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

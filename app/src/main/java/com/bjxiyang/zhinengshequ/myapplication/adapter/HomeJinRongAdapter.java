@@ -137,51 +137,51 @@ public class HomeJinRongAdapter extends BaseAdapter {
         });
         return view;
     }
+    class ViewHolder {
+        @BindView(R.id.tv_ershoufananjie_title)
+        public TextView tv_ershoufananjie_title;
+        @BindView(R.id.tv_daikuanedu)
+        public TextView tv_daikuanedu;
+        @BindView(R.id.tv_01)
+        public TextView tv_01;
+        @BindView(R.id.tv_02)
+        public TextView tv_02;
+        @BindView(R.id.tv_03)
+        public TextView tv_03;
+        @BindView(R.id.tv_04)
+        public TextView tv_04;
+        @BindView(R.id.tv_05)
+        public TextView tv_05;
+        @BindView(R.id.tv_06)
+        public TextView tv_06;
+        @BindView(R.id.tv_07)
+        public TextView tv_07;
+        @BindView(R.id.tv_08)
+        public TextView tv_08;
+        @BindView(R.id.tv_09)
+        public TextView tv_09;
+        @BindView(R.id.tv_10)
+        public TextView tv_10;
+        @BindView(R.id.tv_11)
+        public TextView tv_11;
+        @BindView(R.id.tv_12)
+        public TextView tv_12;
+        @BindView(R.id.ll_gone_01)
+        public LinearLayout ll_gone_01;
+        @BindView(R.id.ll_gone_02)
+        public LinearLayout ll_gone_02;
+        @BindView(R.id.ll_edu_gone)
+        public LinearLayout ll_edu_gone;
+        @BindView(R.id.invisible)
+        public LinearLayout invisible;
+        @BindView(R.id.ll_shousuofangkai1)
+        public LinearLayout ll_shousuofangkai1;
+        @BindView(R.id.iv_on)
+        public ImageView iv_on;
 
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
 }
-class ViewHolder {
-    @BindView(R.id.tv_ershoufananjie_title)
-    public TextView tv_ershoufananjie_title;
-    @BindView(R.id.tv_daikuanedu)
-    public TextView tv_daikuanedu;
-    @BindView(R.id.tv_01)
-    public TextView tv_01;
-    @BindView(R.id.tv_02)
-    public TextView tv_02;
-    @BindView(R.id.tv_03)
-    public TextView tv_03;
-    @BindView(R.id.tv_04)
-    public TextView tv_04;
-    @BindView(R.id.tv_05)
-    public TextView tv_05;
-    @BindView(R.id.tv_06)
-    public TextView tv_06;
-    @BindView(R.id.tv_07)
-    public TextView tv_07;
-    @BindView(R.id.tv_08)
-    public TextView tv_08;
-    @BindView(R.id.tv_09)
-    public TextView tv_09;
-    @BindView(R.id.tv_10)
-    public TextView tv_10;
-    @BindView(R.id.tv_11)
-    public TextView tv_11;
-    @BindView(R.id.tv_12)
-    public TextView tv_12;
-    @BindView(R.id.ll_gone_01)
-    public LinearLayout ll_gone_01;
-    @BindView(R.id.ll_gone_02)
-    public LinearLayout ll_gone_02;
-    @BindView(R.id.ll_edu_gone)
-    public LinearLayout ll_edu_gone;
-    @BindView(R.id.invisible)
-    public LinearLayout invisible;
-    @BindView(R.id.ll_shousuofangkai1)
-    public LinearLayout ll_shousuofangkai1;
-    @BindView(R.id.iv_on)
-    public ImageView iv_on;
 
-    public ViewHolder(View view) {
-        ButterKnife.bind(this, view);
-    }
 }

@@ -173,6 +173,7 @@ public class HomeAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 SPManager.getInstance().putInt("sellerId", shopObjBean.getSellerId());
                 SPManager.getInstance().putString("shopName",shopObjBean.getSellerName());
                 MyUntil.mStartActivity(mContext, SupermarketActivity.class);

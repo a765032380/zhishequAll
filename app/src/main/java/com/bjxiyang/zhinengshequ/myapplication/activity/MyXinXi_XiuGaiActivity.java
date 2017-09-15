@@ -36,13 +36,11 @@ import com.baisi.myapplication.okhttp.request.RequestParams;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.app.GuardApplication;
 import com.bjxiyang.zhinengshequ.myapplication.base.LogOutBaseActivity;
-import com.bjxiyang.zhinengshequ.myapplication.base.MySwipeBackActivity;
 import com.bjxiyang.zhinengshequ.myapplication.bean.FanHui;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Users1;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.luban.LuBan;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
@@ -250,7 +248,7 @@ public class MyXinXi_XiuGaiActivity extends LogOutBaseActivity implements View.O
 
                     String url1= XY_Response.URL_UPDATEUSERINFOFORANDROID
                             +"mobilePhone="
-                            + UserManager.getInstance().getUser().getObj().getMobilePhone()
+                            + SPManager.getInstance().getString("mobilePhone","")
                             +"&realName="+name+
                             "&sex="+sex+"&birthday="+birthday+"&qq="+qq
                             +"&weChat="+weixin+"&email="+email
@@ -281,7 +279,7 @@ public class MyXinXi_XiuGaiActivity extends LogOutBaseActivity implements View.O
                 }else {
                     String url = XY_Response.URL_UPDATEUSERINFO
                             + "mobilePhone="
-                            + UserManager.getInstance().getUser().getObj().getMobilePhone()
+                            + SPManager.getInstance().getString("mobilePhone","")
                             + "&realName=" + name +
                             "&sex=" + sex + "&birthday=" + birthday + "&qq=" + qq
                             + "&weChat=" + weixin + "&email=" + email

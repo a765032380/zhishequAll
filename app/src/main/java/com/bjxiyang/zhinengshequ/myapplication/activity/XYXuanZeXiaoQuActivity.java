@@ -28,13 +28,10 @@ import com.bjxiyang.zhinengshequ.myapplication.bean.Floor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoor;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Plots;
 import com.bjxiyang.zhinengshequ.myapplication.bean.Unit;
-import com.bjxiyang.zhinengshequ.myapplication.bean.bianlidian.DiZhiAdd;
-import com.bjxiyang.zhinengshequ.myapplication.bianlidianstatus.BianLiDianStatus;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.BianLiDianResponse;
 import com.bjxiyang.zhinengshequ.myapplication.connectionsURL.XY_Response;
 import com.bjxiyang.zhinengshequ.myapplication.dialog.KaiMenYouXiDialog;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
-import com.bjxiyang.zhinengshequ.myapplication.manager.UserManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.MyUntil;
 import com.bjxiyang.zhinengshequ.myapplication.until.SelectType;
@@ -97,6 +94,7 @@ public class XYXuanZeXiaoQuActivity extends LogOutBaseActivity implements Adapte
     private int doorId;
     private int roleType= UserType.USER_OWNER;
     private boolean isXiaoQu;
+
 
     Handler handler=new Handler(new Handler.Callback() {
         @Override
