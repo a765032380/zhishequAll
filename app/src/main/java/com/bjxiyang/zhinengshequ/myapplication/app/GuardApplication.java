@@ -64,8 +64,7 @@ public class GuardApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        
-    
+
         YZTEsdk.initYZT(this);
         VideoBroadcastReceiver receiver = new VideoBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -76,7 +75,6 @@ public class GuardApplication extends Application {
         DaoUtils.init(this);
         applicationContext = this;
         instance = this;
-
         //init demo helper
         DemoHelper.getInstance().init(applicationContext);
 
@@ -101,7 +99,6 @@ public class GuardApplication extends Application {
         ImageLoader.getInstance().init(config);
 
     }
-
 
     /**
      * 请求DaoSession

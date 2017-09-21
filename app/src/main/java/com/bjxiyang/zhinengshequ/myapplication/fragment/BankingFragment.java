@@ -62,13 +62,6 @@ public class BankingFragment extends BaseFragment implements View.OnClickListene
     @BindView(R.id.ll_jinrongfuwu5)
     public LinearLayout ll_jinrongfuwu5;
 
-
-
-
-
-
-
-
     @BindView(R.id.ll_xiyanglvyou)
     public LinearLayout ll_xiyanglvyou;
     @BindView(R.id.ll_zhoubianyou)

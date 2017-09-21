@@ -9,6 +9,7 @@ import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import com.baisi.myapplication.okhttp.listener.DisposeDataListener;
 import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.adapter.XYKeyaccreditAdapter;
@@ -31,7 +32,7 @@ import java.util.Set;
  * Created by gll on 17-5-23.
  */
 
-public class XYKeyAccredit extends LogOutBaseActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
+public class XYKeyAccredit extends LogOutBaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     /**
      *
@@ -82,56 +83,59 @@ public class XYKeyAccredit extends LogOutBaseActivity implements View.OnClickLis
             }
         });
     }
+
     private void initUI() {
-        ll_activity_wushouquan= (LinearLayout) findViewById(R.id.ll_activity_wushouquan);
-        ll_activity_wuwangluo= (LinearLayout) findViewById(R.id.ll_activity_wuwangluo);
-        mListView= (SwipeListView) findViewById(R.id.lv_keyaccredit);
-        ib_fanghui= (RelativeLayout) findViewById(R.id.ib_fanghui);
+        ll_activity_wushouquan = (LinearLayout) findViewById(R.id.ll_activity_wushouquan);
+        ll_activity_wuwangluo = (LinearLayout) findViewById(R.id.ll_activity_wuwangluo);
+        mListView = (SwipeListView) findViewById(R.id.lv_keyaccredit);
+        ib_fanghui = (RelativeLayout) findViewById(R.id.ib_fanghui);
         ib_fanghui.setOnClickListener(this);
-        ib_tianjia= (RelativeLayout) findViewById(R.id.ib_tianjia);
+        ib_tianjia = (RelativeLayout) findViewById(R.id.ib_tianjia);
         ib_tianjia.setOnClickListener(this);
-        swipeRefreshLayout= (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.color_898787);
-        swipeRefreshLayout1= (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout1);
+        swipeRefreshLayout1 = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout1);
         swipeRefreshLayout1.setOnRefreshListener(this);
         swipeRefreshLayout1.setColorSchemeResources(R.color.color_898787);
-        swipeRefreshLayout2= (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout2);
+        swipeRefreshLayout2 = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout2);
         swipeRefreshLayout2.setOnRefreshListener(this);
         swipeRefreshLayout2.setColorSchemeResources(R.color.color_898787);
     }
-    public List<PermissionList.Obj> getData(){
-        mList=new ArrayList<>();
-        DialogUntil.showLoadingDialog(XYKeyAccredit.this,"正在加载",true);
-        String url= XY_Response.URL_FINDPERMISSIONS+"mobilePhone="+
-                SPManager.getInstance().getString("mobilePhone","0");
+
+    public List<PermissionList.Obj> getData() {
+        mList = new ArrayList<>();
+        DialogUntil.showLoadingDialog(XYKeyAccredit.this, "正在加载", true);
+        String url = XY_Response.URL_FINDPERMISSIONS + "mobilePhone=" +
+                SPManager.getInstance().getString("mobilePhone", "0");
         RequestCenter.findPermissions(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 DialogUntil.closeLoadingDialog();
-                PermissionList permissionList= (PermissionList) responseObj;
-                if (permissionList.getCode().equals("1000")){
-                    mList= permissionList.getObj();
-                    if (mList.size()>0){
-                        XYKeyaccreditAdapter adapter=new XYKeyaccreditAdapter(XYKeyAccredit.this,mList);
+                PermissionList permissionList = (PermissionList) responseObj;
+                if (permissionList.getCode().equals("1000")) {
+                    mList = permissionList.getObj();
+                    if (mList.size() > 0) {
+                        XYKeyaccreditAdapter adapter = new XYKeyaccreditAdapter(XYKeyAccredit.this, mList);
                         mListView.setAdapter(adapter);
 
 
                         showShuJu();
-                    }else {
+                    } else {
                         showWuShuJu();
                     }
-                }else {
+                } else {
                     showWuShuJu();
-                    Toast.makeText(GuardApplication.getContent(),permissionList.getMsg(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(GuardApplication.getContent(), permissionList.getMsg(), Toast.LENGTH_LONG).show();
 
                 }
             }
+
             @Override
             public void onFailure(Object reasonObj) {
-                    DialogUntil.closeLoadingDialog();
+                DialogUntil.closeLoadingDialog();
 //                    MyDialog.showDialog(XYKeyAccredit.this,"请检查网络连接");
-                    showWuWangLuo();
+                showWuWangLuo();
             }
         });
         return mList;
@@ -139,12 +143,12 @@ public class XYKeyAccredit extends LogOutBaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ib_fanghui:
                 finish();
                 break;
             case R.id.ib_tianjia:
-                Intent intent=new Intent(this,XY_AddKeyaccreditActivity.class);
+                Intent intent = new Intent(this, XY_AddKeyaccreditActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -156,17 +160,19 @@ public class XYKeyAccredit extends LogOutBaseActivity implements View.OnClickLis
         getData();
     }
 
-    private void showShuJu(){
+    private void showShuJu() {
         swipeRefreshLayout1.setVisibility(View.GONE);
         swipeRefreshLayout2.setVisibility(View.GONE);
         swipeRefreshLayout.setVisibility(View.VISIBLE);
     }
-    private void showWuWangLuo(){
+
+    private void showWuWangLuo() {
         swipeRefreshLayout2.setVisibility(View.VISIBLE);
         swipeRefreshLayout1.setVisibility(View.GONE);
         swipeRefreshLayout.setVisibility(View.GONE);
     }
-    private void showWuShuJu(){
+
+    private void showWuShuJu() {
         swipeRefreshLayout2.setVisibility(View.GONE);
         swipeRefreshLayout1.setVisibility(View.VISIBLE);
         swipeRefreshLayout.setVisibility(View.GONE);

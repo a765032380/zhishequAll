@@ -73,10 +73,6 @@ public class RequestCenter {
     }
 
 
-
-
-
-
     public static void uploadPictures(String url, Map<String, Object> map,DisposeDataListener listener){
        CommonOkHttpClient.uploadImgAndParameter(map,null,url,new DisposeDataHandle(listener,ImageUrl.class));
     }
@@ -330,10 +326,5 @@ public class RequestCenter {
     public static void usercenter_getSysMsg(String url,DisposeDataListener listener){
         RequestCenter.postRequest1(url,null,GetHeaders.getHeaders(),listener, XiTongXiaoXi.class);
     }
-
-
-
-
-
 
 }

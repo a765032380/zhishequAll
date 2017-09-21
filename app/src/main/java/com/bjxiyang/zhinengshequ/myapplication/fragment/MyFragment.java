@@ -50,8 +50,8 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     private LinearLayout gerenxinxi;
 //    private LinearLayout changepassworldlativelayout;
 //    private LinearLayout jianchagengxin;
-    private LinearLayout yijianfankui;
-    private LinearLayout lianxikefu;
+    private RelativeLayout yijianfankui;
+    private RelativeLayout lianxikefu;
     private LinearLayout jiamenghezuo;
     private LinearLayout ll_gerenxinxi_xiugai_menjinrenzhenge;
     private TextView tv_gerenxinxi_xiugai_menjinrenzhenge;
@@ -77,7 +77,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     private LinearLayout diyongjuan;
     private LinearLayout daishouhuo;
     private LinearLayout tuikuantuihuo;
-    private LinearLayout wodedizhi;
+    private RelativeLayout wodedizhi;
 
     //退出按钮
 //    private Button siginoutbutton;
@@ -189,25 +189,22 @@ public class MyFragment extends Fragment implements View.OnClickListener{
         rl_shezhi.setOnClickListener(this);
 
         tv_gouwuche=view.findViewById(R.id.tv_gouwuche);
-        wodecaogao=view.findViewById(R.id.wodecaogao);
         mydate=view.findViewById(R.id.mydate);
         tv_gouwuche.setOnClickListener(this);
-        wodecaogao.setOnClickListener(this);
+
         mydate.setOnClickListener(this);
 
-        fatie=view.findViewById(R.id.fatie);
-        fatie.setOnClickListener(this);
-        tv_fatiecount=view.findViewById(R.id.tv_fatiecount);
+
         tv_youhuiquancount=view.findViewById(R.id.tv_youhuiquancount);
 //        jiamenghezuo= (LinearLayout) view.findViewById(R.id.jiamenghezuo);
 //        jiamenghezuo.setOnClickListener(this);
         daishouhuo= (LinearLayout) view.findViewById(R.id.daishouhuo);
         tuikuantuihuo= (LinearLayout) view.findViewById(R.id.tuikuantuihuo);
-        wodedizhi= (LinearLayout) view.findViewById(R.id.wodedizhi);
+        wodedizhi= (RelativeLayout) view.findViewById(R.id.wodedizhi);
         daishouhuo.setOnClickListener(this);
         tuikuantuihuo.setOnClickListener(this);
         wodedizhi.setOnClickListener(this);
-        lianxikefu= (LinearLayout) view.findViewById(R.id.lianxikefu);
+        lianxikefu= (RelativeLayout) view.findViewById(R.id.lianxikefu);
         lianxikefu.setOnClickListener(this);
 //        diyongjuan= (LinearLayout) view.findViewById(R.id.diyongjuan);
 //        diyongjuan.setOnClickListener(this);
@@ -215,7 +212,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
         gerenxinxi= (LinearLayout) view.findViewById(R.id.gerenxinxi);
 //        changepassworldlativelayout= (LinearLayout) view.findViewById(R.id.changepassworldlativelayout);
 //        jianchagengxin= (LinearLayout) view.findViewById(R.id.jianchagengxin);
-        yijianfankui= (LinearLayout) view.findViewById(R.id.yijianfankui);
+        yijianfankui= (RelativeLayout) view.findViewById(R.id.yijianfankui);
         //商超的内容
         daifukuan= (LinearLayout) view.findViewById(R.id.daifukuan);
         daifahuo= (LinearLayout) view.findViewById(R.id.daifahuo);
@@ -401,18 +398,13 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 //                startIntent(SDLoginActivity.class);
 //                getActivity().finish();
 //                break;
-            //发帖数
-            case R.id.fatie:
 
-                break;
             //购物车
             case R.id.tv_gouwuche:
                 Intent intent2=new Intent(getContext(), GouWuCheActivity.class);
                 startActivity(intent2);
                 break;
-            //我的草稿
-            case R.id.wodecaogao:
-                break;
+
             //我发起的约游
             case R.id.mydate:
                 MyUntil.mStartActivity(getContext(), WoFaQiDeYueYouActivity.class);

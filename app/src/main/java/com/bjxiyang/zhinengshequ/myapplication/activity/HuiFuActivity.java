@@ -48,7 +48,6 @@ public class HuiFuActivity extends LogOutBaseActivity {
     @BindView(R.id.rl_wodeyueyou_fanghui)
     RelativeLayout rl_wodeyueyou_fanghui;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

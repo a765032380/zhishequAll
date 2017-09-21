@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/myapplication/myapplication.iml" filepath="$PROJECT_DIR$/myapplication/myapplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/qAMasterSDK/qAMasterSDK.iml" filepath="$PROJECT_DIR$/qAMasterSDK/qAMasterSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/zhishequ2.iml" filepath="$PROJECT_DIR$/zhishequ2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zhishequAll.iml" filepath="$PROJECT_DIR$/zhishequAll.iml" />
     </modules>
   </component>
 </project>

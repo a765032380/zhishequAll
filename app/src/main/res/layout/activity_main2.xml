@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@id/my_content_view"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="true"
-
     android:orientation="vertical">
     <!--<RelativeLayout-->
-        <!--android:id="@+id/content_layout2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:focusable="true"-->
-        <!--android:clickable="true"-->
-        <!--android:layout_marginBottom="40dp"/>-->
+    <!--android:id="@+id/content_layout2"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:focusable="true"-->
+    <!--android:clickable="true"-->
+    <!--android:layout_marginBottom="40dp"/>-->
     <RelativeLayout
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
@@ -29,75 +27,74 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="-45dp"
         android:background="@android:color/white"
         android:orientation="horizontal"
         android:paddingBottom="2dp"
-        android:paddingTop="4dp"
-        android:layout_marginTop="-45dp">
+        android:paddingTop="4dp">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginRight="70dp"
             android:layout_weight="1"
-            android:layout_marginRight="70dp">
+            android:orientation="horizontal">
 
-        <RelativeLayout
-            android:id="@+id/home_layout_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/home_image_view"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/a_btn_home_pre" />
-
-            <TextView
-                android:id="@+id/home_tv_view"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/home_layout_view"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/home_image_view"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
-                android:text="@string/home_image_view_text"
-                android:textColor="#4275ff"
-                android:textSize="12sp"
-                />
-        </RelativeLayout>
+                android:layout_weight="1">
 
-        <RelativeLayout
-            android:id="@+id/pond_layout_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
+                <TextView
+                    android:id="@+id/home_image_view"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/a_btn_home_pre" />
 
-            <TextView
-                android:id="@+id/fish_image_view"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/a_btn_service" />
+                <TextView
+                    android:id="@+id/home_tv_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/home_image_view"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/home_image_view_text"
+                    android:textColor="#4275ff"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/fish_tv_view"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/pond_layout_view"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="服务"
-                android:textColor="#909090"
-                android:textSize="12sp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/fish_image_view"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/a_btn_service" />
+
+                <TextView
+                    android:id="@+id/fish_tv_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="服务"
+                    android:textColor="#909090"
+                    android:textSize="12sp" />
+            </RelativeLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
 
             <RelativeLayout
@@ -127,30 +124,29 @@
             </RelativeLayout>
 
             <RelativeLayout
-            android:id="@+id/mine_layout_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
-
-            <TextView
-                android:id="@+id/mine_image_view"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/a_btn_my"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/mine_layout_view"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="我的"
-                android:textColor="#909090"
-                android:textSize="12sp"
-                android:id="@+id/mine_tv_view"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/mine_image_view"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/a_btn_my" />
+
+                <TextView
+                    android:id="@+id/mine_tv_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="我的"
+                    android:textColor="#909090"
+                    android:textSize="12sp" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
@@ -186,5 +182,4 @@
     </LinearLayout>
 
 
-   
 </LinearLayout>

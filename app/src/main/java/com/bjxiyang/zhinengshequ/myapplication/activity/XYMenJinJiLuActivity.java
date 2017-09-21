@@ -33,8 +33,7 @@ import java.util.List;
 public class XYMenJinJiLuActivity extends LogOutBaseActivity
         implements
         SwipeRefreshLayout.OnRefreshListener
-,RefreshLayout.OnLoadListener
-{
+        , RefreshLayout.OnLoadListener {
     private RelativeLayout ib_menjinjilu_fanghui;
     private RelativeLayout ib_menjinjilu_guolv;
     private ListView lv_menjinjilu;
@@ -49,14 +48,15 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
     private SwipeRefreshLayout swipeRefreshLayout2;
     private TextView tv_menjinjilu_xiaoquid;
 
-    private boolean isScoll=true;
+    private boolean isScoll = true;
 
 
     /**
      * 上拉加载更多
      */
-    private int pageNo=1;
-    private int pageSize=10;
+    private int pageNo = 1;
+    private int pageSize = 10;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,17 +66,16 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
     }
 
     private void initUI() {
-        tv_menjinjilu_xiaoquid= (TextView) findViewById(R.id.tv_menjinjilu_xiaoquid);
-        if (SPManager.getInstance().getString("test_men",null)!=null) {
-            tv_menjinjilu_xiaoquid.setText(SPManager.getInstance().getString("test_men",null));
-        }else {
+        tv_menjinjilu_xiaoquid = (TextView) findViewById(R.id.tv_menjinjilu_xiaoquid);
+        if (SPManager.getInstance().getString("test_men", null) != null) {
+            tv_menjinjilu_xiaoquid.setText(SPManager.getInstance().getString("test_men", null));
+        } else {
             tv_menjinjilu_xiaoquid.setText("请选择地址");
         }
 
 
-
-        mListAll=new ArrayList<>();
-        ib_menjinjilu_guolv= (RelativeLayout) findViewById(R.id.ib_menjinjilu_guolv);
+        mListAll = new ArrayList<>();
+        ib_menjinjilu_guolv = (RelativeLayout) findViewById(R.id.ib_menjinjilu_guolv);
         //选择时间按键
         ib_menjinjilu_guolv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,24 +83,24 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
 
             }
         });
-        ll_activity_wuwangluo= (LinearLayout) findViewById(R.id.ll_activity_wuwangluo);
-        ll_activity_wujilu= (LinearLayout) findViewById(R.id.ll_activity_wujilu);
+        ll_activity_wuwangluo = (LinearLayout) findViewById(R.id.ll_activity_wuwangluo);
+        ll_activity_wujilu = (LinearLayout) findViewById(R.id.ll_activity_wujilu);
 
-        ib_menjinjilu_fanghui= (RelativeLayout) findViewById(R.id.ib_menjinjilu_fanghui);
+        ib_menjinjilu_fanghui = (RelativeLayout) findViewById(R.id.ib_menjinjilu_fanghui);
         ib_menjinjilu_fanghui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        lv_menjinjilu= (ListView) findViewById(R.id.lv_menjinjilu);
-        swipeRefreshLayout= (RefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        lv_menjinjilu = (ListView) findViewById(R.id.lv_menjinjilu);
+        swipeRefreshLayout = (RefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.color_898787);
-        swipeRefreshLayout1= (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout1);
+        swipeRefreshLayout1 = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout1);
         swipeRefreshLayout1.setOnRefreshListener(this);
         swipeRefreshLayout1.setColorSchemeResources(R.color.color_898787);
-        swipeRefreshLayout2= (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout2);
+        swipeRefreshLayout2 = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout2);
         swipeRefreshLayout2.setOnRefreshListener(this);
         swipeRefreshLayout2.setColorSchemeResources(R.color.color_898787);
 
@@ -117,33 +116,33 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
     }
 
     private void getData() {
-        mList=new ArrayList<>();
-        DialogUntil.showLoadingDialog(XYMenJinJiLuActivity.this,"正在加载",true);
-        Log.i("llll",SPManager.getInstance().getString("c_memberId",""));
+        mList = new ArrayList<>();
+        DialogUntil.showLoadingDialog(XYMenJinJiLuActivity.this, "正在加载", true);
+        Log.i("llll", SPManager.getInstance().getString("c_memberId", ""));
 //        customberId
-        String url= XY_Response.URL_OPENDOORLIST+"customberId="+
-                SPManager.getInstance().getString("c_memberId",null)+
-                "&pageNo="+pageNo+"&pageSize="+pageSize;
+        String url = XY_Response.URL_OPENDOORLIST + "customberId=" +
+                SPManager.getInstance().getString("c_memberId", null) +
+                "&pageNo=" + pageNo + "&pageSize=" + pageSize;
 
         RequestCenter.openDoorList(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
-                OpenDoorList openDoorList= (OpenDoorList) responseObj;
+                OpenDoorList openDoorList = (OpenDoorList) responseObj;
                 DialogUntil.closeLoadingDialog();
-                if (openDoorList.getCode().equals("1000")){
-                    mList=openDoorList.getObj();
+                if (openDoorList.getCode().equals("1000")) {
+                    mList = openDoorList.getObj();
 
-                    if (mList.size()>0){
-                        mListAll=mList;
-                        adapter=new XYMenJinJiLuAdapter(XYMenJinJiLuActivity.this,mListAll);
+                    if (mList.size() > 0) {
+                        mListAll = mList;
+                        adapter = new XYMenJinJiLuAdapter(XYMenJinJiLuActivity.this, mListAll);
                         lv_menjinjilu.setAdapter(adapter);
                         showListView();
-                    }else {
+                    } else {
                         showWuJiLu();
                     }
-                }else {
+                } else {
                     showWuJiLu();
-                    Toast.makeText(XYMenJinJiLuActivity.this,openDoorList.getMsg(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(XYMenJinJiLuActivity.this, openDoorList.getMsg(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -157,17 +156,19 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
         });
     }
 
-    private void showListView(){
+    private void showListView() {
         swipeRefreshLayout2.setVisibility(View.GONE);
         swipeRefreshLayout1.setVisibility(View.GONE);
         swipeRefreshLayout.setVisibility(View.VISIBLE);
     }
-    private void showWuWangLuo(){
+
+    private void showWuWangLuo() {
         swipeRefreshLayout1.setVisibility(View.VISIBLE);
         swipeRefreshLayout.setVisibility(View.GONE);
         swipeRefreshLayout2.setVisibility(View.GONE);
     }
-    private void showWuJiLu(){
+
+    private void showWuJiLu() {
         swipeRefreshLayout1.setVisibility(View.GONE);
         swipeRefreshLayout2.setVisibility(View.VISIBLE);
         swipeRefreshLayout.setVisibility(View.GONE);
@@ -181,7 +182,7 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
                 // 更新数据
                 // 更新完后调用该方法结束刷新
 //                getData();
-                if (adapter!=null){
+                if (adapter != null) {
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -201,37 +202,38 @@ public class XYMenJinJiLuActivity extends LogOutBaseActivity
                 // 更新数据
                 // 更新完后调用该方法结束刷新
                 swipeRefreshLayout.setLoading(false);
-                if (isScoll){
-                    pageNo=pageNo+1;
+                if (isScoll) {
+                    pageNo = pageNo + 1;
                     upData();
-                }else {
-                    MyUntil.show(XYMenJinJiLuActivity.this,"无更多数据");
+                } else {
+                    MyUntil.show(XYMenJinJiLuActivity.this, "无更多数据");
                 }
             }
         }, 1000);
     }
+
     private void upData() {
-        mList=new ArrayList<>();
-        String url= XY_Response.URL_OPENDOORLIST+"customberId="+
-                SPManager.getInstance().getString("c_memberId","")+
-                "&pageNo="+pageNo+"&pageSize="+pageSize;
+        mList = new ArrayList<>();
+        String url = XY_Response.URL_OPENDOORLIST + "customberId=" +
+                SPManager.getInstance().getString("c_memberId", "") +
+                "&pageNo=" + pageNo + "&pageSize=" + pageSize;
 
         RequestCenter.openDoorList(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
-                OpenDoorList openDoorList= (OpenDoorList) responseObj;
+                OpenDoorList openDoorList = (OpenDoorList) responseObj;
                 DialogUntil.closeLoadingDialog();
-                if (openDoorList.getCode().equals("1000")){
-                    mList=openDoorList.getObj();
-                    if (mList.size()<pageSize){
-                        isScoll=false;
+                if (openDoorList.getCode().equals("1000")) {
+                    mList = openDoorList.getObj();
+                    if (mList.size() < pageSize) {
+                        isScoll = false;
                     }
                     for (int i = 0; i < mList.size(); i++) {
                         mListAll.add(mList.get(i));
                     }
                     adapter.notifyDataSetChanged();
-                }else {
-                    Toast.makeText(XYMenJinJiLuActivity.this,openDoorList.getMsg(),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(XYMenJinJiLuActivity.this, openDoorList.getMsg(), Toast.LENGTH_LONG).show();
                 }
 
             }

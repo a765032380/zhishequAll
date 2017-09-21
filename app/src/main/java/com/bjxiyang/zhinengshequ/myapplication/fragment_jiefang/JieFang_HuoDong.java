@@ -142,7 +142,6 @@ public class JieFang_HuoDong extends Fragment implements
 
     private void getData() {
 
-
         String url= XY_Response2.URL_NEIGHBOR_FINDPARTY+"cmemberId="+
                 SPManager.getInstance().getString("c_memberId",null)+
                 "&partyType="+partyType+
@@ -206,8 +205,6 @@ public class JieFang_HuoDong extends Fragment implements
                 height=i1;
             }
         });
-
-
 
     }
 

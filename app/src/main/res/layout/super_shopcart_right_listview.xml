@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
-    android:descendantFocusability="afterDescendants"
-    >
+    android:descendantFocusability="afterDescendants">
 
     <RelativeLayout
         android:id="@+id/rl_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/iv_pic"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        tools:background="@mipmap/ic_launcher" />
+        <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            tools:background="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iv_pic"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/iv_pic"
             android:orientation="vertical">
 
 
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
                 android:layout_toRightOf="@+id/iv_pic"
+                android:ellipsize="end"
+                android:maxLength="13"
                 android:text="矿泉水"
-                android:textSize="14sp"
-                android:textColor="@color/black"/>
-
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -57,20 +58,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_name"
+                        android:layout_marginTop="5dp"
                         android:layout_toRightOf="@+id/iv_pic"
-                        tools:text="¥10.0"
+                        android:textColor="@color/title_red"
                         android:textSize="16sp"
-                        android:textColor="@color/title_red" />
+                        tools:text="¥10.0" />
 
                     <TextView
                         android:id="@+id/tv_original_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_desc"
+                        android:layout_marginTop="5dp"
                         android:layout_toRightOf="@+id/iv_pic"
+                        android:text="¥10.0"
                         android:textColor="@color/gray"
-                        android:textSize="14sp"
-                        android:text="¥10.0" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -80,8 +83,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:onClick="onClick"
                     android:layout_marginRight="15dp"
+                    android:onClick="onClick"
                     android:src="@drawable/ic_add_circle_outline_black_24dp" />
 
                 <TextView
@@ -89,10 +92,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/iv_add"
-                    android:background="@color/white"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@+id/iv_add"
+                    android:background="@color/white"
                     android:textSize="16sp"
                     android:visibility="invisible" />
 

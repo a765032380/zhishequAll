@@ -179,7 +179,6 @@ public class GoodsAdapter extends BaseAdapter{
                 ImageView ball = new ImageView(context);
                 ball.setImageResource(R.drawable.number);
                 supermarketfragment.setAnim(ball, startLocation);// 开始执行动画
-
             }
         });
 

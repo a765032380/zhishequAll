@@ -36,23 +36,25 @@ import java.util.List;
  * Created by gll on 17-5-22.
  */
 
-public class ViewAdapter extends LoopPagerAdapter{
+public class ViewAdapter extends LoopPagerAdapter {
 
     private List<Fragment> mList;
     private FragmentManager fm;
     private View view;
     private Context mContext;
     private LayoutInflater inflater;
-    public ViewAdapter(RollPagerView viewPager,Context mContext) {
+
+    public ViewAdapter(RollPagerView viewPager, Context mContext) {
         super(viewPager);
-        this.mContext=mContext;
+        this.mContext = mContext;
     }
+
     @Override
     public View getView(final ViewGroup container, int position) {
-        if (position==0){
-            inflater=LayoutInflater.from(mContext);
-            view=inflater.inflate(R.layout.fragment_home_viewpage1,container,false);
-            ViewGroup viewGroup= (ViewGroup) view;
+        if (position == 0) {
+            inflater = LayoutInflater.from(mContext);
+            view = inflater.inflate(R.layout.fragment_home_viewpage1, container, false);
+            ViewGroup viewGroup = (ViewGroup) view;
             View view1 = viewGroup.getChildAt(0);
             view1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -73,8 +75,8 @@ public class ViewAdapter extends LoopPagerAdapter{
             view3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent=new Intent(mContext,BianLiDianListActivity.class);
-                    intent.putExtra("type",0);
+                    Intent intent = new Intent(mContext, BianLiDianListActivity.class);
+                    intent.putExtra("type", 0);
                     mContext.startActivity(intent);
 
 //                    Toast.makeText(mContext,"点击了按键3",Toast.LENGTH_LONG).show();
@@ -97,39 +99,40 @@ public class ViewAdapter extends LoopPagerAdapter{
                 }
             });
 
-        }else {
-            inflater=LayoutInflater.from(mContext);
-            view=inflater.inflate(R.layout.fragment_home_viewpage2,container,false);
-            ViewGroup viewGroup= (ViewGroup) view;
+        } else {
+            inflater = LayoutInflater.from(mContext);
+            view = inflater.inflate(R.layout.fragment_home_viewpage2, container, false);
+            ViewGroup viewGroup = (ViewGroup) view;
             HorizontalListView listView = (HorizontalListView) viewGroup.getChildAt(0);
 
-            List<HomeItem> list=new ArrayList<>();
-            HomeItem homeItem=new HomeItem();
-            for (int i=0;i<5;i++){
-                homeItem.setName("测试数据"+i);
+            List<HomeItem> list = new ArrayList<>();
+            HomeItem homeItem = new HomeItem();
+            for (int i = 0; i < 5; i++) {
+                homeItem.setName("测试数据" + i);
                 list.add(homeItem);
             }
 
-            ItemAdapter itemAdapter=new ItemAdapter(mContext,list);
+            ItemAdapter itemAdapter = new ItemAdapter(mContext, list);
             listView.setAdapter(itemAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Toast.makeText(mContext,"点击了第"+i+"个",Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "点击了第" + i + "个", Toast.LENGTH_LONG).show();
                 }
             });
 
         }
-        Log.i("YYYY","测试首页分类轮播");
+        Log.i("YYYY", "测试首页分类轮播");
         return view;
     }
+
     @Override
     public int getRealCount() {
         return 1;
     }
 
-    private void startActivity(Class mClass){
-        Intent intent=new Intent(mContext,mClass);
+    private void startActivity(Class mClass) {
+        Intent intent = new Intent(mContext, mClass);
         mContext.startActivity(intent);
     }
 }

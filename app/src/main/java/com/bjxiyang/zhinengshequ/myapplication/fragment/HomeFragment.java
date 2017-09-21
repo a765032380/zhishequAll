@@ -61,13 +61,11 @@ import butterknife.ButterKnife;
  * Created by gll on 2017/8/2.
  */
 
-public class HomeFragment extends BaseFragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
-    private static final int ERSHOUFANG=1;
-    private static final int DIANZI=2;
-    private static final int XINYONG=3;
-    private static final int DIYA=4;
-
-
+public class HomeFragment extends BaseFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+    private static final int ERSHOUFANG = 1;
+    private static final int DIANZI = 2;
+    private static final int XINYONG = 3;
+    private static final int DIYA = 4;
     /**
      * UI
      */
@@ -108,8 +106,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
      */
     private List<Banner.Obj> list = new ArrayList<>();
     private Banner banner;
-    private int myScrollViewHeight=0;
-    private boolean isOne=true;
+    private int myScrollViewHeight = 0;
+    private boolean isOne = true;
     /***
      * 百度地图
      */
@@ -122,23 +120,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
     public List<HomeBean.ObjBean.NoticeObjBean> noticeBean;
     public List<HomeBean.ObjBean.ShopObjBean> specialBean;
 
-
     /**
      * Other
      */
-
-
     private RollViewAdapter adapter;
     private View view;
     private static OngetData ongetData;
-    private boolean isone=true;
+    private boolean isone = true;
 
-    public Handler mHandle=new Handler(new Handler.Callback() {
+    public Handler mHandle = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
-            BDLocation location= (BDLocation) msg.obj;
-
-
+            BDLocation location = (BDLocation) msg.obj;
             return false;
         }
     });
@@ -146,17 +139,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_home2,container,false);
-        ButterKnife.bind(this,view) ;
+        view = inflater.inflate(R.layout.fragment_home2, container, false);
+        ButterKnife.bind(this, view);
 
         mLocationClient = new LocationClient(GuardApplication.getContent());
         //声明LocationClient类
-        mLocationClient.registerLocationListener( myListener );
+        mLocationClient.registerLocationListener(myListener);
         initLocation();
         mLocationClient.start();
         //注册监听函数
         initUI();
         getDate();
+
         title_gone.setText("请选择地址");
 
         return view;
@@ -165,37 +159,37 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
     @Override
     public void onHiddenChanged(boolean hidden) {
 
-        if (hidden){
-            if (isone){
-                myScrollViewHeight=0;
-                isone=false;
-            }else {
+        if (hidden) {
+            if (isone) {
+                myScrollViewHeight = 0;
+                isone = false;
+            } else {
                 myScrollViewHeight = myScrollView.getScrollY();
                 //TextView停止滚动
-                if(tv_jinrongtuijian.isScrollContainer()) {
+                if (tv_jinrongtuijian.isScrollContainer()) {
                     tv_jinrongtuijian.stopAutoScroll();
                 }
-                if(tv_xiaoqugonggao.isScrollContainer()) {
+                if (tv_xiaoqugonggao.isScrollContainer()) {
                     tv_xiaoqugonggao.stopAutoScroll();
                 }
 //                tv_jinrongtuijian.stopAutoScroll();
 //                tv_xiaoqugonggao.stopAutoScroll();
             }
-        }else {
+        } else {
 
             myScrollView.post(new Runnable() {
                 //让scrollview跳转到顶部，必须放在runnable()方法中
                 @Override
                 public void run() {
-                    myScrollView.scrollTo(0,myScrollViewHeight);
+                    myScrollView.scrollTo(0, myScrollViewHeight);
                 }
             });
             if (!isone) {
                 //TextView开始滚动
-                if(tv_jinrongtuijian.isScrollContainer()) {
+                if (tv_jinrongtuijian.isScrollContainer()) {
                     tv_jinrongtuijian.startAutoScroll();
                 }
-                if(tv_xiaoqugonggao.isScrollContainer()) {
+                if (tv_xiaoqugonggao.isScrollContainer()) {
                     tv_xiaoqugonggao.startAutoScroll();
                 }
             }
@@ -205,10 +199,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 
     @Override
     public void onResume() {
-        if (SPManager.getInstance().getString("communityName",null)!=null) {
-            title_gone.setText(SPManager.getInstance().getString("communityName",null));
-            mTextSwitcher.setText(SPManager.getInstance().getString("communityName",null));
-        }else {
+        if (SPManager.getInstance().getString("communityName", null) != null) {
+            title_gone.setText(SPManager.getInstance().getString("communityName", null));
+            mTextSwitcher.setText(SPManager.getInstance().getString("communityName", null));
+        } else {
             title_gone.setText("请选择地址");
             mTextSwitcher.setText("请选择地址");
         }
@@ -226,8 +220,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         mRollViewPager.setPlayDelay(2000);
         //设置透明度
         mRollViewPager.setAnimationDurtion(500);
-        home_viewpage_btn.setHintView(new ColorPointHintView(getContext(),0xff4183ff,0xffc6daff));
-        ViewAdapter viewAdapter=new ViewAdapter(home_viewpage_btn,getActivity());
+        home_viewpage_btn.setHintView(new ColorPointHintView(getContext(), 0xff4183ff, 0xffc6daff));
+        ViewAdapter viewAdapter = new ViewAdapter(home_viewpage_btn, getActivity());
         home_viewpage_btn.setAdapter(viewAdapter);
 
         myScrollView.post(new Runnable() {
@@ -241,9 +235,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
             @Override
             public void onScroll(int l, int scrollY, int oldl, int oldt) {
                 int lHeight = 400;
-                int progress = (int)(new Float(scrollY)/new Float(lHeight)*255);
-                if(scrollY<=lHeight){
-                    float progress1=new Float(progress)/200;
+                int progress = (int) (new Float(scrollY) / new Float(lHeight) * 255);
+                if (scrollY <= lHeight) {
+                    float progress1 = new Float(progress) / 200;
 
                     title_gone.setAlpha(progress1);
                 }
@@ -259,26 +253,28 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 //                        float progress1=new Float(progress)/200;
 //
 //                        title_gone.setAlpha(progress1);
-//                }
 //            }
+//                }
 //        });
     }
-    private  List<Banner.Obj> initDate() {
 
-        list=new ArrayList<>();
-        String url= XY_Response.URL_BANNERLIST+"mobilePhone=18813045215";
+    private List<Banner.Obj> initDate() {
+
+        list = new ArrayList<>();
+        String url = XY_Response.URL_BANNERLIST + "mobilePhone=18813045215";
 //                +SPManager.getInstance().getString("mobilePhone",null);
         RequestCenter.bannerList(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 banner = (Banner) responseObj;
-                if (banner.getCode().equals("1000")){
-                    list= banner.getObj();
-                    if (list.size()>0){
+                if (banner.getCode().equals("1000")) {
+                    list = banner.getObj();
+                    if (list.size() > 0) {
                         local();
                     }
                 }
             }
+
             @Override
             public void onFailure(Object reasonObj) {
             }
@@ -292,36 +288,37 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         mRollViewPager.setAdapter(adapter);
         ongetData.OngetData(bannerBean);
     }
-    public static void setOngetData(OngetData ongetDat){
-        ongetData=ongetDat;
+
+    public static void setOngetData(OngetData ongetDat) {
+        ongetData = ongetDat;
     }
 
     public void getDate() {
-        String url= XY_Response2.URL_HOME+"cmemberId=99";
+        String url = XY_Response2.URL_HOME + "cmemberId=99";
         RequestCenter.home_2(url, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
-                HomeBean homebean= (HomeBean) responseObj;
-                if (homebean.getCode()==1000){
-                    bannerBean=homebean.getObj().getBannerObj();
-                    financeBean=homebean.getObj().getFinanceObj();
-                    newestBean=homebean.getObj().getNewestObj();
-                    noticeBean=homebean.getObj().getNoticeObj();
-                    specialBean=homebean.getObj().getShopObj();
+                HomeBean homebean = (HomeBean) responseObj;
+                if (homebean.getCode() == 1000) {
+                    bannerBean = homebean.getObj().getBannerObj();
+                    financeBean = homebean.getObj().getFinanceObj();
+                    newestBean = homebean.getObj().getNewestObj();
+                    noticeBean = homebean.getObj().getNoticeObj();
+                    specialBean = homebean.getObj().getShopObj();
 //                    list= bannerBean.getObj();
-                    if (bannerBean.size()>0){
+                    if (bannerBean.size() > 0) {
                         local();
                     }
-                    if (noticeBean.size()>0){
+                    if (noticeBean.size() > 0) {
                         setGongGao(noticeBean);
                     }
-                    if (financeBean.size()>0){
+                    if (financeBean.size() > 0) {
                         setJinRong(financeBean);
                     }
-                    if (newestBean.size()>0){
+                    if (newestBean.size() > 0) {
                         setJinRongGongGao(newestBean);
                     }
-                    if (specialBean.size()>0){
+                    if (specialBean.size() > 0) {
                         setChaoShiList(specialBean);
                     }
                 }
@@ -329,24 +326,24 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 
             @Override
             public void onFailure(Object reasonObj) {
-                Log.i("yyyy","请求失败");
+                Log.i("yyyy", "请求失败");
             }
         });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ll_xuanzedizhi:
                 MyUntil.mStartActivity(getContext(), XuanZeXiaoQuActivity.class);
                 break;
             case R.id.tv_more:
-                Intent intent=new Intent(getContext(), JinRongActivity.class);
+                Intent intent = new Intent(getContext(), JinRongActivity.class);
                 startActivity(intent);
                 break;
             case R.id.tv_chaoshitejia_more:
-                Intent intent1=new Intent(getContext(), BianLiDianListActivity.class);
-                intent1.putExtra("type",1);
+                Intent intent1 = new Intent(getContext(), BianLiDianListActivity.class);
+                intent1.putExtra("type", 1);
                 startActivity(intent1);
                 break;
         }
@@ -356,7 +353,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
     public void onRefresh() {
         mLocationClient = new LocationClient(GuardApplication.getContent());
         //声明LocationClient类
-        mLocationClient.registerLocationListener( myListener );
+        mLocationClient.registerLocationListener(myListener);
         initLocation();
         mLocationClient.start();
         //注册监听函数
@@ -364,54 +361,56 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         swipeRefreshLayout.setRefreshing(false);
     }
 
-    public interface OngetData{
+    public interface OngetData {
         public void OngetData(List<HomeBean.ObjBean.BannerObjBean> mList);
     }
-    private void setGongGao(List<HomeBean.ObjBean.NoticeObjBean> list){
-        ArrayList<String> titleList=new ArrayList<>();
-        for (int i=0;i<list.size();i++){
+
+    private void setGongGao(List<HomeBean.ObjBean.NoticeObjBean> list) {
+        ArrayList<String> titleList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
             titleList.add(list.get(i).getTitle());
         }
         tv_xiaoqugonggao.setTextList(titleList);//加入显示内容,集合类型
-        tv_xiaoqugonggao.setText(16,5, Color.GRAY);//设置属性,具体跟踪源码
+        tv_xiaoqugonggao.setText(16, 5, Color.GRAY);//设置属性,具体跟踪源码
         tv_xiaoqugonggao.setTextStillTime(3000);//设置停留时长间隔
         tv_xiaoqugonggao.setAnimTime(300);//设置进入和退出的时间间隔
         //对单条文字的点击监听
         tv_xiaoqugonggao.setOnItemClickListener(new VerticalTextview.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent=new Intent(getContext(), XiaoQuGongGaoActivity.class);
+                Intent intent = new Intent(getContext(), XiaoQuGongGaoActivity.class);
                 startActivity(intent);
                 // TO DO
             }
         });
         tv_xiaoqugonggao.startAutoScroll();
     }
-    private void setJinRong(final List<HomeBean.ObjBean.FinanceObjBean> jinrongList){
-        HomeJinRongAdapter adapter=new HomeJinRongAdapter(getContext(),jinrongList);
+
+    private void setJinRong(final List<HomeBean.ObjBean.FinanceObjBean> jinrongList) {
+        HomeJinRongAdapter adapter = new HomeJinRongAdapter(getContext(), jinrongList);
         list_view_home_jinrong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent=new Intent(getContext(), MyWebViewActivity.class);
-                intent.putExtra("url",jinrongList.get(position).getFinanceUrl());
+                Intent intent = new Intent(getContext(), MyWebViewActivity.class);
+                intent.putExtra("url", jinrongList.get(position).getFinanceUrl());
                 startActivity(intent);
 
             }
         });
         list_view_home_jinrong.setAdapter(adapter);
 
-        MyUntil.setListViewHeightBasedOnChildren(list_view_home_jinrong,adapter);
+        MyUntil.setListViewHeightBasedOnChildren(list_view_home_jinrong, adapter);
     }
 
-    private void setJinRongGongGao(final List<HomeBean.ObjBean.NewestObjBean> jinronggongGaoList){
+    private void setJinRongGongGao(final List<HomeBean.ObjBean.NewestObjBean> jinronggongGaoList) {
 
-        ArrayList<String> jinrongList=new ArrayList<>();
-        for (int i=0;i<jinronggongGaoList.size();i++) {
+        ArrayList<String> jinrongList = new ArrayList<>();
+        for (int i = 0; i < jinronggongGaoList.size(); i++) {
             jinrongList.add(jinronggongGaoList.get(i).getLoanName());
         }
         tv_jinrongtuijian.setTextList(jinrongList);//加入显示内容,集合类型
-        tv_jinrongtuijian.setText(16,5, Color.GRAY);//设置属性,具体跟踪源码
+        tv_jinrongtuijian.setText(16, 5, Color.GRAY);//设置属性,具体跟踪源码
         tv_jinrongtuijian.setTextStillTime(3000);//设置停留时长间隔
         tv_jinrongtuijian.setAnimTime(300);//设置进入和退出的时间间隔
 
@@ -423,21 +422,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 //                Intent intent=new Intent(getContext(), MyWebViewActivity.class);
 //                intent.putExtra("url",jinronggongGaoList.get(position).getLoanName());
 //                startActivity(intent);
-
                 // TO DO
             }
         });
         tv_jinrongtuijian.startAutoScroll();
 
     }
-    private void setChaoShiList(List<HomeBean.ObjBean.ShopObjBean> chaoshiList){
-        if (chaoshiList.size()>0) {
+
+    private void setChaoShiList(List<HomeBean.ObjBean.ShopObjBean> chaoshiList) {
+        if (chaoshiList.size() > 0) {
             HomeAdapter homeAdapter = new HomeAdapter(getContext(), chaoshiList);
             lv_shangping.setAdapter(homeAdapter);
             MyUntil.setListViewHeightBasedOnChildren(lv_shangping, homeAdapter);
         }
     }
-    private void initLocation(){
+
+    private void initLocation() {
 
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
@@ -446,7 +446,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         option.setCoorType("gcj02");
         //可选，默认gcj02，设置返回的定位结果坐标系
 
-        int span=1000;
+        int span = 1000;
         option.setScanSpan(span);
         //可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
 
@@ -470,6 +470,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 
         mLocationClient.setLocOption(option);
     }
+
     public class MyLocationListener implements BDLocationListener {
 
         @Override
@@ -497,42 +498,42 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 //            if (location.getLocType() == BDLocation.TypeGpsLocation||
 //                    location.getLocType() == BDLocation.TypeNetWorkLocation||
 //                    location.getLocType() == BDLocation.TypeOffLineLocation) {
-                location.getLatitude();    //获取纬度信息
-                location.getLongitude();    //获取经度信息
-                Log.i("llll","经度:"+location.getLatitude()+"纬度:"+location.getLongitude());
-                if (isOne) {
-                    String url = XY_Response2.URL_HOME_SELLER + "cmemberId=" +
-                            SPManager.getInstance().getString("c_memberId", "0")
-                            + "&lng=" + location.getLongitude() + "&lat=" + location.getLatitude()
-                            + "&type=" + 1;
-                    Log.i("lll", url);
-                    RequestCenter.home_Seller(url, new DisposeDataListener() {
-                        @Override
-                        public void onSuccess(Object responseObj) {
-                            HomeBean2 homeBean2 = (HomeBean2) responseObj;
-                            List<HomeBean.ObjBean.ShopObjBean> chaoshiList = homeBean2.getObj();
+            location.getLatitude();    //获取纬度信息
+            location.getLongitude();    //获取经度信息
+            Log.i("llll", "经度:" + location.getLatitude() + "纬度:" + location.getLongitude());
+            if (isOne) {
+                String url = XY_Response2.URL_HOME_SELLER + "cmemberId=" +
+                        SPManager.getInstance().getString("c_memberId", "0")
+                        + "&lng=" + location.getLongitude() + "&lat=" + location.getLatitude()
+                        + "&type=" + 1;
+                Log.i("lll", url);
+                RequestCenter.home_Seller(url, new DisposeDataListener() {
+                    @Override
+                    public void onSuccess(Object responseObj) {
+                        HomeBean2 homeBean2 = (HomeBean2) responseObj;
+                        List<HomeBean.ObjBean.ShopObjBean> chaoshiList = homeBean2.getObj();
 //                        List<HomeBean.ObjBean.ShopObjBean> chaoshiList= (List<HomeBean.ObjBean.ShopObjBean>) responseObj;
-                            if (chaoshiList.size() > 0) {
-                                setChaoShiList(chaoshiList);
-                            }
-
-                            Log.i("LLLL", "请求成功");
+                        if (chaoshiList.size() > 0) {
+                            setChaoShiList(chaoshiList);
                         }
 
-                        @Override
-                        public void onFailure(Object reasonObj) {
-                            Log.i("LLLL", "请求失败");
-                        }
-                    });
-                    isOne=false;
+                        Log.i("LLLL", "请求成功");
+                    }
 
-                }
-                mLocationClient.stop();
+                    @Override
+                    public void onFailure(Object reasonObj) {
+                        Log.i("LLLL", "请求失败");
+                    }
+                });
+                isOne = false;
+
+            }
+            mLocationClient.stop();
 //                Message message=new Message();
 //                message.obj=location;
 //                mHandle.sendMessage(message);
 
-                //当前为GPS定位结果，可获取以下信息
+            //当前为GPS定位结果，可获取以下信息
 
 //            }  else if (location.getLocType() == BDLocation.TypeServerError) {
 //                Log.i("LLL","定位失败");
