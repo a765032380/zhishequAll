@@ -14,8 +14,6 @@ public class XY_Response {
     public static final String URL2="http://47.92.106.249:8088/zsq/v2/";
 
 
-
-
     public static final String URL_LOGIN=URL2+"init/login?";
     public static final String URL_REGISTER=URL+"init/registered?";
     public static final String URL_FINDPWD=URL+"init/findPwd?";

@@ -190,6 +190,7 @@ public class XuanZeXiaoQuActivity extends LogOutBaseActivity
                     }
                 });
                 frameLayout.addView(guideImage);//添加引导图片
+                SPManager.getInstance().putInt("status",1);
 
             }
         }

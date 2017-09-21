@@ -10,7 +10,7 @@ android {
         applicationId "com.bjxiyang.zhinengshequ"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 6
+        versionCode 11
         versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         packagingOptions {

@@ -25,7 +25,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -152,7 +151,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         setGuideResId(R.drawable.a_bg_hahaha);//添加引导页
-        if (status == 1){
+        if (SPManager.getInstance().getInt("status",1) == 1){
             addGuideImage();//添加引导页
         }
 
@@ -247,9 +246,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onResume() {
 
-        if (status == 2) {
+        if (SPManager.getInstance().getInt("status",0) == 3) {
             setGuideResId1(R.drawable.f_bg_hahaha);//添加引导页
             addGuideImage1();//添加引导页
+            SPManager.getInstance().putInt("status",4);
         }
 
         isForeground = true;
@@ -842,6 +842,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                     }
                 });
                 frameLayout.addView(guideImage);//添加引导图片
+                SPManager.getInstance().putInt("status",2);
 
             }
         }

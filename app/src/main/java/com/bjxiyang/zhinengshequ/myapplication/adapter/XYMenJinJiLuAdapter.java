@@ -15,6 +15,7 @@ import com.bjxiyang.zhinengshequ.R;
 import com.bjxiyang.zhinengshequ.myapplication.bean.OpenDoorList;
 import com.bjxiyang.zhinengshequ.myapplication.view.CircleImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,6 +29,7 @@ public class XYMenJinJiLuAdapter extends BaseAdapter {
     private Context mContext;
     private List<OpenDoorList.Obj> list;
     private String date_date;
+    private List<String> mList;
 
     public XYMenJinJiLuAdapter(Context mContext, List<OpenDoorList.Obj> list) {
         this.mContext = mContext;
@@ -68,6 +70,10 @@ public class XYMenJinJiLuAdapter extends BaseAdapter {
         }else {
             viewHolder= (ViewHolder) view.getTag();
         }
+
+        mList=new ArrayList<>();
+        mList.add(list.get(position).getOpenTime().split(" ")[0]);
+
 
         if (position==0) {
             OpenDoorList.Obj obj = list.get(position);

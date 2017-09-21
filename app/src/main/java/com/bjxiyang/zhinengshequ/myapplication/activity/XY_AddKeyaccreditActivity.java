@@ -143,6 +143,7 @@ public class XY_AddKeyaccreditActivity extends LogOutBaseActivity implements Vie
 
                             if (!fristload) {
                                 MainActivity.status = 2;
+                                SPManager.getInstance().putInt("status",2);
                                 SPManager.getInstance().putBoolean("check", true);
                                 finish();
                             }else {
