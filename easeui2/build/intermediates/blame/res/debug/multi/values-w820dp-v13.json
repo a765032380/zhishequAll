@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/src/main/res/values-w820dp/ease_dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -24,7 +24,7 @@
         ]
     },
     {
-        "outputFile": "G:\\Zhishequ\\zhishequAll\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -35,7 +35,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -48,7 +48,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -59,7 +59,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -72,7 +72,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -83,7 +83,31 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 305,
+                        "endColumn": 57,
+                        "endOffset": 358
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

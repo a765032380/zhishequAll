@@ -5,6 +5,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.bjxiyang.zhinengshequ.myapplication.dialog.KaiMenYouXiDialog;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 import com.bjxiyang.zhinengshequ.myapplication.until.DialogUntil;
 import com.bjxiyang.zhinengshequ.myapplication.update.network.RequestCenter;
+import com.bjxiyang.zhinengshequ.myapplication.update.util.GetHeaders;
 import com.bjxiyang.zhinengshequ.myapplication.view.MyDialog;
 
 import java.util.List;
@@ -78,6 +80,9 @@ public class MyMenJinAdapter extends RecyclerView.Adapter<MyMenJinAdapter.ViewHo
                 customberId= Integer.valueOf(SPManager.getInstance().getString("c_memberId",""));
                 lockId=mList.get(position).getLockId();
                 String url= XY_Response.URL_OPENDOOR+"customberId="+customberId+"&lockId="+lockId;
+
+                Log.i("LLLL",url);
+
                 RequestCenter.openDoor(url, new DisposeDataListener() {
                     @Override
                     public void onSuccess(Object responseObj) {

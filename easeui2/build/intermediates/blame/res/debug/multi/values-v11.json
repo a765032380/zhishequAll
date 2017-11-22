@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 96
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 143
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 194
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -69,7 +69,7 @@
                     "endOffset": 363
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -90,7 +90,7 @@
                     "endOffset": 683
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -111,7 +111,7 @@
                     "endOffset": 1102
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -132,7 +132,7 @@
                     "endOffset": 1527
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -153,7 +153,7 @@
                     "endOffset": 1955
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -174,7 +174,7 @@
                     "endOffset": 2381
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -195,7 +195,7 @@
                     "endOffset": 2808
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -216,7 +216,7 @@
                     "endOffset": 3233
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -236,7 +236,7 @@
                     "endOffset": 3322
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 38,
                         "startColumn": 4,
@@ -255,7 +255,7 @@
                     "endOffset": 3423
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 4,
@@ -274,7 +274,7 @@
                     "endOffset": 3526
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
@@ -294,7 +294,7 @@
                     "endOffset": 3934
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 41,
                         "startColumn": 4,
@@ -315,7 +315,7 @@
                     "endOffset": 4354
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 46,
                         "startColumn": 4,
@@ -336,7 +336,7 @@
                     "endOffset": 4776
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 51,
                         "startColumn": 4,
@@ -357,7 +357,7 @@
                     "endOffset": 4883
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 56,
                         "startColumn": 4,
@@ -378,7 +378,7 @@
                     "endOffset": 5012
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 58,
                         "startColumn": 4,
@@ -398,7 +398,7 @@
                     "endOffset": 5083
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 60,
                         "startColumn": 4,
@@ -417,7 +417,7 @@
                     "endOffset": 5166
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 61,
                         "startColumn": 4,
@@ -437,7 +437,7 @@
                     "endOffset": 9097
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 62,
                         "startColumn": 4,
@@ -458,7 +458,7 @@
                     "endOffset": 13171
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 115,
                         "startColumn": 4,
@@ -478,7 +478,7 @@
                     "endOffset": 13262
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 169,
                         "startColumn": 4,
@@ -498,7 +498,7 @@
                     "endOffset": 13391
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -518,7 +518,7 @@
                     "endOffset": 13476
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -531,7 +531,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
         "map": [
             {
                 "to": {
@@ -542,7 +542,7 @@
                     "endOffset": 96
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/src/main/res/values-v11/ease_styles.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -561,7 +561,7 @@
                     "endOffset": 143
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/src/main/res/values-v11/ease_styles.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -580,7 +580,7 @@
                     "endOffset": 194
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/src/main/res/values-v11/ease_styles.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -600,7 +600,7 @@
                     "endOffset": 363
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/src/main/res/values-v11/ease_styles.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -621,7 +621,7 @@
                     "endOffset": 683
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/src/main/res/values-v11/ease_styles.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -642,7 +642,7 @@
                     "endOffset": 1102
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -663,7 +663,7 @@
                     "endOffset": 1527
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -684,7 +684,7 @@
                     "endOffset": 1955
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -705,7 +705,7 @@
                     "endOffset": 2381
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -726,7 +726,7 @@
                     "endOffset": 2808
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -747,7 +747,7 @@
                     "endOffset": 3233
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -767,7 +767,7 @@
                     "endOffset": 3322
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 38,
                         "startColumn": 4,
@@ -786,7 +786,7 @@
                     "endOffset": 3423
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 4,
@@ -805,7 +805,7 @@
                     "endOffset": 3526
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
@@ -825,7 +825,7 @@
                     "endOffset": 3934
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 41,
                         "startColumn": 4,
@@ -846,7 +846,7 @@
                     "endOffset": 4354
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 46,
                         "startColumn": 4,
@@ -867,7 +867,7 @@
                     "endOffset": 4776
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 51,
                         "startColumn": 4,
@@ -888,7 +888,7 @@
                     "endOffset": 4883
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 56,
                         "startColumn": 4,
@@ -909,7 +909,7 @@
                     "endOffset": 5012
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 58,
                         "startColumn": 4,
@@ -929,7 +929,7 @@
                     "endOffset": 5083
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 60,
                         "startColumn": 4,
@@ -948,7 +948,7 @@
                     "endOffset": 5166
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 61,
                         "startColumn": 4,
@@ -968,7 +968,7 @@
                     "endOffset": 9097
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 62,
                         "startColumn": 4,
@@ -989,7 +989,7 @@
                     "endOffset": 13171
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 115,
                         "startColumn": 4,
@@ -1009,7 +1009,7 @@
                     "endOffset": 13262
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/.android/build-cache/85c4352ea401e043834385f6ffeed475d0fed426/output/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 169,
                         "startColumn": 4,
@@ -1029,7 +1029,7 @@
                     "endOffset": 13391
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/src/main/res/values-v11/ease_styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -1049,7 +1049,7 @@
                     "endOffset": 13476
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/easeui2/src/main/res/values-v11/ease_styles.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -1062,7 +1062,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -1073,7 +1073,7 @@
                     "endOffset": 96
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -1092,7 +1092,7 @@
                     "endOffset": 143
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -1111,7 +1111,7 @@
                     "endOffset": 194
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -1131,7 +1131,7 @@
                     "endOffset": 363
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -1152,7 +1152,7 @@
                     "endOffset": 683
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -1173,7 +1173,7 @@
                     "endOffset": 1102
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -1194,7 +1194,7 @@
                     "endOffset": 1527
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -1215,7 +1215,7 @@
                     "endOffset": 1955
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -1236,7 +1236,7 @@
                     "endOffset": 2381
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -1257,7 +1257,7 @@
                     "endOffset": 2808
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -1278,7 +1278,7 @@
                     "endOffset": 3233
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -1298,7 +1298,7 @@
                     "endOffset": 3322
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 38,
                         "startColumn": 4,
@@ -1317,7 +1317,7 @@
                     "endOffset": 3423
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 4,
@@ -1336,7 +1336,7 @@
                     "endOffset": 3526
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
@@ -1356,7 +1356,7 @@
                     "endOffset": 3934
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 41,
                         "startColumn": 4,
@@ -1377,7 +1377,7 @@
                     "endOffset": 4354
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 46,
                         "startColumn": 4,
@@ -1398,7 +1398,7 @@
                     "endOffset": 4776
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 51,
                         "startColumn": 4,
@@ -1419,7 +1419,7 @@
                     "endOffset": 4883
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 56,
                         "startColumn": 4,
@@ -1440,7 +1440,7 @@
                     "endOffset": 5012
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 58,
                         "startColumn": 4,
@@ -1460,7 +1460,7 @@
                     "endOffset": 5083
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 60,
                         "startColumn": 4,
@@ -1479,7 +1479,7 @@
                     "endOffset": 5166
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 61,
                         "startColumn": 4,
@@ -1499,7 +1499,7 @@
                     "endOffset": 9097
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 62,
                         "startColumn": 4,
@@ -1520,7 +1520,7 @@
                     "endOffset": 13171
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 115,
                         "startColumn": 4,
@@ -1540,7 +1540,7 @@
                     "endOffset": 13262
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\.android\\build-cache\\85c4352ea401e043834385f6ffeed475d0fed426\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 169,
                         "startColumn": 4,
@@ -1560,7 +1560,7 @@
                     "endOffset": 13391
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -1580,7 +1580,7 @@
                     "endOffset": 13476
                 },
                 "from": {
-                    "file": "C:\\Users\\gll\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -1593,7 +1593,7 @@
         ]
     },
     {
-        "outputFile": "G:\\Zhishequ\\zhishequAll\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -1604,7 +1604,7 @@
                     "endOffset": 96
                 },
                 "from": {
-                    "file": "G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -1623,7 +1623,7 @@
                     "endOffset": 143
                 },
                 "from": {
-                    "file": "G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -1642,7 +1642,7 @@
                     "endOffset": 194
                 },
                 "from": {
-                    "file": "G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -1662,7 +1662,7 @@
                     "endOffset": 363
                 },
                 "from": {
-                    "file": "G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -1683,7 +1683,7 @@
                     "endOffset": 683
                 },
                 "from": {
-                    "file": "G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -1704,7 +1704,7 @@
                     "endOffset": 1102
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -1725,7 +1725,7 @@
                     "endOffset": 1527
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -1746,7 +1746,7 @@
                     "endOffset": 1955
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -1767,7 +1767,7 @@
                     "endOffset": 2381
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -1788,7 +1788,7 @@
                     "endOffset": 2808
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -1809,7 +1809,7 @@
                     "endOffset": 3233
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -1829,7 +1829,7 @@
                     "endOffset": 3322
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 38,
                         "startColumn": 4,
@@ -1848,7 +1848,7 @@
                     "endOffset": 3423
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 4,
@@ -1867,7 +1867,7 @@
                     "endOffset": 3526
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
@@ -1887,7 +1887,7 @@
                     "endOffset": 3934
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 41,
                         "startColumn": 4,
@@ -1908,7 +1908,7 @@
                     "endOffset": 4354
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 46,
                         "startColumn": 4,
@@ -1929,7 +1929,7 @@
                     "endOffset": 4776
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 51,
                         "startColumn": 4,
@@ -1950,7 +1950,7 @@
                     "endOffset": 4883
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 56,
                         "startColumn": 4,
@@ -1971,7 +1971,7 @@
                     "endOffset": 5012
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 58,
                         "startColumn": 4,
@@ -1991,7 +1991,7 @@
                     "endOffset": 5083
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 60,
                         "startColumn": 4,
@@ -2010,7 +2010,7 @@
                     "endOffset": 5166
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 61,
                         "startColumn": 4,
@@ -2030,7 +2030,7 @@
                     "endOffset": 9097
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 62,
                         "startColumn": 4,
@@ -2051,7 +2051,7 @@
                     "endOffset": 13171
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 115,
                         "startColumn": 4,
@@ -2071,7 +2071,7 @@
                     "endOffset": 13262
                 },
                 "from": {
-                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\5fa90a61e4a7cbdde631e32925f6f599fe64d76a\\output\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 169,
                         "startColumn": 4,
@@ -2091,7 +2091,7 @@
                     "endOffset": 13391
                 },
                 "from": {
-                    "file": "G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -2111,7 +2111,538 @@
                     "endOffset": 13476
                 },
                 "from": {
-                    "file": "G:\\Zhishequ\\zhishequAll\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\gll\\Desktop\\zhishequ2\\C:\\Users\\Administrator\\Desktop\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 820,
+                        "endColumn": 91,
+                        "endOffset": 907
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 45,
+                    "endOffset": 96
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 355,
+                        "endColumn": 45,
+                        "endOffset": 396
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 101,
+                    "endColumn": 46,
+                    "endOffset": 143
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 401,
+                        "endColumn": 46,
+                        "endOffset": 443
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 148,
+                    "endColumn": 50,
+                    "endOffset": 194
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 448,
+                        "endColumn": 50,
+                        "endOffset": 494
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 199,
+                    "endLine": 7,
+                    "endColumn": 12,
+                    "endOffset": 363
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 56,
+                        "endLine": 5,
+                        "endColumn": 12,
+                        "endOffset": 220
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 368,
+                    "endLine": 13,
+                    "endColumn": 12,
+                    "endOffset": 683
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 499,
+                        "endLine": 18,
+                        "endColumn": 12,
+                        "endOffset": 814
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 688,
+                    "endLine": 19,
+                    "endColumn": 12,
+                    "endOffset": 1102
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 7,
+                        "endColumn": 12,
+                        "endOffset": 469
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1107,
+                    "endLine": 25,
+                    "endColumn": 12,
+                    "endOffset": 1527
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 474,
+                        "endLine": 13,
+                        "endColumn": 12,
+                        "endOffset": 894
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 1532,
+                    "endLine": 31,
+                    "endColumn": 12,
+                    "endOffset": 1955
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 899,
+                        "endLine": 19,
+                        "endColumn": 12,
+                        "endOffset": 1322
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 1960,
+                    "endLine": 37,
+                    "endColumn": 12,
+                    "endOffset": 2381
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1327,
+                        "endLine": 25,
+                        "endColumn": 12,
+                        "endOffset": 1748
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 38,
+                    "startColumn": 4,
+                    "startOffset": 2386,
+                    "endLine": 43,
+                    "endColumn": 12,
+                    "endOffset": 2808
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1753,
+                        "endLine": 31,
+                        "endColumn": 12,
+                        "endOffset": 2175
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 44,
+                    "startColumn": 4,
+                    "startOffset": 2813,
+                    "endLine": 49,
+                    "endColumn": 12,
+                    "endOffset": 3233
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 2180,
+                        "endLine": 37,
+                        "endColumn": 12,
+                        "endOffset": 2600
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 50,
+                    "startColumn": 4,
+                    "startOffset": 3238,
+                    "endColumn": 88,
+                    "endOffset": 3322
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 38,
+                        "startColumn": 4,
+                        "startOffset": 2605,
+                        "endColumn": 88,
+                        "endOffset": 2689
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 51,
+                    "startColumn": 4,
+                    "startOffset": 3327,
+                    "endColumn": 100,
+                    "endOffset": 3423
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 39,
+                        "startColumn": 4,
+                        "startOffset": 2694,
+                        "endColumn": 100,
+                        "endOffset": 2790
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 52,
+                    "startColumn": 4,
+                    "startOffset": 3428,
+                    "endColumn": 102,
+                    "endOffset": 3526
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 2795,
+                        "endColumn": 102,
+                        "endOffset": 2893
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 53,
+                    "startColumn": 4,
+                    "startOffset": 3531,
+                    "endLine": 57,
+                    "endColumn": 12,
+                    "endOffset": 3934
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 41,
+                        "startColumn": 4,
+                        "startOffset": 2898,
+                        "endLine": 45,
+                        "endColumn": 12,
+                        "endOffset": 3301
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 58,
+                    "startColumn": 4,
+                    "startOffset": 3939,
+                    "endLine": 62,
+                    "endColumn": 12,
+                    "endOffset": 4354
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 46,
+                        "startColumn": 4,
+                        "startOffset": 3306,
+                        "endLine": 50,
+                        "endColumn": 12,
+                        "endOffset": 3721
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 63,
+                    "startColumn": 4,
+                    "startOffset": 4359,
+                    "endLine": 67,
+                    "endColumn": 12,
+                    "endOffset": 4776
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 51,
+                        "startColumn": 4,
+                        "startOffset": 3726,
+                        "endLine": 55,
+                        "endColumn": 12,
+                        "endOffset": 4143
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 68,
+                    "startColumn": 4,
+                    "startOffset": 4781,
+                    "endLine": 69,
+                    "endColumn": 12,
+                    "endOffset": 4883
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 56,
+                        "startColumn": 4,
+                        "startOffset": 4148,
+                        "endLine": 57,
+                        "endColumn": 12,
+                        "endOffset": 4250
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 70,
+                    "startColumn": 4,
+                    "startOffset": 4888,
+                    "endLine": 71,
+                    "endColumn": 12,
+                    "endOffset": 5012
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 58,
+                        "startColumn": 4,
+                        "startOffset": 4255,
+                        "endLine": 59,
+                        "endColumn": 12,
+                        "endOffset": 4379
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 72,
+                    "startColumn": 4,
+                    "startOffset": 5017,
+                    "endColumn": 70,
+                    "endOffset": 5083
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 60,
+                        "startColumn": 4,
+                        "startOffset": 4384,
+                        "endColumn": 70,
+                        "endOffset": 4450
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 73,
+                    "startColumn": 4,
+                    "startOffset": 5088,
+                    "endColumn": 82,
+                    "endOffset": 5166
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 61,
+                        "startColumn": 4,
+                        "startOffset": 4455,
+                        "endColumn": 82,
+                        "endOffset": 4533
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 74,
+                    "startColumn": 4,
+                    "startOffset": 5171,
+                    "endLine": 126,
+                    "endColumn": 12,
+                    "endOffset": 9097
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 62,
+                        "startColumn": 4,
+                        "startOffset": 4538,
+                        "endLine": 114,
+                        "endColumn": 12,
+                        "endOffset": 8464
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 127,
+                    "startColumn": 4,
+                    "startOffset": 9102,
+                    "endLine": 180,
+                    "endColumn": 12,
+                    "endOffset": 13171
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 115,
+                        "startColumn": 4,
+                        "startOffset": 8469,
+                        "endLine": 168,
+                        "endColumn": 12,
+                        "endOffset": 12538
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 181,
+                    "startColumn": 4,
+                    "startOffset": 13176,
+                    "endColumn": 90,
+                    "endOffset": 13262
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\.android\\build-cache\\1b18319600e083a3f22bc526d74d217993c46d17\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 169,
+                        "startColumn": 4,
+                        "startOffset": 12543,
+                        "endColumn": 90,
+                        "endOffset": 12629
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 182,
+                    "startColumn": 4,
+                    "startOffset": 13267,
+                    "endLine": 184,
+                    "endColumn": 12,
+                    "endOffset": 13391
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 226,
+                        "endLine": 9,
+                        "endColumn": 12,
+                        "endOffset": 350
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 185,
+                    "startColumn": 4,
+                    "startOffset": 13396,
+                    "endColumn": 84,
+                    "endOffset": 13476
+                },
+                "from": {
+                    "file": "/Users/gll/Desktop/zhishequAll/zhishequAll/C:\\Users\\Administrator\\Desktop\\xiangmu\\zhishequ2\\zhishequ2\\easeui2\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,

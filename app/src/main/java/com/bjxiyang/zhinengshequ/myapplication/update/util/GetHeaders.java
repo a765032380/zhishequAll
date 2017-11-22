@@ -1,6 +1,8 @@
 package com.bjxiyang.zhinengshequ.myapplication.update.util;
 
 
+import android.util.Log;
+
 import com.baisi.myapplication.okhttp.request.RequestParams;
 import com.bjxiyang.zhinengshequ.myapplication.manager.SPManager;
 
@@ -15,7 +17,8 @@ public class GetHeaders {
 //        headers.put("private-token","18813045215");
         headers.put("private-token",SPManager.getInstance().getString("mobilePhone",null)
                 +"_"+SPManager.getInstance().getString("loginKey",""));
-
+        Log.i("LLLL",SPManager.getInstance().getString("mobilePhone",null)
+                +"_"+SPManager.getInstance().getString("loginKey",""));
 //        UserManager.getInstance().getUser().getObj().getMobilePhone()+
 //                "_"+
 
